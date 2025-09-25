@@ -133,13 +133,13 @@ table_line_country <- line_lenght_country_prep |>
   #alternance gris / blanc par ligne
   opt_row_striping() |> 
   #centrer les nombres
-  tab_style(style = cell_text(align = "left"),
+  tab_style(style = cell_text(align = "center"),
             locations = cells_body(is.numeric)) |> 
   #noms de pays en gras
   tab_style(style = cell_text(weight = "bold"),
             locations = cells_body(Country)) |> 
   #mise en forme des noms de colonnes
-  tab_style(style = list(cell_text(align = "left"),
+  tab_style(style = list(cell_text(align = "center"),
                          cell_fill("grey80")),
             locations = cells_column_labels()) |> 
 #bordures en blanc
