@@ -91,7 +91,7 @@ line_lenght_country_prep <- line_lenght_country |>
   rename(` ` = country_code_2)
 
 # Affichage de la table
-line_lenght_country_prep |> 
+table_line_country <- line_lenght_country_prep |> 
   arrange(Country) |> 
   gt() |> 
   #drapeaux par pays
@@ -151,10 +151,11 @@ line_lenght_country_prep |>
   cols_width(` ` ~ px(30)) |> 
   #intéractivité table
   opt_interactive(use_search = TRUE,
-                  page_size_default = 15) |> 
+                  page_size_default = 25) |> 
   #cache colonne
   cols_hide(country_code_3)
-
+table_line_country
+gtsave(table_line_country, "figures/table_line_country.html")
 
 
 ###########################################################
@@ -213,7 +214,7 @@ plot_density_power <- function(continent) {
 }
 
 # Affichage de la table
-line_lenght_country_prep2 |> 
+table_line_continent_power <- line_lenght_country_prep2 |> 
   #sélection des variables à afficher
   select(continent_of_the_territory, nb_pays, ends_with("power_line")) |> 
   #dernière mise en forme avant table
@@ -263,7 +264,8 @@ line_lenght_country_prep2 |>
               table_body.border.top.color = "#6b6b6b",
               table_body.border.top.style = "solid",
               table_body.border.top.width = 2.4)
-
+table_line_continent_power
+gtsave(table_line_continent_power, "figures/table_line_continent_power.png")
 
 
       ###----- Growth since 2025-01-01 (%)
@@ -282,7 +284,7 @@ plot_density_growth_percent <- function(continent) {
 }
 
 # Affichage de la table
-line_lenght_country_prep2 |> 
+table_line_continent_growth_percent <- line_lenght_country_prep2 |> 
   #sélection des variables à afficher
   select(continent_of_the_territory, nb_pays, ends_with("growth_percent")) |> 
   #dernière mise en forme avant table
@@ -305,7 +307,7 @@ line_lenght_country_prep2 |>
   data_color(columns = mean_growth_percent,
              colors = scales::col_numeric(palette = c("#b3d3d7", "#036d7a"), domain = NULL)) |> 
   #groupe de statistiques
-  tab_spanner(label = 'Power line length (km) 2025-07-01',
+  tab_spanner(label = 'Growth since 2025-01-01 (%)',
               columns = c(mean_growth_percent, min_growth_percent, max_growth_percent, Distribution)) |> 
   cols_label(min_growth_percent = "Min", max_growth_percent = "Max", mean_growth_percent = "Mean") |> 
     #alternance gris / blanc par ligne
@@ -335,7 +337,8 @@ line_lenght_country_prep2 |>
   fmt_percent(columns = c(min_growth_percent, max_growth_percent, mean_growth_percent),
             decimals = 2, drop_trailing_zeros = TRUE,
             dec_mark = ",")
-
+table_line_continent_growth_percent
+gtsave(table_line_continent_growth_percent, "figures/table_line_continent_growth_percent.png")
 
 
 
@@ -356,7 +359,7 @@ plot_density_growth_km <- function(continent) {
 }
 
 # Affichage de la table
-line_lenght_country_prep2 |> 
+table_line_continent_growth_km <- line_lenght_country_prep2 |> 
   #sélection des variables à afficher
   select(continent_of_the_territory, nb_pays, ends_with("growth_km")) |> 
   #dernière mise en forme avant table
@@ -406,8 +409,8 @@ line_lenght_country_prep2 |>
               table_body.border.top.color = "#6b6b6b",
               table_body.border.top.style = "solid",
               table_body.border.top.width = 2.4)
-
-
+table_line_continent_growth_km
+gtsave(table_line_continent_growth_km, "figures/table_line_continent_growth_km.png")
 
 
 
