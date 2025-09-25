@@ -109,19 +109,19 @@ table_line_country <- line_lenght_country_prep |>
              bins = c(-1, 0, 1)) |> 
   #coloration des évolutions en valeurs absolues
   data_color(columns = `Growth since 2025-01-01 (km)`,
-             rows = `Growth since 2025-01-01 (%)` > 0,
+             rows = `Growth since 2025-01-01 (km)` > 0,
              method = "numeric",
              palette = c("#FECF5D", "#279f2b"),
              bins = c(-Inf, 0, Inf),
              alpha = .8) |>
   data_color(columns = `Growth since 2025-01-01 (km)`,
-             rows = `Growth since 2025-01-01 (%)` < 0,
+             rows = `Growth since 2025-01-01 (km)` < 0,
              method = "numeric",
              palette = c("#bf2f2f", "#ffa500"),
              bins = c(-Inf, 0, Inf),
              alpha = .8) |>
   data_color(columns = `Growth since 2025-01-01 (km)`,
-             rows = `Growth since 2025-01-01 (%)` == 0,
+             rows = `Growth since 2025-01-01 (km)` == 0,
              method = "numeric",
              palette = c("grey80"),
              bins = c(-Inf, 0, Inf),
@@ -139,8 +139,7 @@ table_line_country <- line_lenght_country_prep |>
   tab_style(style = cell_text(weight = "bold"),
             locations = cells_body(Country)) |> 
   #mise en forme des noms de colonnes
-  tab_style(style = list(cell_text(align = "center"),
-                         cell_fill("grey80")),
+  tab_style(style = list(cell_text(align = "left")),
             locations = cells_column_labels()) |> 
 #bordures en blanc
   tab_options(table_body.hlines.style = "solid",
