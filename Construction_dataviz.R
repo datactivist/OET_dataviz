@@ -364,7 +364,7 @@ table_line_continent_growth_km <- line_lenght_country_prep2 |>
               table_body.border.top.style = "solid",
               table_body.border.top.width = 2.4)
 table_line_continent_growth_km
-gtsave(table_line_continent_growth_km, "figures/table_line_continent_growth_km.png")
+gtsave(table_line_continent_growth_km, "figures/table_line_continent_growth_km.html")
 
 
 
