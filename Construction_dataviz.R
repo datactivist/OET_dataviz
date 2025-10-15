@@ -11,6 +11,11 @@ library(curl)
 library(gt)
 library(gtExtras)
 library(janitor)
+library(plotly)
+library(scales)
+library(ggtext)
+library(htmlwidgets)
+
 
 # Data
   # JSON
@@ -35,7 +40,7 @@ destfile <- "GEM_Global_Integrated_Power_February_2025_update_II.xlsx"
 curl_download("https://github.com/open-energy-transition/MapYourGrid/raw/refs/heads/main/docs/data/GEM-Global-Integrated-Power-February-2025-update-II.xlsx", destfile)
 global_data <- read_excel(destfile, sheet = "Power facilities")
   # CSV
-line_lenght_country <- read_csv("line_lenght_growth_country_data.csv") |> 
+line_lenght_country <- read_csv("data/line_lenght_growth_country_data.csv") |> 
   #on remet growth % en numérique
   mutate(`Growth since 2025-01-01 (%)` = as.numeric(str_sub(`Growth since 2025-01-01 (%)`, 1, nchar(`Growth since 2025-01-01 (%)`)-1)) / 100)
 
@@ -126,10 +131,6 @@ table_line_country <- line_lenght_country_prep |>
              palette = c("grey80"),
              bins = c(-Inf, 0, Inf),
              alpha = .8) |>
-             
-             # method = "numeric", 
-             # colors = scales::col_numeric(palette = c("#d73027","#FECF5D", "#ffa500", "#279f2b"), 
-             #                              domain = NULL)) |> 
   #alternance gris / blanc par ligne
   opt_row_striping() |> 
   #centrer les nombres
@@ -139,18 +140,16 @@ table_line_country <- line_lenght_country_prep |>
   tab_style(style = cell_text(weight = "bold"),
             locations = cells_body(Country)) |> 
   #mise en forme des noms de colonnes
-  tab_style(style = list(cell_text(align = "left")),
+  tab_style(style = cell_text(align = "left"),
             locations = cells_column_labels()) |> 
-#bordures en blanc
+  #bordures en blanc
   tab_options(table_body.hlines.style = "solid",
               table_body.hlines.width = 10, 
               table_body.hlines.color = "white") |> 
-  #opt_table_lines("none") |> 
   #taille colonnes
   cols_width(` ` ~ px(30)) |> 
   #intéractivité table
-  opt_interactive(use_search = TRUE,
-                  page_size_default = 25) |> 
+  opt_interactive(use_search = TRUE, use_pagination = FALSE) |> 
   #cache colonne
   cols_hide(country_code_3)
 table_line_country
@@ -184,66 +183,52 @@ line_lenght_country_prep2 <- line_lenght_country_prep |>
             min_growth_km = min(`Growth since 2025-01-01 (km)`),
             max_growth_km = max(`Growth since 2025-01-01 (km)`),
             mean_growth_km = mean(`Growth since 2025-01-01 (km)`),
-            pays = paste(Country, collapse = ", "),
+            sum_growth_km = sum(`Growth since 2025-01-01 (km)`),
+            Continent = paste(Country, collapse = ", "),
             code_pays = paste(` `, collapse = ","),
             .by = continent_of_the_territory) |> 
       #mise en forme des stats
   mutate(across(where(is.numeric) & !all_of(c("mean_power_line", "mean_growth_percent", 
                                               "mean_growth_km", "min_growth_percent", "max_growth_percent")), 
-                ~ format(as.integer(., 0), nsmall = 1, big.mark = ".")))
+                ~ format(as.integer(., 0), nsmall = 1, big.mark = "."))) |> 
   #préparation liste déroulante de spays par continent
-  #mutate(Continent = ifelse(is.na(pays), NA_character_,
-  #                            paste0("<details><summary>", continent_of_the_territory, "</summary>", pays, "</details>")))
+  mutate(Continent_detail = ifelse(is.na(Continent), NA_character_,
+                             paste0("<details><summary>", continent_of_the_territory, "</summary>", Continent, "</details>")))
 
 
 
       ###----- Power line length (km)
 
-# Fonction pour plotter les densités
-plot_density_power <- function(continent) {
-  line_lenght_country_prep |> 
-    left_join(continent_data, by = c("country_code_3" = "iso_3_territory_code")) |> 
-    filter(continent_of_the_territory == continent) |>
-    ggplot(aes(x = `Power line length (km) 2025-07-01`, y = continent)) +
-    geom_violin(fill = '#036D7A') +
-    #xlim(min(line_lenght_country_prep2$min_power_line), 
-    #     max(line_lenght_country_prep2$max_power_line)) +
-    theme_void() +
-    labs(x = element_blank(), y = element_blank()) 
-}
-
 # Affichage de la table
 table_line_continent_power <- line_lenght_country_prep2 |> 
   #sélection des variables à afficher
-  select(continent_of_the_territory, nb_pays, ends_with("power_line")) |> 
+  select(nb_pays, ends_with("power_line"), Continent, Continent_detail) |> 
   #dernière mise en forme avant table
-  rename(Continent = continent_of_the_territory,
-         `Number of countries` = nb_pays) |> 
-  arrange(Continent) |> 
+  rename(`Number of countries` = nb_pays) |> 
+  arrange(Continent_detail) |> 
   relocate(Continent) |> 
-  mutate(Distribution = Continent) |> 
   #table
   gt() |> 
-  #violin plot de distribution
+  #liste interactive des pays par continent
   text_transform(
-    locations = cells_body(columns = 'Distribution'),
-    fn = function(column) {
-      map(column, plot_density_power) |>
-        ggplot_image(height = px(50), aspect_ratio = 1)
-    }
-  )  |> 
+    locations = cells_body(columns = vars(Continent)),
+    fn = function(x) {
+      # on renvoie la colonne Detail_html ligne par ligne, enveloppée par html()
+      lapply(seq_along(x), function(i) html(line_lenght_country_prep2$Continent_detail[i]))
+    }) |> 
+  cols_hide(Continent_detail) |> 
   #coloration des moyennes
   data_color(columns = mean_power_line,
              colors = scales::col_numeric(palette = c("#b3d3d7", "#036d7a"), domain = NULL)) |> 
   #groupe de statistiques
   tab_spanner(label = 'Power line length (km) 2025-07-01',
-              columns = c(mean_power_line, min_power_line, max_power_line, sum_power_line, Distribution)) |> 
-  cols_label(sum_power_line = "Total", min_power_line = "Min", 
+              columns = c(mean_power_line, min_power_line, max_power_line, sum_power_line)) |> 
+  cols_label(sum_power_line = "Sum", min_power_line = "Min", 
              max_power_line = "Max", mean_power_line = "Mean") |> 
   #alternance gris / blanc par ligne
   opt_row_striping() |> 
   #centrer les nombres
-  tab_style(style = cell_text(align = "left"),
+  tab_style(style = cell_text(align = "center"),
             locations = cells_body(-Continent)) |> 
   #lighter les nombres sauf nb_countries
   tab_style(style = cell_text(weight = "lighter"),
@@ -252,7 +237,7 @@ table_line_continent_power <- line_lenght_country_prep2 |>
   tab_style(style = cell_text(weight = "bold"),
             locations = cells_body(Continent)) |> 
   #mise en forme des noms de colonnes
-  tab_style(style = list(cell_text(align = "left")),
+  tab_style(style = list(cell_text(align = "center")),
             locations = cells_column_labels()) |> 
   #styles de la table
   opt_stylize(style = 1, color = 'gray') |> 
@@ -264,55 +249,40 @@ table_line_continent_power <- line_lenght_country_prep2 |>
               table_body.border.top.style = "solid",
               table_body.border.top.width = 2.4)
 table_line_continent_power
-gtsave(table_line_continent_power, "figures/table_line_continent_power.png")
+gtsave(table_line_continent_power, "figures/table_line_continent_power.html")
 
 
       ###----- Growth since 2025-01-01 (%)
 
-# Fonction pour plotter les densités
-plot_density_growth_percent <- function(continent) {
-  line_lenght_country_prep |> 
-    left_join(continent_data, by = c("country_code_3" = "iso_3_territory_code")) |> 
-    filter(continent_of_the_territory == continent) |>
-    ggplot(aes(x = `Growth since 2025-01-01 (%)`, y = continent)) +
-    geom_violin(fill = '#036D7A') +
-    #xlim(min(line_lenght_country_prep2$min_power_line), 
-    #     max(line_lenght_country_prep2$max_power_line)) +
-    theme_void() +
-    labs(x = element_blank(), y = element_blank()) 
-}
-
 # Affichage de la table
 table_line_continent_growth_percent <- line_lenght_country_prep2 |> 
   #sélection des variables à afficher
-  select(continent_of_the_territory, nb_pays, ends_with("growth_percent")) |> 
+  select(nb_pays, ends_with("growth_percent"), Continent, Continent_detail) |> 
   #dernière mise en forme avant table
-  rename(Continent = continent_of_the_territory,
-         `Number of countries` = nb_pays) |> 
-  arrange(Continent) |> 
+  rename(`Number of countries` = nb_pays) |> 
+  arrange(Continent_detail) |> 
   relocate(Continent) |> 
-  mutate(Distribution = Continent) |> 
   #table
   gt() |> 
-  #violin plot de distribution
+  #liste interactive des pays par continent
   text_transform(
-    locations = cells_body(columns = 'Distribution'),
-    fn = function(column) {
-      map(column, plot_density_growth_percent) |>
-        ggplot_image(height = px(50), aspect_ratio = 1)
-    }
-  )  |> 
+    locations = cells_body(columns = vars(Continent)),
+    fn = function(x) {
+      # on renvoie la colonne Detail_html ligne par ligne, enveloppée par html()
+      lapply(seq_along(x), function(i) html(line_lenght_country_prep2$Continent_detail[i]))
+    }) |> 
+  cols_hide(Continent_detail) |> 
   #coloration des moyennes
   data_color(columns = mean_growth_percent,
              colors = scales::col_numeric(palette = c("#b3d3d7", "#036d7a"), domain = NULL)) |> 
   #groupe de statistiques
   tab_spanner(label = 'Growth since 2025-01-01 (%)',
-              columns = c(mean_growth_percent, min_growth_percent, max_growth_percent, Distribution)) |> 
+              columns = c(mean_growth_percent, min_growth_percent, max_growth_percent)) |> 
   cols_label(min_growth_percent = "Min", max_growth_percent = "Max", mean_growth_percent = "Mean") |> 
     #alternance gris / blanc par ligne
   opt_row_striping() |> 
   #centrer les nombres
-  tab_style(style = cell_text(align = "left"),
+  tab_style(style = cell_text(align = "center"),
             locations = cells_body(-Continent)) |> 
   #lighter les nombres sauf nb_countries
   tab_style(style = cell_text(weight = "lighter"),
@@ -321,7 +291,7 @@ table_line_continent_growth_percent <- line_lenght_country_prep2 |>
   tab_style(style = cell_text(weight = "bold"),
             locations = cells_body(Continent)) |> 
   #mise en forme des noms de colonnes
-  tab_style(style = list(cell_text(align = "left")),
+  tab_style(style = list(cell_text(align = "center")),
             locations = cells_column_labels()) |> 
   #styles de la table
   opt_stylize(style = 1, color = 'gray') |> 
@@ -337,58 +307,43 @@ table_line_continent_growth_percent <- line_lenght_country_prep2 |>
             decimals = 2, drop_trailing_zeros = TRUE,
             dec_mark = ",")
 table_line_continent_growth_percent
-gtsave(table_line_continent_growth_percent, "figures/table_line_continent_growth_percent.png")
+gtsave(table_line_continent_growth_percent, "figures/table_line_continent_growth_percent.html")
 
 
 
 
       ###----- Growth since 2025-01-01 (km)
 
-# Fonction pour plotter les densités
-plot_density_growth_km <- function(continent) {
-  line_lenght_country_prep |> 
-    left_join(continent_data, by = c("country_code_3" = "iso_3_territory_code")) |> 
-    filter(continent_of_the_territory == continent) |>
-    ggplot(aes(x = `Growth since 2025-01-01 (km)`, y = continent)) +
-    geom_violin(fill = '#036D7A') +
-    #xlim(min(line_lenght_country_prep2$min_power_line), 
-    #     max(line_lenght_country_prep2$max_power_line)) +
-    theme_void() +
-    labs(x = element_blank(), y = element_blank()) 
-}
-
 # Affichage de la table
 table_line_continent_growth_km <- line_lenght_country_prep2 |> 
   #sélection des variables à afficher
-  select(continent_of_the_territory, nb_pays, ends_with("growth_km")) |> 
+  select(nb_pays, ends_with("growth_km"), Continent, Continent_detail) |> 
   #dernière mise en forme avant table
-  rename(Continent = continent_of_the_territory,
-         `Number of countries` = nb_pays) |> 
-  arrange(Continent) |> 
+  rename(`Number of countries` = nb_pays) |> 
+  arrange(Continent_detail) |> 
   relocate(Continent) |> 
-  mutate(Distribution = Continent,
-         mean_growth_km = round(mean_growth_km, 0)) |> 
+  mutate(mean_growth_km = round(mean_growth_km, 0)) |> 
   #table
   gt() |> 
-  #violin plot de distribution
+  #liste interactive des pays par continent
   text_transform(
-    locations = cells_body(columns = 'Distribution'),
-    fn = function(column) {
-      map(column, plot_density_growth_km) |>
-        ggplot_image(height = px(50), aspect_ratio = 1)
-    }
-  )  |> 
+    locations = cells_body(columns = vars(Continent)),
+    fn = function(x) {
+      # on renvoie la colonne Detail_html ligne par ligne, enveloppée par html()
+      lapply(seq_along(x), function(i) html(line_lenght_country_prep2$Continent_detail[i]))
+    }) |> 
+  cols_hide(Continent_detail) |> 
   #coloration des moyennes
   data_color(columns = mean_growth_km,
              colors = scales::col_numeric(palette = c("#b3d3d7", "#036d7a"), domain = NULL)) |> 
   #groupe de statistiques
   tab_spanner(label = 'Growth since 2025-01-01 (km)',
-              columns = c(mean_growth_km, min_growth_km, max_growth_km, Distribution)) |> 
-  cols_label(min_growth_km = "Min", max_growth_km = "Max", mean_growth_km = "Mean") |> 
+              columns = c(mean_growth_km, min_growth_km, max_growth_km, sum_growth_km)) |> 
+  cols_label(min_growth_km = "Min", max_growth_km = "Max", mean_growth_km = "Mean", sum_growth_km = "Sum") |> 
     #alternance gris / blanc par ligne
   opt_row_striping() |> 
   #centrer les nombres
-  tab_style(style = cell_text(align = "left"),
+  tab_style(style = cell_text(align = "center"),
             locations = cells_body(-Continent)) |> 
   #lighter les nombres sauf nb_countries
   tab_style(style = cell_text(weight = "lighter"),
@@ -397,7 +352,7 @@ table_line_continent_growth_km <- line_lenght_country_prep2 |>
   tab_style(style = cell_text(weight = "bold"),
             locations = cells_body(Continent)) |> 
   #mise en forme des noms de colonnes
-  tab_style(style = list(cell_text(align = "left")),
+  tab_style(style = list(cell_text(align = "center")),
             locations = cells_column_labels()) |> 
   #styles de la table
   opt_stylize(style = 1, color = 'gray') |> 
@@ -413,8 +368,165 @@ gtsave(table_line_continent_growth_km, "figures/table_line_continent_growth_km.p
 
 
 
+###########################################################
+############# Line Length Colombia ########################
+###########################################################
+
+
+# Import des données
+stats_lines_colombia <- read_csv("data/stats_lines_colombia.csv") |> 
+  mutate(ts = as.Date(ts, format = "%Y-%m-%d"))
+
+# Dataviz line lenght
+graph <- stats_lines_colombia |> 
+  ggplot() +
+  geom_line(aes(x = ts, y = len, group = 1,
+                text = paste0("Time : ", ts, "\nLine lenght : ", format(as.integer(len, 0), nsmall = 1, big.mark = ","), " km")),
+            color = "#036D7A", size = .7) +
+  geom_point(aes(x = ts, y = len, group = 1,
+                text = paste0("Time : ", ts, "\nLine lenght : ", format(as.integer(len, 0), nsmall = 1, big.mark = ","), " km")),
+            color = "#036D7A", size = .3) +
+  geom_vline(xintercept = as.Date("2025-03-01"), linetype = 2, color = "red4") +
+  scale_y_continuous(labels = scales::comma) +
+  scale_x_date(date_labels = "%m-%Y", breaks = pretty_breaks(n = 10)) +
+  labs(x = "Source : Data from the MapYourGrid project (2025)", #caption mis comme nom axe X pour garder fix position
+       y = "Line lenght (km)", 
+       title = "Line lenght of Colombia") +
+  theme_custom() +
+  theme(axis.ticks.x = element_line(color = "#cbcbcb"),
+        panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
+        panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"),
+        axis.title.x = element_text(size = 12, color = "#858383", family = "Arial", hjust = 0))
+graph
+viz <- ggplotly(graph, tooltip = c("text")) |> 
+  layout(xaxis = list(rangeslider = list(visible = TRUE)), #slider sous l'axe x
+         annotations = list(list(x = as.numeric(as.Date("2025-03-10")),
+                                 y = max(stats_lines_colombia$len, na.rm = TRUE),
+                                 text = "Start of the MYG<br>project",   
+                                 xref = "x", yref = "y", showarrow = FALSE,
+                                 font = list(color = "#8B0000"),
+                                 align = "left", xanchor = "left", yanchor = "top")))
+viz
+saveWidget(viz, "figures/lineplot_line-lenght_colombia.html")
 
 
 
-  
-  
+###########################################################
+############# Sections per country ########################
+###########################################################
+
+
+# Dataviz sections 
+graph <- stats_lines_colombia |> 
+  ggplot() +
+  geom_line(aes(x = ts, y = amount, group = 1,
+                text = paste0("Time : ", ts, "\nNumber of sections : ", amount)),
+            color = "#ECC229", size = .7) +
+  geom_point(aes(x = ts, y = amount, group = 1,
+                text = paste0("Time : ", ts, "\nNumber of sections : ", amount)),
+            color = "#ECC229", size = .3) +
+  geom_vline(xintercept = as.Date("2025-03-01"), linetype = 2, color = "red4") +
+  scale_y_continuous(labels = scales::comma) +
+  scale_x_date(date_labels = "%m-%Y", breaks = pretty_breaks(n = 10)) +
+  labs(x = "Source : Data from the MapYourGrid project (2025)", #caption mis comme nom axe X pour garder fix position
+       y = "Sections (nb.)", 
+       title = "Number of sections of Colombia") +
+  theme_custom() +
+  theme(axis.ticks.x = element_line(color = "#cbcbcb"),
+        panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
+        panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"),
+        axis.title.x = element_text(size = 12, color = "#858383", family = "Arial", hjust = 0))
+graph
+viz <- ggplotly(graph, tooltip = c("text")) |> 
+  layout(xaxis = list(rangeslider = list(visible = TRUE)), #slider sous l'axe x
+         annotations = list(list(x = as.numeric(as.Date("2025-03-10")),
+                                 y = max(stats_lines_colombia$amount, na.rm = TRUE),
+                                 text = "Start of the MYG<br>project",   
+                                 xref = "x", yref = "y", showarrow = FALSE,
+                                 font = list(color = "#8B0000"),
+                                 align = "left", xanchor = "left", yanchor = "top")))
+viz
+saveWidget(viz, "figures/lineplot_nb-sections_colombia.html")
+
+
+
+###########################################################
+############# Growth base 100 per country #################
+###########################################################
+
+
+# Préparation des données
+amount_mars25 <- stats_lines_colombia |> 
+  filter(ts == "2025-03-01")
+len_mars25 <- stats_lines_colombia |> 
+  filter(ts == "2025-03-01")
+table <- stats_lines_colombia |> 
+  arrange(ts) |> 
+  # transformation des métriques en base 100 en mars 2025
+  mutate(amount_100_mars25 = amount / amount_mars25$amount * 100,
+         amount_100_diff = round(amount_100_mars25 - 100, 1),
+         amount_diff = amount - amount_mars25$amount,
+         len_100_mars25 = len / len_mars25$len * 100,
+         len_100_diff = round(len_100_mars25 - 100, 1),
+         len_diff = round(len - len_mars25$len, 0))
+  #calcul de la valeur maximale en base 100 (pour placer "Start of MYG project")
+max_len_100 <- max(table$len_100_mars25, na.rm = TRUE)
+max_amount_100 <- max(table$amount_100_mars25, na.rm = TRUE)
+max_max_100 <- max(c(max_len_100,max_amount_100))
+
+# Dataviz
+graph <- table |> 
+  ggplot() +
+  #ligne and aire colorée jusq'à 100 pour nb of sections
+  geom_ribbon(aes(x = ts, ymax = amount_100_mars25, group = 1, ymin = 100), 
+            fill = "#ECC229", alpha = .3) +
+  geom_line(aes(x = ts, y = amount_100_mars25, group = 1, 
+                text = case_when(amount_100_diff < 0 ~ paste0("Time : ", ts, "\n↓ ", abs(amount_100_diff), 
+                                                              "% (", amount_diff, " sections)"),
+                                 amount_100_diff == 0 ~ "Base 100",
+                                 .default = paste0("Time : ", ts, "\n↑ ", abs(amount_100_diff), 
+                                                              "% (+", amount_diff, " sections)")),
+                color = "Nb. of sections"), size = .7) +
+  #ligne and aire colorée jusq'à 100 pour line lenght
+  geom_ribbon(aes(x = ts, ymax = len_100_mars25, group = 1, ymin = 100), 
+            fill = "#037A4C", alpha = .3) +
+  geom_line(aes(x = ts, y = len_100_mars25,group = 1,
+                text = case_when(len_100_diff < 0 ~ paste0("Time : ", ts, "\n↓ ", abs(len_100_diff), "% (", 
+                                                           format(as.integer(len_diff, 0), nsmall = 1, big.mark = ","), 
+                                                           " km line lenght)"),
+                                 len_100_diff == 0 ~ "Base 100",
+                                 .default = paste0("Time : ", ts, "\n↑ ", abs(len_100_diff), "% (+", 
+                                                           format(as.integer(len_diff, 0), nsmall = 1, big.mark = ","), 
+                                                           " km line lenght)")),
+                color = "Line lenght"), size = .7) +
+  #ligne pointillée au 1er mars 2025
+  geom_vline(xintercept = as.Date("2025-03-01"), linetype = 2, color = "red4") +
+  #mises en forme générales
+  scale_x_date(date_labels = "%m-%Y", breaks = pretty_breaks(n = 10)) +
+  scale_y_continuous(labels = scales::comma) +
+  scale_color_manual(values = c("Nb. of sections" = "#ECC229", 
+                                "Line lenght" = "#037A4C")) +
+  labs(x = "Source : Data from the MapYourGrid project (2025)", #caption mis comme nom axe X pour garder fix position 
+       y = "Base 100 in 2025-03", 
+       subtitle = "test", color = "",
+       title = "<span style='color: #037A4C;'>Line lenght</span> and <span style='color: #ECC229;'>number of sections</span> base 100 in March 2025 - Colombia") +
+  theme_custom() +
+  theme(axis.ticks.x = element_line(color = "#cbcbcb"),
+        plot.title = element_markdown(),
+        legend.position = "top",
+        panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
+        panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"),
+        axis.title.x = element_text(size = 12, color = "#858383", family = "Arial", hjust = 0))
+graph
+viz <- ggplotly(graph, tooltip = c("text")) |> 
+  layout(legend = list(reverse = TRUE),
+         annotations = list(list(x = as.numeric(as.Date("2025-03-10")),
+                                 y = max_max_100,
+                                 text = "Start of the MYG<br>project",   
+                                 xref = "x", yref = "y", showarrow = FALSE,
+                                 font = list(color = "#8B0000"),
+                                 align = "left", xanchor = "left", yanchor = "top")))
+viz
+saveWidget(viz, "figures/lineplot_base-100_sections-len_colombia.html")
+
+
