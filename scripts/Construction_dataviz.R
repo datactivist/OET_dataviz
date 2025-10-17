@@ -149,7 +149,7 @@ table_line_country <- line_lenght_country_prep |>
   #taille colonnes
   cols_width(` ` ~ px(30)) |> 
   #intéractivité table
-  opt_interactive(use_search = TRUE, use_pagination = FALSE) |> 
+  opt_interactive(use_pagination = FALSE) |> 
   #cache colonne
   cols_hide(country_code_3)
 table_line_country
@@ -530,3 +530,48 @@ viz
 saveWidget(viz, "figures/lineplot_base-100_sections-len_colombia.html")
 
 
+
+
+###########################################################
+############# Carto des indiateurs ########################
+###########################################################
+
+
+# Import des données
+temp_file <- tempfile(fileext = ".geojson")
+GET("https://raw.githubusercontent.com/ben10dynartio/apps_mapyourgrid/refs/heads/main/indicators_map/worldmap_indicators.geojson", 
+    write_disk(temp_file, overwrite = TRUE))
+worldmap_indicators <- st_read(temp_file, quiet = TRUE)
+
+# Cartographie
+worldmap_indicators |> 
+  select(power_line_total_length, geometry) |> 
+  st_as_sf() |> 
+  mapview(zcol = "power_line_total_length", 
+          na.color = "grey40",
+          #légende
+          legend = FALSE,
+          layer.name = "Quality Score", #titre
+          layers.control.pos = "topright", #position
+          #fond de carte
+          basemaps = c("Esri.WorldShadedRelief", "OpenStreetMap.DE"),
+          #page de chaque pays
+          popup = leafpop:::popupIframe("https://r-spatial.github.io/mapview/articles/mapview_04-popups.html", 
+                                        width = 600, height = 700)) |> 
+  leafem::addFeatures(weight = .7, color = "grey15", opacity = .8) |>  #contours pays
+  #vue un peu zoomée pour pas avoir le monde en 3 fois
+  setView(lng=0, lat=55, zoom = 2) |>  
+  setMaxBounds(lng1=-180, lat1=-90, lng2=180, lat2=90) 
+library(mapview)
+
+
+
+
+###########################################################
+############# Depuis l'API ################################
+###########################################################
+
+
+# Import des données
+line_world <- fromJSON("https://mapyourgrid.infos-reseaux.com/projects/2025-01_lines/counts/boundary/195271", flatten = TRUE)
+line_world <- line_world$data

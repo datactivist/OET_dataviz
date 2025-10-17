@@ -1,0 +1,49 @@
+/*-- scss:defaults --*/
+
+// fonts
+@import 'https://fonts.googleapis.com/css2?family=Open+Sans&display=swap';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+$font-family-sans-serif: "Open Sans";
+
+// colors
+
+$navbar-bg: #036D7A;
+$navbar-fg: #F0F0F0;
+
+$valuebox-bg-primary: #4e98a1; /*#036d7a*/
+$valuebox-bg-secondary: #f1d365; /*#ecc123*/
+$valuebox-bg-success: #4ea181; /*#037a4c*/
+$valuebox-bg-info: #985750; /*#6d0f06*/
+
+$link-color: #037A4C;
+$hover-color: lighten($link-color, 40%);
+
+/*-- scss:rules --*/
+.card-header {
+  background-color: #F0F0F0;
+}
+
+.nav-item > a:hover {
+  color: #037A4C;
+}
+
+.nav-link{
+  color: #F0F0F0;
+}
+
+
+div.callout-note.callout {
+  border-left-color: #036D7A;
+}
+
+div.callout-note.callout-style-default>.callout-header {
+  background-color: #9ea8ae;
+}
+
+.value-box-value {
+  font-size: 2.5rem !important; /*taille du chiffre de la value box*/
+}
+.value-box-title {
+  font-size: 1.5rem !important; /*taille du titre de la value box*/
+}
