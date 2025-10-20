@@ -4,6 +4,8 @@ format:
   dashboard:
     nav-buttons: [github]
     github: https://github.com/datactivist/OET_dataviz
+execute:
+  cache: true
 logo: "https://raw.githubusercontent.com/open-energy-transition/MapYourGrid/main/docs/images/logos/MapYourGrid-logo.png"
 theme: [sandstone, custom.scss]
 fig-width: 10
@@ -441,6 +443,7 @@ line_lenght_country <- read_csv("../data/line_lenght_growth_country_data.csv") |
 ```
 
 ## Row
+
 ### Column {width="60%"}
 
 ```{r}
@@ -537,7 +540,9 @@ table_line_country <- line_lenght_country_prep |>
 table_line_country
 ```
 
-### Column {width="40%" .tabset}
+### Column {width="40%"}
+
+#### Row {height="60%" .tabset}
 
 ```{r}
 #| label: pre-run tables per continent
@@ -587,7 +592,6 @@ table_line_continent_power <- line_lenght_country_prep2 |>
   select(nb_pays, ends_with("power_line"), Continent, Continent_detail) |> 
   #dernière mise en forme avant table
   rename(`Number of countries` = nb_pays) |> 
-  arrange(Continent_detail) |> 
   relocate(Continent) |> 
   #table
   gt() |> 
@@ -643,7 +647,6 @@ table_line_continent_growth_percent <- line_lenght_country_prep2 |>
   select(nb_pays, ends_with("growth_percent"), Continent, Continent_detail) |> 
   #dernière mise en forme avant table
   rename(`Number of countries` = nb_pays) |> 
-  arrange(Continent_detail) |> 
   relocate(Continent) |> 
   #table
   gt() |> 
@@ -702,7 +705,6 @@ table_line_continent_growth_km <- line_lenght_country_prep2 |>
   select(nb_pays, ends_with("growth_km"), Continent, Continent_detail) |> 
   #dernière mise en forme avant table
   rename(`Number of countries` = nb_pays) |> 
-  arrange(Continent_detail) |> 
   relocate(Continent) |> 
   mutate(mean_growth_km = round(mean_growth_km, 0)) |> 
   #table
@@ -747,6 +749,31 @@ table_line_continent_growth_km <- line_lenght_country_prep2 |>
               table_body.border.top.width = 2.4)
 table_line_continent_growth_km
 ```
+
+#### Row {height="40%"}
+
+
+```{r}
+#| title: Line length's average per continent
+
+
+graph <- line_lenght_country_prep2 |> 
+  mutate(continent_of_the_territory = fct_reorder(continent_of_the_territory, mean_power_line)) |> 
+  ggplot() +
+  geom_col(aes(x = continent_of_the_territory, y = max(mean_power_line)), fill = "#F3F3F3", width = .85) +
+  geom_col(aes(x = continent_of_the_territory, y = mean_power_line,
+               text = paste(format(as.integer(mean_power_line, 0), nsmall = 1, big.mark = ","), "km")), 
+           fill = "#4e98a1", width = .85) +
+  scale_y_continuous(labels = scales::comma) + 
+  coord_flip() +
+  labs(y = "Line length's average (km)") +
+  theme_custom() +
+  theme(panel.grid.major.x = ggplot2::element_blank(),
+        panel.grid.major.y = ggplot2::element_blank(),
+        axis.title.y = element_blank())
+ggplotly(graph, tooltip = c("text"))
+```
+
 
 
 # Maps
