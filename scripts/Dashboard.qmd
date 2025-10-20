@@ -576,7 +576,7 @@ line_lenght_country_prep2 <- line_lenght_country_prep |>
   mutate(across(where(is.numeric) & !all_of(c("mean_power_line", "mean_growth_percent", 
                                               "mean_growth_km", "min_growth_percent", "max_growth_percent")), 
                 ~ format(as.integer(., 0), nsmall = 1, big.mark = "."))) |> 
-  #préparation liste déroulante de spays par continent
+  #préparation liste déroulante des pays par continent
   mutate(Continent_detail = ifelse(is.na(Continent), NA_character_,
                              paste0("<details><summary>", continent_of_the_territory, "</summary>", Continent, "</details>")))
 
@@ -754,19 +754,24 @@ table_line_continent_growth_km
 
 
 ```{r}
-#| title: Line length's average per continent
+#| title: Total line length's per continent
 
 
-graph <- line_lenght_country_prep2 |> 
-  mutate(continent_of_the_territory = fct_reorder(continent_of_the_territory, mean_power_line)) |> 
+data_graph <- line_lenght_country_prep |> 
+  left_join(continent_data, by = c("country_code_3" = "iso_3_territory_code")) |> 
+    #agrégation par continent
+  summarise(sum_power_line = sum(`Power line length (km) 2025-07-01`),
+            .by = continent_of_the_territory) |> 
+  mutate(continent_of_the_territory = fct_reorder(continent_of_the_territory, sum_power_line))
+graph <- data_graph |> 
   ggplot() +
-  geom_col(aes(x = continent_of_the_territory, y = max(mean_power_line)), fill = "#F3F3F3", width = .85) +
-  geom_col(aes(x = continent_of_the_territory, y = mean_power_line,
-               text = paste(format(as.integer(mean_power_line, 0), nsmall = 1, big.mark = ","), "km")), 
+  geom_col(aes(x = continent_of_the_territory, y = max(sum_power_line)), fill = "#F3F3F3", width = .85) +
+  geom_col(aes(x = continent_of_the_territory, y = sum_power_line,
+               text = paste(format(as.integer(sum_power_line, 0), nsmall = 1, big.mark = ","), "km")), 
            fill = "#4e98a1", width = .85) +
   scale_y_continuous(labels = scales::comma) + 
   coord_flip() +
-  labs(y = "Line length's average (km)") +
+  labs(y = "Line length (km)") +
   theme_custom() +
   theme(panel.grid.major.x = ggplot2::element_blank(),
         panel.grid.major.y = ggplot2::element_blank(),
