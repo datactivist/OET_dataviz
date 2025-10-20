@@ -21,6 +21,8 @@ library(scales)
 library(gt)
 library(gtExtras)
 library(janitor)
+library(sf)
+library(mapview)
 
 #Thème pour les graphiques
 theme_custom <- function (){
@@ -73,7 +75,7 @@ value_world_sections <- world_line |>
   arrange(t) |> 
   filter(row_number() == nrow(world_line)) |> 
   mutate(amount = format(as.integer(amount, 0), nsmall = 1, big.mark = ","))
-# nb posts
+# nb substations
 value_world_substations <- world_substations |> 
   arrange(t) |> 
   filter(row_number() == nrow(world_substations)) |> 
@@ -92,7 +94,7 @@ value_world_supports <- world_supports |>
 #| title: "Line lenght (km)"
 
 list(
-  icon = "distribute-vertical",
+  #icon = "distribute-vertical",
   color = "primary",
   value = paste(value_world_line$length, "M")
 )
@@ -103,7 +105,7 @@ list(
 #| title: "Number of sections"
 
 list(
-  icon = "sign-intersection-side",
+  #icon = "sign-intersection-side",
   color = "secondary",
   value = value_world_sections$amount
 )
@@ -111,10 +113,10 @@ list(
 
 ```{r}
 #| content: valuebox
-#| title: "Number of posts"
+#| title: "Number of substations"
 
 list(
-  icon = "box-seam",
+  #icon = "box-seam",
   color = "success",
   value = value_world_substations$amount
 )
@@ -125,7 +127,7 @@ list(
 #| title: "Number of pylons"
 
 list(
-  icon = "cone", #align-center
+  #icon = "cone", #align-center
   color = "info",
   value = value_world_supports$amount
 )
@@ -200,22 +202,22 @@ viz
 ```
 
 ```{r}
-#| title: Posts
+#| title: substations
 
 graph <- world_substations |> 
   mutate(t = as.Date(t)) |> 
   ggplot() +
   geom_line(aes(x = t, y = amount, group = 1,
-                text = paste0("Time : ", t, "\nNumber of posts : ", format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
+                text = paste0("Time : ", t, "\nNumber of substations : ", format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
             color = "#037a4c", size = .7) +
   geom_point(aes(x = t, y = amount, group = 1,
-                text = paste0("Time : ", t, "\nNumber of posts : ", format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
+                text = paste0("Time : ", t, "\nNumber of substations : ", format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
             color = "#037a4c", size = 2) +
   geom_vline(xintercept = as.Date("2025-03-01"), linetype = 2, color = "red4") +
   scale_y_continuous(labels = scales::comma) +
   scale_x_date(date_labels = "%m-%Y", breaks = pretty_breaks(n = 10)) +
   labs(x = "Time", 
-       y = "Number of posts") +
+       y = "Number of substations") +
   theme_custom() +
   theme(axis.ticks.x = element_line(color = "#cbcbcb"),
         panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
@@ -272,12 +274,12 @@ sections_mars25 <- world_line |>
   filter(as.Date(t) == "2025-03-01")
 len_mars25 <- world_line |> 
   filter(as.Date(t) == "2025-03-01")
-posts_mars25 <- world_substations |> 
+substations_mars25 <- world_substations |> 
   filter(as.Date(t) == "2025-03-01")
 pylons_mars25 <- world_supports |> 
   filter(as.Date(t) == "2025-03-01")
 table <- left_join(world_line |> rename(nb_sections = amount), 
-                   world_substations |> rename(nb_posts = amount) |> select(-length), 
+                   world_substations |> rename(nb_substations = amount) |> select(-length), 
                    by = "t") |> 
   left_join(world_supports |> rename(nb_pylons = amount) |> select(-length),
             by = "t") |> 
@@ -289,16 +291,16 @@ table <- left_join(world_line |> rename(nb_sections = amount),
          len_100_mars25 = length / len_mars25$length * 100,
          len_100_diff = round(len_100_mars25 - 100, 1),
          len_diff = round(length - len_mars25$length, 0),
-         nb_posts_100_mars25 = nb_posts / posts_mars25$amount * 100,
-         nb_posts_100_diff = round(nb_posts_100_mars25 - 100, 1),
-         nb_posts_diff = nb_posts - posts_mars25$amount,
+         nb_substations_100_mars25 = nb_substations / substations_mars25$amount * 100,
+         nb_substations_100_diff = round(nb_substations_100_mars25 - 100, 1),
+         nb_substations_diff = nb_substations - substations_mars25$amount,
          nb_pylons_100_mars25 = nb_pylons / pylons_mars25$amount * 100,
          nb_pylons_100_diff = round(nb_pylons_100_mars25 - 100, 1),
          nb_pylons_diff = nb_pylons - pylons_mars25$amount)
   #calcul de la valeur maximale en base 100 (pour placer "Start of MYG project")
 max_mesures <- c(max(table$len_100_mars25, na.rm = TRUE),
                  max(table$nb_sections_100_mars25, na.rm = TRUE),
-                 max(table$nb_posts_100_mars25, na.rm = TRUE),
+                 max(table$nb_substations_100_mars25, na.rm = TRUE),
                  max(table$nb_pylons_100_mars25, na.rm = TRUE))
 max_max_100 <- max(max_mesures)
 
@@ -324,14 +326,14 @@ graph <- table |>
                                  .default = paste0("Time : ", t, "\n↑ ", abs(nb_sections_100_diff), 
                                                               "% (+", nb_sections_diff, " sections)")),
                 color = "Nb. of sections"), size = .7) +
-  #ligne colorée jusq'à 100 pour nb of posts
-  geom_line(aes(x = t, y = nb_posts_100_mars25, group = 1, 
-                text = case_when(nb_posts_100_diff < 0 ~ paste0("Time : ", t, "\n↓ ", abs(nb_posts_100_diff), 
-                                                              "% (", nb_posts_diff, " posts)"),
-                                 nb_posts_100_diff == 0 ~ "Base 100",
-                                 .default = paste0("Time : ", t, "\n↑ ", abs(nb_posts_100_diff), 
-                                                              "% (+", nb_posts_diff, " posts)")),
-                color = "Nb. of posts"), size = .7) +
+  #ligne colorée jusq'à 100 pour nb of substations
+  geom_line(aes(x = t, y = nb_substations_100_mars25, group = 1, 
+                text = case_when(nb_substations_100_diff < 0 ~ paste0("Time : ", t, "\n↓ ", abs(nb_substations_100_diff), 
+                                                              "% (", nb_substations_diff, " substations)"),
+                                 nb_substations_100_diff == 0 ~ "Base 100",
+                                 .default = paste0("Time : ", t, "\n↑ ", abs(nb_substations_100_diff), 
+                                                              "% (+", nb_substations_diff, " substations)")),
+                color = "Nb. of substations"), size = .7) +
   #ligne colorée jusq'à 100 pour nb of pylons
   geom_line(aes(x = t, y = nb_pylons_100_mars25, group = 1, 
                 text = case_when(nb_pylons_100_diff < 0 ~ paste0("Time : ", t, "\n↓ ", abs(nb_pylons_100_diff), 
@@ -347,7 +349,7 @@ graph <- table |>
   scale_y_continuous(labels = scales::comma) +
   scale_color_manual(values = c("Nb. of sections" = "#ecc123", 
                                 "Line lenght" = "#036d7a",
-                                "Nb. of posts" = "#037a4c",
+                                "Nb. of substations" = "#037a4c",
                                 "Nb. of pylons" = "#6d0f06")) +
   labs(x = "Time", 
        y = "Base 100 in 03-2025", 
@@ -403,7 +405,7 @@ growth_rate <- bind_cols(
   pivot_longer(cols = everything(), values_to = "Valeur", names_to = "Mesure", names_prefix = "growth_rate_") |> 
   mutate(Mesure = str_replace_all(Mesure, c("amount" = "Number of sections",
                                             "length" = "Line length",
-                                            "substation" = "Number of posts",
+                                            "substation" = "Number of substations",
                                             "supports" = "Number of pylons")))
 
 # Plot
@@ -416,7 +418,7 @@ graph <- growth_rate |>
   labs(y = "", x = "Growth rate (%)") +
   scale_color_manual(values = c("Number of sections" = "#ecc123",
                                 "Line length" = "#036d7a",
-                                "Number of posts" = "#037a4c",
+                                "Number of substations" = "#037a4c",
                                 "Number of pylons" = "#6d0f06")) +
   scale_x_continuous(labels = scales::percent) +
   theme_custom() +
@@ -747,6 +749,26 @@ table_line_continent_growth_km
 ```
 
 
+# Maps
+
+```{r}
+#| label: import data geojson Colombia
 
 
+colombia_jan <- st_read("../data/colombia_230_20250101.geojson", quiet = TRUE)
+colombia_oct <- st_read("../data/colombia_230_20251013.geojson", quiet = TRUE)
+```
+
+
+```{r}
+#| title: Map of power grid of Colombia
+
+map_jan <- colombia_jan |> 
+  mapview(color = "#036d7a",
+          layer.name = "Grid on January 2025")
+map_oct <- colombia_oct |> 
+  mapview(color = "#6d0f06",
+          layer.name = "Grid on October 2025")
+map_jan | map_oct
+```
 
