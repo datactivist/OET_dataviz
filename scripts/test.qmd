@@ -217,34 +217,44 @@ output$n4 <- renderText({
 
 ```{r}
 #| title: Line length
+plotlyOutput('plot1')
+```
 
-graph <- world_line |> 
-  mutate(t = as.Date(t),
-         length = length / 100000) |> 
-  ggplot() +
-  geom_line(aes(x = t, y = length, group = 1,
-                text = paste0("Time : ", t, "\nLine lenght : ", format(as.integer(length, 0), nsmall = 1, big.mark = ","), "M km")),
-            color = "#036D7A", size = .7) +
-  geom_point(aes(x = t, y = length, group = 1,
-                text = paste0("Time : ", t, "\nLine lenght : ", format(as.integer(length, 0), nsmall = 1, big.mark = ","), "M km")),
-            color = "#036D7A", size = 1) +
-  geom_vline(xintercept = as.Date("2025-03-01"), linetype = 2, color = "red4") +
-  scale_y_continuous(labels = scales::comma) +
-  scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
-  labs(x = "Time", 
-       y = "Line lenght (M km)") +
-  theme_custom() +
-  theme(axis.ticks.x = element_line(color = "#cbcbcb"),
-        panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
-        panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
-viz <- ggplotly(graph, tooltip = c("text")) |> 
-  layout(annotations = list(list(x = as.numeric(as.Date("2025-03-10")),
-                                 y = max(as.numeric(world_line$length)/100000, na.rm = TRUE),
-                                 text = "Start of the MYG<br>project",   
-                                 xref = "x", yref = "y", showarrow = FALSE,
-                                 font = list(color = "#8B0000"),
-                                 align = "left", xanchor = "left", yanchor = "top")))
-viz
+```{r}
+#| context: server
+
+# Plot line length
+output$plot1 <- renderPlotly({
+  #plot depending on selected country
+  graph <- value_world_line() |> 
+    mutate(t = as.Date(t),
+           length = length / 1000) |> 
+    ggplot() +
+    geom_line(aes(x = t, y = length, group = 1,
+                  text = paste0("Time : ", t, "\nLine lenght : ", format(as.integer(length, 0), nsmall = 1, big.mark = ","), "m km")),
+              color = "#036D7A", size = .7) +
+    geom_point(aes(x = t, y = length, group = 1,
+                  text = paste0("Time : ", t, "\nLine lenght : ", format(as.integer(length, 0), nsmall = 1, big.mark = ","), "m km")),
+              color = "#036D7A", size = 1) +
+    geom_vline(xintercept = as.Date("2025-03-01"), linetype = 2, color = "red4") +
+    scale_y_continuous(labels = scales::comma) +
+    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
+    labs(x = "Time", 
+         y = "Line lenght (m km)") +
+    theme_custom() +
+    theme(axis.ticks.x = element_line(color = "#cbcbcb"),
+          panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
+          panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
+  #interactive graph
+  viz <- ggplotly(graph, tooltip = c("text")) |> 
+    layout(annotations = list(list(x = as.numeric(as.Date("2025-03-10")),
+                                   y = max(as.numeric(value_world_line()$length)/100000, na.rm = TRUE),
+                                   text = "Start of the MYG<br>project",   
+                                   xref = "x", yref = "y", showarrow = FALSE,
+                                   font = list(color = "#8B0000"),
+                                   align = "left", xanchor = "left", yanchor = "top")))
+  viz
+})
 ```
 
 
