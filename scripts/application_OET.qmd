@@ -71,7 +71,12 @@ last_date <- fromJSON("https://mapyourgrid.infos-reseaux.com/projects/2025-01_li
   slice_tail(n = 1)
 ```
 
-# {.sidebar}
+
+
+# Indicators
+
+
+::: {.sidebar}
 
 
 The data displayed on this dashboard was last updated on **`r format(as.Date(last_date$t, format = "%Y-%m-%dT%H:%M:%S"),"%b %d, %Y")`**.
@@ -90,9 +95,9 @@ df_line <- read_csv("./data/api/data_line_all.csv")
 selectInput('nom_pays', 'Country', unique(df_line$Pays), selected = "World (default)")
 ```
 
+:::
 
-
-# Indicators
+## Column
 
 ```{r}
 #| context: server
@@ -153,7 +158,7 @@ value_world_supports_last <- reactive({
 ```
 
 
-## Row {height="20%"}
+### Row {height="20%"}
 
 
 ```{r}
@@ -210,9 +215,9 @@ output$n4 <- renderText({
 ```
 
 
-## Row {height="80%"}
+### Row {height="80%"}
 
-### Column {width="30%" .tabset}
+#### Column {width="30%" .tabset}
 
 
 ```{r}
@@ -384,7 +389,7 @@ output$plot4 <- renderPlotly({
 
 
 
-### Column {width="45%"}
+#### Column {width="45%"}
 
 ```{r}
 #| context: server
@@ -522,7 +527,7 @@ output$plot5 <- renderPlotly({
 ```
 
 
-### Column {width="25%"}
+#### Column {width="25%"}
 
 
 ```{r}
@@ -603,9 +608,7 @@ output$plot6 <- renderPlotly({
 ```{r}
 #| label: import data tables
 
-line_lenght_country <- read_csv("./data/line_lenght_growth_country_data.csv") |> 
-  #on remet growth % en numérique
-  mutate(`Growth since 2025-01-01 (%)` = as.numeric(str_sub(`Growth since 2025-01-01 (%)`, 1, nchar(`Growth since 2025-01-01 (%)`)-1)) / 100)
+line_lenght_country <- read_csv("./data/api/line_length_growth_table.csv")
 ```
 
 ## Row
@@ -624,7 +627,8 @@ countrypops <- countrypops |>
   mutate(country_name = tolower(str_replace(country_name, "&", "and"))) 
 
   #jointure avec nos données pour récupérer le code de pays 
-line_lenght_country_prep <- line_lenght_country |> 
+laste_date <- (line_lenght_country |> distinct(t))$t
+line_lenght_country_prep0 <- line_lenght_country |> 
   mutate(Country2 = tolower(Country), #minuscules pour otpimiser le match
          Country2 = case_match(Country2, #remplace à la main des pays non matchés
                                "people's republic of china" ~ "china",
@@ -638,13 +642,23 @@ line_lenght_country_prep <- line_lenght_country |>
                                "federated states of micronesia" ~ "micronesia",
                                "são tomé and príncipe" ~ "sao tome and principe",
                                "kingdom of the netherlands" ~ "netherlands",
+                               "united states of america" ~ "united states",
+                               "republic of ireland" ~ "ireland",
+                               #"taiwan" ~ "united states",
                                .default = Country2)) |> 
   left_join(countrypops, by = c("Country2" = "country_name")) |> 
-  na.omit() |> 
   #mise en forme df
-  select(-Country2) |> 
+  select(-c(Country2, t)) |> 
   relocate(country_code_2, .before = Country) |> 
+  relocate(length, .after = Country) |> 
+  mutate(length = round(length, 0),
+         growth_km = round(growth_km, 0)) |> 
   rename(` ` = country_code_2)
+line_lenght_country_prep <- line_lenght_country_prep0 |> 
+  rename(`Growth since 2025-01-01 (km)` = growth_km,
+         `Growth since 2025-01-01 (%)` = growth_percent) |> 
+  rename_with(~ paste("Power line length (km)", laste_date), .cols = length)
+         
 
 # Affichage de la table
 table_line_country <- line_lenght_country_prep |> 
@@ -708,7 +722,7 @@ table_line_country
 
 ### Column {width="40%"}
 
-#### Row {height="65%" .tabset}
+#### Row {height="60%" .tabset}
 
 ```{r}
 #| label: pre-run tables per continent
@@ -720,31 +734,27 @@ continent_data <- read_delim("https://public.opendatasoft.com/api/explore/v2.1/c
   clean_names()
 
   #jointure avec nos données pour récupérer le code de pays 
-line_lenght_country_prep2 <- line_lenght_country_prep |> 
+line_lenght_country_prep2 <- line_lenght_country_prep0 |> 
+  mutate(country_code_3 = ifelse(Country == "Taiwan", "TWN", country_code_3)) |> 
   left_join(continent_data, by = c("country_code_3" = "iso_3_territory_code")) |> 
     #agrégation par continent
   summarise(nb_pays = n(),
-            mean_power_line = round(mean(`Power line length (km) 2025-07-01`), 0),
-            min_power_line = min(`Power line length (km) 2025-07-01`),
-            max_power_line = max(`Power line length (km) 2025-07-01`),
-            sum_power_line = sum(`Power line length (km) 2025-07-01`),
-            min_growth_percent = min(`Growth since 2025-01-01 (%)`),
-            max_growth_percent = max(`Growth since 2025-01-01 (%)`),
-            mean_growth_percent = mean(`Growth since 2025-01-01 (%)`),
-            min_growth_km = min(`Growth since 2025-01-01 (km)`),
-            max_growth_km = max(`Growth since 2025-01-01 (km)`),
-            mean_growth_km = mean(`Growth since 2025-01-01 (km)`),
-            sum_growth_km = sum(`Growth since 2025-01-01 (km)`),
-            Continent = paste(Country, collapse = ", "),
-            code_pays = paste(` `, collapse = ","),
+            mean_power_line = round(mean(length), 0),
+            min_power_line = min(length),
+            max_power_line = max(length),
+            sum_power_line = sum(length),
+            min_growth_percent = min(growth_percent),
+            max_growth_percent = max(growth_percent),
+            mean_growth_percent = mean(growth_percent),
+            min_growth_km = min(growth_km),
+            max_growth_km = max(growth_km),
+            mean_growth_km = mean(growth_km),
+            sum_growth_km = sum(growth_km),
             .by = continent_of_the_territory) |> 
       #mise en forme des stats
   mutate(across(where(is.numeric) & !all_of(c("mean_power_line", "mean_growth_percent", 
                                               "mean_growth_km", "min_growth_percent", "max_growth_percent")), 
-                ~ format(as.integer(., 0), nsmall = 1, big.mark = "."))) |> 
-  #préparation liste déroulante des pays par continent
-  mutate(Continent_detail = ifelse(is.na(Continent), NA_character_,
-                             paste0("<details><summary>", continent_of_the_territory, "</summary>", Continent, "</details>")))
+                ~ format(as.integer(., 0), nsmall = 1, big.mark = ",")))
 
 ```
 
@@ -755,25 +765,17 @@ line_lenght_country_prep2 <- line_lenght_country_prep |>
 # Affichage de la table
 table_line_continent_power <- line_lenght_country_prep2 |> 
   #sélection des variables à afficher
-  select(nb_pays, ends_with("power_line"), Continent, Continent_detail) |> 
+  select(continent_of_the_territory, nb_pays, ends_with("power_line")) |> 
   #dernière mise en forme avant table
-  rename(`Number of countries` = nb_pays) |> 
-  relocate(Continent) |> 
+  rename(`Number of countries` = nb_pays,
+         Continent = continent_of_the_territory) |> 
   #table
   gt() |> 
-  #liste interactive des pays par continent
-  text_transform(
-    locations = cells_body(columns = vars(Continent)),
-    fn = function(x) {
-      # on renvoie la colonne Detail_html ligne par ligne, enveloppée par html()
-      lapply(seq_along(x), function(i) html(line_lenght_country_prep2$Continent_detail[i]))
-    }) |> 
-  cols_hide(Continent_detail) |> 
   #coloration des moyennes
   data_color(columns = mean_power_line,
              colors = scales::col_numeric(palette = c("#b3d3d7", "#036d7a"), domain = NULL)) |> 
   #groupe de statistiques
-  tab_spanner(label = 'Power line length (km) 2025-07-01',
+  tab_spanner(label = paste("Power line length (km)", laste_date),
               columns = c(mean_power_line, min_power_line, max_power_line, sum_power_line)) |> 
   cols_label(sum_power_line = "Sum", min_power_line = "Min", 
              max_power_line = "Max", mean_power_line = "Mean") |> 
@@ -810,20 +812,12 @@ table_line_continent_power
 # Affichage de la table
 table_line_continent_growth_percent <- line_lenght_country_prep2 |> 
   #sélection des variables à afficher
-  select(nb_pays, ends_with("growth_percent"), Continent, Continent_detail) |> 
+  select(continent_of_the_territory, nb_pays, ends_with("growth_percent")) |> 
   #dernière mise en forme avant table
-  rename(`Number of countries` = nb_pays) |> 
-  relocate(Continent) |> 
+  rename(`Number of countries` = nb_pays,
+         Continent = continent_of_the_territory) |> 
   #table
   gt() |> 
-  #liste interactive des pays par continent
-  text_transform(
-    locations = cells_body(columns = vars(Continent)),
-    fn = function(x) {
-      # on renvoie la colonne Detail_html ligne par ligne, enveloppée par html()
-      lapply(seq_along(x), function(i) html(line_lenght_country_prep2$Continent_detail[i]))
-    }) |> 
-  cols_hide(Continent_detail) |> 
   #coloration des moyennes
   data_color(columns = mean_growth_percent,
              colors = scales::col_numeric(palette = c("#b3d3d7", "#036d7a"), domain = NULL)) |> 
@@ -868,21 +862,13 @@ table_line_continent_growth_percent
 # Affichage de la table
 table_line_continent_growth_km <- line_lenght_country_prep2 |> 
   #sélection des variables à afficher
-  select(nb_pays, ends_with("growth_km"), Continent, Continent_detail) |> 
+  select(continent_of_the_territory, nb_pays, ends_with("growth_km")) |> 
   #dernière mise en forme avant table
-  rename(`Number of countries` = nb_pays) |> 
-  relocate(Continent) |> 
+  rename(`Number of countries` = nb_pays,
+         Continent = continent_of_the_territory) |> 
   mutate(mean_growth_km = round(mean_growth_km, 0)) |> 
   #table
   gt() |> 
-  #liste interactive des pays par continent
-  text_transform(
-    locations = cells_body(columns = vars(Continent)),
-    fn = function(x) {
-      # on renvoie la colonne Detail_html ligne par ligne, enveloppée par html()
-      lapply(seq_along(x), function(i) html(line_lenght_country_prep2$Continent_detail[i]))
-    }) |> 
-  cols_hide(Continent_detail) |> 
   #coloration des moyennes
   data_color(columns = mean_growth_km,
              colors = scales::col_numeric(palette = c("#b3d3d7", "#036d7a"), domain = NULL)) |> 
@@ -916,24 +902,25 @@ table_line_continent_growth_km <- line_lenght_country_prep2 |>
 table_line_continent_growth_km
 ```
 
-#### Row {height="35%"}
+#### Row {height="40%"}
 
 
 ```{r}
 #| title: Total line length's per continent
 
 
-data_graph <- line_lenght_country_prep |> 
+data_graph <- line_lenght_country_prep0 |> 
+  mutate(country_code_3 = ifelse(Country == "Taiwan", "TWN", country_code_3)) |> 
   left_join(continent_data, by = c("country_code_3" = "iso_3_territory_code")) |> 
     #agrégation par continent
-  summarise(sum_power_line = sum(`Power line length (km) 2025-07-01`),
+  summarise(sum_power_line = sum(length)  / 1e6,
             .by = continent_of_the_territory) |> 
   mutate(continent_of_the_territory = fct_reorder(continent_of_the_territory, sum_power_line))
 graph <- data_graph |> 
   ggplot() +
   geom_col(aes(x = continent_of_the_territory, y = max(sum_power_line)), fill = "#F3F3F3", width = .85) +
   geom_col(aes(x = continent_of_the_territory, y = sum_power_line,
-               text = paste(format(as.integer(sum_power_line, 0), nsmall = 1, big.mark = ","), "km")), 
+               text = paste(format(as.integer(sum_power_line, 0), nsmall = 1, big.mark = ","), "M km")), 
            fill = "#4e98a1", width = .85) +
   scale_y_continuous(labels = scales::comma) + 
   coord_flip() +

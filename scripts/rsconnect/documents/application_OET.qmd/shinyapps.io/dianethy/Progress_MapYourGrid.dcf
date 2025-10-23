@@ -1,0 +1,15 @@
+name: Progress_MapYourGrid
+title: Progress_MapYourGrid
+username: dianethy
+account: dianethy
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 15848144
+bundleId: 11075000
+url: https://dianethy.shinyapps.io/Progress_MapYourGrid/
+version: 1
+quarto_version: 1.6.36
+quarto_engines: knitr
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: Construction_dataviz.R|Dashboard.html|Dashboard.qmd|import_data_dashboard.R

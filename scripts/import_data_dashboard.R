@@ -62,4 +62,21 @@ get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_supports/co
 
 # Line length growth per country ------------------------------------------
 
+# Import des données lignes de tous les pays
 data_line_all <- read_csv("scripts/data/api/data_line_all.csv")
+
+# Mise en forme pour retrouver length, growth en % et growth en km
+line_length_growth <- data_line_all |> 
+  filter(t >= "2025-01-01",
+         Pays != "World (default)") |> 
+  slice(c(1, n()), .by = Pays) |> 
+  mutate(growth_percent = (length - lag(length)) / lag(length), 
+         growth_km = length - lag(length),
+         .by = Pays) |> 
+  filter(!is.na(growth_percent)) |> 
+  select(-c(amount, id_relation)) |> 
+  rename(Country = Pays)
+
+# Export
+rio::export(line_length_growth, paste0("scripts/data/api/line_length_growth_table.csv"))
+
