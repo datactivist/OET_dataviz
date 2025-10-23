@@ -84,7 +84,7 @@ Select a country to view its indicators. By default, **global indicators** are s
 ```{r}
 #| label: scraping table wiki relations / pays
 
-df_line <- read_csv("../data/api/data_line_all.csv")
+df_line <- read_csv("./data/api/data_line_all.csv")
 
 # Bouton de sélection du pays
 selectInput('nom_pays', 'Country', unique(df_line$Pays), selected = "World (default)")
@@ -100,7 +100,7 @@ selectInput('nom_pays', 'Country', unique(df_line$Pays), selected = "World (defa
 
 # Line
 value_world_line <- reactive({
-  df_line <- read_csv("../data/api/data_line_all.csv")
+  df_line <- read_csv("./data/api/data_line_all.csv")
   df_line |> 
     filter(Pays == input$nom_pays)
 })
@@ -124,7 +124,7 @@ value_world_sections_last <- reactive({
 })
 # Substations
 value_world_substations <- reactive({
-  df_substations <- read_csv("../data/api/data_substations_all.csv")
+  df_substations <- read_csv("./data/api/data_substations_all.csv")
   df_substations |> 
     filter(Pays == input$nom_pays)
 })
@@ -138,7 +138,7 @@ value_world_substations_last <- reactive({
 })
 # Pylons (supports)
 value_world_supports <- reactive({
-  df_supports <- read_csv("../data/api/data_supports_all.csv")
+  df_supports <- read_csv("./data/api/data_supports_all.csv")
   df_supports |> 
     filter(Pays == input$nom_pays)
 })
@@ -603,7 +603,7 @@ output$plot6 <- renderPlotly({
 ```{r}
 #| label: import data tables
 
-line_lenght_country <- read_csv("../data/line_lenght_growth_country_data.csv") |> 
+line_lenght_country <- read_csv("./data/line_lenght_growth_country_data.csv") |> 
   #on remet growth % en numérique
   mutate(`Growth since 2025-01-01 (%)` = as.numeric(str_sub(`Growth since 2025-01-01 (%)`, 1, nchar(`Growth since 2025-01-01 (%)`)-1)) / 100)
 ```
@@ -952,8 +952,8 @@ ggplotly(graph, tooltip = c("text"))
 ```{r}
 #| label: import data geojson Colombia
 
-colombia_jan <- st_read("../data/colombia_230_20250101.geojson", quiet = TRUE)
-colombia_oct <- st_read("../data/colombia_230_20251013.geojson", quiet = TRUE)
+colombia_jan <- st_read("./data/colombia_230_20250101.geojson", quiet = TRUE)
+colombia_oct <- st_read("./data/colombia_230_20251013.geojson", quiet = TRUE)
 ```
 
 

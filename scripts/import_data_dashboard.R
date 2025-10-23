@@ -25,7 +25,7 @@ relation_pays <- body_table[[1]] |>
   add_row(Pays = "World (default)", id_relation = "", .before = 1)
 
 # Export
-rio::export(relation_pays, "data/id_pays_wiki.csv") 
+rio::export(relation_pays, "scripts/data/id_pays_wiki.csv") 
 
 
 
@@ -47,7 +47,7 @@ get_all_data <- function(url, name_export_data){
     bind_rows() |> 
     left_join(relation_pays, by = "id_relation")
     #Export
-  rio::export(dataframe, paste0("data/api/", name_export_data, ".csv"))
+  rio::export(dataframe, paste0("scripts/data/api/", name_export_data, ".csv"))
 }
 
 # On applique la fonction pour récupérer toutes les données
@@ -59,3 +59,7 @@ get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_substations
 get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_supports/counts", "data_supports_all")
 
 
+
+# Line length growth per country ------------------------------------------
+
+data_line_all <- read_csv("scripts/data/api/data_line_all.csv")
