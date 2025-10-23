@@ -1,0 +1,200 @@
+Pays,id_relation
+World (default),
+Afghanistan,/boundary/303427
+Albania,/boundary/53292
+Algeria,/boundary/192756
+Andorra,/boundary/9407
+Angola,/boundary/195267
+Antigua and Barbuda,/boundary/536900
+Argentina,/boundary/286393
+Armenia,/boundary/364066
+Australia,/boundary/80500
+Austria,/boundary/16239
+Azerbaijan,/boundary/364110
+Bahrain,/boundary/378734
+Bangladesh,/boundary/184640
+Barbados,/boundary/547511
+Belarus,/boundary/59065
+Belgium,/boundary/52411
+Belize,/boundary/287827
+Benin,/boundary/192784
+Bhutan,/boundary/184629
+Bolivia,/boundary/252645
+Bosnia and Herzegovina,/boundary/2528142
+Botswana,/boundary/1889339
+Brazil,/boundary/59470
+Brunei,/boundary/2103120
+Bulgaria,/boundary/186382
+Burkina Faso,/boundary/192783
+Burundi,/boundary/195269
+Cambodia,/boundary/49898
+Cameroon,/boundary/192830
+Canada,/boundary/1428125
+Cape Verde,/boundary/535774
+Central African Republic,/boundary/192790
+Chad,/boundary/2361304
+Chile,/boundary/167454
+Colombia,/boundary/120027
+Comoros,/boundary/535790
+Costa Rica,/boundary/287667
+Croatia,/boundary/214885
+Cuba,/boundary/307833
+Cyprus,/boundary/3263726
+Czech Republic,/boundary/51684
+Democratic Republic of the Congo,/boundary/192795
+Djibouti,/boundary/192801
+Dominica,/boundary/307823
+Dominican Republic,/boundary/307828
+East Timor,/boundary/305142
+Ecuador,/boundary/108089
+Egypt,/boundary/1473947
+El Salvador,/boundary/1520612
+Equatorial Guinea,/boundary/192791
+Eritrea,/boundary/296961
+Estonia,/boundary/79510
+Eswatini,/boundary/88210
+Ethiopia,/boundary/192800
+Federated States of Micronesia,/boundary/571802
+Fiji,/boundary/571747
+Finland,/boundary/54224
+France,/boundary/2202162
+Gabon,/boundary/192793
+Georgia,/boundary/28699
+Germany,/boundary/51477
+Ghana,/boundary/192781
+Greece,/boundary/192307
+Grenada,/boundary/550727
+Guatemala,/boundary/1521463
+Guinea,/boundary/192778
+Guinea-Bissau,/boundary/192776
+Guyana,/boundary/287083
+Haiti,/boundary/307829
+Honduras,/boundary/287670
+Hungary,/boundary/21335
+Iceland,/boundary/299133
+India,/boundary/304716
+Indonesia,/boundary/304751
+Iran,/boundary/304938
+Iraq,/boundary/304934
+Israel,/boundary/1473946
+Italy,/boundary/365331
+Ivory Coast,/boundary/192779
+Jamaica,/boundary/555017
+Japan,/boundary/382313
+Jordan,/boundary/184818
+Kazakhstan,/boundary/214665
+Kenya,/boundary/192798
+Kingdom of Denmark,/boundary/9112011
+Kingdom of the Netherlands,/boundary/2323309
+Kiribati,/boundary/571178
+Kuwait,/boundary/305099
+Kyrgyzstan,/boundary/178009
+Laos,/boundary/49903
+Latvia,/boundary/72594
+Lebanon,/boundary/184843
+Lesotho,/boundary/2093234
+Liberia,/boundary/192780
+Libya,/boundary/192758
+Liechtenstein,/boundary/1155955
+Lithuania,/boundary/72596
+Luxembourg,/boundary/2171347
+Madagascar,/boundary/447325
+Malawi,/boundary/195290
+Malaysia,/boundary/2108121
+Maldives,/boundary/536773
+Mali,/boundary/192785
+Malta,/boundary/365307
+Marshall Islands,/boundary/571771
+Mauritania,/boundary/2695812
+Mauritania,/boundary/192763
+Mauritius,/boundary/535828
+Mexico,/boundary/114686
+Moldova,/boundary/58974
+Monaco,/boundary/36990
+Mongolia,/boundary/161033
+Montenegro,/boundary/53296
+Morocco,/boundary/3630439
+Mozambique,/boundary/195273
+Myanmar,/boundary/50371
+Namibia,/boundary/195266
+Nauru,/boundary/571804
+Nepal,/boundary/184633
+New Zealand,/boundary/556706
+Nicaragua,/boundary/287666
+Niger,/boundary/192786
+Nigeria,/boundary/192787
+North Korea,/boundary/192734
+North Macedonia,/boundary/53293
+Norway,/boundary/1059668
+Oman,/boundary/305138
+Pakistan,/boundary/307573
+Palau,/boundary/571805
+Panama,/boundary/287668
+Papua New Guinea,/boundary/307866
+Paraguay,/boundary/287077
+People's Republic of China,/boundary/270056
+Peru,/boundary/288247
+Philippines,/boundary/443174
+Poland,/boundary/49715
+Portugal,/boundary/295480
+Qatar,/boundary/305095
+Republic of Ireland,/boundary/62273
+Republic of the Congo,/boundary/192794
+Romania,/boundary/90689
+Russia,/boundary/60189
+Rwanda,/boundary/171496
+Saint Kitts and Nevis,/boundary/536899
+Saint Lucia,/boundary/550728
+Saint Vincent and the Grenadines,/boundary/550725
+Samoa,/boundary/1872673
+San Marino,/boundary/54624
+San Marino,/boundary/54624
+Saudi Arabia,/boundary/307584
+Senegal,/boundary/192775
+Serbia,/boundary/1741311
+Seychelles,/boundary/536765
+Sierra Leone,/boundary/192777
+Singapore,/boundary/536780
+Slovakia,/boundary/14296
+Slovenia,/boundary/218657
+Solomon Islands,/boundary/1857436
+Somalia,/boundary/192799
+South Africa,/boundary/87565
+South Korea,/boundary/307756
+South Sudan,/boundary/1656678
+Spain,/boundary/1311341
+Sri Lanka,/boundary/536807
+State of Palestine,/boundary/1703814
+Sudan,/boundary/192789
+Suriname,/boundary/287082
+Sweden,/boundary/52822
+Switzerland,/boundary/51701
+Syria,/boundary/184840
+São Tomé and Príncipe,/boundary/535880
+Taiwan,/boundary/449220
+Tajikistan,/boundary/214626
+Tanzania,/boundary/195270
+Thailand,/boundary/2067731
+The Bahamas,/boundary/547469
+The Gambia,/boundary/192774
+Togo,/boundary/192782
+Tonga,/boundary/2186665
+Trinidad and Tobago,/boundary/555717
+Tunisia,/boundary/192757
+Turkey,/boundary/174737
+Turkmenistan,/boundary/223026
+Tuvalu,/boundary/2177266
+Uganda,/boundary/192796
+Ukraine,/boundary/60199
+United Arab Emirates,/boundary/307763
+United Kingdom,/boundary/62149
+United States of America,/boundary/148838
+Uruguay,/boundary/287072
+Uzbekistan,/boundary/196240
+Vanuatu,/boundary/2177246
+Vatican City,/boundary/36989
+Venezuela,/boundary/272644
+Vietnam,/boundary/49915
+Yemen,/boundary/305092
+Zambia,/boundary/195271
+Zimbabwe,/boundary/195272

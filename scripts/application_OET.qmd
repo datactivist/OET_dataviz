@@ -708,7 +708,7 @@ table_line_country
 
 ### Column {width="40%"}
 
-#### Row {height="60%" .tabset}
+#### Row {height="65%" .tabset}
 
 ```{r}
 #| label: pre-run tables per continent
@@ -916,7 +916,7 @@ table_line_continent_growth_km <- line_lenght_country_prep2 |>
 table_line_continent_growth_km
 ```
 
-#### Row {height="40%"}
+#### Row {height="35%"}
 
 
 ```{r}

@@ -42,8 +42,14 @@ div.callout-note.callout-style-default>.callout-header {
 }
 
 .value-box-value {
-  font-size: 2.5rem !important; /*taille du chiffre de la value box*/
+  font-size: 2rem !important; /*taille du chiffre de la value box*/
 }
 .value-box-title {
-  font-size: 1.5rem !important; /*taille du titre de la value box*/
+  font-size: 1rem !important; /*taille du titre de la value box*/
 }
+
+.nav-tabs .nav-link {
+  font-size: 0.65rem;  /*taille du titre des tabsets*/
+  padding: 4px 8px;
+}
+
