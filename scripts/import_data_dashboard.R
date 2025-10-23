@@ -46,6 +46,7 @@ get_all_data <- function(url, name_export_data){
   dataframe <- data |> 
     bind_rows() |> 
     left_join(relation_pays, by = "id_relation")
+  assign("dataframe", dataframe, envir = .GlobalEnv)
     #Export
   rio::export(dataframe, paste0("scripts/data/api/", name_export_data, ".csv"))
 }
@@ -53,6 +54,9 @@ get_all_data <- function(url, name_export_data){
 # On applique la fonction pour récupérer toutes les données
   # lines
 get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_lines/counts", "data_line_all")
+dataframe2 <- dataframe |> 
+  mutate(length = as.numeric(length) / 1000)
+rio::export(dataframe2, "scripts/data/api/data_line_all.csv")
   # substations
 get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_substations/counts", "data_substations_all")
   # supports

@@ -118,8 +118,8 @@ value_world_line_last <- reactive({
                            paste(format(round(as.numeric(length) / 1e6, 0), trim = TRUE), "M"),
                            format(as.integer(length, 0), nsmall = 1, big.mark = ",")))
 })
-  #sections
-value_world_sections_last <- reactive({
+  #segments
+value_world_segments_last <- reactive({
   value_world_line() |> 
     arrange(t) |> 
     slice_tail(n = 1) |> 
@@ -173,7 +173,7 @@ value_box(
 ```{r}
 value_box(
   id = "card2",
-  title = "Number of sections",
+  title = "Number of segments",
   theme = value_box_theme(bg = "#f1d365", fg = "#4f4e4d"),
   value = textOutput("n2")
 )
@@ -204,7 +204,7 @@ output$n1 <- renderText({
   value_world_line_last()$length
 })
 output$n2 <- renderText({
-  value_world_sections_last()$amount
+  value_world_segments_last()$amount
 })
 output$n3 <- renderText({
   value_world_substations_last()$amount
@@ -264,7 +264,7 @@ output$plot1 <- renderPlotly({
 
 
 ```{r}
-#| title: Sections
+#| title: segments
 plotlyOutput('plot2')
 ```
 
@@ -278,16 +278,16 @@ output$plot2 <- renderPlotly({
     mutate(t = as.Date(t)) |> 
     ggplot() +
     geom_line(aes(x = t, y = amount, group = 1,
-                  text = paste0("Time : ", t, "\nNumber of sections : ", format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
+                  text = paste0("Time : ", t, "\nNumber of segments : ", format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
               color = "#ECC229", size = .7) +
     geom_point(aes(x = t, y = amount, group = 1,
-                  text = paste0("Time : ", t, "\nNumber of sections : ", format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
+                  text = paste0("Time : ", t, "\nNumber of segments : ", format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
               color = "#ECC229", size = 1) +
     geom_vline(xintercept = as.Date("2025-03-01"), linetype = 2, color = "red4") +
     scale_y_continuous(labels = scales::comma) +
     scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
     labs(x = "Time", 
-         y = "Sections (nb.)") +
+         y = "Segments (nb.)") +
     theme_custom() +
     theme(axis.ticks.x = element_line(color = "#cbcbcb"),
           panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
@@ -396,7 +396,7 @@ output$plot4 <- renderPlotly({
 #| label: prepare data evolution 100 graph
 
 # Préparation des données
-sections_mars25 <- reactive({
+segments_mars25 <- reactive({
   value_world_line() |> 
     filter(as.Date(t) == "2025-03-01")
 })
@@ -413,16 +413,16 @@ pylons_mars25 <- reactive({
     filter(as.Date(t) == "2025-03-01")
 })
 table <- reactive({
-  left_join(value_world_line() |> rename(nb_sections = amount), 
+  left_join(value_world_line() |> rename(nb_segments = amount), 
             value_world_substations() |> rename(nb_substations = amount) |> select(-length), 
             by = "t") |> 
   left_join(value_world_supports() |> rename(nb_pylons = amount) |> select(-length),
             by = "t") |> 
   arrange(t) |> 
   # transformation des métriques en base 100 en mars 2025
-  mutate(nb_sections_100_mars25 = nb_sections / sections_mars25()$amount * 100,
-         nb_sections_100_diff = round(nb_sections_100_mars25 - 100, 1),
-         nb_sections_diff = nb_sections - sections_mars25()$amount,
+  mutate(nb_segments_100_mars25 = nb_segments / segments_mars25()$amount * 100,
+         nb_segments_100_diff = round(nb_segments_100_mars25 - 100, 1),
+         nb_segments_diff = nb_segments - segments_mars25()$amount,
          len_100_mars25 = length / len_mars25()$length * 100,
          len_100_diff = round(len_100_mars25 - 100, 1),
          len_diff = round(length - len_mars25()$length, 0),
@@ -436,7 +436,7 @@ table <- reactive({
   #calcul de la valeur maximale en base 100 (pour placer "Start of MYG project")
 max_mesures <- reactive({
   c(max(table()$len_100_mars25, na.rm = TRUE),
-    max(table()$nb_sections_100_mars25, na.rm = TRUE),
+    max(table()$nb_segments_100_mars25, na.rm = TRUE),
     max(table()$nb_substations_100_mars25, na.rm = TRUE),
     max(table()$nb_pylons_100_mars25, na.rm = TRUE))
 })
@@ -471,14 +471,14 @@ output$plot5 <- renderPlotly({
                                                              format(as.integer(len_diff, 0), nsmall = 1, big.mark = ","), 
                                                              " km line lenght)")),
                   color = "Line lenght"), size = .7) +
-    #ligne colorée jusqu'à 100 pour nb of sections
-    geom_line(aes(x = t, y = nb_sections_100_mars25, group = 1, 
-                  text = case_when(nb_sections_100_diff < 0 ~ paste0("Time : ", t, "\n↓ ", abs(nb_sections_100_diff), 
-                                                                "% (", nb_sections_diff, " sections)"),
-                                   nb_sections_100_diff == 0 ~ "Base 100",
-                                   .default = paste0("Time : ", t, "\n↑ ", abs(nb_sections_100_diff), 
-                                                                "% (+", nb_sections_diff, " sections)")),
-                  color = "Sections"), size = .7) +
+    #ligne colorée jusqu'à 100 pour nb of segments
+    geom_line(aes(x = t, y = nb_segments_100_mars25, group = 1, 
+                  text = case_when(nb_segments_100_diff < 0 ~ paste0("Time : ", t, "\n↓ ", abs(nb_segments_100_diff), 
+                                                                "% (", nb_segments_diff, " segments)"),
+                                   nb_segments_100_diff == 0 ~ "Base 100",
+                                   .default = paste0("Time : ", t, "\n↑ ", abs(nb_segments_100_diff), 
+                                                                "% (+", nb_segments_diff, " segments)")),
+                  color = "Segments"), size = .7) +
     #ligne colorée jusqu'à 100 pour nb of substations
     geom_line(aes(x = t, y = nb_substations_100_mars25, group = 1, 
                   text = case_when(nb_substations_100_diff < 0 ~ paste0("Time : ", t, "\n↓ ", abs(nb_substations_100_diff), 
@@ -500,13 +500,13 @@ output$plot5 <- renderPlotly({
     #mises en forme générales
     scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
     scale_y_continuous(labels = scales::comma) +
-    scale_color_manual(values = c("Sections" = "#ecc123", 
+    scale_color_manual(values = c("Segments" = "#ecc123", 
                                   "Line lenght" = "#036d7a",
                                   "Substations" = "#037a4c",
                                   "Pylons" = "#6d0f06")) +
     labs(x = "Time", 
          y = "Base 100 in 03-2025", 
-         color = "") + #title = "<span style='color: #037A4C;'>Line lenght</span> and <span style='color: #ECC229;'>number of sections</span> base 100 in March 2025 - Colombia"
+         color = "") + #title = "<span style='color: #037A4C;'>Line lenght</span> and <span style='color: #ECC229;'>number of segments</span> base 100 in March 2025 - Colombia"
     theme_custom() +
     theme(axis.ticks.x = element_line(color = "#cbcbcb"),
           legend.position = "top",
@@ -561,7 +561,7 @@ growth_rate <- reactive({bind_cols(
     na.omit()
   ) |> 
   pivot_longer(cols = everything(), values_to = "Valeur", names_to = "Mesure", names_prefix = "growth_rate_") |> 
-  mutate(Mesure = str_replace_all(Mesure, c("amount" = "Sections",
+  mutate(Mesure = str_replace_all(Mesure, c("amount" = "Segments",
                                             "length" = "Line length",
                                             "substation" = "Substations",
                                             "supports" = "Pylons")))
@@ -581,13 +581,13 @@ output$plot6 <- renderPlotly({
 
   #plot depending on selected country
   graph <- growth_rate() |> 
-    mutate(Mesure = factor(Mesure, levels = c("Pylons", "Substations", "Sections", "Line length"))) |> 
+    mutate(Mesure = factor(Mesure, levels = c("Pylons", "Substations", "Segments", "Line length"))) |> 
     ggplot() +
     geom_segment(aes(x = 0, xend = Valeur, y = Mesure, yend = Mesure, color = Mesure), size = 1) +
     geom_point(aes(x = Valeur, y = Mesure, color = Mesure,
                    text = paste("+", round(Valeur*100, 2), "%")), size = 4) +
     labs(y = "", x = "Growth rate (%)") +
-    scale_color_manual(values = c("Sections" = "#ecc123",
+    scale_color_manual(values = c("Segments" = "#ecc123",
                                   "Line length" = "#036d7a",
                                   "Substations" = "#037a4c",
                                   "Pylons" = "#6d0f06")) +
@@ -629,6 +629,7 @@ countrypops <- countrypops |>
   #jointure avec nos données pour récupérer le code de pays 
 laste_date <- (line_lenght_country |> distinct(t))$t
 line_lenght_country_prep0 <- line_lenght_country |> 
+  select(Country, length, growth_percent, growth_km) |> 
   mutate(Country2 = tolower(Country), #minuscules pour otpimiser le match
          Country2 = case_match(Country2, #remplace à la main des pays non matchés
                                "people's republic of china" ~ "china",
@@ -648,7 +649,7 @@ line_lenght_country_prep0 <- line_lenght_country |>
                                .default = Country2)) |> 
   left_join(countrypops, by = c("Country2" = "country_name")) |> 
   #mise en forme df
-  select(-c(Country2, t)) |> 
+  select(-Country2) |> 
   relocate(country_code_2, .before = Country) |> 
   relocate(length, .after = Country) |> 
   mutate(length = round(length, 0),
@@ -913,14 +914,14 @@ data_graph <- line_lenght_country_prep0 |>
   mutate(country_code_3 = ifelse(Country == "Taiwan", "TWN", country_code_3)) |> 
   left_join(continent_data, by = c("country_code_3" = "iso_3_territory_code")) |> 
     #agrégation par continent
-  summarise(sum_power_line = sum(length)  / 1e6,
+  summarise(sum_power_line = sum(length),
             .by = continent_of_the_territory) |> 
   mutate(continent_of_the_territory = fct_reorder(continent_of_the_territory, sum_power_line))
 graph <- data_graph |> 
   ggplot() +
   geom_col(aes(x = continent_of_the_territory, y = max(sum_power_line)), fill = "#F3F3F3", width = .85) +
   geom_col(aes(x = continent_of_the_territory, y = sum_power_line,
-               text = paste(format(as.integer(sum_power_line, 0), nsmall = 1, big.mark = ","), "M km")), 
+               text = paste(format(as.integer(sum_power_line, 0), nsmall = 1, big.mark = ","), "km")), 
            fill = "#4e98a1", width = .85) +
   scale_y_continuous(labels = scales::comma) + 
   coord_flip() +
