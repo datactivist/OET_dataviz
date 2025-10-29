@@ -538,31 +538,33 @@ saveWidget(viz, "figures/lineplot_base-100_sections-len_colombia.html")
 
 
 # Import des données
-temp_file <- tempfile(fileext = ".geojson")
-GET("https://raw.githubusercontent.com/ben10dynartio/apps_mapyourgrid/refs/heads/main/indicators_map/worldmap_indicators.geojson", 
-    write_disk(temp_file, overwrite = TRUE))
-worldmap_indicators <- st_read(temp_file, quiet = TRUE)
+worldmap_indicators <- st_read("scripts/data/worldmap_indicators.geojson", quiet = TRUE)
 
 # Cartographie
+library(mapview)
 worldmap_indicators |> 
-  select(power_line_total_length, geometry) |> 
+  select(power_line_total_length, quality_score, geometry) |> 
   st_as_sf() |> 
-  mapview(zcol = "power_line_total_length", 
+  mapview(zcol = "quality_score", 
           na.color = "grey40",
           #légende
           legend = FALSE,
-          layer.name = "Quality Score", #titre
+          layer.name = "quality_score", #titre
           layers.control.pos = "topright", #position
           #fond de carte
           basemaps = c("Esri.WorldShadedRelief", "OpenStreetMap.DE"),
           #page de chaque pays
           popup = leafpop:::popupIframe("https://r-spatial.github.io/mapview/articles/mapview_04-popups.html", 
-                                        width = 600, height = 700)) |> 
+                                        width = 600, height = 700),
+          #couleurs
+          col.regions = ifelse(worldmap_indicators$quality_score == 0, "grey50", 
+                               colorNumeric(palette = colorRampPalette(c("red", "yellow", "green"))(100),
+                                            domain = c(1, 100)))) |> 
   leafem::addFeatures(weight = .7, color = "grey15", opacity = .8) |>  #contours pays
   #vue un peu zoomée pour pas avoir le monde en 3 fois
   setView(lng=0, lat=55, zoom = 2) |>  
   setMaxBounds(lng1=-180, lat1=-90, lng2=180, lat2=90) 
-library(mapview)
+
 
 
 

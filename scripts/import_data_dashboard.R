@@ -6,6 +6,7 @@ library(tidyverse)
 library(glue)
 library(jsonlite)
 library(rrapply)
+library(rvest)
 
 
 # Scraping wiki table relations -------------------------------------------
@@ -55,7 +56,9 @@ get_all_data <- function(url, name_export_data){
   # lines
 get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_lines/counts", "data_line_all")
 dataframe2 <- dataframe |> 
-  mutate(length = as.numeric(length) / 1000)
+  mutate(length = as.numeric(length) / 1000,
+         labels.transmission.length = as.numeric(labels.transmission.length) / 1000,
+         labels.transmission_overhead.length = as.numeric(labels.transmission_overhead.length) / 1000)
 rio::export(dataframe2, "scripts/data/api/data_line_all.csv")
   # substations
 get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_substations/counts", "data_substations_all")

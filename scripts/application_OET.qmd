@@ -107,6 +107,9 @@ selectInput('nom_pays', 'Country', unique(df_line$Pays), selected = "World (defa
 value_world_line <- reactive({
   df_line <- read_csv("./data/api/data_line_all.csv")
   df_line |> 
+    select(-c(length, amount)) |> 
+    rename(length = labels.transmission.length,
+           amount = labels.transmission.amount) |> #on prend désormais les comptes *transmission*
     filter(Pays == input$nom_pays)
 })
   #length
@@ -935,7 +938,17 @@ ggplotly(graph, tooltip = c("text"))
 
 
 
-# Maps
+# Global map
+
+```{r}
+#| label: import data geojson Colombia
+
+colombia_jan <- st_read("./data/colombia_230_20250101.geojson", quiet = TRUE)
+colombia_oct <- st_read("./data/colombia_230_20251013.geojson", quiet = TRUE)
+```
+
+
+# Power grid map
 
 ```{r}
 #| label: import data geojson Colombia
@@ -982,5 +995,6 @@ leaflet() |>
   opacity = 1
   )
 ```
+
 
 
