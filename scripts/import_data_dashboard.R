@@ -1,5 +1,4 @@
 ## PRE-RUN IMPORT DATA DASHBOARD
-# Tue Oct 21 2025 ------------------------------
 
 # Librairies
 library(tidyverse)

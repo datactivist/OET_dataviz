@@ -542,38 +542,45 @@ worldmap_indicators <- st_read("scripts/data/worldmap_indicators.geojson", quiet
 
 # Cartographie
 library(mapview)
-worldmap_indicators |> 
-  select(power_line_total_length, quality_score, geometry) |> 
+library(leaflet)
+library(leafpop)
+
+# Préparation des données
+data_map <- worldmap_indicators |> 
+  mutate(quality_clean = paste0(round(quality_score*100, 1), "%"),
+         quality_score = ifelse(quality_score == 0, NA, quality_score),
+         popup_col = ifelse(name == "France",
+                            "https://r-spatial.github.io/mapview/articles/mapview_04-popups.html",
+                            "https://datactivist.coop/radar_devoir_vigilance/Mise%20%C3%A0%20jour%202024/Mise-%C3%A0-jour-2024.html"),
+         popup_html = paste0('<iframe src="', popup_col, '" width="500" height="600"></iframe>')) |> 
+  select(name, quality_score, quality_color, quality_clean, popup_col, popup_html, geometry)
+
+# Plot carto
+map <- data_map |> 
   st_as_sf() |> 
   mapview(zcol = "quality_score", 
           na.color = "grey40",
-          #légende
+          # fond de carte
+          basemaps = "OpenStreetMap",
+          # page de chaque pays
+          popup = leafpop:::popupTable(data_map, zcol = "popup_html"),
+          # couleurs
+          col.regions = colorRampPalette(c("#faf61b", "#2cc418")),
+          at = c(seq(0, 0.7, length.out = 20), #peu de détail pour les valeurs basses
+                 seq(0.701, 1, length.out = 80)), #beaucoup de détails pour les hautes
+          #col.regions = data_map$quality_color,
+          label = data_map$quality_clean,
+          # légende
           legend = FALSE,
-          layer.name = "quality_score", #titre
-          layers.control.pos = "topright", #position
-          #fond de carte
-          basemaps = c("Esri.WorldShadedRelief", "OpenStreetMap.DE"),
-          #page de chaque pays
-          popup = leafpop:::popupIframe("https://r-spatial.github.io/mapview/articles/mapview_04-popups.html", 
-                                        width = 600, height = 700),
-          #couleurs
-          col.regions = ifelse(worldmap_indicators$quality_score == 0, "grey50", 
-                               colorNumeric(palette = colorRampPalette(c("red", "yellow", "green"))(100),
-                                            domain = c(1, 100)))) |> 
-  leafem::addFeatures(weight = .7, color = "grey15", opacity = .8) |>  #contours pays
-  #vue un peu zoomée pour pas avoir le monde en 3 fois
-  setView(lng=0, lat=55, zoom = 2) |>  
-  setMaxBounds(lng1=-180, lat1=-90, lng2=180, lat2=90) 
+          layer.name = "Quality score", #titre
+          layers.control.pos = "topright" #position
+  ) |> 
+  # contours pays
+  leafem::addFeatures(weight = .4, color = "grey80", opacity = .5) |>  
+  # vue un peu zoomée pour pas avoir le monde en 3 fois
+  setView(lng = 0, lat = 55, zoom = 2) |>  
+  setMaxBounds(lng1 = -180, lat1 = -90, lng2 = 180, lat2 = 90) 
+map
+saveWidget(map, file = "figures/indicatormap_leaflet.html")
 
 
-
-
-
-###########################################################
-############# Depuis l'API ################################
-###########################################################
-
-
-# Import des données
-line_world <- fromJSON("https://mapyourgrid.infos-reseaux.com/projects/2025-01_lines/counts/boundary/195271", flatten = TRUE)
-line_world <- line_world$data

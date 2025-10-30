@@ -66,7 +66,9 @@ theme_custom <- function (){
 
 ```{r}
 #| label: import data world to get last update
-last_date <- fromJSON("https://mapyourgrid.infos-reseaux.com/projects/2025-01_lines/counts")$data |> 
+
+df_line <- read_csv("./data/api/data_line_all.csv")
+last_date <- df_line |> 
   arrange(t) |> 
   slice_tail(n = 1)
 ```
@@ -79,7 +81,9 @@ last_date <- fromJSON("https://mapyourgrid.infos-reseaux.com/projects/2025-01_li
 ::: {.sidebar}
 
 
-The data displayed on this dashboard was last updated on **`r format(as.Date(last_date$t, format = "%Y-%m-%dT%H:%M:%S"),"%b %d, %Y")`**.
+The data displayed on this dashboard was last updated on **`r format(as.Date(last_date$t, format = "%Y-%m-%dT%H:%M:%S"),"%Y-%m-%dT%H:%M:%S")`**.
+
+Transmission assets over **50 kV**.
 
 ------------------------------------------------------------------------
 
@@ -88,8 +92,6 @@ Select a country to view its indicators. By default, **global indicators** are s
 
 ```{r}
 #| label: scraping table wiki relations / pays
-
-df_line <- read_csv("./data/api/data_line_all.csv")
 
 # Bouton de sélection du pays
 selectInput('nom_pays', 'Country', unique(df_line$Pays), selected = "World (default)")
@@ -134,6 +136,8 @@ value_world_segments_last <- reactive({
 value_world_substations <- reactive({
   df_substations <- read_csv("./data/api/data_substations_all.csv")
   df_substations |> 
+    select(-amount) |> 
+    rename(amount = labels.transmission.amount) |> #on prend désormais les comptes *transmission*
     filter(Pays == input$nom_pays)
 })
 value_world_substations_last <- reactive({
@@ -938,14 +942,11 @@ ggplotly(graph, tooltip = c("text"))
 
 
 
-# Global map
+# Indicator map
 
-```{r}
-#| label: import data geojson Colombia
 
-colombia_jan <- st_read("./data/colombia_230_20250101.geojson", quiet = TRUE)
-colombia_oct <- st_read("./data/colombia_230_20251013.geojson", quiet = TRUE)
-```
+<iframe src="https://apps.dynartio.com/mapyourgrid/indicatormap.html"
+        style="width:100%; height:100%; border:0;"></iframe>
 
 
 # Power grid map

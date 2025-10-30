@@ -25,7 +25,7 @@ $hover-color: lighten($link-color, 40%);
 }
 
 .nav-item > a:hover {
-  color: #037A4C;
+  color: #ECC229;
 }
 
 .nav-link{
@@ -53,3 +53,6 @@ div.callout-note.callout-style-default>.callout-header {
   padding: 4px 8px;
 }
 
+a:hover { /*souris au-dessus du lien hyper texte*/
+    color: #005A56;
+}
