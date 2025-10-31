@@ -171,7 +171,7 @@ value_world_supports_last <- reactive({
 ```{r}
 value_box(
   id = "card1",
-  title = "Line lenght (km)",
+  title = "Line length (km)",
   theme = value_box_theme(bg = "#4e98a1", fg = "white"),
   value = textOutput("n1")
 )
@@ -243,16 +243,16 @@ output$plot1 <- renderPlotly({
            length = length / 1000) |> 
     ggplot() +
     geom_line(aes(x = t, y = length, group = 1,
-                  text = paste0("Time : ", t, "\nLine lenght : ", format(as.integer(length, 0), nsmall = 1, big.mark = ","), "m km")),
+                  text = paste0("Time : ", t, "\nLine length : ", format(as.integer(length, 0), nsmall = 1, big.mark = ","), "m km")),
               color = "#036D7A", size = .7) +
     geom_point(aes(x = t, y = length, group = 1,
-                  text = paste0("Time : ", t, "\nLine lenght : ", format(as.integer(length, 0), nsmall = 1, big.mark = ","), "m km")),
+                  text = paste0("Time : ", t, "\nLine length : ", format(as.integer(length, 0), nsmall = 1, big.mark = ","), "m km")),
               color = "#036D7A", size = 1) +
     geom_vline(xintercept = as.Date("2025-03-01"), linetype = 2, color = "red4") +
     scale_y_continuous(labels = scales::comma) +
     scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
     labs(x = "Time", 
-         y = "Line lenght (m km)") +
+         y = "Line length (m km)") +
     theme_custom() +
     theme(axis.ticks.x = element_line(color = "#cbcbcb"),
           panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
@@ -468,16 +468,16 @@ output$plot5 <- renderPlotly({
   graph <- table() |> 
     mutate(t = as.Date(t)) |> 
     ggplot() +
-    #ligne colorée jusqu'à 100 pour line lenght
+    #ligne colorée jusqu'à 100 pour line length
     geom_line(aes(x = t, y = len_100_mars25,group = 1,
                   text = case_when(len_100_diff < 0 ~ paste0("Time : ", t, "\n↓ ", abs(len_100_diff), "% (", 
                                                              format(as.integer(len_diff, 0), nsmall = 1, big.mark = ","), 
-                                                             " km line lenght)"),
+                                                             " km line length)"),
                                    len_100_diff == 0 ~ "Base 100",
                                    .default = paste0("Time : ", t, "\n↑ ", abs(len_100_diff), "% (+", 
                                                              format(as.integer(len_diff, 0), nsmall = 1, big.mark = ","), 
-                                                             " km line lenght)")),
-                  color = "Line lenght"), size = .7) +
+                                                             " km line length)")),
+                  color = "Line length"), size = .7) +
     #ligne colorée jusqu'à 100 pour nb of segments
     geom_line(aes(x = t, y = nb_segments_100_mars25, group = 1, 
                   text = case_when(nb_segments_100_diff < 0 ~ paste0("Time : ", t, "\n↓ ", abs(nb_segments_100_diff), 
@@ -508,12 +508,12 @@ output$plot5 <- renderPlotly({
     scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
     scale_y_continuous(labels = scales::comma) +
     scale_color_manual(values = c("Segments" = "#ecc123", 
-                                  "Line lenght" = "#036d7a",
+                                  "Line length" = "#036d7a",
                                   "Substations" = "#037a4c",
                                   "Pylons" = "#6d0f06")) +
     labs(x = "Time", 
          y = "Base 100 in 03-2025", 
-         color = "") + #title = "<span style='color: #037A4C;'>Line lenght</span> and <span style='color: #ECC229;'>number of segments</span> base 100 in March 2025 - Colombia"
+         color = "") + #title = "<span style='color: #037A4C;'>Line length</span> and <span style='color: #ECC229;'>number of segments</span> base 100 in March 2025 - Colombia"
     theme_custom() +
     theme(axis.ticks.x = element_line(color = "#cbcbcb"),
           legend.position = "top",
@@ -615,7 +615,7 @@ output$plot6 <- renderPlotly({
 ```{r}
 #| label: import data tables
 
-line_lenght_country <- read_csv("./data/api/line_length_growth_table.csv")
+line_length_country <- read_csv("./data/api/line_length_growth_table.csv")
 ```
 
 ## Row
@@ -634,8 +634,8 @@ countrypops <- countrypops |>
   mutate(country_name = tolower(str_replace(country_name, "&", "and"))) 
 
   #jointure avec nos données pour récupérer le code de pays 
-laste_date <- (line_lenght_country |> distinct(t))$t
-line_lenght_country_prep0 <- line_lenght_country |> 
+laste_date <- (line_length_country |> distinct(t))$t
+line_length_country_prep0 <- line_length_country |> 
   select(Country, length, growth_percent, growth_km) |> 
   mutate(Country2 = tolower(Country), #minuscules pour otpimiser le match
          Country2 = case_match(Country2, #remplace à la main des pays non matchés
@@ -662,14 +662,14 @@ line_lenght_country_prep0 <- line_lenght_country |>
   mutate(length = round(length, 0),
          growth_km = round(growth_km, 0)) |> 
   rename(` ` = country_code_2)
-line_lenght_country_prep <- line_lenght_country_prep0 |> 
+line_length_country_prep <- line_length_country_prep0 |> 
   rename(`Growth since 2025-01-01 (km)` = growth_km,
          `Growth since 2025-01-01 (%)` = growth_percent) |> 
   rename_with(~ paste("Power line length (km)", laste_date), .cols = length)
          
 
 # Affichage de la table
-table_line_country <- line_lenght_country_prep |> 
+table_line_country <- line_length_country_prep |> 
   arrange(Country) |> 
   gt() |> 
   #drapeaux par pays
@@ -742,7 +742,7 @@ continent_data <- read_delim("https://public.opendatasoft.com/api/explore/v2.1/c
   clean_names()
 
   #jointure avec nos données pour récupérer le code de pays 
-line_lenght_country_prep2 <- line_lenght_country_prep0 |> 
+line_length_country_prep2 <- line_length_country_prep0 |> 
   mutate(country_code_3 = ifelse(Country == "Taiwan", "TWN", country_code_3)) |> 
   left_join(continent_data, by = c("country_code_3" = "iso_3_territory_code")) |> 
     #agrégation par continent
@@ -771,7 +771,7 @@ line_lenght_country_prep2 <- line_lenght_country_prep0 |>
       ###----- Power line length (km)
 
 # Affichage de la table
-table_line_continent_power <- line_lenght_country_prep2 |> 
+table_line_continent_power <- line_length_country_prep2 |> 
   #sélection des variables à afficher
   select(continent_of_the_territory, nb_pays, ends_with("power_line")) |> 
   #dernière mise en forme avant table
@@ -818,7 +818,7 @@ table_line_continent_power
       ###----- Growth since 2025-01-01 (%)
 
 # Affichage de la table
-table_line_continent_growth_percent <- line_lenght_country_prep2 |> 
+table_line_continent_growth_percent <- line_length_country_prep2 |> 
   #sélection des variables à afficher
   select(continent_of_the_territory, nb_pays, ends_with("growth_percent")) |> 
   #dernière mise en forme avant table
@@ -868,7 +868,7 @@ table_line_continent_growth_percent
       ###----- Growth since 2025-01-01 (km)
 
 # Affichage de la table
-table_line_continent_growth_km <- line_lenght_country_prep2 |> 
+table_line_continent_growth_km <- line_length_country_prep2 |> 
   #sélection des variables à afficher
   select(continent_of_the_territory, nb_pays, ends_with("growth_km")) |> 
   #dernière mise en forme avant table
@@ -917,7 +917,7 @@ table_line_continent_growth_km
 #| title: Total line length's per continent
 
 
-data_graph <- line_lenght_country_prep0 |> 
+data_graph <- line_length_country_prep0 |> 
   mutate(country_code_3 = ifelse(Country == "Taiwan", "TWN", country_code_3)) |> 
   left_join(continent_data, by = c("country_code_3" = "iso_3_territory_code")) |> 
     #agrégation par continent
