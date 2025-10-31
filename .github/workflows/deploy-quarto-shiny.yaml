@@ -1,0 +1,63 @@
+name: Deploy Shiny Quarto
+
+on:
+  repository_dispatch:
+    types: [deploy-shiny] #se lance directement quand data mises à jour
+  workflow_dispatch: 
+  push:
+    branches:
+      - main
+    paths:
+      - "data/**"       # déploye quand les données changent
+      - "*.qmd"
+      - "app/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          cache-version: 2
+          packages:
+            any::tidyverse
+            any::jsonlite
+            any::plotly
+            any::scales
+            any::gt
+            any::gtExtras
+            any::janitor
+            any::sf
+            any::leaflet
+            any::leafem
+            any::leaflet.extras2
+            any::shiny
+            any::rvest
+            any::glue
+            any::DT
+            any::bslib
+            any::bsicons
+            any::rsconnect
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Render app
+        run: |
+          quarto render scripts/application_OET.qmd
+
+      - name: Deploy to shinyapps.io
+        env:
+          SHINYAPPS_NAME: ${{ secrets.SHINYAPPS_NAME }}
+          SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
+          SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
+        run: |
+          R -e "rsconnect::setAccountInfo(name='$SHINYAPPS_NAME', token='$SHINYAPPS_TOKEN', secret='$SHINYAPPS_SECRET')"
+          R -e "rsconnect::deployApp('.', appName = '$(basename ${{ github.repository }})')"
