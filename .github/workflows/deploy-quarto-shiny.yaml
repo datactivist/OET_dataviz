@@ -2,15 +2,15 @@ name: Deploy Shiny Quarto
 
 on:
   repository_dispatch:
-    types: [deploy-shiny] #se lance directement quand data mises à jour
-  workflow_dispatch: 
+    types: [deploy-shiny] # lancé quand data mises à jour
+  workflow_dispatch:
   push:
     branches:
       - main
     paths:
-      - "data/**"       # déploye quand les données changent
-      - "*.qmd"
-      - "app/**"
+      - "data/**"       
+      - "scripts/*.qmd"
+      - "scripts/**"
 
 jobs:
   deploy:
@@ -49,10 +49,6 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Render app
-        run: |
-          quarto render scripts/application_OET.qmd
-
       - name: Deploy to shinyapps.io
         env:
           SHINYAPPS_NAME: ${{ secrets.SHINYAPPS_NAME }}
@@ -60,4 +56,4 @@ jobs:
           SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
         run: |
           R -e "rsconnect::setAccountInfo(name='$SHINYAPPS_NAME', token='$SHINYAPPS_TOKEN', secret='$SHINYAPPS_SECRET')"
-          R -e "rsconnect::deployApp('.', appName = '$(basename ${{ github.repository }})')"
+          R -e "rsconnect::deployApp(appDir='scripts', appPrimaryDoc='application_OET.qmd', appName='$(basename ${{ github.repository }})')"
