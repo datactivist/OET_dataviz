@@ -59,6 +59,13 @@ jobs:
             any::rio
             any::rrapply
             any::rsconnect
+            any::cpp11
+            any::geometries
+            any::jsonify
+            any::progress
+            any::rapidjsonr
+            any::RcppArmadillo
+            any::sfheaders
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
