@@ -25,7 +25,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          r-version: '4.4.0'
+          r-version: '4.4.1'
           use-public-rspm: true
           cache-version: 2
           packages:
