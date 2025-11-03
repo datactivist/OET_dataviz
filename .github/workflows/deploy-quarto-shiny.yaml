@@ -52,6 +52,12 @@ jobs:
             any::DT
             any::bslib
             any::bsicons
+            any::geojsonR
+            any::ggtext
+            any::leafpop
+            any::mapview
+            any::rio
+            any::rrapply
             any::rsconnect
 
       - name: Set up Quarto
