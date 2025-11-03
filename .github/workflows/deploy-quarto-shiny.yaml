@@ -25,6 +25,8 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
+          r-version: '4.4.0'
+          use-public-rspm: true
           cache-version: 2
           packages:
             any::tidyverse
@@ -56,5 +58,5 @@ jobs:
           SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
         run: |
           R -e "rsconnect::setAccountInfo(name='$SHINYAPPS_NAME', token='$SHINYAPPS_TOKEN', secret='$SHINYAPPS_SECRET')"
-          R -e "rsconnect::deployApp(appDir='scripts', appPrimaryDoc='application_OET.qmd', appName='OET_dataviz', forceUpdate = TRUE)"
+          R -e "rsconnect::deployApp(appDir='scripts', appPrimaryDoc='application_OET.qmd', appName='Progress_MapYourGrid', forceUpdate = TRUE)"
 
