@@ -38,7 +38,6 @@ jobs:
             any::tidyverse
             any::jsonlite
             any::plotly
-            any::scales
             any::gt
             any::gtExtras
             any::janitor
@@ -51,7 +50,6 @@ jobs:
             any::glue
             any::DT
             any::bslib
-            any::bsicons
             any::geojsonR
             any::ggtext
             any::leafpop
@@ -74,6 +72,7 @@ jobs:
           R -e "devtools::install_github('JorisChau/rrapply')"
           R -e "remotes::install_github('mlampros/geojsonR')"
           R -e "remotes::install_github('rstudio/bsicons')"
+          R -e "remotes::install_github('r-lib/scales')"
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
