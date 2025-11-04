@@ -73,6 +73,7 @@ jobs:
           R -e "install.packages('devtools', repos='https://cloud.r-project.org')"
           R -e "devtools::install_github('JorisChau/rrapply')"
           R -e "remotes::install_github('mlampros/geojsonR')"
+          R -e "remotes::install_github('rstudio/bsicons')"
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
