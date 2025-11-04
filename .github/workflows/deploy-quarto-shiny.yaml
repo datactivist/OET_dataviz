@@ -20,16 +20,19 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Force CRAN repo
+        run: |
+          echo "options(repos = c(CRAN='https://cloud.r-project.org'))" >> ~/.Rprofile
+
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
         with:
-          r-version: '4.4.1'    # version supportée par shinyapps.io
+          r-version: '4.4.1'
           extra-repositories: |
-              CRAN=https://cloud.r-project.org
-          
+            CRAN=https://cloud.r-project.org
+
       - name: Check R version
-        run: |
-          R -q -e "sessionInfo()"
+        run: R -q -e "sessionInfo()"
 
       - name: Install R dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
@@ -60,18 +63,14 @@ jobs:
             any::rapidjsonr
             any::RcppArmadillo
             any::sfheaders
-            
-      - name: Install rrapply from github
+
+      - name: Install GitHub-only packages
         env:
           GITHUB_PAT: ${{ secrets.PAT_GITHUB }}
         run: |
           R -e "install.packages('devtools', repos='https://cloud.r-project.org')"
           R -e "devtools::install_github('JorisChau/rrapply')"
           R -e "remotes::install_github('mlampros/geojsonR')"
-          R -e "remotes::install_github('rstudio/bsicons')"
-          R -e "remotes::install_github('r-lib/scales')"
-          R -e "remotes::install_github('r-spatial/sf')"
-          R -e "remotes::install_github('rstudio/shiny')"
           R -e "remotes::install_github('wilkelab/ggtext')"
 
       - name: Set up Quarto
@@ -82,7 +81,8 @@ jobs:
           SHINYAPPS_NAME: ${{ secrets.SHINYAPPS_NAME }}
           SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
           SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
+          GITHUB_PAT: ${{ secrets.PAT_GITHUB }}
         run: |
+          R -e "options(repos = c(CRAN = 'https://cloud.r-project.org'))"
           R -e "rsconnect::setAccountInfo(name='$SHINYAPPS_NAME', token='$SHINYAPPS_TOKEN', secret='$SHINYAPPS_SECRET')"
           R -e "rsconnect::deployApp(appDir='scripts', appPrimaryDoc='application_OET.qmd', appName='Progress_MapYourGrid', forceUpdate = TRUE)"
-
