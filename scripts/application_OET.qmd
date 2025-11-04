@@ -11,6 +11,9 @@ fig-asp: 0.3
 server: shiny
 resources: 
   - "leaflet.providers"
+options:
+  repos:
+    CRAN: "https://cloud.r-project.org"
 ---
 
 ```{r}
