@@ -69,7 +69,7 @@ jobs:
             
       - name: Install rrapply from github
         run: |
-          R -e "devtools::install_github("JorisChau/rrapply")"
+          R -e "devtools::install_github('JorisChau/rrapply')"
 
 
       - name: Set up Quarto
