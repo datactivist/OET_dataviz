@@ -37,7 +37,7 @@ jobs:
       - name: Install R dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          cache-version: 2
+          #cache-version: 2
           packages:
             any::tidyverse
             any::jsonlite
@@ -50,7 +50,6 @@ jobs:
             any::leaflet.extras2
             any::rvest
             any::glue
-            any::DT
             any::bslib
             any::leafpop
             any::mapview
@@ -73,6 +72,7 @@ jobs:
           R -e "devtools::install_github('JorisChau/rrapply')"
           R -e "remotes::install_github('mlampros/geojsonR')"
           R -e "remotes::install_github('wilkelab/ggtext')"
+          R -e "remotes::install_github('rstudio/DT')"
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -85,5 +85,6 @@ jobs:
           GITHUB_PAT: ${{ secrets.PAT_GITHUB }}
         run: |
           R -e "options(repos = c(CRAN = 'https://cloud.r-project.org'))"
+          R -e "options(repos = BiocManager::repositories())"
           R -e "rsconnect::setAccountInfo(name='$SHINYAPPS_NAME', token='$SHINYAPPS_TOKEN', secret='$SHINYAPPS_SECRET')"
           R -e "rsconnect::deployApp(appDir='scripts', appPrimaryDoc='application_OET.qmd', appName='Progress_MapYourGrid', forceUpdate = TRUE)"
