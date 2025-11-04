@@ -48,8 +48,6 @@ jobs:
             any::glue
             any::DT
             any::bslib
-            any::geojsonR
-            any::ggtext
             any::leafpop
             any::mapview
             any::rio
