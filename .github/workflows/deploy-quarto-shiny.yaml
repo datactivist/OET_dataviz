@@ -44,7 +44,6 @@ jobs:
             any::leaflet
             any::leafem
             any::leaflet.extras2
-            any::shiny
             any::rvest
             any::glue
             any::DT
@@ -73,6 +72,7 @@ jobs:
           R -e "remotes::install_github('rstudio/bsicons')"
           R -e "remotes::install_github('r-lib/scales')"
           R -e "remotes::install_github('r-spatial/sf')"
+          R -e "remotes::install_github('rstudio/shiny')"
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
