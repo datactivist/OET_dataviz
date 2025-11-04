@@ -73,6 +73,7 @@ jobs:
           R -e "remotes::install_github('r-lib/scales')"
           R -e "remotes::install_github('r-spatial/sf')"
           R -e "remotes::install_github('rstudio/shiny')"
+          R -e "remotes::install_github('wilkelab/ggtext')"
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
