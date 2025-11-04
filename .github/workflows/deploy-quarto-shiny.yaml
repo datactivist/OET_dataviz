@@ -56,19 +56,20 @@ jobs:
             any::mapview
             any::rio
             any::rsconnect
-            any::cpp11
-            any::geometries
-            any::jsonify
-            any::progress
-            any::rapidjsonr
-            any::RcppArmadillo
-            any::sfheaders
+            #any::cpp11
+            #any::geometries
+            #any::jsonify
+            #any::progress
+            #any::rapidjsonr
+            #any::RcppArmadillo
+            #any::sfheaders
 
       - name: Install GitHub-only packages
         env:
           GITHUB_PAT: ${{ secrets.PAT_GITHUB }}
         run: |
           R -e "install.packages('devtools', repos='https://cloud.r-project.org')"
+          R -e "install.packages('remotes', repos='https://cloud.r-project.org')"
           R -e "devtools::install_github('JorisChau/rrapply')"
           R -e "remotes::install_github('mlampros/geojsonR')"
           R -e "remotes::install_github('wilkelab/ggtext')"
