@@ -172,7 +172,7 @@ value_world_supports_last <- reactive({
 value_box(
   id = "card1",
   title = "Line length (km)",
-  theme = value_box_theme(bg = "#4e98a1", fg = "white"),
+  theme = value_box_theme(bg = "#036d7a", fg = "white"),
   value = textOutput("n1")
 )
 ```
@@ -190,7 +190,7 @@ value_box(
 value_box(
   id = "card3",
   title = "Number of substations",
-  theme = value_box_theme(bg = "#4ea181", fg = "white"),
+  theme = value_box_theme(bg = "#54a36a", fg = "white"),
   value = textOutput("n3")
 )
 ```
@@ -328,10 +328,10 @@ output$plot3 <- renderPlotly({
     ggplot() +
     geom_line(aes(x = t, y = amount, group = 1,
                   text = paste0("Time : ", t, "\nNumber of substations : ", format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
-              color = "#037a4c", size = .7) +
+              color = "#54a36a", size = .7) + 
     geom_point(aes(x = t, y = amount, group = 1,
                   text = paste0("Time : ", t, "\nNumber of substations : ", format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
-              color = "#037a4c", size = 1) +
+              color = "#54a36a", size = 1) +
     geom_vline(xintercept = as.Date("2025-03-01"), linetype = 2, color = "red4") +
     scale_y_continuous(labels = scales::comma) +
     scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
@@ -509,11 +509,11 @@ output$plot5 <- renderPlotly({
     scale_y_continuous(labels = scales::comma) +
     scale_color_manual(values = c("Segments" = "#ecc123", 
                                   "Line length" = "#036d7a",
-                                  "Substations" = "#037a4c",
+                                  "Substations" = "#54a36a",
                                   "Pylons" = "#6d0f06")) +
     labs(x = "Time", 
          y = "Base 100 in 03-2025", 
-         color = "") + #title = "<span style='color: #037A4C;'>Line length</span> and <span style='color: #ECC229;'>number of segments</span> base 100 in March 2025 - Colombia"
+         color = "") + #title = "<span style='color: #54a36a;'>Line length</span> and <span style='color: #ECC229;'>number of segments</span> base 100 in March 2025 - Colombia"
     theme_custom() +
     theme(axis.ticks.x = element_line(color = "#cbcbcb"),
           legend.position = "top",
@@ -596,7 +596,7 @@ output$plot6 <- renderPlotly({
     labs(y = "", x = "Growth rate (%)") +
     scale_color_manual(values = c("Segments" = "#ecc123",
                                   "Line length" = "#036d7a",
-                                  "Substations" = "#037a4c",
+                                  "Substations" = "#54a36a",
                                   "Pylons" = "#6d0f06")) +
     scale_x_continuous(labels = scales::percent) +
     theme_custom() +
@@ -929,7 +929,7 @@ graph <- data_graph |>
   geom_col(aes(x = continent_of_the_territory, y = max(sum_power_line)), fill = "#F3F3F3", width = .85) +
   geom_col(aes(x = continent_of_the_territory, y = sum_power_line,
                text = paste(format(as.integer(sum_power_line, 0), nsmall = 1, big.mark = ","), "km")), 
-           fill = "#4e98a1", width = .85) +
+           fill = "#036d7a", width = .85) +
   scale_y_continuous(labels = scales::comma) + 
   coord_flip() +
   labs(y = "Line length (km)") +
