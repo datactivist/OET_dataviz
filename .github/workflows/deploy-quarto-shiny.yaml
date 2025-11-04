@@ -57,7 +57,6 @@ jobs:
             any::leafpop
             any::mapview
             any::rio
-            any::rrapply
             any::rsconnect
             any::cpp11
             any::geometries
@@ -66,6 +65,12 @@ jobs:
             any::rapidjsonr
             any::RcppArmadillo
             any::sfheaders
+            any::devtools
+            
+      - name: Install rrapply from github
+        run: |
+          R -e "devtools::install_github("JorisChau/rrapply")"
+
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
