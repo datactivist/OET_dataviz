@@ -65,13 +65,14 @@ jobs:
             any::rapidjsonr
             any::RcppArmadillo
             any::sfheaders
-            any::devtools
             
       - name: Install rrapply from github
         env:
           GITHUB_PAT: ${{ secrets.PAT_GITHUB }}
         run: |
+          R -e "install.packages('devtools', repos='https://cloud.r-project.org')"
           R -e "devtools::install_github('JorisChau/rrapply')"
+          R -e "remotes::install_github('mlampros/geojsonR')"
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
