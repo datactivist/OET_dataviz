@@ -73,6 +73,7 @@ jobs:
           R -e "remotes::install_github('mlampros/geojsonR')"
           R -e "remotes::install_github('wilkelab/ggtext')"
           R -e "remotes::install_github('rstudio/DT')"
+          R -e "remotes::install_github('Bioconductor/BiocManager')"
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
