@@ -51,7 +51,6 @@ jobs:
             any::leafpop
             any::mapview
             any::rio
-            any::rsconnect
             #any::cpp11
             #any::geometries
             #any::jsonify
@@ -60,7 +59,7 @@ jobs:
             #any::RcppArmadillo
             #any::sfheaders
 
-      - name: Install GitHub-only packages
+      - name: Install GitHub packages
         env:
           GITHUB_PAT: ${{ secrets.PAT_GITHUB }}
         run: |
@@ -72,6 +71,7 @@ jobs:
           R -e "remotes::install_github('rstudio/DT')"
           R -e "remotes::install_github('Bioconductor/BiocManager')"
           R -e "remotes::install_github('rstudio/leaflet')"
+          R -e "remotes::install_github('rstudio/rsconnect')"
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
