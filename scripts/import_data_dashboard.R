@@ -48,7 +48,7 @@ get_all_data <- function(url, name_export_data){
     left_join(relation_pays, by = "id_relation")
   assign("dataframe", dataframe, envir = .GlobalEnv)
     #Export
-  rio::export(dataframe, paste0("scripts/data/api/", name_export_data, ".csv"))
+  rio::export(dataframe, paste0("data/api/", name_export_data, ".csv"))
 }
 
 # On applique la fonction pour récupérer toutes les données
@@ -58,7 +58,7 @@ dataframe2 <- dataframe |>
   mutate(length = as.numeric(length) / 1000,
          labels.transmission.length = as.numeric(labels.transmission.length) / 1000,
          labels.transmission_overhead.length = as.numeric(labels.transmission_overhead.length) / 1000)
-rio::export(dataframe2, "scripts/data/api/data_line_all.csv")
+rio::export(dataframe2, "data/api/data_line_all.csv")
   # substations
 get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_substations/counts", "data_substations_all")
   # supports
@@ -69,7 +69,7 @@ get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_supports/co
 # Line length growth per country ------------------------------------------
 
 # Import des données lignes de tous les pays
-data_line_all <- read_csv("scripts/data/api/data_line_all.csv")
+data_line_all <- read_csv("data/api/data_line_all.csv")
 
 # Mise en forme pour retrouver length, growth en % et growth en km
 line_length_growth <- data_line_all |> 
@@ -84,5 +84,5 @@ line_length_growth <- data_line_all |>
   rename(Country = Pays)
 
 # Export
-rio::export(line_length_growth, paste0("scripts/data/api/line_length_growth_table.csv"))
+rio::export(line_length_growth, paste0("data/api/line_length_growth_table.csv"))
 
