@@ -31,6 +31,13 @@ jobs:
 
       - name: Check R version
         run: R -q -e "sessionInfo()"
+        
+      - name: Install packages from CRAN
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages:
+            any::devtools
+            any::remotes
 
       - name: Install packages from Git
         env:
@@ -38,8 +45,6 @@ jobs:
         run: |
           R -e "install.packages('devtools', repos='https://cloud.r-project.org')"
           R -e "install.packages('remotes', repos='https://cloud.r-project.org')"
-          R -e "devtools::install_github('r-lib/devtools')"
-          R -e "devtools::install_github('r-lib/remotes')"
           R -e "devtools::install_github('JorisChau/rrapply')"
           R -e "remotes::install_github('mlampros/geojsonR')"
           R -e "remotes::install_github('wilkelab/ggtext')"
