@@ -45,7 +45,6 @@ jobs:
             any::gt
             any::gtExtras
             any::janitor
-            any::leaflet
             any::leafem
             any::leaflet.extras2
             any::rvest
@@ -74,6 +73,7 @@ jobs:
           R -e "remotes::install_github('wilkelab/ggtext')"
           R -e "remotes::install_github('rstudio/DT')"
           R -e "remotes::install_github('Bioconductor/BiocManager')"
+          R -e "remotes::install_github('rstudio/leaflet')"
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
