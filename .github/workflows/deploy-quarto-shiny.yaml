@@ -9,8 +9,9 @@ on:
       - main
     paths:
       - "data/**"
-      - "scripts/*.qmd"
       - "scripts/**"
+      - "renv.lock"
+      - ".Rprofile"
 
 jobs:
   deploy:
@@ -20,7 +21,20 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Force CRAN repo
+      - name: Install system libraries (curl, sf, gdal, proj, etc.)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libcurl4-openssl-dev \
+            libssl-dev \
+            libxml2-dev \
+            libfontconfig1-dev \
+            libudunits2-dev \
+            libgdal-dev \
+            libgeos-dev \
+            libproj-dev
+
+      - name: Force CRAN repo globally
         run: |
           echo "options(repos = c(CRAN='https://cloud.r-project.org'))" >> ~/.Rprofile
 
@@ -29,14 +43,16 @@ jobs:
         with:
           r-version: '4.4.1'
 
-      - name: Check R version
-        run: R -q -e "sessionInfo()"
-        
-      - name: Restore renv cache
+      - name: Restore renv
         uses: r-lib/actions/setup-renv@v2
-        
+
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Check environment
+        run: |
+          R -q -e "sessionInfo()"
+          R -q -e "renv::status()"
 
       - name: Deploy to shinyapps.io
         env:
@@ -45,4 +61,3 @@ jobs:
           SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
         run: |
           Rscript scripts/deploy.R
-

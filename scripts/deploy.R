@@ -1,4 +1,4 @@
-options(repos = c(CRAN = "https://cloud.r-project.org"))
+library(rsconnect)
 
 rsconnect::setAccountInfo(
   name   = Sys.getenv("SHINYAPPS_NAME"),
@@ -6,12 +6,10 @@ rsconnect::setAccountInfo(
   secret = Sys.getenv("SHINYAPPS_SECRET")
 )
 
-# Désactive renv si présent par accident
-if ("renv" %in% rownames(installed.packages())) renv::deactivate()
-
+# Deploy Quarto Shiny document
 rsconnect::deployApp(
-  appDir       = "scripts",
+  appDir = "scripts",
   appPrimaryDoc = "application_OET.qmd",
-  appName      = "Progress_MapYourGrid",
-  forceUpdate  = TRUE
+  appName = "Progress_MapYourGrid",
+  forceUpdate = TRUE
 )
