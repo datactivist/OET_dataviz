@@ -32,41 +32,9 @@ jobs:
       - name: Check R version
         run: R -q -e "sessionInfo()"
         
-      - name: Install packages from CRAN
-        uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          packages:
-            any::devtools
-            any::remotes
-
-      - name: Install packages from Git
-        env:
-          GITHUB_PAT: ${{ secrets.PAT_GITHUB }}
-        run: |
-          R -e "install.packages('devtools', repos='https://cloud.r-project.org')"
-          R -e "install.packages('remotes', repos='https://cloud.r-project.org')"
-          R -e "devtools::install_github('JorisChau/rrapply')"
-          R -e "remotes::install_github('mlampros/geojsonR')"
-          R -e "remotes::install_github('wilkelab/ggtext')"
-          R -e "remotes::install_github('rstudio/DT')"
-          R -e "remotes::install_github('Bioconductor/BiocManager')"
-          R -e "remotes::install_github('rstudio/leaflet')"
-          R -e "remotes::install_github('rstudio/rsconnect')"
-          R -e "remotes::install_github('r-spatial/leafpop')"
-          R -e "remotes::install_github('r-spatial/leafem')"
-          R -e "remotes::install_github('trafficonese/leaflet.extras2')"
-          R -e "remotes::install_github('gesistsa/rio')"
-          R -e "remotes::install_github('r-spatial/mapview')"
-          R -e "remotes::install_github('rstudio/bslib')"
-          R -e "remotes::install_github('tidyverse/glue')"
-          R -e "remotes::install_github('tidyverse/rvest')"
-          R -e "remotes::install_github('sfirke/janitor')"
-          R -e "remotes::install_github('rstudio/gt')"
-          R -e "remotes::install_github('jthomasmock/gtExtras')"
-          R -e "remotes::install_github('plotly/plotly')"
-          R -e "remotes::install_github('jeroen/jsonlite')"
-          R -e "remotes::install_github('tidyverse/tidyverse')"
-
+      - name: Restore renv cache
+        uses: r-lib/actions/setup-renv@v2
+        
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
