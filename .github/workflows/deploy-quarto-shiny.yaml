@@ -32,33 +32,6 @@ jobs:
       - name: Check R version
         run: R -q -e "sessionInfo()"
 
-      - name: Install R dependencies
-        uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          #cache-version: 2
-          packages:
-            any::tidyverse
-            any::jsonlite
-            any::plotly
-            any::gt
-            any::gtExtras
-            any::janitor
-            any::leafem
-            any::leaflet.extras2
-            any::rvest
-            any::glue
-            any::bslib
-            any::leafpop
-            any::mapview
-            any::rio
-            #any::cpp11
-            #any::geometries
-            #any::jsonify
-            #any::progress
-            #any::rapidjsonr
-            #any::RcppArmadillo
-            #any::sfheaders
-
       - name: Install GitHub packages
         env:
           GITHUB_PAT: ${{ secrets.PAT_GITHUB }}
@@ -72,6 +45,21 @@ jobs:
           R -e "remotes::install_github('Bioconductor/BiocManager')"
           R -e "remotes::install_github('rstudio/leaflet')"
           R -e "remotes::install_github('rstudio/rsconnect')"
+          
+          R -e "remotes::install_github('r-spatial/leafpop')"
+          R -e "remotes::install_github('r-spatial/leafem')"
+          R -e "remotes::install_github('trafficonese/leaflet.extras2')"
+          R -e "remotes::install_github('gesistsa/rio')"
+          R -e "remotes::install_github('r-spatial/mapview')"
+          R -e "remotes::install_github('rstudio/bslib')"
+          R -e "remotes::install_github('tidyverse/glue')"
+          R -e "remotes::install_github('tidyverse/rvest')"
+          R -e "remotes::install_github('sfirke/janitor')"
+          R -e "remotes::install_github('rstudio/gt')"
+          R -e "remotes::install_github('jthomasmock/gtExtras')"
+          R -e "remotes::install_github('plotly/plotly')"
+          R -e "remotes::install_github('jeroen/jsonlite')"
+          R -e "remotes::install_github('tidyverse/tidyverse')"
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
