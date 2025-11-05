@@ -32,12 +32,14 @@ jobs:
       - name: Check R version
         run: R -q -e "sessionInfo()"
 
-      - name: Install GitHub packages
+      - name: Install packages from Git
         env:
           GITHUB_PAT: ${{ secrets.PAT_GITHUB }}
         run: |
           R -e "install.packages('devtools', repos='https://cloud.r-project.org')"
           R -e "install.packages('remotes', repos='https://cloud.r-project.org')"
+          R -e "devtools::install_github('r-lib/devtools')"
+          R -e "devtools::install_github('r-lib/remotes')"
           R -e "devtools::install_github('JorisChau/rrapply')"
           R -e "remotes::install_github('mlampros/geojsonR')"
           R -e "remotes::install_github('wilkelab/ggtext')"
@@ -45,7 +47,6 @@ jobs:
           R -e "remotes::install_github('Bioconductor/BiocManager')"
           R -e "remotes::install_github('rstudio/leaflet')"
           R -e "remotes::install_github('rstudio/rsconnect')"
-          
           R -e "remotes::install_github('r-spatial/leafpop')"
           R -e "remotes::install_github('r-spatial/leafem')"
           R -e "remotes::install_github('trafficonese/leaflet.extras2')"
