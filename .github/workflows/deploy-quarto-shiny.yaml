@@ -83,9 +83,6 @@ jobs:
           SHINYAPPS_NAME: ${{ secrets.SHINYAPPS_NAME }}
           SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
           SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
-          GITHUB_PAT: ${{ secrets.PAT_GITHUB }}
         run: |
-          R -e "options(repos = c(CRAN = 'https://cloud.r-project.org'))"
-          R -e "options(repos = BiocManager::repositories())"
-          R -e "rsconnect::setAccountInfo(name='$SHINYAPPS_NAME', token='$SHINYAPPS_TOKEN', secret='$SHINYAPPS_SECRET')"
-          R -e "rsconnect::deployApp(appDir='scripts', appPrimaryDoc='application_OET.qmd', appName='Progress_MapYourGrid', forceUpdate = TRUE)"
+          Rscript scripts/deploy.R
+
