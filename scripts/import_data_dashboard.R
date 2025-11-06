@@ -7,6 +7,9 @@ library(jsonlite)
 library(rrapply)
 library(rvest)
 
+#Path
+setwd("./scripts/")
+
 
 # Scraping wiki table relations -------------------------------------------
 
