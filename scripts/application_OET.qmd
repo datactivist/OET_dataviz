@@ -4,6 +4,8 @@ format:
   dashboard:
     nav-buttons: [github]
     github: https://github.com/datactivist/OET_dataviz
+    include-in-header:
+      - header.html
 logo: "https://raw.githubusercontent.com/open-energy-transition/MapYourGrid/main/docs/images/logos/MapYourGrid-logo.png"
 theme: [sandstone, custom.scss]
 fig-width: 10
