@@ -7,9 +7,6 @@ library(jsonlite)
 library(rrapply)
 library(rvest)
 
-#Path
-setwd("./scripts/")
-
 
 # Scraping wiki table relations -------------------------------------------
 
@@ -28,7 +25,7 @@ relation_pays <- body_table[[1]] |>
   add_row(Pays = "World (default)", id_relation = "", .before = 1)
 
 # Export
-rio::export(relation_pays, "scripts/data/id_pays_wiki.csv") 
+rio::export(relation_pays, "data/id_pays_wiki.csv") 
 
 
 
