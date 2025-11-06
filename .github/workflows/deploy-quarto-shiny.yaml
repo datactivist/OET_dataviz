@@ -21,7 +21,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Install system libraries (curl, sf, gdal, proj, etc.)
+      - name: Install system libraries (curl, sf, textshaping, etc.)
         run: |
           sudo apt-get update
           sudo apt-get install -y \
@@ -29,6 +29,12 @@ jobs:
             libssl-dev \
             libxml2-dev \
             libfontconfig1-dev \
+            libfreetype6-dev \
+            libpng-dev \
+            libtiff5-dev \
+            libjpeg-dev \
+            libharfbuzz-dev \
+            libfribidi-dev \
             libudunits2-dev \
             libgdal-dev \
             libgeos-dev \
