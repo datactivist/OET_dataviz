@@ -69,7 +69,7 @@ get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_supports/co
 # Line length growth per country ------------------------------------------
 
 # Import des données lignes de tous les pays
-data_line_all <- read_csv("data/api/data_line_all.csv")
+data_line_all <- read_csv("scripts/data/api/data_line_all.csv")
 
 # Mise en forme pour retrouver length, growth en % et growth en km
 line_length_growth <- data_line_all |> 
