@@ -52,24 +52,33 @@ get_all_data <- function(url, name_export_data){
 }
 
 # On applique la fonction pour récupérer toutes les données
+  #--- COUNTS
   # lines
-get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_lines/counts", "data_line_all")
+get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_lines/counts", "data_lines_all")
 dataframe2 <- dataframe |> 
   mutate(length = as.numeric(length) / 1000,
          labels.transmission.length = as.numeric(labels.transmission.length) / 1000,
          labels.transmission_overhead.length = as.numeric(labels.transmission_overhead.length) / 1000)
-rio::export(dataframe2, "scripts/data/api/data_line_all.csv")
+rio::export(dataframe2, "scripts/data/api/data_lines_all.csv")
   # substations
 get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_substations/counts", "data_substations_all")
   # supports
 get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_supports/counts", "data_supports_all")
+
+  #--- MAPPERS
+  # lines
+get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_lines/mappers", "mappers_lines_all")
+  # substations
+get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_substations/mappers", "mappers_substations_all")
+  # supports
+get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_supports/mappers", "mappers_supports_all")
 
 
 
 # Line length growth per country ------------------------------------------
 
 # Import des données lignes de tous les pays
-data_line_all <- read_csv("scripts/data/api/data_line_all.csv")
+data_line_all <- read_csv("scripts/data/api/data_lines_all.csv")
 
 # Mise en forme pour retrouver length, growth en % et growth en km
 line_length_growth <- data_line_all |> 
