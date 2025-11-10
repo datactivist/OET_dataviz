@@ -31,7 +31,7 @@ jobs:
         uses: r-lib/actions/setup-renv@v2
 
       - name: Run R script
-        run: Rscript scripts/import_data_dashboard.R
+        run: Rscript import_data_dashboard.R
 
       - name: Commit updated data
         run: |
