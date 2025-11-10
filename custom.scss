@@ -56,3 +56,9 @@ div.callout-note.callout-style-default>.callout-header {
 a:hover { /*souris au-dessus du lien hyper texte*/
     color: #005A56;
 }
+
+div.card-body.html-fill-item.html-fill-container { 
+  padding: 0 !important; /*pas de marge autour des valuebox rendues en renderUI*/
+}
+
+

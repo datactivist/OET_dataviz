@@ -56,7 +56,7 @@ theme_custom <- function (){
         legend.text = ggplot2::element_text(size = 14,color = "#222222"), 
         axis.text = ggplot2::element_text(size = 12,color = "#222222"), 
         axis.text.x = ggplot2::element_text(margin = ggplot2::margin(5,b = 10)), 
-        axis.title = ggplot2::element_text(size = 15,color = "#222222"),
+        axis.title = ggplot2::element_text(size = 12,color = "#222222"),
         axis.ticks = ggplot2::element_blank(),
         axis.line = ggplot2::element_blank(), 
         panel.grid.minor = ggplot2::element_blank(),
@@ -972,23 +972,47 @@ ggplotly(graph, tooltip = c("text"))
 
 # Mappers
 
+```{r}
+#| label: import data mappers to get last update
+
+df_mappers_lines <- read_csv("./data/api/mappers_lines_all.csv")
+last_date_mappers <- df_mappers_lines |> 
+  arrange(t) |> 
+  slice_tail(n = 1)
+```
+
 ::: {.sidebar}
 
 
-The data displayed on this dashboard was last updated on **`r format(as.Date(last_date$t, format = "%Y-%m-%dT%H:%M:%S"),"%Y-%m-%dT%H:%M:%S")`**.
+The data displayed on this dashboard was last updated on **`r format(as.Date(last_date_mappers$t, format = "%Y-%m-%dT%H:%M:%S"),"%Y-%m-%dT%H:%M:%S")`**.
 
 Transmission assets over **50 kV**.
 
 ------------------------------------------------------------------------
 
 
-Select a country to view its indicators. By default, **global indicators** are shown.
+Select a **country** to view its indicators. By default, *global indicators* are shown.
 
 ```{r}
 #| label: choix pays users
 
 # Bouton de sélection du pays
 selectInput('nom_pays_mappers', 'Country', unique(df_line$Pays), selected = "World (default)")
+```
+
+------------------------------------------------------------------------
+
+Select a **measure** to display. 
+
+```{r}
+#| label: choix mesure
+
+# Bouton de sélection de la mesure
+radioButtons( 
+    inputId = "mesure", 
+    label = "Measure", 
+    choices = c("Segments", "Substations", "Pylons"), 
+    selected = "Segments")
 ```
 
 :::
@@ -998,46 +1022,56 @@ selectInput('nom_pays_mappers', 'Country', unique(df_line$Pays), selected = "Wor
 
 ```{r}
 #| context: server
-#| label: get data users
+#| label: data and parameters depending on selected measure and country
+
+
+#--- SELECTED COUNTRY
 
 # Lines
 mappers_lines <- reactive({
   mappers_lines <- read_csv("./data/api/mappers_lines_all.csv")
   mappers_lines |> 
     select(t, labels.transmission.amount_1d, Pays) |> #on prend les comptes *transmission*
-    rename(amount = labels.transmission.amount_1d) |> 
     filter(Pays == input$nom_pays_mappers)
-})
-mappers_lines_cumul <- reactive({
-  mappers_lines() |> 
-    summarise(somme = sum(amount, na.rm = TRUE)) |> 
-    mutate(somme = format(as.integer(somme, 0), nsmall = 1, big.mark = ","))
 })
 # Substations
 mappers_substations <- reactive({
   mappers_substations <- read_csv("./data/api/mappers_substations_all.csv")
   mappers_substations |> 
     select(t, labels.transmission.amount_1d, Pays) |> #on prend les comptes *transmission*
-    rename(amount = labels.transmission.amount_1d) |> 
     filter(Pays == input$nom_pays_mappers)
-})
-mappers_substations_cumul <- reactive({
-  mappers_substations() |> 
-    summarise(somme = sum(amount, na.rm = TRUE)) |> 
-    mutate(somme = format(as.integer(somme, 0), nsmall = 1, big.mark = ","))
 })
 # Pylons
 mappers_pylons <- reactive({
   mappers_pylons <- read_csv("./data/api/mappers_supports_all.csv")
   mappers_pylons |> 
     select(t, amount_1d, Pays) |>
-    rename(amount = amount_1d) |> 
+    rename(labels.transmission.amount_1d = amount_1d) |> #pas label transmission, mais on renomme pour que le graphique puisse se générer avec le nom de colonne correspondant
     filter(Pays == input$nom_pays_mappers)
 })
-mappers_pylons_cumul <- reactive({
-  mappers_pylons() |> 
-    summarise(somme = sum(amount, na.rm = TRUE)) |> 
-    mutate(somme = format(as.integer(somme, 0), nsmall = 1, big.mark = ","))
+
+
+#--- SELECTED MEASURE
+
+
+data_selected_measure <- reactive({
+  switch(input$mesure,
+         "Segments" = mappers_lines(),
+         "Substations" = mappers_substations(),
+         "Pylons" = mappers_pylons())
+})
+
+color_selected_measure <- reactive({
+  switch(input$mesure,
+         "Segments" = "#ecc123",
+         "Substations" = "#54a36a",
+         "Pylons" = "#6d0f06")
+})
+color_selected_measure_bg <- reactive({
+  switch(input$mesure,
+         "Segments" = "#4f4e4d",
+         "Substations" = "white",
+         "Pylons" = "white")
 })
 ```
 
@@ -1046,56 +1080,62 @@ mappers_pylons_cumul <- reactive({
 
 
 ```{r}
-value_box(
-  id = "card5",
-  title = "Cumulative contributors for segments since 1st January of 2024",
-  theme = value_box_theme(bg = "#f1d365", fg = "#4f4e4d"),
-  value = textOutput("n5")
-)
+uiOutput("card5")
 ```
 
-
 ```{r}
-value_box(
-  id = "card6",
-  title = "Cumulative contributors for substations since 1st January of 2024",
-  theme = value_box_theme(bg = "#54a36a", fg = "white"),
-  value = textOutput("n6")
-)
+uiOutput("card6")
 ```
 
-
 ```{r}
-value_box(
-  id = "card7",
-  title = "Cumulative contributors for pylons since 1st January of 2024",
-  theme = value_box_theme(bg = "#985750", fg = "white"),
-  value = textOutput("n7")
-)
+uiOutput("card7")
 ```
 
 ```{r}
 #| context: server
 
-output$n5 <- renderText({
-  mappers_lines_cumul()$somme
+# Get stat
+mappers_jan24 <- d
+mappers_24h <- d
+mappers_30d <- d
+
+# Valuebox
+output$card5 <- renderUI({
+  value_box(
+    title = "Mappers since 1st January of 2024",
+    theme = value_box_theme(
+      bg = color_selected_measure(),
+      fg = color_selected_measure_bg()
+    ),
+    value = mappers_lines_cumul()$somme
+  )
 })
-output$n6 <- renderText({
-  mappers_substations_cumul()$somme
+output$card6 <- renderUI({
+  value_box(
+    title = "Mappers in the last 24H",
+    theme = value_box_theme(
+      bg = color_selected_measure(),
+      fg = color_selected_measure_bg()
+    ),
+    value = mappers_lines_cumul()$somme
+  )
 })
-output$n7 <- renderText({
-  mappers_pylons_cumul()$somme
+output$card7 <- renderUI({
+  value_box(
+    title = "Mappers in the last 30 days",
+    theme = value_box_theme(
+      bg = color_selected_measure(),
+      fg = color_selected_measure_bg()
+    ),
+    value = mappers_lines_cumul()$somme
+  )
 })
 ```
 
 
-### Row {height="80%" .tabset}
 
+### Row {height="80%"}
 
-
-#### Segments
-
-##### Column
 
 ```{r}
 #| title: Users' contributions in the last 24H
@@ -1108,26 +1148,29 @@ plotlyOutput('plot7.1')
 # Plot users segments
 output$plot7.1 <- renderPlotly({
   #plot depending on selected country
-  graph <- mappers_lines() |> 
+  graph <- data_selected_measure() |> 
     mutate(t = as.Date(t)) |> 
     ggplot() +
     #distinction des périodes du projet
     geom_rect(aes(xmin = as.Date("2024-11-01"), xmax = as.Date("2025-03-01"),
-                  ymin = min(amount), ymax = max(amount),
+                  ymin = min(labels.transmission.amount_1d), 
+                  ymax = max(labels.transmission.amount_1d),
                   text = "Early OET"), fill = "#333333", alpha = 0.2) +
     geom_rect(aes(xmin = as.Date("2025-03-01"), xmax = as.Date("2025-08-01"),
-                  ymin = min(amount), ymax = max(amount),
+                  ymin = min(labels.transmission.amount_1d), 
+                  ymax = max(labels.transmission.amount_1d),
                   text = "Kickoff"), fill = "#a2a2a3", alpha = 0.2) +
     geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(t),
-                  ymin = min(amount), ymax = max(amount),
+                  ymin = min(labels.transmission.amount_1d), 
+                  ymax = max(labels.transmission.amount_1d),
                   text = "Public launch"), fill = "#656566", alpha = 0.2) +
     #points et lignes
-    geom_line(aes(x = t, y = amount, group = 1,
-                  text = paste0("Time : ", t, "\nNumber of users : ", format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
-              color = "#ECC229", size = .7) +
-    geom_point(aes(x = t, y = amount, group = 1,
-                  text = paste0("Time : ", t, "\nNumber of users : ", format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
-              color = "#ECC229", size = 1) +
+    geom_line(aes(x = t, y = labels.transmission.amount_1d, group = 1,
+                  text = paste0("Time : ", t, "\nNumber of users : ", format(as.integer(labels.transmission.amount_1d, 0), nsmall = 1, big.mark = ","))),
+              color = color_selected_measure(), size = .5) +
+    # geom_point(aes(x = t, y = amount, group = 1,
+    #               text = paste0("Time : ", t, "\nNumber of users : ", format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
+    #           color = color_selected_measure(), size = 1) +
     scale_y_continuous(labels = scales::comma) +
     scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
     labs(x = "Time", 
@@ -1198,10 +1241,10 @@ output$plot7.2 <- renderPlotly({
     #points et lignes
     geom_line(aes(x = t, y = amount_cumul, group = 1,
                   text = paste0("Time : ", t, "\nNumber of users : ", format(as.integer(amount_cumul, 0), nsmall = 1, big.mark = ","))),
-              color = "#ECC229", size = .7) +
-    geom_point(aes(x = t, y = amount_cumul, group = 1,
-                  text = paste0("Time : ", t, "\nNumber of users : ", format(as.integer(amount_cumul, 0), nsmall = 1, big.mark = ","))),
-              color = "#ECC229", size = 1) +
+              color = color_selected_measure(), size = .5) +
+    # geom_point(aes(x = t, y = amount_cumul, group = 1,
+    #               text = paste0("Time : ", t, "\nNumber of users : ", format(as.integer(amount_cumul, 0), nsmall = 1, big.mark = ","))),
+    #           color = color_selected_measure(), size = 1) +
     scale_y_continuous(labels = scales::comma) +
     scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
     labs(x = "Time", 
@@ -1218,296 +1261,64 @@ output$plot7.2 <- renderPlotly({
 
 ```{r}
 #| title: Top 10 countries which received most contributions in the last 24H
-
-# Import data
-mappers_lines <- read_csv("./data/api/mappers_lines_all.csv")
-
-# Prepare data
-data_graph <- mappers_lines |> 
-  filter(Pays != "World (default)") |> 
-  filter(t == max(t), .by = Pays) |> 
-  arrange(desc(labels.transmission.amount_1d)) |> 
-  filter(row_number() <= 10) |> 
-  mutate(Pays = fct_reorder(Pays, labels.transmission.amount_1d))
-
-# Plot
-graph <- data_graph |> 
-  ggplot() +
-  geom_col(aes(x = Pays, y = max(labels.transmission.amount_1d)), fill = "#F3F3F3", width = .85) +
-  geom_col(aes(x = Pays, y = labels.transmission.amount_1d,
-               text = ifelse(labels.transmission.amount_1d == 1,
-                             paste(labels.transmission.amount_1d, "contribution"),
-                             paste(labels.transmission.amount_1d, "contributions"))), 
-           fill = "#ECC229", width = .85) +
-  scale_y_continuous(labels = scales::comma) + 
-  coord_flip() +
-  labs(y = "Number of contributions") +
-  theme_custom() +
-  theme(panel.grid.major.x = ggplot2::element_blank(),
-        panel.grid.major.y = ggplot2::element_blank(),
-        axis.title.y = element_blank(),
-        axis.text.y = element_text(size = 10))
-ggplotly(graph, tooltip = c("text"))
-```
-
-
-#### Substations
-
-##### Column
-
-```{r}
-#| title: Users' contributions in the last 24H
-plotlyOutput('plot8.1')
+plotlyOutput('plot7.3')
 ```
 
 ```{r}
 #| context: server
+
+# Import selected data
+selected_process_data <- reactive({
+  switch(input$mesure,
+         "Segments" = read_csv("data/api/mappers_lines_all.csv") |> 
+                        filter(Pays != "World (default)") |> 
+                        filter(t == max(t), .by = Pays) |> 
+                        arrange(desc(labels.transmission.amount_1d)) |> 
+                        filter(row_number() <= 10) |> 
+                        mutate(Pays = fct_reorder(Pays, labels.transmission.amount_1d)),
+         "Substations" = read_csv("data/api/mappers_substations_all.csv") |> 
+                        filter(Pays != "World (default)") |> 
+                        filter(t == max(t), .by = Pays) |> 
+                        arrange(desc(labels.transmission.amount_1d)) |> 
+                        filter(row_number() <= 10) |> 
+                        mutate(Pays = fct_reorder(Pays, labels.transmission.amount_1d)),
+         "Pylons" = read_csv("data/api/mappers_supports_all.csv") |> 
+                        filter(Pays != "World (default)") |> 
+                        filter(t == max(t), .by = Pays) |> 
+                        arrange(desc(amount_1d)) |> 
+                        filter(row_number() <= 10) |> 
+                        mutate(Pays = fct_reorder(Pays, amount_1d)) |> 
+                        rename(labels.transmission.amount_1d = amount_1d) #pas label transmission, mais on renomme pour que le graphique puisse se générer avec le nom de colonne correspondant
+         )
+})
 
 # Plot users segments
-output$plot8.1 <- renderPlotly({
-  #plot depending on selected country
-  graph <- mappers_substations() |> 
-    mutate(t = as.Date(t)) |> 
+output$plot7.3 <- renderPlotly({
+
+  # Plot
+  graph <- selected_process_data() |> 
+    mutate(Pays = str_replace_all(Pays, c("United States of America" = "USA",
+                                          "People's Republic of China" = "China"))) |> 
     ggplot() +
-    #distinction des périodes du projet
-    geom_rect(aes(xmin = as.Date("2024-11-01"), xmax = as.Date("2025-03-01"),
-                  ymin = min(amount), ymax = max(amount),
-                  text = "Early OET"), fill = "#333333", alpha = 0.2) +
-    geom_rect(aes(xmin = as.Date("2025-03-01"), xmax = as.Date("2025-08-01"),
-                  ymin = min(amount), ymax = max(amount),
-                  text = "Kickoff"), fill = "#a2a2a3", alpha = 0.2) +
-    geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(t),
-                  ymin = min(amount), ymax = max(amount),
-                  text = "Public launch"), fill = "#656566", alpha = 0.2) +
-    #points et lignes
-    geom_line(aes(x = t, y = amount, group = 1,
-                  text = paste0("Time : ", t, "\nNumber of users : ", format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
-              color = "#54a36a", size = .7) +
-    geom_point(aes(x = t, y = amount, group = 1,
-                  text = paste0("Time : ", t, "\nNumber of users : ", format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
-              color = "#54a36a", size = 1) +
-    scale_y_continuous(labels = scales::comma) +
-    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
-    labs(x = "Time", 
-         y = "Number of users") +
+    geom_col(aes(x = Pays, y = max(labels.transmission.amount_1d)), fill = "#F3F3F3", width = .85) +
+    geom_col(aes(x = Pays, y = labels.transmission.amount_1d,
+                 text = ifelse(labels.transmission.amount_1d == 1,
+                               paste(labels.transmission.amount_1d, "contribution"),
+                               paste(labels.transmission.amount_1d, "contributions"))), 
+             fill = color_selected_measure(), width = .85) +
+    scale_y_continuous(labels = scales::comma) + 
+    coord_flip() +
+    labs(y = "Number of contributions") +
     theme_custom() +
-    theme(axis.ticks.x = element_line(color = "#cbcbcb"),
-          panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
-          panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
-  #interactive graph
+    theme(panel.grid.major.x = ggplot2::element_blank(),
+          panel.grid.major.y = ggplot2::element_blank(),
+          axis.title.y = element_blank(),
+          axis.text.y = element_text(size = 10))
   ggplotly(graph, tooltip = c("text"))
 })
 ```
 
 
-
-
-```{r}
-#| title: Cumulative users' contributions since 2024-01-01
-plotlyOutput('plot8.2')
-```
-
-```{r}
-#| context: server
-
-# Plot
-output$plot8.2 <- renderPlotly({
-  #plot depending on selected country
-  graph <- mappers_substations_cumul_date() |> 
-    mutate(t = as.Date(t)) |> 
-    ggplot() +
-    #distinction des périodes du projet
-    geom_rect(aes(xmin = as.Date("2024-11-01"), xmax = as.Date("2025-03-01"),
-                  ymin = min(amount_cumul), ymax = max(amount_cumul),
-                  text = "Early OET"), fill = "#333333", alpha = 0.2) +
-    geom_rect(aes(xmin = as.Date("2025-03-01"), xmax = as.Date("2025-08-01"),
-                  ymin = min(amount_cumul), ymax = max(amount_cumul),
-                  text = "Kickoff"), fill = "#a2a2a3", alpha = 0.2) +
-    geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(t),
-                  ymin = min(amount_cumul), ymax = max(amount_cumul),
-                  text = "Public launch"), fill = "#656566", alpha = 0.2) +
-    #points et lignes
-    geom_line(aes(x = t, y = amount_cumul, group = 1,
-                  text = paste0("Time : ", t, "\nNumber of users: ", format(as.integer(amount_cumul, 0), nsmall = 1, big.mark = ","))),
-              color = "#54a36a", size = .7) +
-    geom_point(aes(x = t, y = amount_cumul, group = 1,
-                  text = paste0("Time : ", t, "\nNumber of users: ", format(as.integer(amount_cumul, 0), nsmall = 1, big.mark = ","))),
-              color = "#54a36a", size = 1) +
-    scale_y_continuous(labels = scales::comma) +
-    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
-    labs(x = "Time", 
-         y = "Cumulative number of users") +
-    theme_custom() +
-    theme(axis.ticks.x = element_line(color = "#cbcbcb"),
-          panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
-          panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
-  #interactive graph
-  ggplotly(graph, tooltip = c("text"))
-})
-```
-
-
-```{r}
-#| title: Top 10 countries which received most contributions in the last 24H
-
-# Import data
-mappers_substations <- read_csv("./data/api/mappers_substations_all.csv")
-
-# Prepare data
-data_graph <- mappers_substations |> 
-  filter(Pays != "World (default)") |> 
-  filter(t == max(t), .by = Pays) |> 
-  arrange(desc(labels.transmission.amount_1d)) |> 
-  filter(row_number() <= 10) |> 
-  mutate(Pays = fct_reorder(Pays, labels.transmission.amount_1d))
-
-# Plot
-graph <- data_graph |> 
-  ggplot() +
-  geom_col(aes(x = Pays, y = max(labels.transmission.amount_1d)), fill = "#F3F3F3", width = .85) +
-  geom_col(aes(x = Pays, y = labels.transmission.amount_1d,
-               text = ifelse(labels.transmission.amount_1d == 1,
-                             paste(labels.transmission.amount_1d, "contribution"),
-                             paste(labels.transmission.amount_1d, "contributions"))), 
-           fill = "#54a36a", width = .85) +
-  scale_y_continuous(labels = scales::comma) + 
-  coord_flip() +
-  labs(y = "Number of contributions") +
-  theme_custom() +
-  theme(panel.grid.major.x = ggplot2::element_blank(),
-        panel.grid.major.y = ggplot2::element_blank(),
-        axis.title.y = element_blank(),
-        axis.text.y = element_text(size = 10))
-ggplotly(graph, tooltip = c("text"))
-```
-
-#### Pylons
-
-
-##### Column
-
-
-```{r}
-#| title: Users' contributions in the last 24H
-plotlyOutput('plot9.1')
-```
-
-```{r}
-#| context: server
-
-# Plot users segments
-output$plot9.1 <- renderPlotly({
-  #plot depending on selected country
-  graph <- mappers_pylons() |> 
-    mutate(t = as.Date(t)) |> 
-    ggplot() +
-    #distinction des périodes du projet
-    geom_rect(aes(xmin = as.Date("2024-11-01"), xmax = as.Date("2025-03-01"),
-                  ymin = min(amount), ymax = max(amount),
-                  text = "Early OET"), fill = "#333333", alpha = 0.2) +
-    geom_rect(aes(xmin = as.Date("2025-03-01"), xmax = as.Date("2025-08-01"),
-                  ymin = min(amount), ymax = max(amount),
-                  text = "Kickoff"), fill = "#a2a2a3", alpha = 0.2) +
-    geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(t),
-                  ymin = min(amount), ymax = max(amount),
-                  text = "Public launch"), fill = "#656566", alpha = 0.2) +
-    #points et lignes
-    geom_line(aes(x = t, y = amount, group = 1,
-                  text = paste0("Time : ", t, "\nNumber of users : ", format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
-              color = "#6d0f06", size = .7) +
-    geom_point(aes(x = t, y = amount, group = 1,
-                  text = paste0("Time : ", t, "\nNumber of users : ", format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
-              color = "#6d0f06", size = 1) +
-    scale_y_continuous(labels = scales::comma) +
-    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
-    labs(x = "Time", 
-         y = "Number of users") +
-    theme_custom() +
-    theme(axis.ticks.x = element_line(color = "#cbcbcb"),
-          panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
-          panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
-  #interactive graph
-  ggplotly(graph, tooltip = c("text"))
-})
-```
-
-```{r}
-#| title: Cumulative users' contributions since 2024-01-01
-plotlyOutput('plot9.2')
-```
-
-```{r}
-#| context: server
-
-# Plot
-output$plot9.2 <- renderPlotly({
-  #plot depending on selected country
-  graph <- mappers_pylons_cumul_date() |> 
-    mutate(t = as.Date(t)) |> 
-    ggplot() +
-    #distinction des périodes du projet
-    geom_rect(aes(xmin = as.Date("2024-11-01"), xmax = as.Date("2025-03-01"),
-                  ymin = min(amount_cumul), ymax = max(amount_cumul),
-                  text = "Early OET"), fill = "#333333", alpha = 0.2) +
-    geom_rect(aes(xmin = as.Date("2025-03-01"), xmax = as.Date("2025-08-01"),
-                  ymin = min(amount_cumul), ymax = max(amount_cumul),
-                  text = "Kickoff"), fill = "#a2a2a3", alpha = 0.2) +
-    geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(t),
-                  ymin = min(amount_cumul), ymax = max(amount_cumul),
-                  text = "Public launch"), fill = "#656566", alpha = 0.2) +
-    #points et lignes
-    geom_line(aes(x = t, y = amount_cumul, group = 1,
-                  text = paste0("Time : ", t, "\nNumber of users : ", format(as.integer(amount_cumul, 0), nsmall = 1, big.mark = ","))),
-              color = "#6d0f06", size = .7) +
-    geom_point(aes(x = t, y = amount_cumul, group = 1,
-                  text = paste0("Time : ", t, "\nNumber of users : ", format(as.integer(amount_cumul, 0), nsmall = 1, big.mark = ","))),
-              color = "#6d0f06", size = 1) +
-    scale_y_continuous(labels = scales::comma) +
-    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
-    labs(x = "Time", 
-         y = "Cumulative number of users") +
-    theme_custom() +
-    theme(axis.ticks.x = element_line(color = "#cbcbcb"),
-          panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
-          panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
-  #interactive graph
-  ggplotly(graph, tooltip = c("text"))
-})
-```
-
-```{r}
-#| title: Top 10 countries which received most contributions in the last 24H
-
-# Import data
-mappers_pylons <- read_csv("./data/api/mappers_supports_all.csv")
-
-# Prepare data
-data_graph <- mappers_pylons |> 
-  filter(Pays != "World (default)") |> 
-  filter(t == max(t), .by = Pays) |> 
-  arrange(desc(amount_1d)) |> 
-  filter(row_number() <= 10) |> 
-  mutate(Pays = fct_reorder(Pays, amount_1d))
-
-# Plot
-graph <- data_graph |> 
-  ggplot() +
-  geom_col(aes(x = Pays, y = max(amount_1d)), fill = "#F3F3F3", width = .85) +
-  geom_col(aes(x = Pays, y = amount_1d,
-               text = ifelse(amount_1d == 1,
-                             paste(amount_1d, "contribution"),
-                             paste(amount_1d, "contributions"))), 
-           fill = "#6d0f06", width = .85) +
-  scale_y_continuous(labels = scales::comma) + 
-  coord_flip() +
-  labs(y = "Number of contributions") +
-  theme_custom() +
-  theme(panel.grid.major.x = ggplot2::element_blank(),
-        panel.grid.major.y = ggplot2::element_blank(),
-        axis.title.y = element_blank(),
-        axis.text.y = element_text(size = 10))
-ggplotly(graph, tooltip = c("text"))
-```
 
 # Indicator map
 
@@ -1565,4 +1376,21 @@ leaflet() |>
 ```
 
 
+```{r}
+#| eval: false
+#| include: false
+
+mappers au lieu de users (et pas contrib)
+
+pays qui on le plus de contrib ; derniers 30 jours + vrai cumulé
+
+"Mappers for substations"
+
+1er graph avoir bouton : 24H et 30J
+dernier graph barplot aussi derniers 30J
+
+Déploiement : 
+  - serveur dédié
+  - peut-être pas besoin de redéployer app (juste mettre à jour les données)
+```
 
