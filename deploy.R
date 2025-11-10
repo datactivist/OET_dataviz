@@ -8,7 +8,7 @@ rsconnect::setAccountInfo(
 
 # Deploy Quarto Shiny document
 rsconnect::deployApp(
-  appDir = "scripts",
+  #appDir = ".",
   appPrimaryDoc = "application_OET.qmd",
   appName = "Progress_MapYourGrid",
   forceUpdate = TRUE
