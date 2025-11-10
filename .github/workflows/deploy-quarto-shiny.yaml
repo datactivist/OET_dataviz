@@ -9,7 +9,6 @@ on:
       - main
     paths:
       - "data/**"
-      - "scripts/**"
       - "renv.lock"
       - ".Rprofile"
 
@@ -66,4 +65,4 @@ jobs:
           SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
           SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
         run: |
-          Rscript scripts/deploy.R
+          Rscript deploy.R
