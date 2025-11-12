@@ -1046,7 +1046,8 @@ mappers_pylons <- reactive({
   mappers_pylons <- read_csv("./data/api/mappers_supports_all.csv")
   mappers_pylons |> 
     #select(t, amount_1d, Pays) |>
-    rename(labels.transmission.amount_1d = amount_1d) |> #pas label transmission, mais on renomme pour que le graphique puisse se générer avec le nom de colonne correspondant
+    rename(labels.transmission.amount_1d = amount_1d,
+           labels.transmission.amount = amount) |> #pas label transmission, mais on renomme pour que le graphique puisse se générer avec le nom de colonne correspondant
     filter(Pays == input$nom_pays_mappers)
 })
 
@@ -1154,6 +1155,70 @@ output$card7 <- renderUI({
 
 ### Row {height="80%"}
 
+#### Column {width="33%"}
+
+
+```{r}
+#| title: Cumulative users' contributions since 2024-01-01
+plotlyOutput('plot7.2')
+```
+
+```{r}
+#| context: server
+
+# Prepare data
+data_cumul <- reactive({
+  switch(input$mesure,
+         "Segments" = mappers_lines(),
+         "Substations" = mappers_substations(),
+         "Pylons" = mappers_pylons())
+})
+
+# Plot
+output$plot7.2 <- renderPlotly({
+  #plot depending on selected country
+  graph <- data_cumul() |> 
+    mutate(t = as.Date(t)) |> 
+    ggplot() +
+    #distinction des périodes du projet
+    geom_rect(aes(xmin = as.Date("2024-11-01"), xmax = as.Date("2025-03-01"),
+                  ymin = min(labels.transmission.amount), ymax = max(labels.transmission.amount),
+                  text = "Early OET"), fill = "#333333", alpha = 0.2) +
+    geom_rect(aes(xmin = as.Date("2025-03-01"), xmax = as.Date("2025-08-01"),
+                  ymin = min(labels.transmission.amount), ymax = max(labels.transmission.amount),
+                  text = "Kickoff"), fill = "#a2a2a3", alpha = 0.2) +
+    geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(t),
+                  ymin = min(labels.transmission.amount), ymax = max(labels.transmission.amount),
+                  text = "Public launch"), fill = "#656566", alpha = 0.2) +
+    #points et lignes
+    geom_line(aes(x = t, y = labels.transmission.amount, group = 1,
+                  text = paste0("Time : ", t, "\nNumber of users : ", format(as.integer(labels.transmission.amount, 0), nsmall = 1, big.mark = ","))),
+              color = color_selected_measure(), size = .5) +
+    # geom_point(aes(x = t, y = labels.transmission.amount, group = 1,
+    #               text = paste0("Time : ", t, "\nNumber of users : ", format(as.integer(labels.transmission.amount, 0), nsmall = 1, big.mark = ","))),
+    #           color = color_selected_measure(), size = 1) +
+    scale_y_continuous(labels = scales::comma) +
+    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
+    labs(x = "Time", 
+         y = "Number of users") +
+    theme_custom() +
+    theme(axis.ticks.x = element_line(color = "#cbcbcb"),
+          panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
+          panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
+  #interactive graph
+  ggplotly(graph, tooltip = c("text"))
+})
+```
+
+#### Column {width="33%"}
+
+```{r}
+#| content: card-toolbar
+
+# Bouton de sélection du pays
+selectInput('time_stat', 'Time stat', c("Last 24H", "Last 30 days"), selected = "Last 24H")
+```
+
 
 ```{r}
 #| title: Users' contributions in the last 24H
@@ -1207,75 +1272,7 @@ output$plot7.1 <- renderPlotly({
 #             dynamic = TRUE, color = cols, selectize = TRUE)
 ```
 
-```{r}
-#| context: server
-#| label: calculate cumulative data
-
-# Lines
-mappers_lines_cumul_date <- reactive({
-  mappers_lines() |> 
-    mutate(amount_cumul = cumsum(amount)) |> 
-    filter(Pays == input$nom_pays_mappers)
-})
-# Substations
-mappers_substations_cumul_date <- reactive({
-  mappers_substations() |> 
-    mutate(amount_cumul = cumsum(amount)) |> 
-    filter(Pays == input$nom_pays_mappers)
-})
-# Pylons
-mappers_pylons_cumul_date <- reactive({
-  mappers_pylons() |> 
-    mutate(amount_cumul = cumsum(amount)) |> 
-    filter(Pays == input$nom_pays_mappers)
-})
-```
-
-
-```{r}
-#| title: Cumulative users' contributions since 2024-01-01
-plotlyOutput('plot7.2')
-```
-
-```{r}
-#| context: server
-
-# Plot
-output$plot7.2 <- renderPlotly({
-  #plot depending on selected country
-  graph <- mappers_lines_cumul_date() |> 
-    mutate(t = as.Date(t)) |> 
-    ggplot() +
-    #distinction des périodes du projet
-    geom_rect(aes(xmin = as.Date("2024-11-01"), xmax = as.Date("2025-03-01"),
-                  ymin = min(amount_cumul), ymax = max(amount_cumul),
-                  text = "Early OET"), fill = "#333333", alpha = 0.2) +
-    geom_rect(aes(xmin = as.Date("2025-03-01"), xmax = as.Date("2025-08-01"),
-                  ymin = min(amount_cumul), ymax = max(amount_cumul),
-                  text = "Kickoff"), fill = "#a2a2a3", alpha = 0.2) +
-    geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(t),
-                  ymin = min(amount_cumul), ymax = max(amount_cumul),
-                  text = "Public launch"), fill = "#656566", alpha = 0.2) +
-    #points et lignes
-    geom_line(aes(x = t, y = amount_cumul, group = 1,
-                  text = paste0("Time : ", t, "\nNumber of users : ", format(as.integer(amount_cumul, 0), nsmall = 1, big.mark = ","))),
-              color = color_selected_measure(), size = .5) +
-    # geom_point(aes(x = t, y = amount_cumul, group = 1,
-    #               text = paste0("Time : ", t, "\nNumber of users : ", format(as.integer(amount_cumul, 0), nsmall = 1, big.mark = ","))),
-    #           color = color_selected_measure(), size = 1) +
-    scale_y_continuous(labels = scales::comma) +
-    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
-    labs(x = "Time", 
-         y = "Number of users") +
-    theme_custom() +
-    theme(axis.ticks.x = element_line(color = "#cbcbcb"),
-          panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
-          panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
-  #interactive graph
-  ggplotly(graph, tooltip = c("text"))
-})
-```
-
+#### Column {width="33%"}
 
 ```{r}
 #| title: Top 10 countries which received most contributions in the last 24H
