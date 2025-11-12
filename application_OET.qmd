@@ -1031,21 +1031,21 @@ radioButtons(
 mappers_lines <- reactive({
   mappers_lines <- read_csv("./data/api/mappers_lines_all.csv")
   mappers_lines |> 
-    select(t, labels.transmission.amount_1d, Pays) |> #on prend les comptes *transmission*
+    #select(t, labels.transmission.amount_1d, Pays) |> #on prend les comptes *transmission*
     filter(Pays == input$nom_pays_mappers)
 })
 # Substations
 mappers_substations <- reactive({
   mappers_substations <- read_csv("./data/api/mappers_substations_all.csv")
   mappers_substations |> 
-    select(t, labels.transmission.amount_1d, Pays) |> #on prend les comptes *transmission*
+    #select(t, labels.transmission.amount_1d, Pays) |> #on prend les comptes *transmission*
     filter(Pays == input$nom_pays_mappers)
 })
 # Pylons
 mappers_pylons <- reactive({
   mappers_pylons <- read_csv("./data/api/mappers_supports_all.csv")
   mappers_pylons |> 
-    select(t, amount_1d, Pays) |>
+    #select(t, amount_1d, Pays) |>
     rename(labels.transmission.amount_1d = amount_1d) |> #pas label transmission, mais on renomme pour que le graphique puisse se générer avec le nom de colonne correspondant
     filter(Pays == input$nom_pays_mappers)
 })
@@ -1095,9 +1095,27 @@ uiOutput("card7")
 #| context: server
 
 # Get stat
-mappers_jan24 <- d
-mappers_24h <- d
-mappers_30d <- d
+mappers_jan24 <- reactive({
+  switch(input$mesure,
+         "Segments" = mappers_lines() |> arrange(desc(t)) |> slice(1),
+         "Substations" = mappers_substations() |> arrange(desc(t)) |> slice(1),
+         "Pylons" = mappers_pylons() |> arrange(desc(t)) |> 
+           slice(1) |> rename(labels.transmission.amount = amount))
+})
+mappers_1d <- reactive({
+  switch(input$mesure,
+         "Segments" = mappers_lines() |> arrange(desc(t)) |> slice(1),
+         "Substations" = mappers_substations() |> arrange(desc(t)) |> slice(1),
+         "Pylons" = mappers_pylons() |> arrange(desc(t)) |> 
+           slice(1) |> rename(labels.transmission.amount_1d = amount_1d))
+})
+mappers_30d <- reactive({
+  switch(input$mesure,
+         "Segments" = mappers_lines() |> arrange(desc(t)) |> slice(1),
+         "Substations" = mappers_substations() |> arrange(desc(t)) |> slice(1),
+         "Pylons" = mappers_pylons() |> arrange(desc(t)) |> 
+           slice(1) |> rename(labels.transmission.amount_30d = amount_30d))
+})
 
 # Valuebox
 output$card5 <- renderUI({
@@ -1107,7 +1125,7 @@ output$card5 <- renderUI({
       bg = color_selected_measure(),
       fg = color_selected_measure_bg()
     ),
-    value = mappers_lines_cumul()$somme
+    value = format(as.integer(mappers_jan24()$labels.transmission.amount, 0), nsmall = 1, big.mark = ",")
   )
 })
 output$card6 <- renderUI({
@@ -1117,7 +1135,7 @@ output$card6 <- renderUI({
       bg = color_selected_measure(),
       fg = color_selected_measure_bg()
     ),
-    value = mappers_lines_cumul()$somme
+    value = format(as.integer(mappers_1d()$labels.transmission.amount_1d, 0), nsmall = 1, big.mark = ",")
   )
 })
 output$card7 <- renderUI({
@@ -1127,7 +1145,7 @@ output$card7 <- renderUI({
       bg = color_selected_measure(),
       fg = color_selected_measure_bg()
     ),
-    value = mappers_lines_cumul()$somme
+    value = format(as.integer(mappers_30d()$labels.transmission.amount_30d, 0), nsmall = 1, big.mark = ",")
   )
 })
 ```
