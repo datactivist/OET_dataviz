@@ -24,7 +24,6 @@ options:
 #| message: false
 
 library(tidyverse)
-library(jsonlite)
 library(plotly)
 library(scales)
 library(gt)
@@ -35,9 +34,6 @@ library(leaflet)
 library(leafem)
 library(leaflet.extras2)
 library(shiny)
-library(rvest)
-library(glue)
-library(DT)
 library(bslib)
 library(bsicons)
 
@@ -1047,7 +1043,8 @@ mappers_pylons <- reactive({
   mappers_pylons |> 
     #select(t, amount_1d, Pays) |>
     rename(labels.transmission.amount_1d = amount_1d,
-           labels.transmission.amount = amount) |> #pas label transmission, mais on renomme pour que le graphique puisse se générer avec le nom de colonne correspondant
+           labels.transmission.amount = amount,
+           labels.transmission.amount_30d = amount_30d) |> #pas label transmission, mais on renomme pour que le graphique puisse se générer avec le nom de colonne correspondant
     filter(Pays == input$nom_pays_mappers)
 })
 
@@ -1100,22 +1097,19 @@ mappers_jan24 <- reactive({
   switch(input$mesure,
          "Segments" = mappers_lines() |> arrange(desc(t)) |> slice(1),
          "Substations" = mappers_substations() |> arrange(desc(t)) |> slice(1),
-         "Pylons" = mappers_pylons() |> arrange(desc(t)) |> 
-           slice(1) |> rename(labels.transmission.amount = amount))
+         "Pylons" = mappers_pylons() |> arrange(desc(t)) |> slice(1))
 })
 mappers_1d <- reactive({
   switch(input$mesure,
          "Segments" = mappers_lines() |> arrange(desc(t)) |> slice(1),
          "Substations" = mappers_substations() |> arrange(desc(t)) |> slice(1),
-         "Pylons" = mappers_pylons() |> arrange(desc(t)) |> 
-           slice(1) |> rename(labels.transmission.amount_1d = amount_1d))
+         "Pylons" = mappers_pylons() |> arrange(desc(t)) |> slice(1))
 })
 mappers_30d <- reactive({
   switch(input$mesure,
          "Segments" = mappers_lines() |> arrange(desc(t)) |> slice(1),
          "Substations" = mappers_substations() |> arrange(desc(t)) |> slice(1),
-         "Pylons" = mappers_pylons() |> arrange(desc(t)) |> 
-           slice(1) |> rename(labels.transmission.amount_30d = amount_30d))
+         "Pylons" = mappers_pylons() |> arrange(desc(t)) |> slice(1))
 })
 
 # Valuebox
@@ -1159,7 +1153,7 @@ output$card7 <- renderUI({
 
 
 ```{r}
-#| title: Cumulative users' contributions since 2024-01-01
+#| title: Mappers since 1st January of 2024
 plotlyOutput('plot7.2')
 ```
 
@@ -1192,15 +1186,15 @@ output$plot7.2 <- renderPlotly({
                   text = "Public launch"), fill = "#656566", alpha = 0.2) +
     #points et lignes
     geom_line(aes(x = t, y = labels.transmission.amount, group = 1,
-                  text = paste0("Time : ", t, "\nNumber of users : ", format(as.integer(labels.transmission.amount, 0), nsmall = 1, big.mark = ","))),
+                  text = paste0("Time : ", t, "\nNumber of mappers : ", format(as.integer(labels.transmission.amount, 0), nsmall = 1, big.mark = ","))),
               color = color_selected_measure(), size = .5) +
     # geom_point(aes(x = t, y = labels.transmission.amount, group = 1,
-    #               text = paste0("Time : ", t, "\nNumber of users : ", format(as.integer(labels.transmission.amount, 0), nsmall = 1, big.mark = ","))),
+    #               text = paste0("Time : ", t, "\nNumber of mappers : ", format(as.integer(labels.transmission.amount, 0), nsmall = 1, big.mark = ","))),
     #           color = color_selected_measure(), size = 1) +
     scale_y_continuous(labels = scales::comma) +
     scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
     labs(x = "Time", 
-         y = "Number of users") +
+         y = "Number of mappers") +
     theme_custom() +
     theme(axis.ticks.x = element_line(color = "#cbcbcb"),
           panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
@@ -1210,54 +1204,63 @@ output$plot7.2 <- renderPlotly({
 })
 ```
 
-#### Column {width="33%"}
+#### Col
+
+
+##### Column
 
 ```{r}
 #| content: card-toolbar
 
 # Bouton de sélection du pays
-selectInput('time_stat', 'Time stat', c("Last 24H", "Last 30 days"), selected = "Last 24H")
+selectInput(inputId = 'time_stat', label = NULL, choices = c("Last 24 hours", "Last 30 days"), selected = "Last 24H")
 ```
 
 
 ```{r}
-#| title: Users' contributions in the last 24H
+#| title: Mappers
 plotlyOutput('plot7.1')
 ```
 
 ```{r}
 #| context: server
 
+data_selected_measure_time <- reactive({
+  switch(input$time_stat,
+         "Last 24 hours" = data_selected_measure() |> rename(col_graph = labels.transmission.amount_1d),
+         "Last 30 days" = data_selected_measure() |> rename(col_graph = labels.transmission.amount_30d))
+})
+
 # Plot users segments
 output$plot7.1 <- renderPlotly({
   #plot depending on selected country
-  graph <- data_selected_measure() |> 
+  graph <- data_selected_measure_time() |> 
     mutate(t = as.Date(t)) |> 
     ggplot() +
     #distinction des périodes du projet
     geom_rect(aes(xmin = as.Date("2024-11-01"), xmax = as.Date("2025-03-01"),
-                  ymin = min(labels.transmission.amount_1d), 
-                  ymax = max(labels.transmission.amount_1d),
+                  ymin = min(col_graph), 
+                  ymax = max(col_graph),
                   text = "Early OET"), fill = "#333333", alpha = 0.2) +
     geom_rect(aes(xmin = as.Date("2025-03-01"), xmax = as.Date("2025-08-01"),
-                  ymin = min(labels.transmission.amount_1d), 
-                  ymax = max(labels.transmission.amount_1d),
+                  ymin = min(col_graph), 
+                  ymax = max(col_graph),
                   text = "Kickoff"), fill = "#a2a2a3", alpha = 0.2) +
     geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(t),
-                  ymin = min(labels.transmission.amount_1d), 
-                  ymax = max(labels.transmission.amount_1d),
+                  ymin = min(col_graph), 
+                  ymax = max(col_graph),
                   text = "Public launch"), fill = "#656566", alpha = 0.2) +
     #points et lignes
-    geom_line(aes(x = t, y = labels.transmission.amount_1d, group = 1,
-                  text = paste0("Time : ", t, "\nNumber of users : ", format(as.integer(labels.transmission.amount_1d, 0), nsmall = 1, big.mark = ","))),
+    geom_line(aes(x = t, y = col_graph, group = 1,
+                  text = paste0("Time : ", t, "\nNumber of mappers : ", format(as.integer(col_graph, 0), nsmall = 1, big.mark = ","))),
               color = color_selected_measure(), size = .5) +
     # geom_point(aes(x = t, y = amount, group = 1,
-    #               text = paste0("Time : ", t, "\nNumber of users : ", format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
+    #               text = paste0("Time : ", t, "\nNumber of mappers : ", format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
     #           color = color_selected_measure(), size = 1) +
     scale_y_continuous(labels = scales::comma) +
     scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
     labs(x = "Time", 
-         y = "Number of users") +
+         y = "Number of mappers") +
     theme_custom() +
     theme(axis.ticks.x = element_line(color = "#cbcbcb"),
           panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
@@ -1265,17 +1268,13 @@ output$plot7.1 <- renderPlotly({
   #interactive graph
   ggplotly(graph, tooltip = c("text"))
 })
-
-# subplot(p1, p2, shareX = FALSE, shareY = FALSE, titleX = TRUE) %>% 
-#   hide_legend() %>%
-#   highlight(on = "plotly_click", off = "plotly_doubleclick",
-#             dynamic = TRUE, color = cols, selectize = TRUE)
 ```
 
-#### Column {width="33%"}
+
+
 
 ```{r}
-#| title: Top 10 countries which received most contributions in the last 24H
+#| title: Top 10 countries which received most contributions
 plotlyOutput('plot7.3')
 ```
 
@@ -1303,25 +1302,36 @@ selected_process_data <- reactive({
                         arrange(desc(amount_1d)) |> 
                         filter(row_number() <= 10) |> 
                         mutate(Pays = fct_reorder(Pays, amount_1d)) |> 
-                        rename(labels.transmission.amount_1d = amount_1d) #pas label transmission, mais on renomme pour que le graphique puisse se générer avec le nom de colonne correspondant
+                        rename(labels.transmission.amount_1d = amount_1d,
+                               labels.transmission.amount_30d = amount_30d) #pas label transmission, mais on renomme pour que le graphique puisse se générer avec le nom de colonne correspondant
          )
 })
 
-# Plot users segments
+# Depending on time choosed
+selected_process_data_time <- reactive({
+  switch(input$time_stat,
+         "Last 24 hours" = selected_process_data() |> rename(col_graph = labels.transmission.amount_1d),
+         "Last 30 days" = selected_process_data() |> rename(col_graph = labels.transmission.amount_30d))
+})
+
+
+# Plot
 output$plot7.3 <- renderPlotly({
 
   # Plot
-  graph <- selected_process_data() |> 
+  graph <- selected_process_data_time() |> 
     mutate(Pays = str_replace_all(Pays, c("United States of America" = "USA",
-                                          "People's Republic of China" = "China"))) |> 
+                                          "People's Republic of China" = "China")),
+           Pays = fct_reorder(Pays, col_graph)) |> 
     ggplot() +
-    geom_col(aes(x = Pays, y = max(labels.transmission.amount_1d)), fill = "#F3F3F3", width = .85) +
-    geom_col(aes(x = Pays, y = labels.transmission.amount_1d,
-                 text = ifelse(labels.transmission.amount_1d == 1,
-                               paste(labels.transmission.amount_1d, "contribution"),
-                               paste(labels.transmission.amount_1d, "contributions"))), 
+    geom_col(aes(x = Pays, y = max(col_graph)), fill = "#F3F3F3", width = .85) +
+    geom_col(aes(x = Pays, y = col_graph,
+                 text = ifelse(col_graph == 1,
+                               paste(col_graph, "contribution"),
+                               paste(col_graph, "contributions"))), 
              fill = color_selected_measure(), width = .85) +
     scale_y_continuous(labels = scales::comma) + 
+    scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 30)) + 
     coord_flip() +
     labs(y = "Number of contributions") +
     theme_custom() +
@@ -1403,9 +1413,5 @@ pays qui on le plus de contrib ; derniers 30 jours + vrai cumulé
 
 1er graph avoir bouton : 24H et 30J
 dernier graph barplot aussi derniers 30J
-
-Déploiement : 
-  - serveur dédié
-  - peut-être pas besoin de redéployer app (juste mettre à jour les données)
 ```
 

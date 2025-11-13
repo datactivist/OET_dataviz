@@ -1,0 +1,6 @@
+deploy.R
+renv
+renv.lock
+.github
+.Rprofile
+.Rbuildignore
