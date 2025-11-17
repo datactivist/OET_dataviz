@@ -39,7 +39,7 @@ library(bsicons)
 
 #Thème pour les graphiques
 theme_custom <- function (){
-    ggplot2::theme(plot.title = ggplot2::element_text(size = 21, face = "bold", color = "#222222"), 
+    ggplot2::theme(plot.title = ggplot2::element_text(size = 14, color = "#222222"), 
         plot.subtitle = ggplot2::element_text(size = 18, face = "italic", margin = ggplot2::margin(0, 0, 9, 0)), 
         plot.caption = ggplot2::element_text(size = 18, margin = ggplot2::margin(9, 0, 9, 0)), 
         plot.title.position = "plot",
@@ -1125,22 +1125,22 @@ output$card5 <- renderUI({
 })
 output$card6 <- renderUI({
   value_box(
-    title = "Mappers in the last 24H",
-    theme = value_box_theme(
-      bg = color_selected_measure(),
-      fg = color_selected_measure_bg()
-    ),
-    value = format(as.integer(mappers_1d()$labels.transmission.amount_1d, 0), nsmall = 1, big.mark = ",")
-  )
-})
-output$card7 <- renderUI({
-  value_box(
     title = "Mappers in the last 30 days",
     theme = value_box_theme(
       bg = color_selected_measure(),
       fg = color_selected_measure_bg()
     ),
     value = format(as.integer(mappers_30d()$labels.transmission.amount_30d, 0), nsmall = 1, big.mark = ",")
+  )
+})
+output$card7 <- renderUI({
+  value_box(
+    title = "Mappers in the last 24H",
+    theme = value_box_theme(
+      bg = color_selected_measure(),
+      fg = color_selected_measure_bg()
+    ),
+    value = format(as.integer(mappers_1d()$labels.transmission.amount_1d, 0), nsmall = 1, big.mark = ",")
   )
 })
 ```
@@ -1151,11 +1151,11 @@ output$card7 <- renderUI({
 
 #### Since 1st January of 2024
 
-##### Column
 
 ```{r}
-#| title: Mappers evolution
+#| layout-ncol: 2
 plotlyOutput('plot7.1')
+plotlyOutput('plot7.2')
 ```
 
 ```{r}
@@ -1185,17 +1185,15 @@ output$plot7.1 <- renderPlotly({
     geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(t),
                   ymin = min(labels.transmission.amount), ymax = max(labels.transmission.amount),
                   text = "Public launch"), fill = "#656566", alpha = 0.2) +
-    #points et lignes
+    #lignes
     geom_line(aes(x = t, y = labels.transmission.amount, group = 1,
                   text = paste0("Time : ", t, "\nNumber of mappers : ", format(as.integer(labels.transmission.amount, 0), nsmall = 1, big.mark = ","))),
               color = color_selected_measure(), size = .5) +
-    # geom_point(aes(x = t, y = labels.transmission.amount, group = 1,
-    #               text = paste0("Time : ", t, "\nNumber of mappers : ", format(as.integer(labels.transmission.amount, 0), nsmall = 1, big.mark = ","))),
-    #           color = color_selected_measure(), size = 1) +
     scale_y_continuous(labels = scales::comma) +
     scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
     labs(x = "Time", 
-         y = "Number of mappers") +
+         y = "Number of mappers",
+         title = "Mappers evolution") +
     theme_custom() +
     theme(axis.ticks.x = element_line(color = "#cbcbcb"),
           panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
@@ -1203,15 +1201,7 @@ output$plot7.1 <- renderPlotly({
   #interactive graph
   ggplotly(graph, tooltip = c("text"))
 })
-```
 
-```{r}
-#| title: Top 10 countries with the highest number of mappers
-plotlyOutput('plot7.2')
-```
-
-```{r}
-#| context: server
 
 # Import selected data
 selected_process_data <- reactive({
@@ -1252,117 +1242,29 @@ output$plot7.2 <- renderPlotly({
     scale_y_continuous(labels = scales::comma) + 
     scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 30)) + 
     coord_flip() +
-    labs(y = "Number of mappers") +
+    labs(y = "Number of mappers", title = "Countries with the highest number of mappers") +
     theme_custom() +
     theme(panel.grid.major.x = ggplot2::element_blank(),
           panel.grid.major.y = ggplot2::element_blank(),
+          plot.title.position = "plot",
           axis.title.y = element_blank(),
           axis.text.y = element_text(size = 10))
   ggplotly(graph, tooltip = c("text"))
 })
 ```
 
-
-
-#### Last 24 hours
-
-
-##### Column
-
-
-```{r}
-#| title: Mappers evolution
-plotlyOutput('plot8.1')
-```
-
-```{r}
-#| context: server
-
-# Plot
-output$plot8.1 <- renderPlotly({
-  #plot depending on selected country
-  graph <- data_cumul() |> 
-    mutate(t = as.Date(t)) |> 
-    ggplot() +
-    #distinction des périodes du projet
-    geom_rect(aes(xmin = as.Date("2024-11-01"), xmax = as.Date("2025-03-01"),
-                  ymin = min(labels.transmission.amount_1d), ymax = max(labels.transmission.amount_1d),
-                  text = "Early OET"), fill = "#333333", alpha = 0.2) +
-    geom_rect(aes(xmin = as.Date("2025-03-01"), xmax = as.Date("2025-08-01"),
-                  ymin = min(labels.transmission.amount_1d), ymax = max(labels.transmission.amount_1d),
-                  text = "Kickoff"), fill = "#a2a2a3", alpha = 0.2) +
-    geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(t),
-                  ymin = min(labels.transmission.amount_1d), ymax = max(labels.transmission.amount_1d),
-                  text = "Public launch"), fill = "#656566", alpha = 0.2) +
-    #points et lignes
-    geom_line(aes(x = t, y = labels.transmission.amount_1d, group = 1,
-                  text = paste0("Time : ", t, "\nNumber of mappers : ", format(as.integer(labels.transmission.amount_1d, 0), nsmall = 1, big.mark = ","))),
-              color = color_selected_measure(), size = .5) +
-    # geom_point(aes(x = t, y = labels.transmission.amount_1d, group = 1,
-    #               text = paste0("Time : ", t, "\nNumber of mappers : ", format(as.integer(labels.transmission.amount_1d, 0), nsmall = 1, big.mark = ","))),
-    #           color = color_selected_measure(), size = 1) +
-    scale_y_continuous(labels = scales::comma) +
-    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
-    labs(x = "Time", 
-         y = "Number of mappers") +
-    theme_custom() +
-    theme(axis.ticks.x = element_line(color = "#cbcbcb"),
-          panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
-          panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
-  #interactive graph
-  ggplotly(graph, tooltip = c("text"))
-})
-```
-
-```{r}
-#| title: Top 10 countries with the highest number of mappers
-plotlyOutput('plot8.2')
-```
-
-```{r}
-#| context: server
-
-# Plot
-output$plot8.2 <- renderPlotly({
-
-  # Plot
-  graph <- selected_process_data() |> 
-    arrange(desc(labels.transmission.amount_1d)) |> 
-    filter(row_number() <= 10) |> 
-    mutate(Pays = str_replace_all(Pays, c("United States of America" = "USA",
-                                          "People's Republic of China" = "China")),
-           Pays = fct_reorder(Pays, labels.transmission.amount_1d)) |> 
-    ggplot() +
-    geom_col(aes(x = Pays, y = max(labels.transmission.amount_1d)), fill = "#F3F3F3", width = .85) +
-    geom_col(aes(x = Pays, y = labels.transmission.amount_1d,
-                 text = ifelse(labels.transmission.amount_1d == 1,
-                               paste(labels.transmission.amount_1d, "contribution"),
-                               paste(labels.transmission.amount_1d, "contributions"))), 
-             fill = color_selected_measure(), width = .85) +
-    scale_y_continuous(labels = scales::comma) + 
-    scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 30)) + 
-    coord_flip() +
-    labs(y = "Number of contributions") +
-    theme_custom() +
-    theme(panel.grid.major.x = ggplot2::element_blank(),
-          panel.grid.major.y = ggplot2::element_blank(),
-          axis.title.y = element_blank(),
-          axis.text.y = element_text(size = 10))
-  ggplotly(graph, tooltip = c("text"))
-})
-```
 
 
 #### Last 30 days
 
 
-##### Column
 
 
 
 ```{r}
-#| title: Mappers evolution
+#| layout-ncol: 2
 plotlyOutput('plot9.1')
+plotlyOutput('plot9.2')
 ```
 
 ```{r}
@@ -1384,17 +1286,15 @@ output$plot9.1 <- renderPlotly({
     geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(t),
                   ymin = min(labels.transmission.amount_30d), ymax = max(labels.transmission.amount_30d),
                   text = "Public launch"), fill = "#656566", alpha = 0.2) +
-    #points et lignes
+    #lignes
     geom_line(aes(x = t, y = labels.transmission.amount_30d, group = 1,
                   text = paste0("Time : ", t, "\nNumber of mappers : ", format(as.integer(labels.transmission.amount_30d, 0), nsmall = 1, big.mark = ","))),
               color = color_selected_measure(), size = .5) +
-    # geom_point(aes(x = t, y = labels.transmission.amount_30d, group = 1,
-    #               text = paste0("Time : ", t, "\nNumber of mappers : ", format(as.integer(labels.transmission.amount_30d, 0), nsmall = 1, big.mark = ","))),
-    #           color = color_selected_measure(), size = 1) +
     scale_y_continuous(labels = scales::comma) +
     scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
     labs(x = "Time", 
-         y = "Number of mappers") +
+         y = "Number of mappers",
+         title = "Mappers evolution") +
     theme_custom() +
     theme(axis.ticks.x = element_line(color = "#cbcbcb"),
           panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
@@ -1402,16 +1302,7 @@ output$plot9.1 <- renderPlotly({
   #interactive graph
   ggplotly(graph, tooltip = c("text"))
 })
-```
 
-```{r}
-#| title: Top 10 countries with the highest number of mappers
-#| class: test1
-plotlyOutput('plot9.2')
-```
-
-```{r}
-#| context: server
 
 # Plot
 output$plot9.2 <- renderPlotly({
@@ -1433,15 +1324,95 @@ output$plot9.2 <- renderPlotly({
     scale_y_continuous(labels = scales::comma) + 
     scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 30)) + 
     coord_flip() +
-    labs(y = "Number of contributions") +
+    labs(y = "Number of contributions", title = "Countries with the highest number of mappers") +
     theme_custom() +
     theme(panel.grid.major.x = ggplot2::element_blank(),
           panel.grid.major.y = ggplot2::element_blank(),
+          plot.title.position = "plot",
           axis.title.y = element_blank(),
           axis.text.y = element_text(size = 10))
   ggplotly(graph, tooltip = c("text"))
 })
 ```
+
+#### Last 24 hours
+
+
+
+
+```{r}
+#| layout-ncol: 2
+plotlyOutput('plot8.1')
+plotlyOutput('plot8.2')
+```
+
+```{r}
+#| context: server
+
+# Plot
+output$plot8.1 <- renderPlotly({
+  #plot depending on selected country
+  graph <- data_cumul() |> 
+    mutate(t = as.Date(t)) |> 
+    ggplot() +
+    #distinction des périodes du projet
+    geom_rect(aes(xmin = as.Date("2024-11-01"), xmax = as.Date("2025-03-01"),
+                  ymin = min(labels.transmission.amount_1d), ymax = max(labels.transmission.amount_1d),
+                  text = "Early OET"), fill = "#333333", alpha = 0.2) +
+    geom_rect(aes(xmin = as.Date("2025-03-01"), xmax = as.Date("2025-08-01"),
+                  ymin = min(labels.transmission.amount_1d), ymax = max(labels.transmission.amount_1d),
+                  text = "Kickoff"), fill = "#a2a2a3", alpha = 0.2) +
+    geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(t),
+                  ymin = min(labels.transmission.amount_1d), ymax = max(labels.transmission.amount_1d),
+                  text = "Public launch"), fill = "#656566", alpha = 0.2) +
+    #lignes
+    geom_line(aes(x = t, y = labels.transmission.amount_1d, group = 1,
+                  text = paste0("Time : ", t, "\nNumber of mappers : ", format(as.integer(labels.transmission.amount_1d, 0), nsmall = 1, big.mark = ","))),
+              color = color_selected_measure(), size = .5) +
+    scale_y_continuous(labels = scales::comma) +
+    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
+    labs(x = "Time", 
+         y = "Number of mappers",
+         title = "Mappers evolution") +
+    theme_custom() +
+    theme(axis.ticks.x = element_line(color = "#cbcbcb"),
+          panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
+          panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
+  #interactive graph
+  ggplotly(graph, tooltip = c("text"))
+})
+
+
+# Plot
+output$plot8.2 <- renderPlotly({
+  # Plot
+  graph <- selected_process_data() |> 
+    arrange(desc(labels.transmission.amount_1d)) |> 
+    filter(row_number() <= 10) |> 
+    mutate(Pays = str_replace_all(Pays, c("United States of America" = "USA",
+                                          "People's Republic of China" = "China")),
+           Pays = fct_reorder(Pays, labels.transmission.amount_1d)) |> 
+    ggplot() +
+    geom_col(aes(x = Pays, y = max(labels.transmission.amount_1d)), fill = "#F3F3F3", width = .85) +
+    geom_col(aes(x = Pays, y = labels.transmission.amount_1d,
+                 text = ifelse(labels.transmission.amount_1d == 1,
+                               paste(labels.transmission.amount_1d, "contribution"),
+                               paste(labels.transmission.amount_1d, "contributions"))), 
+             fill = color_selected_measure(), width = .85) +
+    scale_y_continuous(labels = scales::comma) + 
+    scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 30)) + 
+    coord_flip() +
+    labs(y = "Number of contributions", title = "Countries with the highest number of mappers") +
+    theme_custom() +
+    theme(panel.grid.major.x = ggplot2::element_blank(),
+          panel.grid.major.y = ggplot2::element_blank(),
+          plot.title.position = "plot",
+          axis.title.y = element_blank(),
+          axis.text.y = element_text(size = 10))
+  ggplotly(graph, tooltip = c("text"))
+})
+```
+
 
 
 # Indicator map

@@ -81,16 +81,48 @@ get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_supports/ma
 data_line_all <- read_csv("data/api/data_lines_all.csv")
 
 # Mise en forme pour retrouver length, growth en % et growth en km
-line_length_growth <- data_line_all |> 
-  filter(t >= "2025-01-01",
+  # Early OET
+line_length_growth_earlyOET <- data_line_all |> 
+  filter(t >= "2024-11-01",
          Pays != "World (default)") |> 
   slice(c(1, n()), .by = Pays) |> 
-  mutate(growth_percent = (length - lag(length)) / lag(length), 
-         growth_km = length - lag(length),
+  mutate(growth_percent = (labels.transmission.length - lag(labels.transmission.length)) / lag(labels.transmission.length), 
+         growth_km = labels.transmission.length - lag(labels.transmission.length),
          .by = Pays) |> 
   filter(!is.na(growth_percent)) |> 
-  select(-c(amount, id_relation)) |> 
+  select(t, Pays, labels.transmission.length, growth_percent, growth_km) |> 
   rename(Country = Pays)
+  # Kickoff
+line_length_growth_kickoff <- data_line_all |> 
+  filter(t >= "2025-03-01",
+         Pays != "World (default)") |> 
+  slice(c(1, n()), .by = Pays) |> 
+  mutate(growth_percent = (labels.transmission.length - lag(labels.transmission.length)) / lag(labels.transmission.length), 
+         growth_km = labels.transmission.length - lag(labels.transmission.length),
+         .by = Pays) |> 
+  filter(!is.na(growth_percent)) |> 
+  select(t, Pays, labels.transmission.length, growth_percent, growth_km) |> 
+  rename(Country = Pays) |> 
+  mutate(periode = "Kickoff")
+  # Public launch
+line_length_growth_publicLaunch <- data_line_all |> 
+  filter(t >= "2025-08-01",
+         Pays != "World (default)") |> 
+  slice(c(1, n()), .by = Pays) |> 
+  mutate(growth_percent = (labels.transmission.length - lag(labels.transmission.length)) / lag(labels.transmission.length), 
+         growth_km = labels.transmission.length - lag(labels.transmission.length),
+         .by = Pays) |> 
+  filter(!is.na(growth_percent)) |> 
+  select(t, Pays, labels.transmission.length, growth_percent, growth_km) |> 
+  rename(Country = Pays) |> 
+  mutate(periode = "Public launch")
+
+# Tous ensemble
+line_lenght_growth <- line_length_growth_earlyOET |> 
+  rename_at(vars(-Country, -t), ~paste0(., "_earlyOET")) |> 
+  left_join(line_length_growth_kickoff |> select(-t), 
+            by = "Country")
+                               # line_length_growth_publicLaunch)
 
 # Export
 rio::export(line_length_growth, paste0("data/api/line_length_growth_table.csv"))
