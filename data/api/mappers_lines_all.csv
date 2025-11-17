@@ -66,6 +66,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,12343,82,1210,2707,28,287,11294,62,1068,10460,59,966,"",World (default)
 2025-11-15T00:00:00.000Z,12352,76,1211,2711,16,287,11302,66,1065,10469,63,967,"",World (default)
 2025-11-16T00:00:00.000Z,12367,83,1226,2713,19,283,11317,69,1082,10484,65,984,"",World (default)
+2025-11-17T00:00:00.000Z,12389,80,1234,2722,22,290,11338,64,1090,10504,57,990,"",World (default)
 2024-02-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/303427,Afghanistan
 2024-03-01T00:00:00.000Z,3,0,3,,,,3,0,3,3,0,3,/boundary/303427,Afghanistan
 2024-04-01T00:00:00.000Z,3,0,1,,,,3,0,1,3,0,1,/boundary/303427,Afghanistan
@@ -133,6 +134,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,25,0,1,,,,25,0,1,25,0,1,/boundary/303427,Afghanistan
 2025-11-15T00:00:00.000Z,25,0,1,,,,25,0,1,25,0,1,/boundary/303427,Afghanistan
 2025-11-16T00:00:00.000Z,25,0,1,,,,25,0,1,25,0,1,/boundary/303427,Afghanistan
+2025-11-17T00:00:00.000Z,25,0,1,,,,25,0,1,25,0,1,/boundary/303427,Afghanistan
 2024-03-01T00:00:00.000Z,2,1,2,,,,2,1,2,2,1,2,/boundary/53292,Albania
 2024-04-01T00:00:00.000Z,2,0,1,,,,2,0,1,2,0,1,/boundary/53292,Albania
 2024-05-01T00:00:00.000Z,3,0,1,,,,3,0,1,3,0,1,/boundary/53292,Albania
@@ -199,6 +201,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,20,0,2,1,0,0,20,0,2,20,0,2,/boundary/53292,Albania
 2025-11-15T00:00:00.000Z,20,0,2,1,0,0,20,0,2,20,0,2,/boundary/53292,Albania
 2025-11-16T00:00:00.000Z,20,0,2,1,0,0,20,0,2,20,0,2,/boundary/53292,Albania
+2025-11-17T00:00:00.000Z,20,0,2,1,0,0,20,0,2,20,0,2,/boundary/53292,Albania
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/192756,Algeria
 2024-03-01T00:00:00.000Z,3,0,3,,,,3,0,3,3,0,3,/boundary/192756,Algeria
 2024-04-01T00:00:00.000Z,3,0,1,,,,3,0,1,3,0,1,/boundary/192756,Algeria
@@ -266,6 +269,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,35,0,4,1,0,0,34,0,4,34,0,4,/boundary/192756,Algeria
 2025-11-15T00:00:00.000Z,35,0,4,1,0,0,34,0,4,34,0,4,/boundary/192756,Algeria
 2025-11-16T00:00:00.000Z,35,0,4,1,0,0,34,0,4,34,0,4,/boundary/192756,Algeria
+2025-11-17T00:00:00.000Z,35,0,4,1,0,0,34,0,4,34,0,4,/boundary/192756,Algeria
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/9407,Andorra
 2024-03-01T00:00:00.000Z,2,0,1,,,,2,0,1,2,0,1,/boundary/9407,Andorra
 2024-04-01T00:00:00.000Z,3,0,1,,,,3,0,1,3,0,1,/boundary/9407,Andorra
@@ -333,6 +337,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,8,0,0,,,,8,0,0,8,0,0,/boundary/9407,Andorra
 2025-11-15T00:00:00.000Z,8,0,0,,,,8,0,0,8,0,0,/boundary/9407,Andorra
 2025-11-16T00:00:00.000Z,8,0,0,,,,8,0,0,8,0,0,/boundary/9407,Andorra
+2025-11-17T00:00:00.000Z,9,1,1,,,,9,1,1,9,1,1,/boundary/9407,Andorra
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/195267,Angola
 2024-03-01T00:00:00.000Z,2,0,2,,,,2,0,2,2,0,2,/boundary/195267,Angola
 2024-04-01T00:00:00.000Z,4,0,2,,,,4,0,2,4,0,2,/boundary/195267,Angola
@@ -400,6 +405,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,19,0,0,,,,19,0,0,19,0,0,/boundary/195267,Angola
 2025-11-15T00:00:00.000Z,19,0,0,,,,19,0,0,19,0,0,/boundary/195267,Angola
 2025-11-16T00:00:00.000Z,19,0,0,,,,19,0,0,19,0,0,/boundary/195267,Angola
+2025-11-17T00:00:00.000Z,19,0,0,,,,19,0,0,19,0,0,/boundary/195267,Angola
 2024-02-01T00:00:00.000Z,7,0,7,,,,7,0,7,7,0,7,/boundary/286393,Argentina
 2024-03-01T00:00:00.000Z,14,3,9,1,0,1,13,3,8,11,3,6,/boundary/286393,Argentina
 2024-04-01T00:00:00.000Z,21,0,14,2,0,1,19,0,13,16,0,11,/boundary/286393,Argentina
@@ -467,6 +473,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,115,0,10,21,0,2,108,0,9,91,0,6,/boundary/286393,Argentina
 2025-11-15T00:00:00.000Z,115,0,10,21,0,2,108,0,9,91,0,6,/boundary/286393,Argentina
 2025-11-16T00:00:00.000Z,116,1,10,21,0,2,109,1,9,91,0,5,/boundary/286393,Argentina
+2025-11-17T00:00:00.000Z,116,0,10,21,0,2,109,0,9,91,0,5,/boundary/286393,Argentina
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/364066,Armenia
 2024-03-01T00:00:00.000Z,2,0,1,,,,2,0,1,2,0,1,/boundary/364066,Armenia
 2024-04-01T00:00:00.000Z,3,0,1,,,,3,0,1,3,0,1,/boundary/364066,Armenia
@@ -534,6 +541,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,9,0,0,3,0,0,9,0,0,9,0,0,/boundary/364066,Armenia
 2025-11-15T00:00:00.000Z,9,0,0,3,0,0,9,0,0,9,0,0,/boundary/364066,Armenia
 2025-11-16T00:00:00.000Z,9,1,1,3,0,0,9,1,1,9,1,1,/boundary/364066,Armenia
+2025-11-17T00:00:00.000Z,9,0,1,3,0,0,9,0,1,9,0,1,/boundary/364066,Armenia
 2024-02-01T00:00:00.000Z,22,1,20,3,0,3,20,1,18,19,1,17,/boundary/80500,Australia
 2024-03-01T00:00:00.000Z,32,1,17,5,0,2,30,1,17,27,1,14,/boundary/80500,Australia
 2024-04-01T00:00:00.000Z,45,2,18,9,1,6,43,2,17,38,2,14,/boundary/80500,Australia
@@ -601,6 +609,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,228,2,22,38,0,3,214,2,21,197,2,17,/boundary/80500,Australia
 2025-11-15T00:00:00.000Z,228,1,22,38,0,3,214,1,21,197,1,17,/boundary/80500,Australia
 2025-11-16T00:00:00.000Z,228,3,24,38,0,3,214,3,23,197,3,19,/boundary/80500,Australia
+2025-11-17T00:00:00.000Z,229,5,26,39,1,4,215,5,25,198,4,21,/boundary/80500,Australia
 2024-02-01T00:00:00.000Z,7,0,7,2,0,2,5,0,5,5,0,5,/boundary/16239,Austria
 2024-03-01T00:00:00.000Z,20,1,15,4,0,3,18,1,14,17,1,13,/boundary/16239,Austria
 2024-04-01T00:00:00.000Z,25,0,7,5,0,2,24,0,6,21,0,4,/boundary/16239,Austria
@@ -668,6 +677,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,188,0,16,66,0,7,152,0,11,126,0,9,/boundary/16239,Austria
 2025-11-15T00:00:00.000Z,188,0,16,66,0,7,152,0,11,126,0,9,/boundary/16239,Austria
 2025-11-16T00:00:00.000Z,188,1,17,67,1,8,152,0,11,126,0,9,/boundary/16239,Austria
+2025-11-17T00:00:00.000Z,188,1,15,68,1,8,152,0,9,126,0,7,/boundary/16239,Austria
 2024-02-01T00:00:00.000Z,3,0,3,,,,3,0,3,3,0,3,/boundary/364110,Azerbaijan
 2024-03-01T00:00:00.000Z,4,0,1,,,,4,0,1,4,0,1,/boundary/364110,Azerbaijan
 2024-04-01T00:00:00.000Z,5,0,1,,,,5,0,1,5,0,1,/boundary/364110,Azerbaijan
@@ -735,6 +745,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,24,0,0,2,0,0,24,0,0,24,0,0,/boundary/364110,Azerbaijan
 2025-11-15T00:00:00.000Z,24,0,0,2,0,0,24,0,0,24,0,0,/boundary/364110,Azerbaijan
 2025-11-16T00:00:00.000Z,24,0,0,2,0,0,24,0,0,24,0,0,/boundary/364110,Azerbaijan
+2025-11-17T00:00:00.000Z,24,0,0,2,0,0,24,0,0,24,0,0,/boundary/364110,Azerbaijan
 2024-12-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/378734,Bahrain
 2025-01-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/378734,Bahrain
 2025-02-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/378734,Bahrain
@@ -792,6 +803,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/378734,Bahrain
 2025-11-15T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/378734,Bahrain
 2025-11-16T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/378734,Bahrain
+2025-11-17T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/378734,Bahrain
 2024-03-01T00:00:00.000Z,3,0,3,,,,3,0,3,3,0,3,/boundary/184640,Bangladesh
 2024-04-01T00:00:00.000Z,9,1,6,,,,9,1,6,9,1,6,/boundary/184640,Bangladesh
 2024-05-01T00:00:00.000Z,13,1,5,,,,13,1,5,13,1,5,/boundary/184640,Bangladesh
@@ -858,6 +870,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,62,0,5,4,0,1,60,0,5,59,0,5,/boundary/184640,Bangladesh
 2025-11-15T00:00:00.000Z,62,0,4,4,0,1,60,0,4,59,0,4,/boundary/184640,Bangladesh
 2025-11-16T00:00:00.000Z,62,0,4,4,0,1,60,0,4,59,0,4,/boundary/184640,Bangladesh
+2025-11-17T00:00:00.000Z,63,2,5,4,0,1,61,2,5,60,2,5,/boundary/184640,Bangladesh
 2024-02-01T00:00:00.000Z,7,1,7,4,0,4,5,1,5,5,1,5,/boundary/59065,Belarus
 2024-03-01T00:00:00.000Z,14,1,10,10,0,8,11,1,9,11,1,9,/boundary/59065,Belarus
 2024-04-01T00:00:00.000Z,18,2,11,11,2,7,15,0,8,15,0,8,/boundary/59065,Belarus
@@ -925,6 +938,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,73,0,9,36,0,5,63,0,6,63,0,6,/boundary/59065,Belarus
 2025-11-15T00:00:00.000Z,74,2,9,37,1,5,63,1,6,63,1,6,/boundary/59065,Belarus
 2025-11-16T00:00:00.000Z,74,0,9,37,0,5,63,0,6,63,0,6,/boundary/59065,Belarus
+2025-11-17T00:00:00.000Z,74,0,9,37,0,5,63,0,6,63,0,6,/boundary/59065,Belarus
 2024-02-01T00:00:00.000Z,11,0,11,1,0,1,11,0,11,11,0,11,/boundary/52411,Belgium
 2024-03-01T00:00:00.000Z,17,0,8,2,0,1,17,0,8,17,0,8,/boundary/52411,Belgium
 2024-04-01T00:00:00.000Z,24,0,7,3,0,2,23,0,6,23,0,6,/boundary/52411,Belgium
@@ -992,6 +1006,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,95,1,12,17,1,3,85,0,10,77,0,7,/boundary/52411,Belgium
 2025-11-15T00:00:00.000Z,96,1,13,17,0,3,86,1,11,78,1,8,/boundary/52411,Belgium
 2025-11-16T00:00:00.000Z,96,1,14,17,0,3,86,1,12,78,1,9,/boundary/52411,Belgium
+2025-11-17T00:00:00.000Z,96,0,14,17,0,3,86,0,12,78,0,9,/boundary/52411,Belgium
 2024-02-01T00:00:00.000Z,1,1,1,1,1,1,1,0,1,1,0,1,/boundary/287827,Belize
 2024-03-01T00:00:00.000Z,1,0,1,1,0,1,1,0,1,1,0,1,/boundary/287827,Belize
 2024-04-01T00:00:00.000Z,1,0,0,1,0,0,1,0,0,1,0,0,/boundary/287827,Belize
@@ -1059,6 +1074,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,7,0,0,1,0,0,7,0,0,7,0,0,/boundary/287827,Belize
 2025-11-15T00:00:00.000Z,7,0,0,1,0,0,7,0,0,7,0,0,/boundary/287827,Belize
 2025-11-16T00:00:00.000Z,7,0,0,1,0,0,7,0,0,7,0,0,/boundary/287827,Belize
+2025-11-17T00:00:00.000Z,7,0,0,1,0,0,7,0,0,7,0,0,/boundary/287827,Belize
 2024-03-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/192784,Benin
 2024-04-01T00:00:00.000Z,3,0,2,,,,3,0,2,3,0,2,/boundary/192784,Benin
 2024-05-01T00:00:00.000Z,4,0,1,,,,4,0,1,4,0,1,/boundary/192784,Benin
@@ -1125,6 +1141,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,14,0,1,,,,14,0,1,14,0,1,/boundary/192784,Benin
 2025-11-15T00:00:00.000Z,14,0,1,,,,14,0,1,14,0,1,/boundary/192784,Benin
 2025-11-16T00:00:00.000Z,14,0,1,,,,14,0,1,14,0,1,/boundary/192784,Benin
+2025-11-17T00:00:00.000Z,14,0,1,,,,14,0,1,14,0,1,/boundary/192784,Benin
 2024-04-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/184629,Bhutan
 2024-05-01T00:00:00.000Z,4,0,3,,,,4,0,3,4,0,3,/boundary/184629,Bhutan
 2024-06-01T00:00:00.000Z,5,0,1,,,,5,0,1,5,0,1,/boundary/184629,Bhutan
@@ -1190,6 +1207,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,12,0,0,,,,12,0,0,12,0,0,/boundary/184629,Bhutan
 2025-11-15T00:00:00.000Z,12,0,0,,,,12,0,0,12,0,0,/boundary/184629,Bhutan
 2025-11-16T00:00:00.000Z,12,0,0,,,,12,0,0,12,0,0,/boundary/184629,Bhutan
+2025-11-17T00:00:00.000Z,12,0,0,,,,12,0,0,12,0,0,/boundary/184629,Bhutan
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/252645,Bolivia
 2024-03-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/252645,Bolivia
 2024-04-01T00:00:00.000Z,3,1,2,,,,3,1,2,3,1,2,/boundary/252645,Bolivia
@@ -1257,6 +1275,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,13,0,2,,,,13,0,2,13,0,2,/boundary/252645,Bolivia
 2025-11-15T00:00:00.000Z,13,0,2,,,,13,0,2,13,0,2,/boundary/252645,Bolivia
 2025-11-16T00:00:00.000Z,13,0,2,,,,13,0,2,13,0,2,/boundary/252645,Bolivia
+2025-11-17T00:00:00.000Z,13,0,2,,,,13,0,2,13,0,2,/boundary/252645,Bolivia
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/2528142,Bosnia and Herzegovina
 2024-03-01T00:00:00.000Z,7,2,6,1,0,1,6,2,5,6,2,5,/boundary/2528142,Bosnia and Herzegovina
 2024-04-01T00:00:00.000Z,9,0,3,1,0,0,8,0,3,8,0,3,/boundary/2528142,Bosnia and Herzegovina
@@ -1324,6 +1343,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,29,0,3,4,0,0,27,0,3,27,0,3,/boundary/2528142,Bosnia and Herzegovina
 2025-11-15T00:00:00.000Z,29,0,3,4,0,0,27,0,3,27,0,3,/boundary/2528142,Bosnia and Herzegovina
 2025-11-16T00:00:00.000Z,29,0,3,4,0,0,27,0,3,27,0,3,/boundary/2528142,Bosnia and Herzegovina
+2025-11-17T00:00:00.000Z,29,0,3,4,0,0,27,0,3,27,0,3,/boundary/2528142,Bosnia and Herzegovina
 2024-07-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/1889339,Botswana
 2024-08-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/1889339,Botswana
 2024-09-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/1889339,Botswana
@@ -1386,6 +1406,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,4,0,1,,,,4,0,1,4,0,1,/boundary/1889339,Botswana
 2025-11-15T00:00:00.000Z,4,0,1,,,,4,0,1,4,0,1,/boundary/1889339,Botswana
 2025-11-16T00:00:00.000Z,4,0,1,,,,4,0,1,4,0,1,/boundary/1889339,Botswana
+2025-11-17T00:00:00.000Z,4,0,0,,,,4,0,0,4,0,0,/boundary/1889339,Botswana
 2024-02-01T00:00:00.000Z,35,3,35,1,0,1,35,3,35,33,3,33,/boundary/59470,Brazil
 2024-03-01T00:00:00.000Z,52,0,30,2,0,1,52,0,30,50,0,29,/boundary/59470,Brazil
 2024-04-01T00:00:00.000Z,78,1,34,2,0,0,78,1,34,74,1,31,/boundary/59470,Brazil
@@ -1452,7 +1473,8 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-13T00:00:00.000Z,456,1,44,7,0,0,454,1,44,435,1,41,/boundary/59470,Brazil
 2025-11-14T00:00:00.000Z,456,1,43,7,0,0,454,1,43,435,1,40,/boundary/59470,Brazil
 2025-11-15T00:00:00.000Z,456,2,44,7,0,0,454,2,44,435,2,41,/boundary/59470,Brazil
-2025-11-16T00:00:00.000Z,457,4,46,7,0,0,455,4,46,436,4,43,/boundary/59470,Brazil
+2025-11-16T00:00:00.000Z,457,5,46,7,0,0,455,5,46,436,5,43,/boundary/59470,Brazil
+2025-11-17T00:00:00.000Z,459,2,47,7,0,0,457,2,47,437,1,43,/boundary/59470,Brazil
 2024-05-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/2103120,Brunei
 2024-06-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/2103120,Brunei
 2024-07-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/2103120,Brunei
@@ -1517,6 +1539,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/2103120,Brunei
 2025-11-15T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/2103120,Brunei
 2025-11-16T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/2103120,Brunei
+2025-11-17T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/2103120,Brunei
 2024-02-01T00:00:00.000Z,4,0,4,1,0,1,4,0,4,4,0,4,/boundary/186382,Bulgaria
 2024-03-01T00:00:00.000Z,6,1,4,1,0,1,6,1,3,6,1,3,/boundary/186382,Bulgaria
 2024-04-01T00:00:00.000Z,10,0,5,1,0,0,10,0,5,10,0,5,/boundary/186382,Bulgaria
@@ -1584,6 +1607,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,36,0,4,6,0,1,35,0,4,35,0,4,/boundary/186382,Bulgaria
 2025-11-15T00:00:00.000Z,36,0,4,6,0,1,35,0,4,35,0,4,/boundary/186382,Bulgaria
 2025-11-16T00:00:00.000Z,36,0,4,6,0,1,35,0,4,35,0,4,/boundary/186382,Bulgaria
+2025-11-17T00:00:00.000Z,36,0,4,6,0,1,35,0,4,35,0,4,/boundary/186382,Bulgaria
 2024-06-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/192783,Burkina Faso
 2024-07-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/192783,Burkina Faso
 2024-08-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/192783,Burkina Faso
@@ -1647,6 +1671,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,5,0,1,,,,5,0,1,5,0,1,/boundary/192783,Burkina Faso
 2025-11-15T00:00:00.000Z,5,0,1,,,,5,0,1,5,0,1,/boundary/192783,Burkina Faso
 2025-11-16T00:00:00.000Z,5,0,1,,,,5,0,1,5,0,1,/boundary/192783,Burkina Faso
+2025-11-17T00:00:00.000Z,5,0,1,,,,5,0,1,5,0,1,/boundary/192783,Burkina Faso
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/195269,Burundi
 2024-03-01T00:00:00.000Z,2,0,1,,,,2,0,1,2,0,1,/boundary/195269,Burundi
 2024-04-01T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/195269,Burundi
@@ -1714,6 +1739,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/195269,Burundi
 2025-11-15T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/195269,Burundi
 2025-11-16T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/195269,Burundi
+2025-11-17T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/195269,Burundi
 2024-04-01T00:00:00.000Z,2,0,2,,,,2,0,2,2,0,2,/boundary/49898,Cambodia
 2024-05-01T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/49898,Cambodia
 2024-06-01T00:00:00.000Z,3,0,1,,,,3,0,1,3,0,1,/boundary/49898,Cambodia
@@ -1779,6 +1805,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,10,0,0,,,,10,0,0,10,0,0,/boundary/49898,Cambodia
 2025-11-15T00:00:00.000Z,10,0,0,,,,10,0,0,10,0,0,/boundary/49898,Cambodia
 2025-11-16T00:00:00.000Z,10,0,0,,,,10,0,0,10,0,0,/boundary/49898,Cambodia
+2025-11-17T00:00:00.000Z,10,0,0,,,,10,0,0,10,0,0,/boundary/49898,Cambodia
 2024-04-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/192830,Cameroon
 2024-05-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192830,Cameroon
 2024-06-01T00:00:00.000Z,2,0,1,,,,2,0,1,2,0,1,/boundary/192830,Cameroon
@@ -1844,6 +1871,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,20,0,0,,,,20,0,0,20,0,0,/boundary/192830,Cameroon
 2025-11-15T00:00:00.000Z,20,0,0,,,,20,0,0,20,0,0,/boundary/192830,Cameroon
 2025-11-16T00:00:00.000Z,20,0,0,,,,20,0,0,20,0,0,/boundary/192830,Cameroon
+2025-11-17T00:00:00.000Z,20,0,0,,,,20,0,0,20,0,0,/boundary/192830,Cameroon
 2024-02-01T00:00:00.000Z,23,1,23,2,0,2,22,1,22,21,1,21,/boundary/1428125,Canada
 2024-03-01T00:00:00.000Z,51,1,35,3,0,1,50,1,34,47,0,31,/boundary/1428125,Canada
 2024-04-01T00:00:00.000Z,67,1,29,6,0,3,66,1,28,63,1,24,/boundary/1428125,Canada
@@ -1911,6 +1939,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,335,2,38,61,0,4,319,2,36,309,2,32,/boundary/1428125,Canada
 2025-11-15T00:00:00.000Z,336,2,39,62,1,5,319,1,36,309,1,32,/boundary/1428125,Canada
 2025-11-16T00:00:00.000Z,336,1,39,62,0,5,319,1,36,309,1,32,/boundary/1428125,Canada
+2025-11-17T00:00:00.000Z,340,5,43,63,1,6,323,4,40,313,4,35,/boundary/1428125,Canada
 2024-05-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/535774,Cape Verde
 2024-06-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/535774,Cape Verde
 2024-07-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/535774,Cape Verde
@@ -1975,6 +2004,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/535774,Cape Verde
 2025-11-15T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/535774,Cape Verde
 2025-11-16T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/535774,Cape Verde
+2025-11-17T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/535774,Cape Verde
 2024-04-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/192790,Central African Republic
 2024-05-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192790,Central African Republic
 2024-06-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192790,Central African Republic
@@ -2040,6 +2070,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192790,Central African Republic
 2025-11-15T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192790,Central African Republic
 2025-11-16T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192790,Central African Republic
+2025-11-17T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192790,Central African Republic
 2024-04-01T00:00:00.000Z,8,0,8,6,0,6,2,0,2,2,0,2,/boundary/2361304,Chad
 2024-05-01T00:00:00.000Z,8,0,0,6,0,0,2,0,0,2,0,0,/boundary/2361304,Chad
 2024-06-01T00:00:00.000Z,8,0,0,6,0,0,2,0,0,2,0,0,/boundary/2361304,Chad
@@ -2105,6 +2136,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,17,0,1,10,0,1,7,0,0,7,0,0,/boundary/2361304,Chad
 2025-11-15T00:00:00.000Z,17,0,1,10,0,1,7,0,0,7,0,0,/boundary/2361304,Chad
 2025-11-16T00:00:00.000Z,17,0,1,10,0,1,7,0,0,7,0,0,/boundary/2361304,Chad
+2025-11-17T00:00:00.000Z,17,0,1,10,0,1,7,0,0,7,0,0,/boundary/2361304,Chad
 2024-02-01T00:00:00.000Z,8,1,8,,,,8,1,8,7,1,7,/boundary/167454,Chile
 2024-03-01T00:00:00.000Z,11,0,6,,,,11,0,6,10,0,6,/boundary/167454,Chile
 2024-04-01T00:00:00.000Z,15,0,5,,,,15,0,5,14,0,5,/boundary/167454,Chile
@@ -2172,6 +2204,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,40,0,2,3,0,1,40,0,2,39,0,2,/boundary/167454,Chile
 2025-11-15T00:00:00.000Z,40,0,1,3,0,1,40,0,1,39,0,1,/boundary/167454,Chile
 2025-11-16T00:00:00.000Z,40,1,1,3,0,1,40,1,1,39,1,1,/boundary/167454,Chile
+2025-11-17T00:00:00.000Z,40,0,1,3,0,1,40,0,1,39,0,1,/boundary/167454,Chile
 2024-02-01T00:00:00.000Z,2,0,2,,,,2,0,2,2,0,2,/boundary/120027,Colombia
 2024-03-01T00:00:00.000Z,6,0,4,,,,6,0,4,6,0,4,/boundary/120027,Colombia
 2024-04-01T00:00:00.000Z,8,0,2,,,,8,0,2,8,0,2,/boundary/120027,Colombia
@@ -2239,6 +2272,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,77,0,10,7,0,2,76,0,10,76,0,10,/boundary/120027,Colombia
 2025-11-15T00:00:00.000Z,77,0,10,7,0,2,76,0,9,76,0,9,/boundary/120027,Colombia
 2025-11-16T00:00:00.000Z,77,0,10,7,0,2,76,0,9,76,0,9,/boundary/120027,Colombia
+2025-11-17T00:00:00.000Z,77,0,10,7,0,2,76,0,9,76,0,9,/boundary/120027,Colombia
 2024-03-01T00:00:00.000Z,1,1,1,,,,1,1,1,1,1,1,/boundary/287667,Costa Rica
 2024-04-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/287667,Costa Rica
 2024-05-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/287667,Costa Rica
@@ -2305,6 +2339,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,12,0,0,4,0,0,11,0,0,11,0,0,/boundary/287667,Costa Rica
 2025-11-15T00:00:00.000Z,12,0,0,4,0,0,11,0,0,11,0,0,/boundary/287667,Costa Rica
 2025-11-16T00:00:00.000Z,12,0,0,4,0,0,11,0,0,11,0,0,/boundary/287667,Costa Rica
+2025-11-17T00:00:00.000Z,12,0,0,4,0,0,11,0,0,11,0,0,/boundary/287667,Costa Rica
 2024-02-01T00:00:00.000Z,4,0,4,3,0,3,4,0,4,4,0,4,/boundary/214885,Croatia
 2024-03-01T00:00:00.000Z,7,0,5,4,0,1,7,0,5,6,0,4,/boundary/214885,Croatia
 2024-04-01T00:00:00.000Z,10,0,6,6,0,4,9,0,4,8,0,4,/boundary/214885,Croatia
@@ -2372,6 +2407,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,64,0,3,23,0,1,55,0,2,53,0,2,/boundary/214885,Croatia
 2025-11-15T00:00:00.000Z,64,0,3,23,0,1,55,0,2,53,0,2,/boundary/214885,Croatia
 2025-11-16T00:00:00.000Z,64,0,3,23,0,1,55,0,2,53,0,2,/boundary/214885,Croatia
+2025-11-17T00:00:00.000Z,64,0,3,23,0,1,55,0,2,53,0,2,/boundary/214885,Croatia
 2024-02-01T00:00:00.000Z,5,0,4,,,,5,0,4,5,0,4,/boundary/307833,Cuba
 2024-03-01T00:00:00.000Z,6,0,2,,,,6,0,2,6,0,2,/boundary/307833,Cuba
 2024-04-01T00:00:00.000Z,7,0,1,,,,7,0,1,7,0,1,/boundary/307833,Cuba
@@ -2439,6 +2475,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,15,0,2,,,,15,0,2,15,0,2,/boundary/307833,Cuba
 2025-11-15T00:00:00.000Z,15,0,2,,,,15,0,2,15,0,2,/boundary/307833,Cuba
 2025-11-16T00:00:00.000Z,15,0,2,,,,15,0,2,15,0,2,/boundary/307833,Cuba
+2025-11-17T00:00:00.000Z,15,0,2,,,,15,0,2,15,0,2,/boundary/307833,Cuba
 2024-02-01T00:00:00.000Z,18,3,17,11,0,10,11,3,11,11,3,11,/boundary/51684,Czech Republic
 2024-03-01T00:00:00.000Z,25,0,17,15,0,6,21,0,16,18,0,13,/boundary/51684,Czech Republic
 2024-04-01T00:00:00.000Z,29,0,13,17,0,7,24,0,11,22,0,11,/boundary/51684,Czech Republic
@@ -2506,6 +2543,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,126,1,14,64,0,9,97,1,9,92,1,8,/boundary/51684,Czech Republic
 2025-11-15T00:00:00.000Z,126,0,14,64,0,9,97,0,9,92,0,8,/boundary/51684,Czech Republic
 2025-11-16T00:00:00.000Z,126,0,14,64,0,9,97,0,9,92,0,8,/boundary/51684,Czech Republic
+2025-11-17T00:00:00.000Z,126,0,14,64,0,9,97,0,9,92,0,8,/boundary/51684,Czech Republic
 2024-03-01T00:00:00.000Z,6,0,6,,,,6,0,6,6,0,6,/boundary/192795,Democratic Republic of the Congo
 2024-04-01T00:00:00.000Z,6,0,0,,,,6,0,0,6,0,0,/boundary/192795,Democratic Republic of the Congo
 2024-05-01T00:00:00.000Z,6,0,0,,,,6,0,0,6,0,0,/boundary/192795,Democratic Republic of the Congo
@@ -2572,6 +2610,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,23,1,1,2,0,0,22,1,1,22,1,1,/boundary/192795,Democratic Republic of the Congo
 2025-11-15T00:00:00.000Z,23,0,1,2,0,0,22,0,1,22,0,1,/boundary/192795,Democratic Republic of the Congo
 2025-11-16T00:00:00.000Z,23,0,1,2,0,0,22,0,1,22,0,1,/boundary/192795,Democratic Republic of the Congo
+2025-11-17T00:00:00.000Z,23,0,1,2,0,0,22,0,1,22,0,1,/boundary/192795,Democratic Republic of the Congo
 2024-03-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/192801,Djibouti
 2024-04-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192801,Djibouti
 2024-05-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192801,Djibouti
@@ -2638,6 +2677,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,3,0,0,,,,3,0,0,3,0,0,/boundary/192801,Djibouti
 2025-11-15T00:00:00.000Z,3,0,0,,,,3,0,0,3,0,0,/boundary/192801,Djibouti
 2025-11-16T00:00:00.000Z,3,0,0,,,,3,0,0,3,0,0,/boundary/192801,Djibouti
+2025-11-17T00:00:00.000Z,3,0,0,,,,3,0,0,3,0,0,/boundary/192801,Djibouti
 2024-03-01T00:00:00.000Z,2,0,2,,,,2,0,2,2,0,2,/boundary/307828,Dominican Republic
 2024-04-01T00:00:00.000Z,5,0,3,,,,5,0,3,5,0,3,/boundary/307828,Dominican Republic
 2024-05-01T00:00:00.000Z,6,0,1,,,,6,0,1,6,0,1,/boundary/307828,Dominican Republic
@@ -2704,6 +2744,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,24,0,2,,,,24,0,2,24,0,2,/boundary/307828,Dominican Republic
 2025-11-15T00:00:00.000Z,24,0,2,,,,24,0,2,24,0,2,/boundary/307828,Dominican Republic
 2025-11-16T00:00:00.000Z,24,0,2,,,,24,0,2,24,0,2,/boundary/307828,Dominican Republic
+2025-11-17T00:00:00.000Z,24,0,2,,,,24,0,2,24,0,2,/boundary/307828,Dominican Republic
 2024-02-01T00:00:00.000Z,2,0,2,,,,2,0,2,2,0,2,/boundary/305142,East Timor
 2024-03-01T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/305142,East Timor
 2024-04-01T00:00:00.000Z,4,0,2,,,,4,0,2,4,0,2,/boundary/305142,East Timor
@@ -2771,6 +2812,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,11,0,0,,,,11,0,0,11,0,0,/boundary/305142,East Timor
 2025-11-15T00:00:00.000Z,11,0,0,,,,11,0,0,11,0,0,/boundary/305142,East Timor
 2025-11-16T00:00:00.000Z,11,0,0,,,,11,0,0,11,0,0,/boundary/305142,East Timor
+2025-11-17T00:00:00.000Z,11,0,0,,,,11,0,0,11,0,0,/boundary/305142,East Timor
 2024-02-01T00:00:00.000Z,4,0,4,,,,4,0,4,4,0,4,/boundary/108089,Ecuador
 2024-03-01T00:00:00.000Z,5,0,2,,,,5,0,2,5,0,2,/boundary/108089,Ecuador
 2024-04-01T00:00:00.000Z,14,0,10,,,,14,0,10,14,0,10,/boundary/108089,Ecuador
@@ -2838,6 +2880,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,92,0,1,5,0,0,89,0,1,89,0,1,/boundary/108089,Ecuador
 2025-11-15T00:00:00.000Z,93,1,2,5,0,0,90,1,2,90,1,2,/boundary/108089,Ecuador
 2025-11-16T00:00:00.000Z,93,0,2,5,0,0,90,0,2,90,0,2,/boundary/108089,Ecuador
+2025-11-17T00:00:00.000Z,93,0,2,5,0,0,90,0,2,90,0,2,/boundary/108089,Ecuador
 2024-02-01T00:00:00.000Z,4,0,4,,,,4,0,4,4,0,4,/boundary/1473947,Egypt
 2024-03-01T00:00:00.000Z,4,0,0,,,,4,0,0,4,0,0,/boundary/1473947,Egypt
 2024-04-01T00:00:00.000Z,5,0,1,,,,5,0,1,5,0,1,/boundary/1473947,Egypt
@@ -2905,6 +2948,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,34,0,1,,,,34,0,1,31,0,1,/boundary/1473947,Egypt
 2025-11-15T00:00:00.000Z,34,0,1,,,,34,0,1,31,0,1,/boundary/1473947,Egypt
 2025-11-16T00:00:00.000Z,34,0,1,,,,34,0,1,31,0,1,/boundary/1473947,Egypt
+2025-11-17T00:00:00.000Z,34,0,1,,,,34,0,1,31,0,1,/boundary/1473947,Egypt
 2024-02-01T00:00:00.000Z,2,0,2,,,,2,0,2,2,0,2,/boundary/1520612,El Salvador
 2024-03-01T00:00:00.000Z,4,0,2,,,,4,0,2,4,0,2,/boundary/1520612,El Salvador
 2024-04-01T00:00:00.000Z,5,0,1,,,,5,0,1,5,0,1,/boundary/1520612,El Salvador
@@ -2972,6 +3016,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,8,0,0,,,,8,0,0,8,0,0,/boundary/1520612,El Salvador
 2025-11-15T00:00:00.000Z,8,0,0,,,,8,0,0,8,0,0,/boundary/1520612,El Salvador
 2025-11-16T00:00:00.000Z,8,0,0,,,,8,0,0,8,0,0,/boundary/1520612,El Salvador
+2025-11-17T00:00:00.000Z,8,0,0,,,,8,0,0,8,0,0,/boundary/1520612,El Salvador
 2024-03-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/192791,Equatorial Guinea
 2024-04-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192791,Equatorial Guinea
 2024-05-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192791,Equatorial Guinea
@@ -3038,6 +3083,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,6,0,0,,,,6,0,0,6,0,0,/boundary/192791,Equatorial Guinea
 2025-11-15T00:00:00.000Z,6,0,0,,,,6,0,0,6,0,0,/boundary/192791,Equatorial Guinea
 2025-11-16T00:00:00.000Z,6,0,0,,,,6,0,0,6,0,0,/boundary/192791,Equatorial Guinea
+2025-11-17T00:00:00.000Z,6,0,0,,,,6,0,0,6,0,0,/boundary/192791,Equatorial Guinea
 2024-03-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/296961,Eritrea
 2024-04-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/296961,Eritrea
 2024-05-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/296961,Eritrea
@@ -3104,6 +3150,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/296961,Eritrea
 2025-11-15T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/296961,Eritrea
 2025-11-16T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/296961,Eritrea
+2025-11-17T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/296961,Eritrea
 2024-02-01T00:00:00.000Z,3,2,3,1,0,1,2,2,2,1,1,1,/boundary/79510,Estonia
 2024-03-01T00:00:00.000Z,4,0,3,2,0,1,2,0,2,2,0,2,/boundary/79510,Estonia
 2024-04-01T00:00:00.000Z,7,0,3,4,0,2,3,0,1,3,0,1,/boundary/79510,Estonia
@@ -3171,6 +3218,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,30,0,2,16,0,1,22,0,2,19,0,2,/boundary/79510,Estonia
 2025-11-15T00:00:00.000Z,30,0,2,16,0,1,22,0,2,19,0,2,/boundary/79510,Estonia
 2025-11-16T00:00:00.000Z,30,0,2,16,0,1,22,0,2,19,0,2,/boundary/79510,Estonia
+2025-11-17T00:00:00.000Z,30,1,2,16,1,1,22,0,2,19,0,2,/boundary/79510,Estonia
 2024-11-01T00:00:00.000Z,5,0,5,,,,5,0,5,5,0,5,/boundary/88210,Eswatini
 2024-12-01T00:00:00.000Z,6,0,1,,,,6,0,1,6,0,1,/boundary/88210,Eswatini
 2025-01-01T00:00:00.000Z,6,0,0,,,,6,0,0,6,0,0,/boundary/88210,Eswatini
@@ -3229,6 +3277,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,10,0,0,,,,10,0,0,10,0,0,/boundary/88210,Eswatini
 2025-11-15T00:00:00.000Z,10,0,0,,,,10,0,0,10,0,0,/boundary/88210,Eswatini
 2025-11-16T00:00:00.000Z,10,0,0,,,,10,0,0,10,0,0,/boundary/88210,Eswatini
+2025-11-17T00:00:00.000Z,10,0,0,,,,10,0,0,10,0,0,/boundary/88210,Eswatini
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/192800,Ethiopia
 2024-03-01T00:00:00.000Z,2,0,1,1,0,1,2,0,1,2,0,1,/boundary/192800,Ethiopia
 2024-04-01T00:00:00.000Z,3,0,1,1,0,0,3,0,1,3,0,1,/boundary/192800,Ethiopia
@@ -3296,6 +3345,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,28,0,1,3,0,0,28,0,1,28,0,1,/boundary/192800,Ethiopia
 2025-11-15T00:00:00.000Z,28,0,1,3,0,0,28,0,1,28,0,1,/boundary/192800,Ethiopia
 2025-11-16T00:00:00.000Z,28,0,1,3,0,0,28,0,1,28,0,1,/boundary/192800,Ethiopia
+2025-11-17T00:00:00.000Z,28,0,0,3,0,0,28,0,0,28,0,0,/boundary/192800,Ethiopia
 2024-03-01T00:00:00.000Z,1,0,1,1,0,1,,,,,,,/boundary/571802,Federated States of Micronesia
 2024-04-01T00:00:00.000Z,1,0,0,1,0,0,,,,,,,/boundary/571802,Federated States of Micronesia
 2024-05-01T00:00:00.000Z,2,0,1,2,0,1,,,,,,,/boundary/571802,Federated States of Micronesia
@@ -3362,6 +3412,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,2,0,0,2,0,0,,,,,,,/boundary/571802,Federated States of Micronesia
 2025-11-15T00:00:00.000Z,2,0,0,2,0,0,,,,,,,/boundary/571802,Federated States of Micronesia
 2025-11-16T00:00:00.000Z,2,0,0,2,0,0,,,,,,,/boundary/571802,Federated States of Micronesia
+2025-11-17T00:00:00.000Z,2,0,0,2,0,0,,,,,,,/boundary/571802,Federated States of Micronesia
 2024-09-01T00:00:00.000Z,1,0,0,1,0,0,,,,,,,/boundary/571747,Fiji
 2024-10-01T00:00:00.000Z,1,0,0,1,0,0,,,,,,,/boundary/571747,Fiji
 2024-11-01T00:00:00.000Z,1,0,0,1,0,0,,,,,,,/boundary/571747,Fiji
@@ -3422,6 +3473,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,2,0,0,2,0,0,,,,,,,/boundary/571747,Fiji
 2025-11-15T00:00:00.000Z,2,0,0,2,0,0,,,,,,,/boundary/571747,Fiji
 2025-11-16T00:00:00.000Z,2,0,0,2,0,0,,,,,,,/boundary/571747,Fiji
+2025-11-17T00:00:00.000Z,2,0,0,2,0,0,,,,,,,/boundary/571747,Fiji
 2024-02-01T00:00:00.000Z,13,0,12,1,0,0,12,0,12,11,0,11,/boundary/54224,Finland
 2024-03-01T00:00:00.000Z,31,1,23,4,0,3,28,1,21,27,1,21,/boundary/54224,Finland
 2024-04-01T00:00:00.000Z,37,2,15,7,0,2,35,2,15,34,2,15,/boundary/54224,Finland
@@ -3489,6 +3541,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,156,1,16,18,0,2,148,1,16,145,1,16,/boundary/54224,Finland
 2025-11-15T00:00:00.000Z,156,0,15,18,0,2,148,0,15,145,0,15,/boundary/54224,Finland
 2025-11-16T00:00:00.000Z,156,1,15,18,0,2,148,1,15,145,1,15,/boundary/54224,Finland
+2025-11-17T00:00:00.000Z,156,0,14,18,0,2,148,0,14,145,0,14,/boundary/54224,Finland
 2024-02-01T00:00:00.000Z,82,4,82,24,2,22,72,2,72,52,2,51,/boundary/2202162,France
 2024-03-01T00:00:00.000Z,147,7,99,37,5,24,130,3,83,91,2,56,/boundary/2202162,France
 2024-04-01T00:00:00.000Z,182,3,61,46,2,21,160,1,47,113,1,37,/boundary/2202162,France
@@ -3555,7 +3608,8 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-13T00:00:00.000Z,782,8,91,245,5,30,670,3,68,451,2,43,/boundary/2202162,France
 2025-11-14T00:00:00.000Z,782,8,89,245,5,28,670,4,68,451,2,43,/boundary/2202162,France
 2025-11-15T00:00:00.000Z,783,7,87,245,5,28,671,3,65,451,2,42,/boundary/2202162,France
-2025-11-16T00:00:00.000Z,784,5,87,245,2,28,672,3,65,452,1,42,/boundary/2202162,France
+2025-11-16T00:00:00.000Z,784,7,87,245,4,29,672,3,65,452,1,42,/boundary/2202162,France
+2025-11-17T00:00:00.000Z,785,4,86,245,1,28,673,3,65,453,2,41,/boundary/2202162,France
 2024-11-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/192793,Gabon
 2024-12-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192793,Gabon
 2025-01-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192793,Gabon
@@ -3614,6 +3668,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/192793,Gabon
 2025-11-15T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/192793,Gabon
 2025-11-16T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/192793,Gabon
+2025-11-17T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/192793,Gabon
 2024-02-01T00:00:00.000Z,2,0,2,,,,2,0,2,2,0,2,/boundary/28699,Georgia
 2024-03-01T00:00:00.000Z,6,0,4,,,,6,0,4,6,0,4,/boundary/28699,Georgia
 2024-04-01T00:00:00.000Z,9,0,3,,,,9,0,3,9,0,3,/boundary/28699,Georgia
@@ -3681,6 +3736,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,41,0,1,14,0,0,39,0,1,39,0,1,/boundary/28699,Georgia
 2025-11-15T00:00:00.000Z,41,0,1,14,0,0,39,0,1,39,0,1,/boundary/28699,Georgia
 2025-11-16T00:00:00.000Z,41,0,1,14,0,0,39,0,1,39,0,1,/boundary/28699,Georgia
+2025-11-17T00:00:00.000Z,41,0,1,14,0,0,39,0,1,39,0,1,/boundary/28699,Georgia
 2024-02-01T00:00:00.000Z,74,2,72,22,0,21,64,2,62,58,2,56,/boundary/51477,Germany
 2024-03-01T00:00:00.000Z,123,4,69,24,1,7,113,3,66,103,3,60,/boundary/51477,Germany
 2024-04-01T00:00:00.000Z,172,4,62,38,1,16,154,3,53,142,2,49,/boundary/51477,Germany
@@ -3747,7 +3803,8 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-13T00:00:00.000Z,808,5,72,195,1,17,740,5,66,660,4,56,/boundary/51477,Germany
 2025-11-14T00:00:00.000Z,808,5,74,195,1,18,741,4,68,661,4,58,/boundary/51477,Germany
 2025-11-15T00:00:00.000Z,808,1,70,195,0,17,741,1,65,661,1,57,/boundary/51477,Germany
-2025-11-16T00:00:00.000Z,808,2,69,195,0,17,741,2,64,661,2,56,/boundary/51477,Germany
+2025-11-16T00:00:00.000Z,808,3,69,195,1,17,741,2,64,661,2,56,/boundary/51477,Germany
+2025-11-17T00:00:00.000Z,810,4,67,195,0,17,743,4,62,663,4,55,/boundary/51477,Germany
 2024-02-01T00:00:00.000Z,3,0,3,,,,3,0,3,3,0,3,/boundary/192781,Ghana
 2024-03-01T00:00:00.000Z,4,0,1,,,,4,0,1,4,0,1,/boundary/192781,Ghana
 2024-04-01T00:00:00.000Z,6,0,2,,,,6,0,2,6,0,2,/boundary/192781,Ghana
@@ -3815,6 +3872,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,53,0,2,,,,53,0,2,53,0,2,/boundary/192781,Ghana
 2025-11-15T00:00:00.000Z,53,0,2,,,,53,0,2,53,0,2,/boundary/192781,Ghana
 2025-11-16T00:00:00.000Z,53,0,2,,,,53,0,2,53,0,2,/boundary/192781,Ghana
+2025-11-17T00:00:00.000Z,53,0,2,,,,53,0,2,53,0,2,/boundary/192781,Ghana
 2024-02-01T00:00:00.000Z,5,0,5,,,,5,0,5,4,0,4,/boundary/192307,Greece
 2024-03-01T00:00:00.000Z,11,2,8,,,,11,2,8,11,2,8,/boundary/192307,Greece
 2024-04-01T00:00:00.000Z,13,1,5,,,,13,1,5,13,1,5,/boundary/192307,Greece
@@ -3882,6 +3940,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,55,1,6,1,0,0,53,1,6,52,1,6,/boundary/192307,Greece
 2025-11-15T00:00:00.000Z,55,0,6,1,0,0,53,0,6,52,0,6,/boundary/192307,Greece
 2025-11-16T00:00:00.000Z,56,1,6,1,0,0,54,1,6,53,1,6,/boundary/192307,Greece
+2025-11-17T00:00:00.000Z,56,1,7,1,0,0,54,1,7,53,1,7,/boundary/192307,Greece
 2024-10-01T00:00:00.000Z,1,0,1,1,0,1,,,,,,,/boundary/550727,Grenada
 2024-11-01T00:00:00.000Z,1,0,0,1,0,0,,,,,,,/boundary/550727,Grenada
 2024-12-01T00:00:00.000Z,1,0,0,1,0,0,,,,,,,/boundary/550727,Grenada
@@ -3941,6 +4000,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,1,0,0,1,0,0,,,,,,,/boundary/550727,Grenada
 2025-11-15T00:00:00.000Z,1,0,0,1,0,0,,,,,,,/boundary/550727,Grenada
 2025-11-16T00:00:00.000Z,1,0,0,1,0,0,,,,,,,/boundary/550727,Grenada
+2025-11-17T00:00:00.000Z,1,0,0,1,0,0,,,,,,,/boundary/550727,Grenada
 2024-03-01T00:00:00.000Z,2,0,2,,,,2,0,2,2,0,2,/boundary/1521463,Guatemala
 2024-04-01T00:00:00.000Z,2,0,1,,,,2,0,1,2,0,1,/boundary/1521463,Guatemala
 2024-05-01T00:00:00.000Z,3,0,1,,,,3,0,1,3,0,1,/boundary/1521463,Guatemala
@@ -4007,6 +4067,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,53,0,0,,,,53,0,0,53,0,0,/boundary/1521463,Guatemala
 2025-11-15T00:00:00.000Z,53,0,0,,,,53,0,0,53,0,0,/boundary/1521463,Guatemala
 2025-11-16T00:00:00.000Z,53,0,0,,,,53,0,0,53,0,0,/boundary/1521463,Guatemala
+2025-11-17T00:00:00.000Z,53,0,0,,,,53,0,0,53,0,0,/boundary/1521463,Guatemala
 2024-03-01T00:00:00.000Z,2,0,2,,,,2,0,2,2,0,2,/boundary/192778,Guinea
 2024-04-01T00:00:00.000Z,4,0,1,,,,4,0,1,4,0,1,/boundary/192778,Guinea
 2024-05-01T00:00:00.000Z,5,0,1,,,,5,0,1,5,0,1,/boundary/192778,Guinea
@@ -4073,6 +4134,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,11,0,0,1,0,0,10,0,0,10,0,0,/boundary/192778,Guinea
 2025-11-15T00:00:00.000Z,11,0,0,1,0,0,10,0,0,10,0,0,/boundary/192778,Guinea
 2025-11-16T00:00:00.000Z,11,0,0,1,0,0,10,0,0,10,0,0,/boundary/192778,Guinea
+2025-11-17T00:00:00.000Z,11,0,0,1,0,0,10,0,0,10,0,0,/boundary/192778,Guinea
 2024-03-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/287670,Honduras
 2024-04-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/287670,Honduras
 2024-05-01T00:00:00.000Z,4,0,3,,,,4,0,3,4,0,3,/boundary/287670,Honduras
@@ -4139,6 +4201,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,15,0,0,,,,15,0,0,15,0,0,/boundary/287670,Honduras
 2025-11-15T00:00:00.000Z,15,0,0,,,,15,0,0,15,0,0,/boundary/287670,Honduras
 2025-11-16T00:00:00.000Z,15,0,0,,,,15,0,0,15,0,0,/boundary/287670,Honduras
+2025-11-17T00:00:00.000Z,15,0,0,,,,15,0,0,15,0,0,/boundary/287670,Honduras
 2024-02-01T00:00:00.000Z,11,0,10,5,0,4,7,0,6,4,0,4,/boundary/21335,Hungary
 2024-03-01T00:00:00.000Z,18,1,8,7,0,3,12,1,6,6,1,3,/boundary/21335,Hungary
 2024-04-01T00:00:00.000Z,23,0,8,9,0,3,16,0,6,9,0,4,/boundary/21335,Hungary
@@ -4206,6 +4269,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,76,0,5,22,0,3,68,0,4,52,0,4,/boundary/21335,Hungary
 2025-11-15T00:00:00.000Z,76,2,5,22,0,3,68,2,5,52,2,5,/boundary/21335,Hungary
 2025-11-16T00:00:00.000Z,76,1,5,22,0,3,68,1,5,52,1,5,/boundary/21335,Hungary
+2025-11-17T00:00:00.000Z,76,1,6,22,0,3,69,1,6,53,1,6,/boundary/21335,Hungary
 2024-03-01T00:00:00.000Z,3,0,3,,,,3,0,3,3,0,3,/boundary/299133,Iceland
 2024-04-01T00:00:00.000Z,4,0,1,,,,4,0,1,4,0,1,/boundary/299133,Iceland
 2024-05-01T00:00:00.000Z,5,0,1,,,,5,0,1,5,0,1,/boundary/299133,Iceland
@@ -4272,6 +4336,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,9,0,1,1,0,1,9,0,1,8,0,1,/boundary/299133,Iceland
 2025-11-15T00:00:00.000Z,9,0,1,1,0,1,9,0,1,8,0,1,/boundary/299133,Iceland
 2025-11-16T00:00:00.000Z,9,0,1,1,0,1,9,0,1,8,0,1,/boundary/299133,Iceland
+2025-11-17T00:00:00.000Z,9,0,1,1,0,1,9,0,1,8,0,1,/boundary/299133,Iceland
 2024-02-01T00:00:00.000Z,43,2,42,,,,43,2,42,43,2,42,/boundary/304716,India
 2024-03-01T00:00:00.000Z,90,5,63,,,,90,5,63,90,5,63,/boundary/304716,India
 2024-04-01T00:00:00.000Z,138,2,70,1,0,1,138,2,70,138,2,70,/boundary/304716,India
@@ -4339,6 +4404,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,637,2,34,12,0,3,635,2,34,634,2,33,/boundary/304716,India
 2025-11-15T00:00:00.000Z,639,6,40,12,0,3,637,6,40,636,6,39,/boundary/304716,India
 2025-11-16T00:00:00.000Z,640,1,40,12,0,3,638,1,40,637,1,39,/boundary/304716,India
+2025-11-17T00:00:00.000Z,640,0,40,12,0,3,638,0,40,637,0,39,/boundary/304716,India
 2024-02-01T00:00:00.000Z,11,1,11,,,,11,1,11,11,1,11,/boundary/304751,Indonesia
 2024-03-01T00:00:00.000Z,20,2,13,,,,20,2,13,20,2,13,/boundary/304751,Indonesia
 2024-04-01T00:00:00.000Z,28,0,11,,,,28,0,11,28,0,11,/boundary/304751,Indonesia
@@ -4406,6 +4472,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,194,0,7,3,0,1,194,0,7,194,0,7,/boundary/304751,Indonesia
 2025-11-15T00:00:00.000Z,194,0,7,3,0,1,194,0,7,194,0,7,/boundary/304751,Indonesia
 2025-11-16T00:00:00.000Z,194,0,6,3,0,1,194,0,6,194,0,6,/boundary/304751,Indonesia
+2025-11-17T00:00:00.000Z,194,2,8,3,0,1,194,2,8,194,2,8,/boundary/304751,Indonesia
 2024-02-01T00:00:00.000Z,5,0,4,,,,5,0,4,5,0,4,/boundary/304938,Iran
 2024-03-01T00:00:00.000Z,14,0,10,,,,14,0,10,14,0,9,/boundary/304938,Iran
 2024-04-01T00:00:00.000Z,21,0,9,,,,21,0,9,21,0,9,/boundary/304938,Iran
@@ -4473,6 +4540,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,99,1,10,6,0,0,97,1,10,97,1,10,/boundary/304938,Iran
 2025-11-15T00:00:00.000Z,99,0,10,6,0,0,97,0,10,97,0,10,/boundary/304938,Iran
 2025-11-16T00:00:00.000Z,100,1,11,6,0,0,98,1,11,98,1,11,/boundary/304938,Iran
+2025-11-17T00:00:00.000Z,100,0,11,6,0,0,98,0,11,98,0,11,/boundary/304938,Iran
 2024-03-01T00:00:00.000Z,5,0,5,,,,5,0,5,5,0,5,/boundary/304934,Iraq
 2024-04-01T00:00:00.000Z,9,0,4,1,0,1,8,0,3,8,0,3,/boundary/304934,Iraq
 2024-05-01T00:00:00.000Z,12,0,4,1,0,0,11,0,4,11,0,4,/boundary/304934,Iraq
@@ -4539,6 +4607,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,38,1,1,7,0,1,34,1,1,34,1,1,/boundary/304934,Iraq
 2025-11-15T00:00:00.000Z,38,0,1,7,0,1,34,0,1,34,0,1,/boundary/304934,Iraq
 2025-11-16T00:00:00.000Z,38,0,1,7,0,1,34,0,1,34,0,1,/boundary/304934,Iraq
+2025-11-17T00:00:00.000Z,38,0,1,7,0,1,34,0,1,34,0,1,/boundary/304934,Iraq
 2024-02-01T00:00:00.000Z,2,0,2,,,,2,0,2,2,0,2,/boundary/1473946,Israel
 2024-03-01T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/1473946,Israel
 2024-04-01T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/1473946,Israel
@@ -4606,6 +4675,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,27,0,1,2,0,0,26,0,1,25,0,1,/boundary/1473946,Israel
 2025-11-15T00:00:00.000Z,27,0,1,2,0,0,26,0,1,25,0,1,/boundary/1473946,Israel
 2025-11-16T00:00:00.000Z,27,0,1,2,0,0,26,0,1,25,0,1,/boundary/1473946,Israel
+2025-11-17T00:00:00.000Z,27,0,1,2,0,0,26,0,1,25,0,1,/boundary/1473946,Israel
 2024-02-01T00:00:00.000Z,50,3,50,3,1,3,48,2,48,47,2,47,/boundary/365331,Italy
 2024-03-01T00:00:00.000Z,87,3,52,6,0,4,83,3,50,81,3,49,/boundary/365331,Italy
 2024-04-01T00:00:00.000Z,127,2,59,7,0,1,123,2,59,120,2,58,/boundary/365331,Italy
@@ -4673,6 +4743,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,551,1,50,42,0,2,539,1,49,496,1,45,/boundary/365331,Italy
 2025-11-15T00:00:00.000Z,551,4,50,42,0,2,540,4,49,497,3,45,/boundary/365331,Italy
 2025-11-16T00:00:00.000Z,551,2,51,42,0,2,540,2,50,497,2,46,/boundary/365331,Italy
+2025-11-17T00:00:00.000Z,551,3,51,42,0,2,540,3,50,497,2,46,/boundary/365331,Italy
 2024-04-01T00:00:00.000Z,3,0,3,,,,3,0,3,3,0,3,/boundary/192779,Ivory Coast
 2024-05-01T00:00:00.000Z,4,0,1,,,,4,0,1,4,0,1,/boundary/192779,Ivory Coast
 2024-06-01T00:00:00.000Z,7,0,5,,,,7,0,5,7,0,5,/boundary/192779,Ivory Coast
@@ -4738,6 +4809,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,18,0,1,1,0,0,18,0,1,18,0,1,/boundary/192779,Ivory Coast
 2025-11-15T00:00:00.000Z,18,0,1,1,0,0,18,0,1,18,0,1,/boundary/192779,Ivory Coast
 2025-11-16T00:00:00.000Z,18,0,1,1,0,0,18,0,1,18,0,1,/boundary/192779,Ivory Coast
+2025-11-17T00:00:00.000Z,18,0,1,1,0,0,18,0,1,18,0,1,/boundary/192779,Ivory Coast
 2025-03-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/555017,Jamaica
 2025-04-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/555017,Jamaica
 2025-05-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/555017,Jamaica
@@ -4792,6 +4864,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,4,0,3,,,,4,0,3,4,0,3,/boundary/555017,Jamaica
 2025-11-15T00:00:00.000Z,4,0,3,,,,4,0,3,4,0,3,/boundary/555017,Jamaica
 2025-11-16T00:00:00.000Z,4,0,3,,,,4,0,3,4,0,3,/boundary/555017,Jamaica
+2025-11-17T00:00:00.000Z,4,0,3,,,,4,0,3,4,0,3,/boundary/555017,Jamaica
 2024-02-01T00:00:00.000Z,49,4,47,1,1,1,49,4,47,48,4,46,/boundary/382313,Japan
 2024-03-01T00:00:00.000Z,82,3,49,3,0,3,82,3,49,81,3,49,/boundary/382313,Japan
 2024-04-01T00:00:00.000Z,107,2,37,4,0,1,107,2,37,104,2,35,/boundary/382313,Japan
@@ -4859,6 +4932,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,421,4,51,20,0,3,416,4,51,393,4,45,/boundary/382313,Japan
 2025-11-15T00:00:00.000Z,423,4,54,20,0,3,418,4,54,395,3,47,/boundary/382313,Japan
 2025-11-16T00:00:00.000Z,425,3,56,20,0,2,420,3,56,397,3,49,/boundary/382313,Japan
+2025-11-17T00:00:00.000Z,426,2,51,20,0,2,421,2,51,398,2,45,/boundary/382313,Japan
 2024-05-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/184818,Jordan
 2024-06-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/184818,Jordan
 2024-07-01T00:00:00.000Z,2,0,1,,,,2,0,1,2,0,1,/boundary/184818,Jordan
@@ -4923,6 +4997,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,14,0,1,3,0,1,13,0,1,11,0,1,/boundary/184818,Jordan
 2025-11-15T00:00:00.000Z,14,0,1,3,0,1,13,0,1,11,0,1,/boundary/184818,Jordan
 2025-11-16T00:00:00.000Z,14,0,1,3,0,1,13,0,1,11,0,1,/boundary/184818,Jordan
+2025-11-17T00:00:00.000Z,14,0,1,3,0,1,13,0,1,11,0,1,/boundary/184818,Jordan
 2024-02-01T00:00:00.000Z,4,1,4,1,0,1,4,1,4,4,1,4,/boundary/214665,Kazakhstan
 2024-03-01T00:00:00.000Z,6,0,3,1,0,0,6,0,3,6,0,3,/boundary/214665,Kazakhstan
 2024-04-01T00:00:00.000Z,9,0,3,1,0,0,9,0,3,9,0,3,/boundary/214665,Kazakhstan
@@ -4990,6 +5065,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,61,1,1,13,0,0,58,1,1,58,1,1,/boundary/214665,Kazakhstan
 2025-11-15T00:00:00.000Z,61,0,1,13,0,0,58,0,1,58,0,1,/boundary/214665,Kazakhstan
 2025-11-16T00:00:00.000Z,61,0,1,13,0,0,58,0,1,58,0,1,/boundary/214665,Kazakhstan
+2025-11-17T00:00:00.000Z,61,0,1,13,0,0,58,0,1,58,0,1,/boundary/214665,Kazakhstan
 2024-02-01T00:00:00.000Z,4,0,4,,,,4,0,4,4,0,4,/boundary/192798,Kenya
 2024-03-01T00:00:00.000Z,7,0,3,,,,7,0,3,7,0,3,/boundary/192798,Kenya
 2024-04-01T00:00:00.000Z,10,0,5,,,,10,0,5,10,0,5,/boundary/192798,Kenya
@@ -5057,6 +5133,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,57,0,2,1,0,0,57,0,2,57,0,2,/boundary/192798,Kenya
 2025-11-15T00:00:00.000Z,57,0,2,1,0,0,57,0,2,57,0,2,/boundary/192798,Kenya
 2025-11-16T00:00:00.000Z,57,0,2,1,0,0,57,0,2,57,0,2,/boundary/192798,Kenya
+2025-11-17T00:00:00.000Z,57,0,2,1,0,0,57,0,2,57,0,2,/boundary/192798,Kenya
 2024-04-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/305099,Kuwait
 2024-05-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/305099,Kuwait
 2024-06-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/305099,Kuwait
@@ -5122,6 +5199,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,7,0,0,1,0,0,6,0,0,5,0,0,/boundary/305099,Kuwait
 2025-11-15T00:00:00.000Z,7,0,0,1,0,0,6,0,0,5,0,0,/boundary/305099,Kuwait
 2025-11-16T00:00:00.000Z,7,0,0,1,0,0,6,0,0,5,0,0,/boundary/305099,Kuwait
+2025-11-17T00:00:00.000Z,7,0,0,1,0,0,6,0,0,5,0,0,/boundary/305099,Kuwait
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/178009,Kyrgyzstan
 2024-03-01T00:00:00.000Z,2,0,1,,,,2,0,1,2,0,1,/boundary/178009,Kyrgyzstan
 2024-04-01T00:00:00.000Z,2,0,1,,,,2,0,1,2,0,1,/boundary/178009,Kyrgyzstan
@@ -5189,6 +5267,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,13,0,0,2,0,0,13,0,0,13,0,0,/boundary/178009,Kyrgyzstan
 2025-11-15T00:00:00.000Z,13,0,0,2,0,0,13,0,0,13,0,0,/boundary/178009,Kyrgyzstan
 2025-11-16T00:00:00.000Z,13,0,0,2,0,0,13,0,0,13,0,0,/boundary/178009,Kyrgyzstan
+2025-11-17T00:00:00.000Z,13,0,0,2,0,0,13,0,0,13,0,0,/boundary/178009,Kyrgyzstan
 2024-03-01T00:00:00.000Z,6,0,6,,,,,,,,,,/boundary/49903,Laos
 2024-04-01T00:00:00.000Z,9,0,3,,,,3,0,3,3,0,3,/boundary/49903,Laos
 2024-05-01T00:00:00.000Z,11,0,3,,,,5,0,3,5,0,3,/boundary/49903,Laos
@@ -5255,6 +5334,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,35,0,3,1,0,0,29,0,3,29,0,3,/boundary/49903,Laos
 2025-11-15T00:00:00.000Z,35,0,3,1,0,0,29,0,3,29,0,3,/boundary/49903,Laos
 2025-11-16T00:00:00.000Z,35,0,3,1,0,0,29,0,3,29,0,3,/boundary/49903,Laos
+2025-11-17T00:00:00.000Z,35,0,3,1,0,0,29,0,3,29,0,3,/boundary/49903,Laos
 2024-02-01T00:00:00.000Z,3,0,3,3,0,3,,,,,,,/boundary/72594,Latvia
 2024-03-01T00:00:00.000Z,4,0,2,4,0,2,2,0,2,2,0,2,/boundary/72594,Latvia
 2024-04-01T00:00:00.000Z,6,0,4,6,0,4,2,0,1,2,0,1,/boundary/72594,Latvia
@@ -5322,6 +5402,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,54,0,4,38,0,4,30,0,0,28,0,0,/boundary/72594,Latvia
 2025-11-15T00:00:00.000Z,54,0,4,38,0,4,30,0,0,28,0,0,/boundary/72594,Latvia
 2025-11-16T00:00:00.000Z,54,0,4,38,0,4,30,0,0,28,0,0,/boundary/72594,Latvia
+2025-11-17T00:00:00.000Z,54,0,4,38,0,4,30,0,0,28,0,0,/boundary/72594,Latvia
 2024-02-01T00:00:00.000Z,2,0,2,,,,2,0,2,2,0,2,/boundary/184843,Lebanon
 2024-03-01T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/184843,Lebanon
 2024-04-01T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/184843,Lebanon
@@ -5389,6 +5470,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,11,0,1,,,,11,0,1,11,0,1,/boundary/184843,Lebanon
 2025-11-15T00:00:00.000Z,11,0,1,,,,11,0,1,11,0,1,/boundary/184843,Lebanon
 2025-11-16T00:00:00.000Z,11,0,1,,,,11,0,1,11,0,1,/boundary/184843,Lebanon
+2025-11-17T00:00:00.000Z,11,0,1,,,,11,0,1,11,0,1,/boundary/184843,Lebanon
 2024-02-01T00:00:00.000Z,1,0,1,1,0,1,1,0,1,1,0,1,/boundary/2093234,Lesotho
 2024-03-01T00:00:00.000Z,1,0,1,1,0,1,1,0,1,1,0,1,/boundary/2093234,Lesotho
 2024-04-01T00:00:00.000Z,1,0,1,1,0,0,1,0,1,1,0,1,/boundary/2093234,Lesotho
@@ -5456,6 +5538,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,3,0,1,3,0,1,3,0,0,3,0,0,/boundary/2093234,Lesotho
 2025-11-15T00:00:00.000Z,3,0,1,3,0,1,3,0,0,3,0,0,/boundary/2093234,Lesotho
 2025-11-16T00:00:00.000Z,3,0,1,3,0,1,3,0,0,3,0,0,/boundary/2093234,Lesotho
+2025-11-17T00:00:00.000Z,3,0,1,3,0,1,3,0,0,3,0,0,/boundary/2093234,Lesotho
 2024-07-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/192780,Liberia
 2024-08-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192780,Liberia
 2024-09-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192780,Liberia
@@ -5518,6 +5601,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,5,0,1,,,,5,0,1,5,0,1,/boundary/192780,Liberia
 2025-11-15T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/192780,Liberia
 2025-11-16T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/192780,Liberia
+2025-11-17T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/192780,Liberia
 2024-02-01T00:00:00.000Z,6,0,6,,,,6,0,6,6,0,6,/boundary/192758,Libya
 2024-03-01T00:00:00.000Z,21,2,15,,,,21,2,15,21,2,15,/boundary/192758,Libya
 2024-04-01T00:00:00.000Z,30,0,11,,,,30,0,11,30,0,11,/boundary/192758,Libya
@@ -5585,6 +5669,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,72,0,1,8,0,0,69,0,1,68,0,1,/boundary/192758,Libya
 2025-11-15T00:00:00.000Z,72,0,1,8,0,0,69,0,1,68,0,1,/boundary/192758,Libya
 2025-11-16T00:00:00.000Z,72,0,1,8,0,0,69,0,1,68,0,1,/boundary/192758,Libya
+2025-11-17T00:00:00.000Z,72,0,1,8,0,0,69,0,1,68,0,1,/boundary/192758,Libya
 2024-07-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/1155955,Liechtenstein
 2024-08-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/1155955,Liechtenstein
 2024-09-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/1155955,Liechtenstein
@@ -5647,6 +5732,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/1155955,Liechtenstein
 2025-11-15T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/1155955,Liechtenstein
 2025-11-16T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/1155955,Liechtenstein
+2025-11-17T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/1155955,Liechtenstein
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/72596,Lithuania
 2024-03-01T00:00:00.000Z,5,0,4,3,0,3,3,0,2,3,0,2,/boundary/72596,Lithuania
 2024-04-01T00:00:00.000Z,7,0,3,4,0,2,4,0,2,4,0,2,/boundary/72596,Lithuania
@@ -5714,6 +5800,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,29,0,0,14,0,0,22,0,0,19,0,0,/boundary/72596,Lithuania
 2025-11-15T00:00:00.000Z,29,0,0,14,0,0,22,0,0,19,0,0,/boundary/72596,Lithuania
 2025-11-16T00:00:00.000Z,29,0,0,14,0,0,22,0,0,19,0,0,/boundary/72596,Lithuania
+2025-11-17T00:00:00.000Z,29,0,0,14,0,0,22,0,0,19,0,0,/boundary/72596,Lithuania
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/2171347,Luxembourg
 2024-03-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/2171347,Luxembourg
 2024-04-01T00:00:00.000Z,4,0,3,,,,4,0,3,4,0,3,/boundary/2171347,Luxembourg
@@ -5781,6 +5868,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,12,0,0,,,,12,0,0,11,0,0,/boundary/2171347,Luxembourg
 2025-11-15T00:00:00.000Z,12,0,0,,,,12,0,0,11,0,0,/boundary/2171347,Luxembourg
 2025-11-16T00:00:00.000Z,12,0,0,,,,12,0,0,11,0,0,/boundary/2171347,Luxembourg
+2025-11-17T00:00:00.000Z,12,0,0,,,,12,0,0,11,0,0,/boundary/2171347,Luxembourg
 2025-05-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/447325,Madagascar
 2025-06-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/447325,Madagascar
 2025-07-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/447325,Madagascar
@@ -5833,6 +5921,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/447325,Madagascar
 2025-11-15T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/447325,Madagascar
 2025-11-16T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/447325,Madagascar
+2025-11-17T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/447325,Madagascar
 2024-04-01T00:00:00.000Z,19,1,19,,,,19,1,19,19,1,19,/boundary/195290,Malawi
 2024-05-01T00:00:00.000Z,24,1,7,,,,24,1,7,24,1,7,/boundary/195290,Malawi
 2024-06-01T00:00:00.000Z,25,0,1,,,,25,0,1,25,0,1,/boundary/195290,Malawi
@@ -5898,6 +5987,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,43,0,0,1,0,0,42,0,0,42,0,0,/boundary/195290,Malawi
 2025-11-15T00:00:00.000Z,43,0,0,1,0,0,42,0,0,42,0,0,/boundary/195290,Malawi
 2025-11-16T00:00:00.000Z,43,0,0,1,0,0,42,0,0,42,0,0,/boundary/195290,Malawi
+2025-11-17T00:00:00.000Z,43,0,0,1,0,0,42,0,0,42,0,0,/boundary/195290,Malawi
 2024-02-01T00:00:00.000Z,3,0,3,,,,3,0,3,3,0,3,/boundary/2108121,Malaysia
 2024-03-01T00:00:00.000Z,5,0,2,,,,5,0,2,5,0,2,/boundary/2108121,Malaysia
 2024-04-01T00:00:00.000Z,7,0,2,,,,7,0,2,7,0,2,/boundary/2108121,Malaysia
@@ -5965,6 +6055,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,33,0,0,4,0,0,33,0,0,33,0,0,/boundary/2108121,Malaysia
 2025-11-15T00:00:00.000Z,33,0,0,4,0,0,33,0,0,33,0,0,/boundary/2108121,Malaysia
 2025-11-16T00:00:00.000Z,33,0,0,4,0,0,33,0,0,33,0,0,/boundary/2108121,Malaysia
+2025-11-17T00:00:00.000Z,33,0,0,4,0,0,33,0,0,33,0,0,/boundary/2108121,Malaysia
 2024-05-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/192785,Mali
 2024-06-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192785,Mali
 2024-07-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192785,Mali
@@ -6029,6 +6120,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,4,0,1,,,,4,0,1,4,0,1,/boundary/192785,Mali
 2025-11-15T00:00:00.000Z,4,0,0,,,,4,0,0,4,0,0,/boundary/192785,Mali
 2025-11-16T00:00:00.000Z,4,0,0,,,,4,0,0,4,0,0,/boundary/192785,Mali
+2025-11-17T00:00:00.000Z,4,0,0,,,,4,0,0,4,0,0,/boundary/192785,Mali
 2024-02-01T00:00:00.000Z,1,0,1,1,0,1,,,,,,,/boundary/365307,Malta
 2024-03-01T00:00:00.000Z,2,0,1,1,0,0,1,0,1,,,,/boundary/365307,Malta
 2024-04-01T00:00:00.000Z,2,0,0,1,0,0,1,0,0,,,,/boundary/365307,Malta
@@ -6096,6 +6188,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,5,0,1,2,0,1,4,0,0,,,,/boundary/365307,Malta
 2025-11-15T00:00:00.000Z,5,0,1,2,0,1,4,0,0,,,,/boundary/365307,Malta
 2025-11-16T00:00:00.000Z,5,0,0,2,0,0,4,0,0,,,,/boundary/365307,Malta
+2025-11-17T00:00:00.000Z,5,0,0,2,0,0,4,0,0,,,,/boundary/365307,Malta
 2024-04-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/192763,Mauritania
 2024-05-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192763,Mauritania
 2024-06-01T00:00:00.000Z,2,0,1,,,,2,0,1,2,0,1,/boundary/192763,Mauritania
@@ -6161,6 +6254,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,7,0,0,,,,7,0,0,7,0,0,/boundary/192763,Mauritania
 2025-11-15T00:00:00.000Z,7,0,0,,,,7,0,0,7,0,0,/boundary/192763,Mauritania
 2025-11-16T00:00:00.000Z,7,0,0,,,,7,0,0,7,0,0,/boundary/192763,Mauritania
+2025-11-17T00:00:00.000Z,7,0,0,,,,7,0,0,7,0,0,/boundary/192763,Mauritania
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/535828,Mauritius
 2024-03-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/535828,Mauritius
 2024-04-01T00:00:00.000Z,2,0,1,,,,2,0,1,2,0,1,/boundary/535828,Mauritius
@@ -6228,6 +6322,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,7,0,0,,,,7,0,0,7,0,0,/boundary/535828,Mauritius
 2025-11-15T00:00:00.000Z,7,0,0,,,,7,0,0,7,0,0,/boundary/535828,Mauritius
 2025-11-16T00:00:00.000Z,7,0,0,,,,7,0,0,7,0,0,/boundary/535828,Mauritius
+2025-11-17T00:00:00.000Z,7,0,0,,,,7,0,0,7,0,0,/boundary/535828,Mauritius
 2024-02-01T00:00:00.000Z,15,1,14,,,,15,1,14,15,1,14,/boundary/114686,Mexico
 2024-03-01T00:00:00.000Z,22,0,11,1,0,1,22,0,11,22,0,11,/boundary/114686,Mexico
 2024-04-01T00:00:00.000Z,37,0,16,2,0,1,37,0,16,37,0,16,/boundary/114686,Mexico
@@ -6295,6 +6390,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,197,1,15,3,0,0,195,1,15,192,1,15,/boundary/114686,Mexico
 2025-11-15T00:00:00.000Z,197,0,14,3,0,0,195,0,14,192,0,14,/boundary/114686,Mexico
 2025-11-16T00:00:00.000Z,198,2,16,4,1,1,196,1,15,193,1,15,/boundary/114686,Mexico
+2025-11-17T00:00:00.000Z,198,0,16,4,0,1,196,0,15,193,0,15,/boundary/114686,Mexico
 2024-02-01T00:00:00.000Z,1,0,1,1,0,1,1,0,1,1,0,1,/boundary/58974,Moldova
 2024-03-01T00:00:00.000Z,2,1,2,2,0,2,2,1,2,2,1,2,/boundary/58974,Moldova
 2024-04-01T00:00:00.000Z,3,0,2,2,0,0,3,0,2,3,0,2,/boundary/58974,Moldova
@@ -6362,6 +6458,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,36,0,3,22,0,3,22,0,1,22,0,1,/boundary/58974,Moldova
 2025-11-15T00:00:00.000Z,36,0,2,22,0,2,22,0,1,22,0,1,/boundary/58974,Moldova
 2025-11-16T00:00:00.000Z,36,0,2,22,0,2,22,0,1,22,0,1,/boundary/58974,Moldova
+2025-11-17T00:00:00.000Z,37,1,3,23,1,3,22,0,1,22,0,1,/boundary/58974,Moldova
 2024-03-01T00:00:00.000Z,5,0,5,,,,5,0,5,5,0,5,/boundary/161033,Mongolia
 2024-04-01T00:00:00.000Z,9,0,4,1,0,1,8,0,3,8,0,3,/boundary/161033,Mongolia
 2024-05-01T00:00:00.000Z,9,0,0,1,0,0,8,0,0,8,0,0,/boundary/161033,Mongolia
@@ -6428,6 +6525,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,26,0,2,7,0,1,22,0,1,22,0,1,/boundary/161033,Mongolia
 2025-11-15T00:00:00.000Z,26,0,2,7,0,1,22,0,1,22,0,1,/boundary/161033,Mongolia
 2025-11-16T00:00:00.000Z,26,0,2,7,0,1,22,0,1,22,0,1,/boundary/161033,Mongolia
+2025-11-17T00:00:00.000Z,26,0,2,7,0,1,22,0,1,22,0,1,/boundary/161033,Mongolia
 2024-03-01T00:00:00.000Z,4,2,4,2,1,2,4,2,4,4,2,4,/boundary/53296,Montenegro
 2024-04-01T00:00:00.000Z,6,0,3,2,0,1,6,0,3,6,0,3,/boundary/53296,Montenegro
 2024-05-01T00:00:00.000Z,8,1,3,2,0,0,8,1,3,6,1,1,/boundary/53296,Montenegro
@@ -6494,6 +6592,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,22,0,3,3,0,0,22,0,3,18,0,3,/boundary/53296,Montenegro
 2025-11-15T00:00:00.000Z,22,0,3,3,0,0,22,0,3,18,0,3,/boundary/53296,Montenegro
 2025-11-16T00:00:00.000Z,22,0,3,3,0,0,22,0,3,18,0,3,/boundary/53296,Montenegro
+2025-11-17T00:00:00.000Z,22,0,3,3,0,0,22,0,3,18,0,3,/boundary/53296,Montenegro
 2024-02-01T00:00:00.000Z,10,0,10,,,,10,0,10,10,0,10,/boundary/3630439,Morocco
 2024-03-01T00:00:00.000Z,27,0,17,,,,27,0,17,27,0,17,/boundary/3630439,Morocco
 2024-04-01T00:00:00.000Z,43,0,18,,,,43,0,18,43,0,18,/boundary/3630439,Morocco
@@ -6561,6 +6660,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,90,0,2,8,0,1,85,0,1,85,0,1,/boundary/3630439,Morocco
 2025-11-15T00:00:00.000Z,90,0,2,8,0,1,85,0,1,85,0,1,/boundary/3630439,Morocco
 2025-11-16T00:00:00.000Z,90,0,2,8,0,1,85,0,1,85,0,1,/boundary/3630439,Morocco
+2025-11-17T00:00:00.000Z,90,0,2,8,0,1,85,0,1,85,0,1,/boundary/3630439,Morocco
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/195273,Mozambique
 2024-03-01T00:00:00.000Z,2,0,2,,,,2,0,2,2,0,2,/boundary/195273,Mozambique
 2024-04-01T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/195273,Mozambique
@@ -6628,6 +6728,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,30,1,2,,,,30,1,2,30,1,2,/boundary/195273,Mozambique
 2025-11-15T00:00:00.000Z,30,1,2,,,,30,1,2,30,1,2,/boundary/195273,Mozambique
 2025-11-16T00:00:00.000Z,30,0,2,,,,30,0,2,30,0,2,/boundary/195273,Mozambique
+2025-11-17T00:00:00.000Z,30,0,2,,,,30,0,2,30,0,2,/boundary/195273,Mozambique
 2024-03-01T00:00:00.000Z,2,0,2,,,,2,0,2,2,0,2,/boundary/50371,Myanmar
 2024-04-01T00:00:00.000Z,5,1,3,1,0,1,4,1,2,4,1,2,/boundary/50371,Myanmar
 2024-05-01T00:00:00.000Z,12,0,9,6,0,5,7,0,4,7,0,4,/boundary/50371,Myanmar
@@ -6694,6 +6795,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,143,0,9,48,0,2,117,0,9,117,0,9,/boundary/50371,Myanmar
 2025-11-15T00:00:00.000Z,143,0,8,48,0,2,117,0,8,117,0,8,/boundary/50371,Myanmar
 2025-11-16T00:00:00.000Z,143,0,8,48,0,2,117,0,8,117,0,8,/boundary/50371,Myanmar
+2025-11-17T00:00:00.000Z,143,0,8,48,0,2,117,0,8,117,0,8,/boundary/50371,Myanmar
 2024-04-01T00:00:00.000Z,2,0,2,,,,2,0,2,2,0,2,/boundary/195266,Namibia
 2024-05-01T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/195266,Namibia
 2024-06-01T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/195266,Namibia
@@ -6759,6 +6861,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,16,0,0,1,0,0,16,0,0,16,0,0,/boundary/195266,Namibia
 2025-11-15T00:00:00.000Z,16,0,0,1,0,0,16,0,0,16,0,0,/boundary/195266,Namibia
 2025-11-16T00:00:00.000Z,16,0,0,1,0,0,16,0,0,16,0,0,/boundary/195266,Namibia
+2025-11-17T00:00:00.000Z,16,0,0,1,0,0,16,0,0,16,0,0,/boundary/195266,Namibia
 2024-02-01T00:00:00.000Z,1,0,1,1,0,1,,,,,,,/boundary/184633,Nepal
 2024-03-01T00:00:00.000Z,2,0,1,1,0,0,1,0,1,1,0,1,/boundary/184633,Nepal
 2024-04-01T00:00:00.000Z,5,0,3,2,0,1,3,0,2,3,0,2,/boundary/184633,Nepal
@@ -6826,6 +6929,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,36,0,6,7,0,0,32,0,6,32,0,6,/boundary/184633,Nepal
 2025-11-15T00:00:00.000Z,36,0,5,7,0,0,32,0,5,32,0,5,/boundary/184633,Nepal
 2025-11-16T00:00:00.000Z,37,2,6,7,0,0,33,2,6,33,2,6,/boundary/184633,Nepal
+2025-11-17T00:00:00.000Z,37,0,5,7,0,0,33,0,5,33,0,5,/boundary/184633,Nepal
 2024-02-01T00:00:00.000Z,5,0,5,1,0,1,4,0,4,3,0,3,/boundary/556706,New Zealand
 2024-03-01T00:00:00.000Z,8,0,4,3,0,2,7,0,4,6,0,4,/boundary/556706,New Zealand
 2024-04-01T00:00:00.000Z,12,0,6,6,0,5,8,0,3,6,0,2,/boundary/556706,New Zealand
@@ -6892,7 +6996,8 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-13T00:00:00.000Z,62,0,10,36,0,9,47,0,4,42,0,4,/boundary/556706,New Zealand
 2025-11-14T00:00:00.000Z,62,0,10,36,0,9,47,0,4,42,0,4,/boundary/556706,New Zealand
 2025-11-15T00:00:00.000Z,62,0,10,36,0,9,47,0,4,42,0,4,/boundary/556706,New Zealand
-2025-11-16T00:00:00.000Z,63,1,11,36,0,9,48,1,5,43,1,5,/boundary/556706,New Zealand
+2025-11-16T00:00:00.000Z,63,2,11,36,1,9,48,1,5,43,1,5,/boundary/556706,New Zealand
+2025-11-17T00:00:00.000Z,63,1,11,36,1,9,48,0,5,43,0,5,/boundary/556706,New Zealand
 2024-03-01T00:00:00.000Z,3,0,3,,,,3,0,3,3,0,3,/boundary/287666,Nicaragua
 2024-04-01T00:00:00.000Z,4,0,1,,,,4,0,1,4,0,1,/boundary/287666,Nicaragua
 2024-05-01T00:00:00.000Z,4,0,0,,,,4,0,0,4,0,0,/boundary/287666,Nicaragua
@@ -6959,6 +7064,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,21,0,1,,,,21,0,1,21,0,1,/boundary/287666,Nicaragua
 2025-11-15T00:00:00.000Z,21,0,1,,,,21,0,1,21,0,1,/boundary/287666,Nicaragua
 2025-11-16T00:00:00.000Z,21,0,1,,,,21,0,1,21,0,1,/boundary/287666,Nicaragua
+2025-11-17T00:00:00.000Z,21,0,1,,,,21,0,1,21,0,1,/boundary/287666,Nicaragua
 2024-04-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/192786,Niger
 2024-05-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192786,Niger
 2024-06-01T00:00:00.000Z,2,0,1,,,,2,0,1,2,0,1,/boundary/192786,Niger
@@ -7024,6 +7130,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,8,0,0,,,,8,0,0,8,0,0,/boundary/192786,Niger
 2025-11-15T00:00:00.000Z,8,0,0,,,,8,0,0,8,0,0,/boundary/192786,Niger
 2025-11-16T00:00:00.000Z,8,0,0,,,,8,0,0,8,0,0,/boundary/192786,Niger
+2025-11-17T00:00:00.000Z,8,0,0,,,,8,0,0,8,0,0,/boundary/192786,Niger
 2024-02-01T00:00:00.000Z,2,1,2,,,,2,1,2,2,1,2,/boundary/192787,Nigeria
 2024-03-01T00:00:00.000Z,15,0,14,,,,15,0,14,15,0,14,/boundary/192787,Nigeria
 2024-04-01T00:00:00.000Z,28,0,20,,,,28,0,20,28,0,20,/boundary/192787,Nigeria
@@ -7091,6 +7198,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,91,0,3,1,0,0,90,0,3,90,0,3,/boundary/192787,Nigeria
 2025-11-15T00:00:00.000Z,91,0,3,1,0,0,90,0,3,90,0,3,/boundary/192787,Nigeria
 2025-11-16T00:00:00.000Z,91,0,3,1,0,0,90,0,3,90,0,3,/boundary/192787,Nigeria
+2025-11-17T00:00:00.000Z,91,0,3,1,0,0,90,0,3,90,0,3,/boundary/192787,Nigeria
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/192734,North Korea
 2024-03-01T00:00:00.000Z,2,0,1,,,,2,0,1,2,0,1,/boundary/192734,North Korea
 2024-04-01T00:00:00.000Z,3,0,1,,,,3,0,1,3,0,1,/boundary/192734,North Korea
@@ -7158,6 +7266,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,17,0,1,,,,17,0,1,17,0,1,/boundary/192734,North Korea
 2025-11-15T00:00:00.000Z,17,0,1,,,,17,0,1,17,0,1,/boundary/192734,North Korea
 2025-11-16T00:00:00.000Z,17,0,1,,,,17,0,1,17,0,1,/boundary/192734,North Korea
+2025-11-17T00:00:00.000Z,17,0,1,,,,17,0,1,17,0,1,/boundary/192734,North Korea
 2024-03-01T00:00:00.000Z,1,1,1,,,,1,1,1,1,1,1,/boundary/53293,North Macedonia
 2024-04-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/53293,North Macedonia
 2024-05-01T00:00:00.000Z,2,0,1,,,,2,0,1,2,0,1,/boundary/53293,North Macedonia
@@ -7224,6 +7333,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,15,0,2,1,0,0,15,0,2,15,0,2,/boundary/53293,North Macedonia
 2025-11-15T00:00:00.000Z,15,0,2,1,0,0,15,0,2,15,0,2,/boundary/53293,North Macedonia
 2025-11-16T00:00:00.000Z,15,0,2,1,0,0,15,0,2,15,0,2,/boundary/53293,North Macedonia
+2025-11-17T00:00:00.000Z,15,0,2,1,0,0,15,0,2,15,0,2,/boundary/53293,North Macedonia
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/305138,Oman
 2024-03-01T00:00:00.000Z,2,0,1,,,,2,0,1,2,0,1,/boundary/305138,Oman
 2024-04-01T00:00:00.000Z,2,0,1,,,,2,0,1,2,0,1,/boundary/305138,Oman
@@ -7291,6 +7401,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,11,0,1,,,,11,0,1,10,0,1,/boundary/305138,Oman
 2025-11-15T00:00:00.000Z,11,0,1,,,,11,0,1,10,0,1,/boundary/305138,Oman
 2025-11-16T00:00:00.000Z,11,0,1,,,,11,0,1,10,0,1,/boundary/305138,Oman
+2025-11-17T00:00:00.000Z,11,0,1,,,,11,0,1,10,0,1,/boundary/305138,Oman
 2024-02-01T00:00:00.000Z,5,0,5,,,,5,0,5,5,0,5,/boundary/307573,Pakistan
 2024-03-01T00:00:00.000Z,6,0,3,,,,6,0,3,6,0,3,/boundary/307573,Pakistan
 2024-04-01T00:00:00.000Z,8,0,6,,,,8,0,6,8,0,6,/boundary/307573,Pakistan
@@ -7358,6 +7469,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,75,0,6,2,0,0,74,0,6,74,0,6,/boundary/307573,Pakistan
 2025-11-15T00:00:00.000Z,75,0,6,2,0,0,74,0,6,74,0,6,/boundary/307573,Pakistan
 2025-11-16T00:00:00.000Z,75,0,6,2,0,0,74,0,6,74,0,6,/boundary/307573,Pakistan
+2025-11-17T00:00:00.000Z,75,0,6,2,0,0,74,0,6,74,0,6,/boundary/307573,Pakistan
 2024-02-01T00:00:00.000Z,2,0,2,,,,2,0,2,2,0,2,/boundary/287668,Panama
 2024-03-01T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/287668,Panama
 2024-04-01T00:00:00.000Z,3,0,0,,,,3,0,0,3,0,0,/boundary/287668,Panama
@@ -7425,6 +7537,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,9,0,2,,,,9,0,2,9,0,2,/boundary/287668,Panama
 2025-11-15T00:00:00.000Z,9,0,2,,,,9,0,2,9,0,2,/boundary/287668,Panama
 2025-11-16T00:00:00.000Z,9,0,2,,,,9,0,2,9,0,2,/boundary/287668,Panama
+2025-11-17T00:00:00.000Z,9,0,2,,,,9,0,2,9,0,2,/boundary/287668,Panama
 2024-03-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/307866,Papua New Guinea
 2024-04-01T00:00:00.000Z,7,0,6,,,,7,0,6,7,0,6,/boundary/307866,Papua New Guinea
 2024-05-01T00:00:00.000Z,8,0,1,,,,8,0,1,8,0,1,/boundary/307866,Papua New Guinea
@@ -7491,6 +7604,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,14,0,0,,,,14,0,0,14,0,0,/boundary/307866,Papua New Guinea
 2025-11-15T00:00:00.000Z,14,0,0,,,,14,0,0,14,0,0,/boundary/307866,Papua New Guinea
 2025-11-16T00:00:00.000Z,14,0,0,,,,14,0,0,14,0,0,/boundary/307866,Papua New Guinea
+2025-11-17T00:00:00.000Z,14,0,0,,,,14,0,0,14,0,0,/boundary/307866,Papua New Guinea
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/287077,Paraguay
 2024-03-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/287077,Paraguay
 2024-04-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/287077,Paraguay
@@ -7558,6 +7672,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,17,0,0,1,0,0,17,0,0,17,0,0,/boundary/287077,Paraguay
 2025-11-15T00:00:00.000Z,17,0,0,1,0,0,17,0,0,17,0,0,/boundary/287077,Paraguay
 2025-11-16T00:00:00.000Z,17,0,0,1,0,0,17,0,0,17,0,0,/boundary/287077,Paraguay
+2025-11-17T00:00:00.000Z,17,0,0,1,0,0,17,0,0,17,0,0,/boundary/287077,Paraguay
 2024-02-01T00:00:00.000Z,46,6,45,8,0,8,46,6,45,45,6,44,/boundary/270056,People's Republic of China
 2024-03-01T00:00:00.000Z,73,4,51,11,1,6,72,4,50,71,4,50,/boundary/270056,People's Republic of China
 2024-04-01T00:00:00.000Z,99,7,53,15,1,7,98,7,53,96,7,52,/boundary/270056,People's Republic of China
@@ -7624,7 +7739,8 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-13T00:00:00.000Z,383,7,54,46,1,9,378,7,53,373,7,53,/boundary/270056,People's Republic of China
 2025-11-14T00:00:00.000Z,383,6,53,46,4,12,378,4,52,373,4,52,/boundary/270056,People's Republic of China
 2025-11-15T00:00:00.000Z,383,4,51,46,2,12,378,4,50,373,4,50,/boundary/270056,People's Republic of China
-2025-11-16T00:00:00.000Z,383,3,51,46,0,11,378,3,50,373,3,50,/boundary/270056,People's Republic of China
+2025-11-16T00:00:00.000Z,383,4,51,47,2,12,378,3,50,373,3,50,/boundary/270056,People's Republic of China
+2025-11-17T00:00:00.000Z,384,7,52,47,1,11,379,7,51,374,7,51,/boundary/270056,People's Republic of China
 2024-02-01T00:00:00.000Z,3,0,3,,,,3,0,3,3,0,3,/boundary/288247,Peru
 2024-03-01T00:00:00.000Z,5,0,2,,,,5,0,2,5,0,2,/boundary/288247,Peru
 2024-04-01T00:00:00.000Z,6,0,1,,,,6,0,1,6,0,1,/boundary/288247,Peru
@@ -7692,6 +7808,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,25,0,0,3,0,0,24,0,0,24,0,0,/boundary/288247,Peru
 2025-11-15T00:00:00.000Z,25,0,0,3,0,0,24,0,0,24,0,0,/boundary/288247,Peru
 2025-11-16T00:00:00.000Z,25,0,0,3,0,0,24,0,0,24,0,0,/boundary/288247,Peru
+2025-11-17T00:00:00.000Z,25,0,0,3,0,0,24,0,0,24,0,0,/boundary/288247,Peru
 2024-02-01T00:00:00.000Z,7,0,7,,,,7,0,7,7,0,7,/boundary/443174,Philippines
 2024-03-01T00:00:00.000Z,16,0,11,,,,16,0,11,14,0,9,/boundary/443174,Philippines
 2024-04-01T00:00:00.000Z,22,1,7,,,,22,1,7,20,1,7,/boundary/443174,Philippines
@@ -7759,6 +7876,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,100,0,6,9,0,0,98,0,6,93,0,6,/boundary/443174,Philippines
 2025-11-15T00:00:00.000Z,100,0,6,9,0,0,98,0,6,93,0,6,/boundary/443174,Philippines
 2025-11-16T00:00:00.000Z,100,0,6,9,0,0,98,0,6,93,0,6,/boundary/443174,Philippines
+2025-11-17T00:00:00.000Z,100,0,6,9,0,0,98,0,6,93,0,6,/boundary/443174,Philippines
 2024-02-01T00:00:00.000Z,56,2,55,20,0,20,41,2,40,38,2,37,/boundary/49715,Poland
 2024-03-01T00:00:00.000Z,80,2,41,29,1,16,63,1,32,56,1,27,/boundary/49715,Poland
 2024-04-01T00:00:00.000Z,102,6,38,40,4,19,75,3,21,68,3,20,/boundary/49715,Poland
@@ -7825,7 +7943,8 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-13T00:00:00.000Z,473,2,53,198,1,21,371,1,42,337,1,34,/boundary/49715,Poland
 2025-11-14T00:00:00.000Z,473,5,53,198,4,21,371,2,41,337,1,33,/boundary/49715,Poland
 2025-11-15T00:00:00.000Z,473,5,52,198,1,21,371,4,40,337,4,33,/boundary/49715,Poland
-2025-11-16T00:00:00.000Z,474,2,53,198,0,20,372,2,42,338,2,35,/boundary/49715,Poland
+2025-11-16T00:00:00.000Z,474,4,53,198,2,20,372,2,42,338,2,35,/boundary/49715,Poland
+2025-11-17T00:00:00.000Z,475,2,53,198,1,20,373,1,42,339,1,35,/boundary/49715,Poland
 2024-02-01T00:00:00.000Z,11,1,10,,,,11,1,10,11,1,10,/boundary/295480,Portugal
 2024-03-01T00:00:00.000Z,19,1,12,2,0,2,19,1,12,17,1,10,/boundary/295480,Portugal
 2024-04-01T00:00:00.000Z,23,0,8,2,0,1,23,0,8,19,0,5,/boundary/295480,Portugal
@@ -7893,6 +8012,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,112,2,12,19,1,4,106,2,9,79,2,7,/boundary/295480,Portugal
 2025-11-15T00:00:00.000Z,112,1,13,20,1,5,106,0,9,79,0,7,/boundary/295480,Portugal
 2025-11-16T00:00:00.000Z,112,1,13,20,0,5,106,1,9,79,1,7,/boundary/295480,Portugal
+2025-11-17T00:00:00.000Z,112,1,14,20,0,5,106,1,10,79,0,7,/boundary/295480,Portugal
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/305095,Qatar
 2024-03-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/305095,Qatar
 2024-04-01T00:00:00.000Z,2,0,1,1,0,1,2,0,1,2,0,1,/boundary/305095,Qatar
@@ -7960,6 +8080,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,4,0,0,1,0,0,4,0,0,3,0,0,/boundary/305095,Qatar
 2025-11-15T00:00:00.000Z,4,0,0,1,0,0,4,0,0,3,0,0,/boundary/305095,Qatar
 2025-11-16T00:00:00.000Z,4,0,0,1,0,0,4,0,0,3,0,0,/boundary/305095,Qatar
+2025-11-17T00:00:00.000Z,4,0,0,1,0,0,4,0,0,3,0,0,/boundary/305095,Qatar
 2024-02-01T00:00:00.000Z,6,1,6,2,0,2,6,1,6,4,1,4,/boundary/62273,Republic of Ireland
 2024-03-01T00:00:00.000Z,12,0,11,3,0,3,12,0,11,7,0,7,/boundary/62273,Republic of Ireland
 2024-04-01T00:00:00.000Z,15,1,9,4,1,3,15,0,8,8,0,4,/boundary/62273,Republic of Ireland
@@ -8027,6 +8148,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,65,1,8,37,1,5,47,1,5,23,1,4,/boundary/62273,Republic of Ireland
 2025-11-15T00:00:00.000Z,65,1,8,37,1,5,47,0,5,23,0,4,/boundary/62273,Republic of Ireland
 2025-11-16T00:00:00.000Z,65,1,8,37,1,5,47,0,5,23,0,3,/boundary/62273,Republic of Ireland
+2025-11-17T00:00:00.000Z,65,2,8,37,2,5,47,0,5,23,0,3,/boundary/62273,Republic of Ireland
 2024-09-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/192794,Republic of the Congo
 2024-10-01T00:00:00.000Z,2,0,1,,,,2,0,1,2,0,1,/boundary/192794,Republic of the Congo
 2024-11-01T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/192794,Republic of the Congo
@@ -8087,6 +8209,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/192794,Republic of the Congo
 2025-11-15T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/192794,Republic of the Congo
 2025-11-16T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/192794,Republic of the Congo
+2025-11-17T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/192794,Republic of the Congo
 2024-02-01T00:00:00.000Z,5,0,5,,,,5,0,5,5,0,5,/boundary/90689,Romania
 2024-03-01T00:00:00.000Z,6,1,2,,,,6,1,2,6,1,2,/boundary/90689,Romania
 2024-04-01T00:00:00.000Z,11,0,6,,,,11,0,6,11,0,6,/boundary/90689,Romania
@@ -8154,6 +8277,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,74,0,5,6,0,1,72,0,4,72,0,4,/boundary/90689,Romania
 2025-11-15T00:00:00.000Z,74,0,5,6,0,1,72,0,4,72,0,4,/boundary/90689,Romania
 2025-11-16T00:00:00.000Z,74,0,5,6,0,1,72,0,4,72,0,4,/boundary/90689,Romania
+2025-11-17T00:00:00.000Z,74,0,5,6,0,1,72,0,4,72,0,4,/boundary/90689,Romania
 2024-02-01T00:00:00.000Z,54,5,51,21,1,19,44,4,43,43,4,42,/boundary/60189,Russia
 2024-03-01T00:00:00.000Z,108,9,71,42,1,24,86,9,58,85,9,58,/boundary/60189,Russia
 2024-04-01T00:00:00.000Z,153,0,70,62,0,28,121,0,56,120,0,55,/boundary/60189,Russia
@@ -8221,6 +8345,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,696,3,56,329,0,19,566,3,48,544,3,47,/boundary/60189,Russia
 2025-11-15T00:00:00.000Z,696,1,55,329,0,19,566,1,46,544,1,45,/boundary/60189,Russia
 2025-11-16T00:00:00.000Z,696,1,54,329,0,18,566,1,45,544,1,44,/boundary/60189,Russia
+2025-11-17T00:00:00.000Z,698,2,55,329,0,18,568,2,46,546,2,45,/boundary/60189,Russia
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/171496,Rwanda
 2024-03-01T00:00:00.000Z,7,0,6,,,,7,0,6,7,0,6,/boundary/171496,Rwanda
 2024-04-01T00:00:00.000Z,8,0,1,,,,8,0,1,8,0,1,/boundary/171496,Rwanda
@@ -8288,6 +8413,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,23,0,2,,,,23,0,2,23,0,2,/boundary/171496,Rwanda
 2025-11-15T00:00:00.000Z,23,0,2,,,,23,0,2,23,0,2,/boundary/171496,Rwanda
 2025-11-16T00:00:00.000Z,23,0,2,,,,23,0,2,23,0,2,/boundary/171496,Rwanda
+2025-11-17T00:00:00.000Z,23,1,2,,,,23,1,2,23,1,2,/boundary/171496,Rwanda
 2025-09-01T00:00:00.000Z,2,0,2,,,,2,0,2,2,0,2,/boundary/54624,San Marino
 2025-09-01T00:00:00.000Z,2,0,2,,,,2,0,2,2,0,2,/boundary/54624,San Marino
 2025-10-01T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/54624,San Marino
@@ -8384,6 +8510,8 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-15T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/54624,San Marino
 2025-11-16T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/54624,San Marino
 2025-11-16T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/54624,San Marino
+2025-11-17T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/54624,San Marino
+2025-11-17T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/54624,San Marino
 2025-09-01T00:00:00.000Z,2,0,2,,,,2,0,2,2,0,2,/boundary/54624,San Marino
 2025-09-01T00:00:00.000Z,2,0,2,,,,2,0,2,2,0,2,/boundary/54624,San Marino
 2025-10-01T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/54624,San Marino
@@ -8480,6 +8608,8 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-15T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/54624,San Marino
 2025-11-16T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/54624,San Marino
 2025-11-16T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/54624,San Marino
+2025-11-17T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/54624,San Marino
+2025-11-17T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/54624,San Marino
 2024-02-01T00:00:00.000Z,4,1,4,,,,4,1,4,4,1,4,/boundary/307584,Saudi Arabia
 2024-03-01T00:00:00.000Z,8,0,5,,,,8,0,5,8,0,5,/boundary/307584,Saudi Arabia
 2024-04-01T00:00:00.000Z,13,1,5,,,,13,1,5,13,1,5,/boundary/307584,Saudi Arabia
@@ -8547,6 +8677,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,54,0,4,3,0,0,53,0,4,53,0,4,/boundary/307584,Saudi Arabia
 2025-11-15T00:00:00.000Z,54,0,4,3,0,0,53,0,4,53,0,4,/boundary/307584,Saudi Arabia
 2025-11-16T00:00:00.000Z,54,0,4,3,0,0,53,0,4,53,0,4,/boundary/307584,Saudi Arabia
+2025-11-17T00:00:00.000Z,54,1,5,3,0,0,53,1,5,53,1,5,/boundary/307584,Saudi Arabia
 2024-03-01T00:00:00.000Z,2,0,2,,,,2,0,2,2,0,2,/boundary/192775,Senegal
 2024-04-01T00:00:00.000Z,3,0,1,,,,3,0,1,3,0,1,/boundary/192775,Senegal
 2024-05-01T00:00:00.000Z,3,0,1,,,,3,0,1,3,0,1,/boundary/192775,Senegal
@@ -8613,6 +8744,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,17,0,1,,,,17,0,1,17,0,1,/boundary/192775,Senegal
 2025-11-15T00:00:00.000Z,17,0,0,,,,17,0,0,17,0,0,/boundary/192775,Senegal
 2025-11-16T00:00:00.000Z,17,0,0,,,,17,0,0,17,0,0,/boundary/192775,Senegal
+2025-11-17T00:00:00.000Z,17,0,0,,,,17,0,0,17,0,0,/boundary/192775,Senegal
 2024-02-01T00:00:00.000Z,6,0,6,,,,6,0,6,6,0,6,/boundary/1741311,Serbia
 2024-03-01T00:00:00.000Z,9,2,5,,,,9,2,5,9,2,5,/boundary/1741311,Serbia
 2024-04-01T00:00:00.000Z,12,0,3,,,,12,0,3,12,0,3,/boundary/1741311,Serbia
@@ -8680,6 +8812,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,42,1,6,10,1,1,39,0,5,39,0,5,/boundary/1741311,Serbia
 2025-11-15T00:00:00.000Z,43,1,6,10,0,1,40,1,5,40,1,5,/boundary/1741311,Serbia
 2025-11-16T00:00:00.000Z,43,0,6,10,0,1,40,0,5,40,0,5,/boundary/1741311,Serbia
+2025-11-17T00:00:00.000Z,43,0,6,10,0,1,40,0,5,40,0,5,/boundary/1741311,Serbia
 2024-03-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/192777,Sierra Leone
 2024-04-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192777,Sierra Leone
 2024-05-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192777,Sierra Leone
@@ -8746,6 +8879,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/192777,Sierra Leone
 2025-11-15T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/192777,Sierra Leone
 2025-11-16T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/192777,Sierra Leone
+2025-11-17T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/192777,Sierra Leone
 2024-02-01T00:00:00.000Z,3,0,3,2,0,1,2,0,2,2,0,2,/boundary/14296,Slovakia
 2024-03-01T00:00:00.000Z,4,0,2,2,0,1,3,0,1,3,0,1,/boundary/14296,Slovakia
 2024-04-01T00:00:00.000Z,7,0,5,5,0,4,6,0,4,6,0,4,/boundary/14296,Slovakia
@@ -8813,6 +8947,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,51,0,5,23,0,3,39,0,2,38,0,2,/boundary/14296,Slovakia
 2025-11-15T00:00:00.000Z,51,0,5,23,0,3,39,0,2,38,0,2,/boundary/14296,Slovakia
 2025-11-16T00:00:00.000Z,51,0,5,23,0,3,39,0,2,38,0,2,/boundary/14296,Slovakia
+2025-11-17T00:00:00.000Z,51,0,5,23,0,3,39,0,2,38,0,2,/boundary/14296,Slovakia
 2024-02-01T00:00:00.000Z,4,0,4,,,,4,0,4,4,0,4,/boundary/218657,Slovenia
 2024-03-01T00:00:00.000Z,9,0,6,1,0,1,9,0,6,9,0,6,/boundary/218657,Slovenia
 2024-04-01T00:00:00.000Z,12,1,4,2,1,1,11,0,3,11,0,3,/boundary/218657,Slovenia
@@ -8880,6 +9015,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,40,0,6,14,0,0,37,0,6,37,0,6,/boundary/218657,Slovenia
 2025-11-15T00:00:00.000Z,40,0,6,14,0,0,37,0,6,37,0,6,/boundary/218657,Slovenia
 2025-11-16T00:00:00.000Z,40,0,6,14,0,0,37,0,6,37,0,6,/boundary/218657,Slovenia
+2025-11-17T00:00:00.000Z,40,0,5,14,0,0,37,0,5,37,0,5,/boundary/218657,Slovenia
 2024-02-01T00:00:00.000Z,10,1,10,,,,10,1,10,10,1,10,/boundary/87565,South Africa
 2024-03-01T00:00:00.000Z,12,0,6,,,,12,0,6,11,0,5,/boundary/87565,South Africa
 2024-04-01T00:00:00.000Z,15,0,5,1,0,1,15,0,5,14,0,5,/boundary/87565,South Africa
@@ -8947,6 +9083,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,76,0,7,7,0,1,75,0,6,73,0,6,/boundary/87565,South Africa
 2025-11-15T00:00:00.000Z,76,0,7,7,0,1,75,0,6,73,0,6,/boundary/87565,South Africa
 2025-11-16T00:00:00.000Z,76,1,7,7,0,1,75,1,6,73,1,6,/boundary/87565,South Africa
+2025-11-17T00:00:00.000Z,76,0,7,7,0,1,75,0,6,73,0,6,/boundary/87565,South Africa
 2024-02-01T00:00:00.000Z,7,0,7,,,,7,0,7,6,0,6,/boundary/307756,South Korea
 2024-03-01T00:00:00.000Z,14,0,10,,,,14,0,10,11,0,7,/boundary/307756,South Korea
 2024-04-01T00:00:00.000Z,17,0,4,,,,17,0,4,14,0,4,/boundary/307756,South Korea
@@ -9014,6 +9151,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,91,0,7,1,0,0,91,0,7,68,0,7,/boundary/307756,South Korea
 2025-11-15T00:00:00.000Z,91,0,7,1,0,0,91,0,7,68,0,7,/boundary/307756,South Korea
 2025-11-16T00:00:00.000Z,91,0,7,1,0,0,91,0,7,68,0,7,/boundary/307756,South Korea
+2025-11-17T00:00:00.000Z,91,0,7,1,0,0,91,0,7,68,0,7,/boundary/307756,South Korea
 2024-02-01T00:00:00.000Z,36,2,33,9,1,8,33,2,30,33,2,30,/boundary/1311341,Spain
 2024-03-01T00:00:00.000Z,64,3,39,15,0,11,59,3,36,57,3,34,/boundary/1311341,Spain
 2024-04-01T00:00:00.000Z,92,6,39,22,4,12,85,3,35,79,3,32,/boundary/1311341,Spain
@@ -9081,6 +9219,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,427,1,37,116,0,11,382,1,30,349,1,27,/boundary/1311341,Spain
 2025-11-15T00:00:00.000Z,427,1,38,116,0,11,382,1,31,349,1,28,/boundary/1311341,Spain
 2025-11-16T00:00:00.000Z,427,0,36,116,0,11,382,0,29,349,0,26,/boundary/1311341,Spain
+2025-11-17T00:00:00.000Z,427,4,37,116,0,11,382,4,31,349,3,27,/boundary/1311341,Spain
 2024-02-01T00:00:00.000Z,4,0,3,,,,4,0,3,4,0,3,/boundary/536807,Sri Lanka
 2024-03-01T00:00:00.000Z,16,0,12,,,,16,0,12,16,0,12,/boundary/536807,Sri Lanka
 2024-04-01T00:00:00.000Z,17,0,1,,,,17,0,1,17,0,1,/boundary/536807,Sri Lanka
@@ -9148,6 +9287,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,40,0,2,3,0,0,40,0,2,40,0,2,/boundary/536807,Sri Lanka
 2025-11-15T00:00:00.000Z,40,0,2,3,0,0,40,0,2,40,0,2,/boundary/536807,Sri Lanka
 2025-11-16T00:00:00.000Z,40,0,1,3,0,0,40,0,1,40,0,1,/boundary/536807,Sri Lanka
+2025-11-17T00:00:00.000Z,40,0,1,3,0,0,40,0,1,40,0,1,/boundary/536807,Sri Lanka
 2024-03-01T00:00:00.000Z,2,0,2,,,,2,0,2,2,0,2,/boundary/192789,Sudan
 2024-04-01T00:00:00.000Z,4,0,2,,,,4,0,2,4,0,2,/boundary/192789,Sudan
 2024-05-01T00:00:00.000Z,4,0,0,,,,4,0,0,4,0,0,/boundary/192789,Sudan
@@ -9214,6 +9354,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,20,0,2,,,,20,0,2,20,0,2,/boundary/192789,Sudan
 2025-11-15T00:00:00.000Z,20,0,2,,,,20,0,2,20,0,2,/boundary/192789,Sudan
 2025-11-16T00:00:00.000Z,21,1,3,,,,21,1,3,21,1,3,/boundary/192789,Sudan
+2025-11-17T00:00:00.000Z,21,0,3,,,,21,0,3,21,0,3,/boundary/192789,Sudan
 2024-02-01T00:00:00.000Z,10,1,10,1,0,1,10,1,10,8,0,8,/boundary/52822,Sweden
 2024-03-01T00:00:00.000Z,19,1,13,2,0,2,19,1,13,18,1,13,/boundary/52822,Sweden
 2024-04-01T00:00:00.000Z,30,1,14,5,0,3,29,1,13,28,1,13,/boundary/52822,Sweden
@@ -9281,6 +9422,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,144,0,3,32,0,0,133,0,3,124,0,3,/boundary/52822,Sweden
 2025-11-15T00:00:00.000Z,144,2,5,32,0,0,133,2,5,124,2,5,/boundary/52822,Sweden
 2025-11-16T00:00:00.000Z,144,0,5,32,0,0,133,0,5,124,0,5,/boundary/52822,Sweden
+2025-11-17T00:00:00.000Z,144,0,5,32,0,0,133,0,5,124,0,5,/boundary/52822,Sweden
 2024-02-01T00:00:00.000Z,17,2,15,2,0,2,17,2,15,17,2,15,/boundary/51701,Switzerland
 2024-03-01T00:00:00.000Z,25,1,14,2,0,0,25,1,14,25,1,14,/boundary/51701,Switzerland
 2024-04-01T00:00:00.000Z,35,0,13,4,0,2,35,0,13,34,0,12,/boundary/51701,Switzerland
@@ -9348,6 +9490,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,186,1,10,28,0,0,177,1,10,164,1,10,/boundary/51701,Switzerland
 2025-11-15T00:00:00.000Z,186,0,9,28,0,0,177,0,9,164,0,9,/boundary/51701,Switzerland
 2025-11-16T00:00:00.000Z,186,2,10,29,1,1,177,1,9,164,1,9,/boundary/51701,Switzerland
+2025-11-17T00:00:00.000Z,186,0,10,29,0,1,177,0,9,164,0,9,/boundary/51701,Switzerland
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/184840,Syria
 2024-03-01T00:00:00.000Z,2,0,1,,,,2,0,1,2,0,1,/boundary/184840,Syria
 2024-04-01T00:00:00.000Z,4,0,2,,,,4,0,2,4,0,2,/boundary/184840,Syria
@@ -9415,6 +9558,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,31,1,9,2,0,0,31,1,9,31,1,9,/boundary/184840,Syria
 2025-11-15T00:00:00.000Z,31,0,9,2,0,0,31,0,9,31,0,9,/boundary/184840,Syria
 2025-11-16T00:00:00.000Z,31,1,9,2,0,0,31,1,9,31,1,9,/boundary/184840,Syria
+2025-11-17T00:00:00.000Z,31,0,9,2,0,0,31,0,9,31,0,9,/boundary/184840,Syria
 2024-02-01T00:00:00.000Z,4,0,4,,,,4,0,4,3,0,3,/boundary/449220,Taiwan
 2024-03-01T00:00:00.000Z,9,2,5,,,,9,2,5,8,2,5,/boundary/449220,Taiwan
 2024-04-01T00:00:00.000Z,13,1,5,,,,13,1,5,11,1,4,/boundary/449220,Taiwan
@@ -9482,6 +9626,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,57,0,4,1,0,1,57,0,3,48,0,3,/boundary/449220,Taiwan
 2025-11-15T00:00:00.000Z,57,0,4,1,0,1,57,0,3,48,0,3,/boundary/449220,Taiwan
 2025-11-16T00:00:00.000Z,57,0,4,1,0,1,57,0,3,48,0,3,/boundary/449220,Taiwan
+2025-11-17T00:00:00.000Z,57,0,4,1,0,1,57,0,3,48,0,3,/boundary/449220,Taiwan
 2024-03-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/214626,Tajikistan
 2024-04-01T00:00:00.000Z,2,0,1,,,,2,0,1,2,0,1,/boundary/214626,Tajikistan
 2024-05-01T00:00:00.000Z,6,0,5,1,0,1,6,0,5,6,0,5,/boundary/214626,Tajikistan
@@ -9548,6 +9693,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,16,0,0,1,0,0,16,0,0,16,0,0,/boundary/214626,Tajikistan
 2025-11-15T00:00:00.000Z,16,0,0,1,0,0,16,0,0,16,0,0,/boundary/214626,Tajikistan
 2025-11-16T00:00:00.000Z,16,0,0,1,0,0,16,0,0,16,0,0,/boundary/214626,Tajikistan
+2025-11-17T00:00:00.000Z,16,0,0,1,0,0,16,0,0,16,0,0,/boundary/214626,Tajikistan
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/195270,Tanzania
 2024-03-01T00:00:00.000Z,2,0,1,,,,2,0,1,2,0,1,/boundary/195270,Tanzania
 2024-04-01T00:00:00.000Z,6,0,3,,,,6,0,3,6,0,3,/boundary/195270,Tanzania
@@ -9615,6 +9761,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,34,0,1,1,0,0,33,0,1,33,0,1,/boundary/195270,Tanzania
 2025-11-15T00:00:00.000Z,34,0,1,1,0,0,33,0,1,33,0,1,/boundary/195270,Tanzania
 2025-11-16T00:00:00.000Z,34,0,1,1,0,0,33,0,1,33,0,1,/boundary/195270,Tanzania
+2025-11-17T00:00:00.000Z,34,0,1,1,0,0,33,0,1,33,0,1,/boundary/195270,Tanzania
 2024-02-01T00:00:00.000Z,4,0,4,,,,4,0,4,4,0,4,/boundary/2067731,Thailand
 2024-03-01T00:00:00.000Z,7,0,4,,,,7,0,4,7,0,4,/boundary/2067731,Thailand
 2024-04-01T00:00:00.000Z,14,0,9,,,,14,0,9,14,0,9,/boundary/2067731,Thailand
@@ -9682,6 +9829,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,68,1,4,2,0,0,68,1,4,68,1,4,/boundary/2067731,Thailand
 2025-11-15T00:00:00.000Z,68,0,3,2,0,0,68,0,3,68,0,3,/boundary/2067731,Thailand
 2025-11-16T00:00:00.000Z,68,0,3,2,0,0,68,0,3,68,0,3,/boundary/2067731,Thailand
+2025-11-17T00:00:00.000Z,68,0,3,2,0,0,68,0,3,68,0,3,/boundary/2067731,Thailand
 2024-07-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/547469,The Bahamas
 2024-08-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/547469,The Bahamas
 2024-09-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/547469,The Bahamas
@@ -9744,6 +9892,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/547469,The Bahamas
 2025-11-15T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/547469,The Bahamas
 2025-11-16T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/547469,The Bahamas
+2025-11-17T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/547469,The Bahamas
 2025-09-01T00:00:00.000Z,4,0,4,,,,4,0,4,4,0,4,/boundary/192774,The Gambia
 2025-10-01T00:00:00.000Z,5,0,1,,,,5,0,1,5,0,1,/boundary/192774,The Gambia
 2025-10-02T00:00:00.000Z,5,0,1,,,,5,0,1,5,0,1,/boundary/192774,The Gambia
@@ -9792,6 +9941,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/192774,The Gambia
 2025-11-15T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/192774,The Gambia
 2025-11-16T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/192774,The Gambia
+2025-11-17T00:00:00.000Z,5,0,0,,,,5,0,0,5,0,0,/boundary/192774,The Gambia
 2024-04-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/192782,Togo
 2024-05-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192782,Togo
 2024-06-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/192782,Togo
@@ -9857,6 +10007,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,6,0,1,,,,6,0,1,6,0,1,/boundary/192782,Togo
 2025-11-15T00:00:00.000Z,6,0,1,,,,6,0,1,6,0,1,/boundary/192782,Togo
 2025-11-16T00:00:00.000Z,6,0,1,,,,6,0,1,6,0,1,/boundary/192782,Togo
+2025-11-17T00:00:00.000Z,6,0,1,,,,6,0,1,6,0,1,/boundary/192782,Togo
 2024-02-01T00:00:00.000Z,3,0,3,,,,3,0,3,3,0,3,/boundary/192757,Tunisia
 2024-03-01T00:00:00.000Z,4,0,1,,,,4,0,1,4,0,1,/boundary/192757,Tunisia
 2024-04-01T00:00:00.000Z,4,0,0,,,,4,0,0,4,0,0,/boundary/192757,Tunisia
@@ -9924,6 +10075,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,11,0,0,4,0,0,10,0,0,10,0,0,/boundary/192757,Tunisia
 2025-11-15T00:00:00.000Z,11,0,0,4,0,0,10,0,0,10,0,0,/boundary/192757,Tunisia
 2025-11-16T00:00:00.000Z,11,0,0,4,0,0,10,0,0,10,0,0,/boundary/192757,Tunisia
+2025-11-17T00:00:00.000Z,11,0,0,4,0,0,10,0,0,10,0,0,/boundary/192757,Tunisia
 2024-02-01T00:00:00.000Z,13,1,13,2,0,2,12,1,12,12,0,12,/boundary/174737,Turkey
 2024-03-01T00:00:00.000Z,20,0,13,2,0,1,19,0,13,19,0,13,/boundary/174737,Turkey
 2024-04-01T00:00:00.000Z,28,0,13,2,0,1,27,0,13,26,0,12,/boundary/174737,Turkey
@@ -9991,6 +10143,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,154,1,11,7,0,1,151,1,11,151,1,11,/boundary/174737,Turkey
 2025-11-15T00:00:00.000Z,154,0,10,7,0,1,151,0,10,151,0,10,/boundary/174737,Turkey
 2025-11-16T00:00:00.000Z,154,0,10,7,0,1,151,0,10,151,0,10,/boundary/174737,Turkey
+2025-11-17T00:00:00.000Z,154,0,10,7,0,1,151,0,10,151,0,10,/boundary/174737,Turkey
 2024-03-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/223026,Turkmenistan
 2024-04-01T00:00:00.000Z,4,0,3,,,,4,0,3,4,0,3,/boundary/223026,Turkmenistan
 2024-05-01T00:00:00.000Z,7,0,3,,,,7,0,3,7,0,3,/boundary/223026,Turkmenistan
@@ -10057,6 +10210,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,19,0,0,1,0,0,19,0,0,19,0,0,/boundary/223026,Turkmenistan
 2025-11-15T00:00:00.000Z,19,0,0,1,0,0,19,0,0,19,0,0,/boundary/223026,Turkmenistan
 2025-11-16T00:00:00.000Z,19,0,0,1,0,0,19,0,0,19,0,0,/boundary/223026,Turkmenistan
+2025-11-17T00:00:00.000Z,19,0,0,1,0,0,19,0,0,19,0,0,/boundary/223026,Turkmenistan
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/192796,Uganda
 2024-03-01T00:00:00.000Z,6,0,5,,,,6,0,5,6,0,5,/boundary/192796,Uganda
 2024-04-01T00:00:00.000Z,8,1,4,,,,8,1,4,8,1,4,/boundary/192796,Uganda
@@ -10124,6 +10278,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,25,0,1,2,0,0,23,0,1,23,0,1,/boundary/192796,Uganda
 2025-11-15T00:00:00.000Z,25,0,1,2,0,0,23,0,1,23,0,1,/boundary/192796,Uganda
 2025-11-16T00:00:00.000Z,25,0,1,2,0,0,23,0,1,23,0,1,/boundary/192796,Uganda
+2025-11-17T00:00:00.000Z,25,0,1,2,0,0,23,0,1,23,0,1,/boundary/192796,Uganda
 2024-02-01T00:00:00.000Z,15,1,15,11,1,11,8,0,8,8,0,8,/boundary/60199,Ukraine
 2024-03-01T00:00:00.000Z,31,2,19,21,2,12,17,1,11,17,1,11,/boundary/60199,Ukraine
 2024-04-01T00:00:00.000Z,47,0,23,30,0,14,29,0,17,29,0,17,/boundary/60199,Ukraine
@@ -10191,6 +10346,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,268,1,22,171,1,14,178,1,11,177,1,10,/boundary/60199,Ukraine
 2025-11-15T00:00:00.000Z,268,1,23,171,1,15,178,0,11,177,0,10,/boundary/60199,Ukraine
 2025-11-16T00:00:00.000Z,269,2,23,171,0,14,179,2,12,178,2,11,/boundary/60199,Ukraine
+2025-11-17T00:00:00.000Z,269,0,22,171,0,13,179,0,12,178,0,11,/boundary/60199,Ukraine
 2024-02-01T00:00:00.000Z,3,0,3,,,,3,0,3,3,0,3,/boundary/307763,United Arab Emirates
 2024-03-01T00:00:00.000Z,5,0,4,1,0,1,5,0,4,5,0,4,/boundary/307763,United Arab Emirates
 2024-04-01T00:00:00.000Z,7,0,5,1,0,1,7,0,5,7,0,5,/boundary/307763,United Arab Emirates
@@ -10258,6 +10414,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,13,0,0,1,0,0,13,0,0,9,0,0,/boundary/307763,United Arab Emirates
 2025-11-15T00:00:00.000Z,13,0,0,1,0,0,13,0,0,9,0,0,/boundary/307763,United Arab Emirates
 2025-11-16T00:00:00.000Z,13,0,0,1,0,0,13,0,0,9,0,0,/boundary/307763,United Arab Emirates
+2025-11-17T00:00:00.000Z,13,1,1,1,1,1,13,1,1,9,1,1,/boundary/307763,United Arab Emirates
 2024-02-01T00:00:00.000Z,57,2,53,28,0,25,39,2,38,29,1,29,/boundary/62149,United Kingdom
 2024-03-01T00:00:00.000Z,105,3,64,52,2,28,74,1,47,53,1,31,/boundary/62149,United Kingdom
 2024-04-01T00:00:00.000Z,126,2,41,65,0,22,92,2,28,67,2,23,/boundary/62149,United Kingdom
@@ -10325,6 +10482,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,535,6,58,281,4,27,388,2,42,292,2,36,/boundary/62149,United Kingdom
 2025-11-15T00:00:00.000Z,535,1,58,281,0,27,388,1,42,292,1,36,/boundary/62149,United Kingdom
 2025-11-16T00:00:00.000Z,535,3,57,281,2,27,388,2,40,292,2,34,/boundary/62149,United Kingdom
+2025-11-17T00:00:00.000Z,536,2,56,281,0,26,389,2,40,293,2,34,/boundary/62149,United Kingdom
 2024-02-01T00:00:00.000Z,154,10,149,21,2,21,148,10,143,140,10,135,/boundary/148838,United States of America
 2024-03-01T00:00:00.000Z,256,13,153,35,2,22,246,13,146,234,13,141,/boundary/148838,United States of America
 2024-04-01T00:00:00.000Z,372,9,178,54,2,28,355,9,166,339,9,159,/boundary/148838,United States of America
@@ -10391,7 +10549,8 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-13T00:00:00.000Z,1978,16,238,350,3,43,1884,14,221,1830,13,216,/boundary/148838,United States of America
 2025-11-14T00:00:00.000Z,1980,11,237,350,2,43,1886,10,220,1832,10,214,/boundary/148838,United States of America
 2025-11-15T00:00:00.000Z,1982,19,239,351,3,42,1888,19,222,1834,19,216,/boundary/148838,United States of America
-2025-11-16T00:00:00.000Z,1984,19,243,351,4,41,1890,17,227,1836,17,221,/boundary/148838,United States of America
+2025-11-16T00:00:00.000Z,1984,19,243,351,5,41,1890,17,227,1836,17,221,/boundary/148838,United States of America
+2025-11-17T00:00:00.000Z,1987,13,242,352,2,41,1892,11,226,1838,11,220,/boundary/148838,United States of America
 2024-03-01T00:00:00.000Z,3,0,3,,,,3,0,3,3,0,3,/boundary/287072,Uruguay
 2024-04-01T00:00:00.000Z,5,0,2,1,0,1,4,0,1,4,0,1,/boundary/287072,Uruguay
 2024-05-01T00:00:00.000Z,6,0,1,1,0,0,5,0,1,5,0,1,/boundary/287072,Uruguay
@@ -10458,6 +10617,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,13,0,0,2,0,0,12,0,0,12,0,0,/boundary/287072,Uruguay
 2025-11-15T00:00:00.000Z,13,0,0,2,0,0,12,0,0,12,0,0,/boundary/287072,Uruguay
 2025-11-16T00:00:00.000Z,13,0,0,2,0,0,12,0,0,12,0,0,/boundary/287072,Uruguay
+2025-11-17T00:00:00.000Z,13,0,0,2,0,0,12,0,0,12,0,0,/boundary/287072,Uruguay
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/196240,Uzbekistan
 2024-03-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/196240,Uzbekistan
 2024-04-01T00:00:00.000Z,3,1,3,,,,3,1,3,3,1,3,/boundary/196240,Uzbekistan
@@ -10525,6 +10685,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,21,0,0,2,0,0,21,0,0,21,0,0,/boundary/196240,Uzbekistan
 2025-11-15T00:00:00.000Z,21,0,0,2,0,0,21,0,0,21,0,0,/boundary/196240,Uzbekistan
 2025-11-16T00:00:00.000Z,21,0,0,2,0,0,21,0,0,21,0,0,/boundary/196240,Uzbekistan
+2025-11-17T00:00:00.000Z,21,0,0,2,0,0,21,0,0,21,0,0,/boundary/196240,Uzbekistan
 2024-02-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/272644,Venezuela
 2024-03-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/272644,Venezuela
 2024-04-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/272644,Venezuela
@@ -10592,6 +10753,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,26,0,7,1,0,0,26,0,7,26,0,7,/boundary/272644,Venezuela
 2025-11-15T00:00:00.000Z,26,0,5,1,0,0,26,0,5,26,0,5,/boundary/272644,Venezuela
 2025-11-16T00:00:00.000Z,26,0,5,1,0,0,26,0,5,26,0,5,/boundary/272644,Venezuela
+2025-11-17T00:00:00.000Z,26,0,5,1,0,0,26,0,5,26,0,5,/boundary/272644,Venezuela
 2024-02-01T00:00:00.000Z,5,0,5,,,,5,0,5,5,0,5,/boundary/49915,Vietnam
 2024-03-01T00:00:00.000Z,7,1,4,,,,7,1,4,7,1,4,/boundary/49915,Vietnam
 2024-04-01T00:00:00.000Z,9,1,5,,,,9,1,5,9,1,5,/boundary/49915,Vietnam
@@ -10659,6 +10821,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,60,0,5,1,0,0,60,0,5,60,0,4,/boundary/49915,Vietnam
 2025-11-15T00:00:00.000Z,60,2,6,1,0,0,60,2,6,60,2,5,/boundary/49915,Vietnam
 2025-11-16T00:00:00.000Z,61,2,7,1,0,0,61,2,7,61,2,6,/boundary/49915,Vietnam
+2025-11-17T00:00:00.000Z,61,0,7,1,0,0,61,0,7,61,0,6,/boundary/49915,Vietnam
 2024-04-01T00:00:00.000Z,1,0,1,,,,1,0,1,1,0,1,/boundary/305092,Yemen
 2024-05-01T00:00:00.000Z,2,1,1,,,,2,1,1,2,1,1,/boundary/305092,Yemen
 2024-06-01T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/305092,Yemen
@@ -10724,6 +10887,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/305092,Yemen
 2025-11-15T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/305092,Yemen
 2025-11-16T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/305092,Yemen
+2025-11-17T00:00:00.000Z,2,0,0,,,,2,0,0,2,0,0,/boundary/305092,Yemen
 2024-02-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/195271,Zambia
 2024-03-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/195271,Zambia
 2024-04-01T00:00:00.000Z,4,0,3,,,,4,0,3,4,0,3,/boundary/195271,Zambia
@@ -10791,6 +10955,7 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,23,0,1,3,0,0,22,0,1,22,0,1,/boundary/195271,Zambia
 2025-11-15T00:00:00.000Z,23,0,1,3,0,0,22,0,1,22,0,1,/boundary/195271,Zambia
 2025-11-16T00:00:00.000Z,23,0,1,3,0,0,22,0,1,22,0,1,/boundary/195271,Zambia
+2025-11-17T00:00:00.000Z,26,3,4,3,0,0,25,3,4,25,3,4,/boundary/195271,Zambia
 2024-06-01T00:00:00.000Z,1,1,1,,,,1,1,1,1,1,1,/boundary/195272,Zimbabwe
 2024-07-01T00:00:00.000Z,1,0,0,,,,1,0,0,1,0,0,/boundary/195272,Zimbabwe
 2024-08-01T00:00:00.000Z,2,0,1,,,,2,0,1,2,0,1,/boundary/195272,Zimbabwe
@@ -10854,3 +11019,4 @@ t,amount,amount_1d,amount_30d,labels.distribution.amount,labels.distribution.amo
 2025-11-14T00:00:00.000Z,8,0,0,1,0,0,8,0,0,8,0,0,/boundary/195272,Zimbabwe
 2025-11-15T00:00:00.000Z,8,0,0,1,0,0,8,0,0,8,0,0,/boundary/195272,Zimbabwe
 2025-11-16T00:00:00.000Z,8,0,0,1,0,0,8,0,0,8,0,0,/boundary/195272,Zimbabwe
+2025-11-17T00:00:00.000Z,8,0,0,1,0,0,8,0,0,8,0,0,/boundary/195272,Zimbabwe
