@@ -68,6 +68,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,36258803,0,0,"",World (default)
 2025-11-16T00:00:00.000Z,36268589,0,0,"",World (default)
 2025-11-17T00:00:00.000Z,36276672,0,0,"",World (default)
+2025-11-18T00:00:00.000Z,36286189,0,0,"",World (default)
 2024-01-01T00:00:00.000Z,13776,0,0,/boundary/303427,Afghanistan
 2024-02-01T00:00:00.000Z,13778,0,0,/boundary/303427,Afghanistan
 2024-03-01T00:00:00.000Z,13783,0,0,/boundary/303427,Afghanistan
@@ -137,6 +138,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,17669,0,0,/boundary/303427,Afghanistan
 2025-11-16T00:00:00.000Z,17669,0,0,/boundary/303427,Afghanistan
 2025-11-17T00:00:00.000Z,17669,0,0,/boundary/303427,Afghanistan
+2025-11-18T00:00:00.000Z,17669,0,0,/boundary/303427,Afghanistan
 2024-01-01T00:00:00.000Z,8789,0,0,/boundary/53292,Albania
 2024-02-01T00:00:00.000Z,8793,0,0,/boundary/53292,Albania
 2024-03-01T00:00:00.000Z,8869,0,0,/boundary/53292,Albania
@@ -206,6 +208,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,10097,0,0,/boundary/53292,Albania
 2025-11-16T00:00:00.000Z,10097,0,0,/boundary/53292,Albania
 2025-11-17T00:00:00.000Z,10097,0,0,/boundary/53292,Albania
+2025-11-18T00:00:00.000Z,10097,0,0,/boundary/53292,Albania
 2024-01-01T00:00:00.000Z,250525,0,0,/boundary/192756,Algeria
 2024-02-01T00:00:00.000Z,250540,0,0,/boundary/192756,Algeria
 2024-03-01T00:00:00.000Z,250562,0,0,/boundary/192756,Algeria
@@ -275,6 +278,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,261772,0,0,/boundary/192756,Algeria
 2025-11-16T00:00:00.000Z,261772,0,0,/boundary/192756,Algeria
 2025-11-17T00:00:00.000Z,261772,0,0,/boundary/192756,Algeria
+2025-11-18T00:00:00.000Z,261772,0,0,/boundary/192756,Algeria
 2024-01-01T00:00:00.000Z,234,0,0,/boundary/9407,Andorra
 2024-02-01T00:00:00.000Z,234,0,0,/boundary/9407,Andorra
 2024-03-01T00:00:00.000Z,236,0,0,/boundary/9407,Andorra
@@ -344,6 +348,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,298,0,0,/boundary/9407,Andorra
 2025-11-16T00:00:00.000Z,298,0,0,/boundary/9407,Andorra
 2025-11-17T00:00:00.000Z,298,0,0,/boundary/9407,Andorra
+2025-11-18T00:00:00.000Z,298,0,0,/boundary/9407,Andorra
 2024-01-01T00:00:00.000Z,17331,0,0,/boundary/195267,Angola
 2024-02-01T00:00:00.000Z,17331,0,0,/boundary/195267,Angola
 2024-03-01T00:00:00.000Z,17905,0,0,/boundary/195267,Angola
@@ -413,6 +418,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,18098,0,0,/boundary/195267,Angola
 2025-11-16T00:00:00.000Z,18098,0,0,/boundary/195267,Angola
 2025-11-17T00:00:00.000Z,18098,0,0,/boundary/195267,Angola
+2025-11-18T00:00:00.000Z,18098,0,0,/boundary/195267,Angola
 2024-01-01T00:00:00.000Z,26,0,0,/boundary/536900,Antigua and Barbuda
 2024-02-01T00:00:00.000Z,26,0,0,/boundary/536900,Antigua and Barbuda
 2024-03-01T00:00:00.000Z,26,0,0,/boundary/536900,Antigua and Barbuda
@@ -482,6 +488,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,204,0,0,/boundary/536900,Antigua and Barbuda
 2025-11-16T00:00:00.000Z,204,0,0,/boundary/536900,Antigua and Barbuda
 2025-11-17T00:00:00.000Z,204,0,0,/boundary/536900,Antigua and Barbuda
+2025-11-18T00:00:00.000Z,204,0,0,/boundary/536900,Antigua and Barbuda
 2024-01-01T00:00:00.000Z,244500,0,0,/boundary/286393,Argentina
 2024-02-01T00:00:00.000Z,244764,0,0,/boundary/286393,Argentina
 2024-03-01T00:00:00.000Z,245135,0,0,/boundary/286393,Argentina
@@ -551,6 +558,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,264290,0,0,/boundary/286393,Argentina
 2025-11-16T00:00:00.000Z,264309,0,0,/boundary/286393,Argentina
 2025-11-17T00:00:00.000Z,264337,0,0,/boundary/286393,Argentina
+2025-11-18T00:00:00.000Z,264337,0,0,/boundary/286393,Argentina
 2024-01-01T00:00:00.000Z,23939,0,0,/boundary/364066,Armenia
 2024-02-01T00:00:00.000Z,23940,0,0,/boundary/364066,Armenia
 2024-03-01T00:00:00.000Z,23964,0,0,/boundary/364066,Armenia
@@ -620,6 +628,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,24363,0,0,/boundary/364066,Armenia
 2025-11-16T00:00:00.000Z,24363,0,0,/boundary/364066,Armenia
 2025-11-17T00:00:00.000Z,24363,0,0,/boundary/364066,Armenia
+2025-11-18T00:00:00.000Z,24363,0,0,/boundary/364066,Armenia
 2024-01-01T00:00:00.000Z,423154,0,0,/boundary/80500,Australia
 2024-02-01T00:00:00.000Z,426419,0,0,/boundary/80500,Australia
 2024-03-01T00:00:00.000Z,427420,0,0,/boundary/80500,Australia
@@ -689,6 +698,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,621954,0,0,/boundary/80500,Australia
 2025-11-16T00:00:00.000Z,621956,0,0,/boundary/80500,Australia
 2025-11-17T00:00:00.000Z,622713,0,0,/boundary/80500,Australia
+2025-11-18T00:00:00.000Z,622715,0,0,/boundary/80500,Australia
 2024-01-01T00:00:00.000Z,325167,0,0,/boundary/16239,Austria
 2024-02-01T00:00:00.000Z,325575,0,0,/boundary/16239,Austria
 2024-03-01T00:00:00.000Z,326418,0,0,/boundary/16239,Austria
@@ -758,6 +768,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,344080,0,0,/boundary/16239,Austria
 2025-11-16T00:00:00.000Z,344081,0,0,/boundary/16239,Austria
 2025-11-17T00:00:00.000Z,344081,0,0,/boundary/16239,Austria
+2025-11-18T00:00:00.000Z,344081,0,0,/boundary/16239,Austria
 2024-01-01T00:00:00.000Z,38207,0,0,/boundary/364110,Azerbaijan
 2024-02-01T00:00:00.000Z,38208,0,0,/boundary/364110,Azerbaijan
 2024-03-01T00:00:00.000Z,38602,0,0,/boundary/364110,Azerbaijan
@@ -827,6 +838,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,44168,0,0,/boundary/364110,Azerbaijan
 2025-11-16T00:00:00.000Z,44168,0,0,/boundary/364110,Azerbaijan
 2025-11-17T00:00:00.000Z,44168,0,0,/boundary/364110,Azerbaijan
+2025-11-18T00:00:00.000Z,44168,0,0,/boundary/364110,Azerbaijan
 2024-12-01T00:00:00.000Z,57,0,0,/boundary/378734,Bahrain
 2025-01-01T00:00:00.000Z,57,0,0,/boundary/378734,Bahrain
 2025-02-01T00:00:00.000Z,57,0,0,/boundary/378734,Bahrain
@@ -885,6 +897,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,87,0,0,/boundary/378734,Bahrain
 2025-11-16T00:00:00.000Z,87,0,0,/boundary/378734,Bahrain
 2025-11-17T00:00:00.000Z,87,0,0,/boundary/378734,Bahrain
+2025-11-18T00:00:00.000Z,87,0,0,/boundary/378734,Bahrain
 2024-01-01T00:00:00.000Z,23070,0,0,/boundary/184640,Bangladesh
 2024-02-01T00:00:00.000Z,23070,0,0,/boundary/184640,Bangladesh
 2024-03-01T00:00:00.000Z,23070,0,0,/boundary/184640,Bangladesh
@@ -954,6 +967,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,30052,0,0,/boundary/184640,Bangladesh
 2025-11-16T00:00:00.000Z,30052,0,0,/boundary/184640,Bangladesh
 2025-11-17T00:00:00.000Z,30054,0,0,/boundary/184640,Bangladesh
+2025-11-18T00:00:00.000Z,30055,0,0,/boundary/184640,Bangladesh
 2024-01-01T00:00:00.000Z,6,0,0,/boundary/547511,Barbados
 2024-02-01T00:00:00.000Z,6,0,0,/boundary/547511,Barbados
 2024-03-01T00:00:00.000Z,6,0,0,/boundary/547511,Barbados
@@ -1023,6 +1037,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,6,0,0,/boundary/547511,Barbados
 2025-11-16T00:00:00.000Z,6,0,0,/boundary/547511,Barbados
 2025-11-17T00:00:00.000Z,6,0,0,/boundary/547511,Barbados
+2025-11-18T00:00:00.000Z,6,0,0,/boundary/547511,Barbados
 2024-01-01T00:00:00.000Z,482052,0,0,/boundary/59065,Belarus
 2024-02-01T00:00:00.000Z,484442,0,0,/boundary/59065,Belarus
 2024-03-01T00:00:00.000Z,489263,0,0,/boundary/59065,Belarus
@@ -1092,6 +1107,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,568146,0,0,/boundary/59065,Belarus
 2025-11-16T00:00:00.000Z,568357,0,0,/boundary/59065,Belarus
 2025-11-17T00:00:00.000Z,568398,0,0,/boundary/59065,Belarus
+2025-11-18T00:00:00.000Z,568407,0,0,/boundary/59065,Belarus
 2024-01-01T00:00:00.000Z,46880,0,0,/boundary/52411,Belgium
 2024-02-01T00:00:00.000Z,47831,0,0,/boundary/52411,Belgium
 2024-03-01T00:00:00.000Z,48192,0,0,/boundary/52411,Belgium
@@ -1161,6 +1177,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,52823,0,0,/boundary/52411,Belgium
 2025-11-16T00:00:00.000Z,52873,0,0,/boundary/52411,Belgium
 2025-11-17T00:00:00.000Z,52890,0,0,/boundary/52411,Belgium
+2025-11-18T00:00:00.000Z,52890,0,0,/boundary/52411,Belgium
 2024-01-01T00:00:00.000Z,3408,0,0,/boundary/287827,Belize
 2024-02-01T00:00:00.000Z,4509,0,0,/boundary/287827,Belize
 2024-03-01T00:00:00.000Z,4649,0,0,/boundary/287827,Belize
@@ -1230,6 +1247,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,4662,0,0,/boundary/287827,Belize
 2025-11-16T00:00:00.000Z,4662,0,0,/boundary/287827,Belize
 2025-11-17T00:00:00.000Z,4662,0,0,/boundary/287827,Belize
+2025-11-18T00:00:00.000Z,4662,0,0,/boundary/287827,Belize
 2024-01-01T00:00:00.000Z,3983,0,0,/boundary/192784,Benin
 2024-02-01T00:00:00.000Z,4002,0,0,/boundary/192784,Benin
 2024-03-01T00:00:00.000Z,4002,0,0,/boundary/192784,Benin
@@ -1299,6 +1317,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,4627,0,0,/boundary/192784,Benin
 2025-11-16T00:00:00.000Z,4627,0,0,/boundary/192784,Benin
 2025-11-17T00:00:00.000Z,4627,0,0,/boundary/192784,Benin
+2025-11-18T00:00:00.000Z,4627,0,0,/boundary/192784,Benin
 2024-01-01T00:00:00.000Z,3063,0,0,/boundary/184629,Bhutan
 2024-02-01T00:00:00.000Z,3063,0,0,/boundary/184629,Bhutan
 2024-03-01T00:00:00.000Z,3063,0,0,/boundary/184629,Bhutan
@@ -1368,6 +1387,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,4435,0,0,/boundary/184629,Bhutan
 2025-11-16T00:00:00.000Z,4435,0,0,/boundary/184629,Bhutan
 2025-11-17T00:00:00.000Z,4435,0,0,/boundary/184629,Bhutan
+2025-11-18T00:00:00.000Z,4435,0,0,/boundary/184629,Bhutan
 2024-01-01T00:00:00.000Z,16475,0,0,/boundary/252645,Bolivia
 2024-02-01T00:00:00.000Z,16521,0,0,/boundary/252645,Bolivia
 2024-03-01T00:00:00.000Z,16558,0,0,/boundary/252645,Bolivia
@@ -1437,6 +1457,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,22689,0,0,/boundary/252645,Bolivia
 2025-11-16T00:00:00.000Z,22689,0,0,/boundary/252645,Bolivia
 2025-11-17T00:00:00.000Z,22689,0,0,/boundary/252645,Bolivia
+2025-11-18T00:00:00.000Z,22689,0,0,/boundary/252645,Bolivia
 2024-01-01T00:00:00.000Z,16240,0,0,/boundary/2528142,Bosnia and Herzegovina
 2024-02-01T00:00:00.000Z,16240,0,0,/boundary/2528142,Bosnia and Herzegovina
 2024-03-01T00:00:00.000Z,16342,0,0,/boundary/2528142,Bosnia and Herzegovina
@@ -1506,6 +1527,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,23231,0,0,/boundary/2528142,Bosnia and Herzegovina
 2025-11-16T00:00:00.000Z,23231,0,0,/boundary/2528142,Bosnia and Herzegovina
 2025-11-17T00:00:00.000Z,23236,0,0,/boundary/2528142,Bosnia and Herzegovina
+2025-11-18T00:00:00.000Z,23249,0,0,/boundary/2528142,Bosnia and Herzegovina
 2024-01-01T00:00:00.000Z,21537,0,0,/boundary/1889339,Botswana
 2024-02-01T00:00:00.000Z,21537,0,0,/boundary/1889339,Botswana
 2024-03-01T00:00:00.000Z,21537,0,0,/boundary/1889339,Botswana
@@ -1575,6 +1597,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,21701,0,0,/boundary/1889339,Botswana
 2025-11-16T00:00:00.000Z,21701,0,0,/boundary/1889339,Botswana
 2025-11-17T00:00:00.000Z,21701,0,0,/boundary/1889339,Botswana
+2025-11-18T00:00:00.000Z,21701,0,0,/boundary/1889339,Botswana
 2024-01-01T00:00:00.000Z,919565,0,0,/boundary/59470,Brazil
 2024-02-01T00:00:00.000Z,920679,0,0,/boundary/59470,Brazil
 2024-03-01T00:00:00.000Z,922325,0,0,/boundary/59470,Brazil
@@ -1644,6 +1667,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,962654,0,0,/boundary/59470,Brazil
 2025-11-16T00:00:00.000Z,962687,0,0,/boundary/59470,Brazil
 2025-11-17T00:00:00.000Z,962687,0,0,/boundary/59470,Brazil
+2025-11-18T00:00:00.000Z,962687,0,0,/boundary/59470,Brazil
 2024-01-01T00:00:00.000Z,1461,0,0,/boundary/2103120,Brunei
 2024-02-01T00:00:00.000Z,1461,0,0,/boundary/2103120,Brunei
 2024-03-01T00:00:00.000Z,1461,0,0,/boundary/2103120,Brunei
@@ -1713,6 +1737,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,1461,0,0,/boundary/2103120,Brunei
 2025-11-16T00:00:00.000Z,1461,0,0,/boundary/2103120,Brunei
 2025-11-17T00:00:00.000Z,1461,0,0,/boundary/2103120,Brunei
+2025-11-18T00:00:00.000Z,1461,0,0,/boundary/2103120,Brunei
 2024-01-01T00:00:00.000Z,89819,0,0,/boundary/186382,Bulgaria
 2024-02-01T00:00:00.000Z,90276,0,0,/boundary/186382,Bulgaria
 2024-03-01T00:00:00.000Z,90792,0,0,/boundary/186382,Bulgaria
@@ -1782,6 +1807,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,103014,0,0,/boundary/186382,Bulgaria
 2025-11-16T00:00:00.000Z,103014,0,0,/boundary/186382,Bulgaria
 2025-11-17T00:00:00.000Z,103014,0,0,/boundary/186382,Bulgaria
+2025-11-18T00:00:00.000Z,103014,0,0,/boundary/186382,Bulgaria
 2024-01-01T00:00:00.000Z,8186,0,0,/boundary/192783,Burkina Faso
 2024-02-01T00:00:00.000Z,8193,0,0,/boundary/192783,Burkina Faso
 2024-03-01T00:00:00.000Z,8343,0,0,/boundary/192783,Burkina Faso
@@ -1851,6 +1877,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,10712,0,0,/boundary/192783,Burkina Faso
 2025-11-16T00:00:00.000Z,10712,0,0,/boundary/192783,Burkina Faso
 2025-11-17T00:00:00.000Z,10712,0,0,/boundary/192783,Burkina Faso
+2025-11-18T00:00:00.000Z,10712,0,0,/boundary/192783,Burkina Faso
 2024-01-01T00:00:00.000Z,1040,0,0,/boundary/195269,Burundi
 2024-02-01T00:00:00.000Z,1040,0,0,/boundary/195269,Burundi
 2024-03-01T00:00:00.000Z,1047,0,0,/boundary/195269,Burundi
@@ -1920,6 +1947,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,1265,0,0,/boundary/195269,Burundi
 2025-11-16T00:00:00.000Z,1265,0,0,/boundary/195269,Burundi
 2025-11-17T00:00:00.000Z,1265,0,0,/boundary/195269,Burundi
+2025-11-18T00:00:00.000Z,1265,0,0,/boundary/195269,Burundi
 2024-01-01T00:00:00.000Z,4334,0,0,/boundary/49898,Cambodia
 2024-02-01T00:00:00.000Z,4334,0,0,/boundary/49898,Cambodia
 2024-03-01T00:00:00.000Z,4334,0,0,/boundary/49898,Cambodia
@@ -1989,6 +2017,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,10018,0,0,/boundary/49898,Cambodia
 2025-11-16T00:00:00.000Z,10018,0,0,/boundary/49898,Cambodia
 2025-11-17T00:00:00.000Z,10018,0,0,/boundary/49898,Cambodia
+2025-11-18T00:00:00.000Z,10018,0,0,/boundary/49898,Cambodia
 2024-01-01T00:00:00.000Z,44890,0,0,/boundary/192830,Cameroon
 2024-02-01T00:00:00.000Z,44891,0,0,/boundary/192830,Cameroon
 2024-03-01T00:00:00.000Z,44893,0,0,/boundary/192830,Cameroon
@@ -2058,6 +2087,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,46361,0,0,/boundary/192830,Cameroon
 2025-11-16T00:00:00.000Z,46368,0,0,/boundary/192830,Cameroon
 2025-11-17T00:00:00.000Z,46368,0,0,/boundary/192830,Cameroon
+2025-11-18T00:00:00.000Z,46368,0,0,/boundary/192830,Cameroon
 2024-01-01T00:00:00.000Z,952471,0,0,/boundary/1428125,Canada
 2024-02-01T00:00:00.000Z,966330,0,0,/boundary/1428125,Canada
 2024-03-01T00:00:00.000Z,989986,0,0,/boundary/1428125,Canada
@@ -2127,6 +2157,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,1249161,0,0,/boundary/1428125,Canada
 2025-11-16T00:00:00.000Z,1249471,0,0,/boundary/1428125,Canada
 2025-11-17T00:00:00.000Z,1249546,0,0,/boundary/1428125,Canada
+2025-11-18T00:00:00.000Z,1249767,0,0,/boundary/1428125,Canada
 2024-01-01T00:00:00.000Z,103,0,0,/boundary/535774,Cape Verde
 2024-02-01T00:00:00.000Z,103,0,0,/boundary/535774,Cape Verde
 2024-03-01T00:00:00.000Z,103,0,0,/boundary/535774,Cape Verde
@@ -2196,6 +2227,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,103,0,0,/boundary/535774,Cape Verde
 2025-11-16T00:00:00.000Z,103,0,0,/boundary/535774,Cape Verde
 2025-11-17T00:00:00.000Z,103,0,0,/boundary/535774,Cape Verde
+2025-11-18T00:00:00.000Z,103,0,0,/boundary/535774,Cape Verde
 2024-01-01T00:00:00.000Z,264,0,0,/boundary/192790,Central African Republic
 2024-02-01T00:00:00.000Z,264,0,0,/boundary/192790,Central African Republic
 2024-03-01T00:00:00.000Z,264,0,0,/boundary/192790,Central African Republic
@@ -2265,6 +2297,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,287,0,0,/boundary/192790,Central African Republic
 2025-11-16T00:00:00.000Z,287,0,0,/boundary/192790,Central African Republic
 2025-11-17T00:00:00.000Z,287,0,0,/boundary/192790,Central African Republic
+2025-11-18T00:00:00.000Z,287,0,0,/boundary/192790,Central African Republic
 2024-01-01T00:00:00.000Z,1088,0,0,/boundary/2361304,Chad
 2024-02-01T00:00:00.000Z,1089,0,0,/boundary/2361304,Chad
 2024-03-01T00:00:00.000Z,1089,0,0,/boundary/2361304,Chad
@@ -2334,6 +2367,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,2265,0,0,/boundary/2361304,Chad
 2025-11-16T00:00:00.000Z,2265,0,0,/boundary/2361304,Chad
 2025-11-17T00:00:00.000Z,2265,0,0,/boundary/2361304,Chad
+2025-11-18T00:00:00.000Z,2265,0,0,/boundary/2361304,Chad
 2024-01-01T00:00:00.000Z,110249,0,0,/boundary/167454,Chile
 2024-02-01T00:00:00.000Z,110401,0,0,/boundary/167454,Chile
 2024-03-01T00:00:00.000Z,111232,0,0,/boundary/167454,Chile
@@ -2403,6 +2437,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,118890,0,0,/boundary/167454,Chile
 2025-11-16T00:00:00.000Z,118892,0,0,/boundary/167454,Chile
 2025-11-17T00:00:00.000Z,118892,0,0,/boundary/167454,Chile
+2025-11-18T00:00:00.000Z,118895,0,0,/boundary/167454,Chile
 2024-01-01T00:00:00.000Z,32180,0,0,/boundary/120027,Colombia
 2024-02-01T00:00:00.000Z,32205,0,0,/boundary/120027,Colombia
 2024-03-01T00:00:00.000Z,32242,0,0,/boundary/120027,Colombia
@@ -2472,6 +2507,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,51093,0,0,/boundary/120027,Colombia
 2025-11-16T00:00:00.000Z,51093,0,0,/boundary/120027,Colombia
 2025-11-17T00:00:00.000Z,51093,0,0,/boundary/120027,Colombia
+2025-11-18T00:00:00.000Z,51093,0,0,/boundary/120027,Colombia
 2024-01-01T00:00:00.000Z,6830,0,0,/boundary/287667,Costa Rica
 2024-02-01T00:00:00.000Z,6832,0,0,/boundary/287667,Costa Rica
 2024-03-01T00:00:00.000Z,6941,0,0,/boundary/287667,Costa Rica
@@ -2541,6 +2577,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,12436,0,0,/boundary/287667,Costa Rica
 2025-11-16T00:00:00.000Z,12436,0,0,/boundary/287667,Costa Rica
 2025-11-17T00:00:00.000Z,12436,0,0,/boundary/287667,Costa Rica
+2025-11-18T00:00:00.000Z,12436,0,0,/boundary/287667,Costa Rica
 2024-01-01T00:00:00.000Z,30718,0,0,/boundary/214885,Croatia
 2024-02-01T00:00:00.000Z,30819,0,0,/boundary/214885,Croatia
 2024-03-01T00:00:00.000Z,30882,0,0,/boundary/214885,Croatia
@@ -2610,6 +2647,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,33377,0,0,/boundary/214885,Croatia
 2025-11-16T00:00:00.000Z,33377,0,0,/boundary/214885,Croatia
 2025-11-17T00:00:00.000Z,33377,0,0,/boundary/214885,Croatia
+2025-11-18T00:00:00.000Z,33377,0,0,/boundary/214885,Croatia
 2024-01-01T00:00:00.000Z,24826,0,0,/boundary/307833,Cuba
 2024-02-01T00:00:00.000Z,24843,0,0,/boundary/307833,Cuba
 2024-03-01T00:00:00.000Z,24844,0,0,/boundary/307833,Cuba
@@ -2679,6 +2717,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,25648,0,0,/boundary/307833,Cuba
 2025-11-16T00:00:00.000Z,25648,0,0,/boundary/307833,Cuba
 2025-11-17T00:00:00.000Z,25648,0,0,/boundary/307833,Cuba
+2025-11-18T00:00:00.000Z,25648,0,0,/boundary/307833,Cuba
 2024-01-01T00:00:00.000Z,563742,0,0,/boundary/51684,Czech Republic
 2024-02-01T00:00:00.000Z,567401,0,0,/boundary/51684,Czech Republic
 2024-03-01T00:00:00.000Z,572498,0,0,/boundary/51684,Czech Republic
@@ -2748,6 +2787,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,678896,0,0,/boundary/51684,Czech Republic
 2025-11-16T00:00:00.000Z,678932,0,0,/boundary/51684,Czech Republic
 2025-11-17T00:00:00.000Z,678947,0,0,/boundary/51684,Czech Republic
+2025-11-18T00:00:00.000Z,679093,0,0,/boundary/51684,Czech Republic
 2024-01-01T00:00:00.000Z,22045,0,0,/boundary/192795,Democratic Republic of the Congo
 2024-02-01T00:00:00.000Z,22286,0,0,/boundary/192795,Democratic Republic of the Congo
 2024-03-01T00:00:00.000Z,22286,0,0,/boundary/192795,Democratic Republic of the Congo
@@ -2817,6 +2857,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,24009,0,0,/boundary/192795,Democratic Republic of the Congo
 2025-11-16T00:00:00.000Z,24009,0,0,/boundary/192795,Democratic Republic of the Congo
 2025-11-17T00:00:00.000Z,24009,0,0,/boundary/192795,Democratic Republic of the Congo
+2025-11-18T00:00:00.000Z,24009,0,0,/boundary/192795,Democratic Republic of the Congo
 2024-01-01T00:00:00.000Z,860,0,0,/boundary/192801,Djibouti
 2024-02-01T00:00:00.000Z,860,0,0,/boundary/192801,Djibouti
 2024-03-01T00:00:00.000Z,860,0,0,/boundary/192801,Djibouti
@@ -2886,6 +2927,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,973,0,0,/boundary/192801,Djibouti
 2025-11-16T00:00:00.000Z,973,0,0,/boundary/192801,Djibouti
 2025-11-17T00:00:00.000Z,973,0,0,/boundary/192801,Djibouti
+2025-11-18T00:00:00.000Z,973,0,0,/boundary/192801,Djibouti
 2024-01-01T00:00:00.000Z,8631,0,0,/boundary/307828,Dominican Republic
 2024-02-01T00:00:00.000Z,8631,0,0,/boundary/307828,Dominican Republic
 2024-03-01T00:00:00.000Z,8634,0,0,/boundary/307828,Dominican Republic
@@ -2955,6 +2997,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,9719,0,0,/boundary/307828,Dominican Republic
 2025-11-16T00:00:00.000Z,9719,0,0,/boundary/307828,Dominican Republic
 2025-11-17T00:00:00.000Z,9719,0,0,/boundary/307828,Dominican Republic
+2025-11-18T00:00:00.000Z,9719,0,0,/boundary/307828,Dominican Republic
 2024-01-01T00:00:00.000Z,1375,0,0,/boundary/305142,East Timor
 2024-02-01T00:00:00.000Z,1376,0,0,/boundary/305142,East Timor
 2024-03-01T00:00:00.000Z,1376,0,0,/boundary/305142,East Timor
@@ -3024,6 +3067,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,1387,0,0,/boundary/305142,East Timor
 2025-11-16T00:00:00.000Z,1387,0,0,/boundary/305142,East Timor
 2025-11-17T00:00:00.000Z,1387,0,0,/boundary/305142,East Timor
+2025-11-18T00:00:00.000Z,1387,0,0,/boundary/305142,East Timor
 2024-01-01T00:00:00.000Z,27396,0,0,/boundary/108089,Ecuador
 2024-02-01T00:00:00.000Z,27502,0,0,/boundary/108089,Ecuador
 2024-03-01T00:00:00.000Z,27502,0,0,/boundary/108089,Ecuador
@@ -3093,6 +3137,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,36480,0,0,/boundary/108089,Ecuador
 2025-11-16T00:00:00.000Z,36480,0,0,/boundary/108089,Ecuador
 2025-11-17T00:00:00.000Z,36480,0,0,/boundary/108089,Ecuador
+2025-11-18T00:00:00.000Z,36480,0,0,/boundary/108089,Ecuador
 2024-01-01T00:00:00.000Z,96623,0,0,/boundary/1473947,Egypt
 2024-02-01T00:00:00.000Z,96690,0,0,/boundary/1473947,Egypt
 2024-03-01T00:00:00.000Z,96690,0,0,/boundary/1473947,Egypt
@@ -3162,6 +3207,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,104606,0,0,/boundary/1473947,Egypt
 2025-11-16T00:00:00.000Z,104606,0,0,/boundary/1473947,Egypt
 2025-11-17T00:00:00.000Z,104606,0,0,/boundary/1473947,Egypt
+2025-11-18T00:00:00.000Z,104606,0,0,/boundary/1473947,Egypt
 2024-01-01T00:00:00.000Z,3675,0,0,/boundary/1520612,El Salvador
 2024-02-01T00:00:00.000Z,3747,0,0,/boundary/1520612,El Salvador
 2024-03-01T00:00:00.000Z,3923,0,0,/boundary/1520612,El Salvador
@@ -3231,6 +3277,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,3970,0,0,/boundary/1520612,El Salvador
 2025-11-16T00:00:00.000Z,3970,0,0,/boundary/1520612,El Salvador
 2025-11-17T00:00:00.000Z,3970,0,0,/boundary/1520612,El Salvador
+2025-11-18T00:00:00.000Z,3970,0,0,/boundary/1520612,El Salvador
 2024-01-01T00:00:00.000Z,2750,0,0,/boundary/192791,Equatorial Guinea
 2024-02-01T00:00:00.000Z,2750,0,0,/boundary/192791,Equatorial Guinea
 2024-03-01T00:00:00.000Z,2751,0,0,/boundary/192791,Equatorial Guinea
@@ -3300,6 +3347,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,3017,0,0,/boundary/192791,Equatorial Guinea
 2025-11-16T00:00:00.000Z,3017,0,0,/boundary/192791,Equatorial Guinea
 2025-11-17T00:00:00.000Z,3017,0,0,/boundary/192791,Equatorial Guinea
+2025-11-18T00:00:00.000Z,3017,0,0,/boundary/192791,Equatorial Guinea
 2024-01-01T00:00:00.000Z,709,0,0,/boundary/296961,Eritrea
 2024-02-01T00:00:00.000Z,750,0,0,/boundary/296961,Eritrea
 2024-03-01T00:00:00.000Z,750,0,0,/boundary/296961,Eritrea
@@ -3369,6 +3417,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,816,0,0,/boundary/296961,Eritrea
 2025-11-16T00:00:00.000Z,816,0,0,/boundary/296961,Eritrea
 2025-11-17T00:00:00.000Z,816,0,0,/boundary/296961,Eritrea
+2025-11-18T00:00:00.000Z,816,0,0,/boundary/296961,Eritrea
 2024-01-01T00:00:00.000Z,54082,0,0,/boundary/79510,Estonia
 2024-02-01T00:00:00.000Z,54453,0,0,/boundary/79510,Estonia
 2024-03-01T00:00:00.000Z,55984,0,0,/boundary/79510,Estonia
@@ -3438,6 +3487,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,65986,0,0,/boundary/79510,Estonia
 2025-11-16T00:00:00.000Z,66005,0,0,/boundary/79510,Estonia
 2025-11-17T00:00:00.000Z,66207,0,0,/boundary/79510,Estonia
+2025-11-18T00:00:00.000Z,66207,0,0,/boundary/79510,Estonia
 2024-01-01T00:00:00.000Z,2764,0,0,/boundary/88210,Eswatini
 2024-02-01T00:00:00.000Z,2764,0,0,/boundary/88210,Eswatini
 2024-03-01T00:00:00.000Z,2764,0,0,/boundary/88210,Eswatini
@@ -3507,6 +3557,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,2765,0,0,/boundary/88210,Eswatini
 2025-11-16T00:00:00.000Z,2765,0,0,/boundary/88210,Eswatini
 2025-11-17T00:00:00.000Z,2765,0,0,/boundary/88210,Eswatini
+2025-11-18T00:00:00.000Z,2765,0,0,/boundary/88210,Eswatini
 2024-01-01T00:00:00.000Z,43567,0,0,/boundary/192800,Ethiopia
 2024-02-01T00:00:00.000Z,43571,0,0,/boundary/192800,Ethiopia
 2024-03-01T00:00:00.000Z,43572,0,0,/boundary/192800,Ethiopia
@@ -3576,6 +3627,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,47600,0,0,/boundary/192800,Ethiopia
 2025-11-16T00:00:00.000Z,47600,0,0,/boundary/192800,Ethiopia
 2025-11-17T00:00:00.000Z,47600,0,0,/boundary/192800,Ethiopia
+2025-11-18T00:00:00.000Z,47600,0,0,/boundary/192800,Ethiopia
 2024-01-01T00:00:00.000Z,74,0,0,/boundary/571802,Federated States of Micronesia
 2024-02-01T00:00:00.000Z,74,0,0,/boundary/571802,Federated States of Micronesia
 2024-03-01T00:00:00.000Z,74,0,0,/boundary/571802,Federated States of Micronesia
@@ -3645,6 +3697,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,74,0,0,/boundary/571802,Federated States of Micronesia
 2025-11-16T00:00:00.000Z,74,0,0,/boundary/571802,Federated States of Micronesia
 2025-11-17T00:00:00.000Z,74,0,0,/boundary/571802,Federated States of Micronesia
+2025-11-18T00:00:00.000Z,74,0,0,/boundary/571802,Federated States of Micronesia
 2024-01-01T00:00:00.000Z,420,0,0,/boundary/571747,Fiji
 2024-02-01T00:00:00.000Z,420,0,0,/boundary/571747,Fiji
 2024-03-01T00:00:00.000Z,420,0,0,/boundary/571747,Fiji
@@ -3714,6 +3767,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,466,0,0,/boundary/571747,Fiji
 2025-11-16T00:00:00.000Z,466,0,0,/boundary/571747,Fiji
 2025-11-17T00:00:00.000Z,466,0,0,/boundary/571747,Fiji
+2025-11-18T00:00:00.000Z,466,0,0,/boundary/571747,Fiji
 2024-01-01T00:00:00.000Z,162890,0,0,/boundary/54224,Finland
 2024-02-01T00:00:00.000Z,164646,0,0,/boundary/54224,Finland
 2024-03-01T00:00:00.000Z,166414,0,0,/boundary/54224,Finland
@@ -3783,6 +3837,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,184621,0,0,/boundary/54224,Finland
 2025-11-16T00:00:00.000Z,184621,0,0,/boundary/54224,Finland
 2025-11-17T00:00:00.000Z,184717,0,0,/boundary/54224,Finland
+2025-11-18T00:00:00.000Z,184745,0,0,/boundary/54224,Finland
 2024-01-01T00:00:00.000Z,1359810,0,0,/boundary/2202162,France
 2024-02-01T00:00:00.000Z,1376609,0,0,/boundary/2202162,France
 2024-03-01T00:00:00.000Z,1390298,0,0,/boundary/2202162,France
@@ -3852,6 +3907,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,1649483,0,0,/boundary/2202162,France
 2025-11-16T00:00:00.000Z,1650393,0,0,/boundary/2202162,France
 2025-11-17T00:00:00.000Z,1651089,0,0,/boundary/2202162,France
+2025-11-18T00:00:00.000Z,1651961,0,0,/boundary/2202162,France
 2024-01-01T00:00:00.000Z,995,0,0,/boundary/192793,Gabon
 2024-02-01T00:00:00.000Z,995,0,0,/boundary/192793,Gabon
 2024-03-01T00:00:00.000Z,995,0,0,/boundary/192793,Gabon
@@ -3921,6 +3977,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,1090,0,0,/boundary/192793,Gabon
 2025-11-16T00:00:00.000Z,1090,0,0,/boundary/192793,Gabon
 2025-11-17T00:00:00.000Z,1090,0,0,/boundary/192793,Gabon
+2025-11-18T00:00:00.000Z,1090,0,0,/boundary/192793,Gabon
 2024-01-01T00:00:00.000Z,20893,0,0,/boundary/28699,Georgia
 2024-02-01T00:00:00.000Z,20929,0,0,/boundary/28699,Georgia
 2024-03-01T00:00:00.000Z,20956,0,0,/boundary/28699,Georgia
@@ -3990,6 +4047,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,29357,0,0,/boundary/28699,Georgia
 2025-11-16T00:00:00.000Z,29357,0,0,/boundary/28699,Georgia
 2025-11-17T00:00:00.000Z,29357,0,0,/boundary/28699,Georgia
+2025-11-18T00:00:00.000Z,29358,0,0,/boundary/28699,Georgia
 2024-01-01T00:00:00.000Z,950336,0,0,/boundary/51477,Germany
 2024-02-01T00:00:00.000Z,951791,0,0,/boundary/51477,Germany
 2024-03-01T00:00:00.000Z,952671,0,0,/boundary/51477,Germany
@@ -4059,6 +4117,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,972636,0,0,/boundary/51477,Germany
 2025-11-16T00:00:00.000Z,972615,0,0,/boundary/51477,Germany
 2025-11-17T00:00:00.000Z,972628,0,0,/boundary/51477,Germany
+2025-11-18T00:00:00.000Z,972519,0,0,/boundary/51477,Germany
 2024-01-01T00:00:00.000Z,13137,0,0,/boundary/192781,Ghana
 2024-02-01T00:00:00.000Z,13302,0,0,/boundary/192781,Ghana
 2024-03-01T00:00:00.000Z,13433,0,0,/boundary/192781,Ghana
@@ -4128,6 +4187,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,14987,0,0,/boundary/192781,Ghana
 2025-11-16T00:00:00.000Z,14987,0,0,/boundary/192781,Ghana
 2025-11-17T00:00:00.000Z,14987,0,0,/boundary/192781,Ghana
+2025-11-18T00:00:00.000Z,14987,0,0,/boundary/192781,Ghana
 2024-01-01T00:00:00.000Z,36664,0,0,/boundary/192307,Greece
 2024-02-01T00:00:00.000Z,36674,0,0,/boundary/192307,Greece
 2024-03-01T00:00:00.000Z,36746,0,0,/boundary/192307,Greece
@@ -4197,6 +4257,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,37495,0,0,/boundary/192307,Greece
 2025-11-16T00:00:00.000Z,37502,0,0,/boundary/192307,Greece
 2025-11-17T00:00:00.000Z,37502,0,0,/boundary/192307,Greece
+2025-11-18T00:00:00.000Z,37502,0,0,/boundary/192307,Greece
 2024-01-01T00:00:00.000Z,1,0,0,/boundary/550727,Grenada
 2024-02-01T00:00:00.000Z,1,0,0,/boundary/550727,Grenada
 2024-03-01T00:00:00.000Z,1,0,0,/boundary/550727,Grenada
@@ -4266,6 +4327,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,1,0,0,/boundary/550727,Grenada
 2025-11-16T00:00:00.000Z,1,0,0,/boundary/550727,Grenada
 2025-11-17T00:00:00.000Z,1,0,0,/boundary/550727,Grenada
+2025-11-18T00:00:00.000Z,1,0,0,/boundary/550727,Grenada
 2024-01-01T00:00:00.000Z,6308,0,0,/boundary/1521463,Guatemala
 2024-02-01T00:00:00.000Z,6308,0,0,/boundary/1521463,Guatemala
 2024-03-01T00:00:00.000Z,10342,0,0,/boundary/1521463,Guatemala
@@ -4335,6 +4397,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,10585,0,0,/boundary/1521463,Guatemala
 2025-11-16T00:00:00.000Z,10585,0,0,/boundary/1521463,Guatemala
 2025-11-17T00:00:00.000Z,10585,0,0,/boundary/1521463,Guatemala
+2025-11-18T00:00:00.000Z,10585,0,0,/boundary/1521463,Guatemala
 2024-01-01T00:00:00.000Z,2893,0,0,/boundary/192778,Guinea
 2024-02-01T00:00:00.000Z,2893,0,0,/boundary/192778,Guinea
 2024-03-01T00:00:00.000Z,2893,0,0,/boundary/192778,Guinea
@@ -4404,6 +4467,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,3211,0,0,/boundary/192778,Guinea
 2025-11-16T00:00:00.000Z,3211,0,0,/boundary/192778,Guinea
 2025-11-17T00:00:00.000Z,3211,0,0,/boundary/192778,Guinea
+2025-11-18T00:00:00.000Z,3211,0,0,/boundary/192778,Guinea
 2024-01-01T00:00:00.000Z,462,0,0,/boundary/192776,Guinea-Bissau
 2024-02-01T00:00:00.000Z,462,0,0,/boundary/192776,Guinea-Bissau
 2024-03-01T00:00:00.000Z,462,0,0,/boundary/192776,Guinea-Bissau
@@ -4473,6 +4537,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,462,0,0,/boundary/192776,Guinea-Bissau
 2025-11-16T00:00:00.000Z,462,0,0,/boundary/192776,Guinea-Bissau
 2025-11-17T00:00:00.000Z,462,0,0,/boundary/192776,Guinea-Bissau
+2025-11-18T00:00:00.000Z,462,0,0,/boundary/192776,Guinea-Bissau
 2024-01-01T00:00:00.000Z,28,0,0,/boundary/287083,Guyana
 2024-02-01T00:00:00.000Z,28,0,0,/boundary/287083,Guyana
 2024-03-01T00:00:00.000Z,28,0,0,/boundary/287083,Guyana
@@ -4542,6 +4607,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,64,0,0,/boundary/287083,Guyana
 2025-11-16T00:00:00.000Z,64,0,0,/boundary/287083,Guyana
 2025-11-17T00:00:00.000Z,64,0,0,/boundary/287083,Guyana
+2025-11-18T00:00:00.000Z,64,0,0,/boundary/287083,Guyana
 2024-01-01T00:00:00.000Z,2323,0,0,/boundary/307829,Haiti
 2024-02-01T00:00:00.000Z,2323,0,0,/boundary/307829,Haiti
 2024-03-01T00:00:00.000Z,2323,0,0,/boundary/307829,Haiti
@@ -4611,6 +4677,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,2329,0,0,/boundary/307829,Haiti
 2025-11-16T00:00:00.000Z,2329,0,0,/boundary/307829,Haiti
 2025-11-17T00:00:00.000Z,2329,0,0,/boundary/307829,Haiti
+2025-11-18T00:00:00.000Z,2329,0,0,/boundary/307829,Haiti
 2024-01-01T00:00:00.000Z,4610,0,0,/boundary/287670,Honduras
 2024-02-01T00:00:00.000Z,4610,0,0,/boundary/287670,Honduras
 2024-03-01T00:00:00.000Z,4694,0,0,/boundary/287670,Honduras
@@ -4680,6 +4747,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,4773,0,0,/boundary/287670,Honduras
 2025-11-16T00:00:00.000Z,4773,0,0,/boundary/287670,Honduras
 2025-11-17T00:00:00.000Z,4773,0,0,/boundary/287670,Honduras
+2025-11-18T00:00:00.000Z,4773,0,0,/boundary/287670,Honduras
 2024-01-01T00:00:00.000Z,378222,0,0,/boundary/21335,Hungary
 2024-02-01T00:00:00.000Z,380583,0,0,/boundary/21335,Hungary
 2024-03-01T00:00:00.000Z,380954,0,0,/boundary/21335,Hungary
@@ -4749,6 +4817,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,429739,0,0,/boundary/21335,Hungary
 2025-11-16T00:00:00.000Z,429815,0,0,/boundary/21335,Hungary
 2025-11-17T00:00:00.000Z,429822,0,0,/boundary/21335,Hungary
+2025-11-18T00:00:00.000Z,429880,0,0,/boundary/21335,Hungary
 2024-01-01T00:00:00.000Z,55197,0,0,/boundary/299133,Iceland
 2024-02-01T00:00:00.000Z,55197,0,0,/boundary/299133,Iceland
 2024-03-01T00:00:00.000Z,55192,0,0,/boundary/299133,Iceland
@@ -4818,6 +4887,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,55385,0,0,/boundary/299133,Iceland
 2025-11-16T00:00:00.000Z,55385,0,0,/boundary/299133,Iceland
 2025-11-17T00:00:00.000Z,55385,0,0,/boundary/299133,Iceland
+2025-11-18T00:00:00.000Z,55385,0,0,/boundary/299133,Iceland
 2024-01-01T00:00:00.000Z,1453615,0,0,/boundary/304716,India
 2024-02-01T00:00:00.000Z,1457268,0,0,/boundary/304716,India
 2024-03-01T00:00:00.000Z,1458960,0,0,/boundary/304716,India
@@ -4887,6 +4957,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,1578784,0,0,/boundary/304716,India
 2025-11-16T00:00:00.000Z,1578786,0,0,/boundary/304716,India
 2025-11-17T00:00:00.000Z,1578786,0,0,/boundary/304716,India
+2025-11-18T00:00:00.000Z,1578945,0,0,/boundary/304716,India
 2024-01-01T00:00:00.000Z,100345,0,0,/boundary/304751,Indonesia
 2024-02-01T00:00:00.000Z,100421,0,0,/boundary/304751,Indonesia
 2024-03-01T00:00:00.000Z,100689,0,0,/boundary/304751,Indonesia
@@ -4956,6 +5027,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,115343,0,0,/boundary/304751,Indonesia
 2025-11-16T00:00:00.000Z,115343,0,0,/boundary/304751,Indonesia
 2025-11-17T00:00:00.000Z,115345,0,0,/boundary/304751,Indonesia
+2025-11-18T00:00:00.000Z,115345,0,0,/boundary/304751,Indonesia
 2024-01-01T00:00:00.000Z,279633,0,0,/boundary/304938,Iran
 2024-02-01T00:00:00.000Z,280170,0,0,/boundary/304938,Iran
 2024-03-01T00:00:00.000Z,280654,0,0,/boundary/304938,Iran
@@ -5025,6 +5097,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,333030,0,0,/boundary/304938,Iran
 2025-11-16T00:00:00.000Z,333030,0,0,/boundary/304938,Iran
 2025-11-17T00:00:00.000Z,333030,0,0,/boundary/304938,Iran
+2025-11-18T00:00:00.000Z,333051,0,0,/boundary/304938,Iran
 2024-01-01T00:00:00.000Z,59977,0,0,/boundary/304934,Iraq
 2024-02-01T00:00:00.000Z,60135,0,0,/boundary/304934,Iraq
 2024-03-01T00:00:00.000Z,60140,0,0,/boundary/304934,Iraq
@@ -5094,6 +5167,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,71294,0,0,/boundary/304934,Iraq
 2025-11-16T00:00:00.000Z,71294,0,0,/boundary/304934,Iraq
 2025-11-17T00:00:00.000Z,71334,0,0,/boundary/304934,Iraq
+2025-11-18T00:00:00.000Z,71334,0,0,/boundary/304934,Iraq
 2024-01-01T00:00:00.000Z,24039,0,0,/boundary/1473946,Israel
 2024-02-01T00:00:00.000Z,24040,0,0,/boundary/1473946,Israel
 2024-03-01T00:00:00.000Z,24040,0,0,/boundary/1473946,Israel
@@ -5163,6 +5237,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,38093,0,0,/boundary/1473946,Israel
 2025-11-16T00:00:00.000Z,38150,0,0,/boundary/1473946,Israel
 2025-11-17T00:00:00.000Z,38150,0,0,/boundary/1473946,Israel
+2025-11-18T00:00:00.000Z,38150,0,0,/boundary/1473946,Israel
 2024-01-01T00:00:00.000Z,434759,0,0,/boundary/365331,Italy
 2024-02-01T00:00:00.000Z,439760,0,0,/boundary/365331,Italy
 2024-03-01T00:00:00.000Z,446980,0,0,/boundary/365331,Italy
@@ -5232,6 +5307,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,556760,0,0,/boundary/365331,Italy
 2025-11-16T00:00:00.000Z,556897,0,0,/boundary/365331,Italy
 2025-11-17T00:00:00.000Z,557264,0,0,/boundary/365331,Italy
+2025-11-18T00:00:00.000Z,557353,0,0,/boundary/365331,Italy
 2024-01-01T00:00:00.000Z,12284,0,0,/boundary/192779,Ivory Coast
 2024-02-01T00:00:00.000Z,12344,0,0,/boundary/192779,Ivory Coast
 2024-03-01T00:00:00.000Z,12344,0,0,/boundary/192779,Ivory Coast
@@ -5301,6 +5377,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,15766,0,0,/boundary/192779,Ivory Coast
 2025-11-16T00:00:00.000Z,15766,0,0,/boundary/192779,Ivory Coast
 2025-11-17T00:00:00.000Z,15766,0,0,/boundary/192779,Ivory Coast
+2025-11-18T00:00:00.000Z,15766,0,0,/boundary/192779,Ivory Coast
 2024-01-01T00:00:00.000Z,2072,0,0,/boundary/555017,Jamaica
 2024-02-01T00:00:00.000Z,2072,0,0,/boundary/555017,Jamaica
 2024-03-01T00:00:00.000Z,2072,0,0,/boundary/555017,Jamaica
@@ -5370,6 +5447,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,2502,0,0,/boundary/555017,Jamaica
 2025-11-16T00:00:00.000Z,2502,0,0,/boundary/555017,Jamaica
 2025-11-17T00:00:00.000Z,2502,0,0,/boundary/555017,Jamaica
+2025-11-18T00:00:00.000Z,2511,0,0,/boundary/555017,Jamaica
 2024-01-01T00:00:00.000Z,262397,0,0,/boundary/382313,Japan
 2024-02-01T00:00:00.000Z,263223,0,0,/boundary/382313,Japan
 2024-03-01T00:00:00.000Z,263823,0,0,/boundary/382313,Japan
@@ -5439,6 +5517,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,283226,0,0,/boundary/382313,Japan
 2025-11-16T00:00:00.000Z,283227,0,0,/boundary/382313,Japan
 2025-11-17T00:00:00.000Z,283236,0,0,/boundary/382313,Japan
+2025-11-18T00:00:00.000Z,283236,0,0,/boundary/382313,Japan
 2024-01-01T00:00:00.000Z,7184,0,0,/boundary/184818,Jordan
 2024-02-01T00:00:00.000Z,7187,0,0,/boundary/184818,Jordan
 2024-03-01T00:00:00.000Z,7187,0,0,/boundary/184818,Jordan
@@ -5508,6 +5587,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,10992,0,0,/boundary/184818,Jordan
 2025-11-16T00:00:00.000Z,10992,0,0,/boundary/184818,Jordan
 2025-11-17T00:00:00.000Z,10992,0,0,/boundary/184818,Jordan
+2025-11-18T00:00:00.000Z,10992,0,0,/boundary/184818,Jordan
 2024-01-01T00:00:00.000Z,215035,0,0,/boundary/214665,Kazakhstan
 2024-02-01T00:00:00.000Z,221748,0,0,/boundary/214665,Kazakhstan
 2024-03-01T00:00:00.000Z,231440,0,0,/boundary/214665,Kazakhstan
@@ -5577,6 +5657,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,339099,0,0,/boundary/214665,Kazakhstan
 2025-11-16T00:00:00.000Z,339099,0,0,/boundary/214665,Kazakhstan
 2025-11-17T00:00:00.000Z,339099,0,0,/boundary/214665,Kazakhstan
+2025-11-18T00:00:00.000Z,339099,0,0,/boundary/214665,Kazakhstan
 2024-01-01T00:00:00.000Z,23095,0,0,/boundary/192798,Kenya
 2024-02-01T00:00:00.000Z,23125,0,0,/boundary/192798,Kenya
 2024-03-01T00:00:00.000Z,23121,0,0,/boundary/192798,Kenya
@@ -5646,6 +5727,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,25962,0,0,/boundary/192798,Kenya
 2025-11-16T00:00:00.000Z,25962,0,0,/boundary/192798,Kenya
 2025-11-17T00:00:00.000Z,25962,0,0,/boundary/192798,Kenya
+2025-11-18T00:00:00.000Z,25962,0,0,/boundary/192798,Kenya
 2024-01-01T00:00:00.000Z,20828,0,0,/boundary/305099,Kuwait
 2024-02-01T00:00:00.000Z,20828,0,0,/boundary/305099,Kuwait
 2024-03-01T00:00:00.000Z,20828,0,0,/boundary/305099,Kuwait
@@ -5715,6 +5797,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,20975,0,0,/boundary/305099,Kuwait
 2025-11-16T00:00:00.000Z,20975,0,0,/boundary/305099,Kuwait
 2025-11-17T00:00:00.000Z,20975,0,0,/boundary/305099,Kuwait
+2025-11-18T00:00:00.000Z,20975,0,0,/boundary/305099,Kuwait
 2024-01-01T00:00:00.000Z,19413,0,0,/boundary/178009,Kyrgyzstan
 2024-02-01T00:00:00.000Z,19835,0,0,/boundary/178009,Kyrgyzstan
 2024-03-01T00:00:00.000Z,21803,0,0,/boundary/178009,Kyrgyzstan
@@ -5784,6 +5867,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,30361,0,0,/boundary/178009,Kyrgyzstan
 2025-11-16T00:00:00.000Z,30361,0,0,/boundary/178009,Kyrgyzstan
 2025-11-17T00:00:00.000Z,30361,0,0,/boundary/178009,Kyrgyzstan
+2025-11-18T00:00:00.000Z,30361,0,0,/boundary/178009,Kyrgyzstan
 2024-01-01T00:00:00.000Z,14779,0,0,/boundary/49903,Laos
 2024-02-01T00:00:00.000Z,14779,0,0,/boundary/49903,Laos
 2024-03-01T00:00:00.000Z,14779,0,0,/boundary/49903,Laos
@@ -5853,6 +5937,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,20831,0,0,/boundary/49903,Laos
 2025-11-16T00:00:00.000Z,20831,0,0,/boundary/49903,Laos
 2025-11-17T00:00:00.000Z,20831,0,0,/boundary/49903,Laos
+2025-11-18T00:00:00.000Z,20831,0,0,/boundary/49903,Laos
 2024-01-01T00:00:00.000Z,47691,0,0,/boundary/72594,Latvia
 2024-02-01T00:00:00.000Z,47852,0,0,/boundary/72594,Latvia
 2024-03-01T00:00:00.000Z,47993,0,0,/boundary/72594,Latvia
@@ -5922,6 +6007,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,56260,0,0,/boundary/72594,Latvia
 2025-11-16T00:00:00.000Z,56260,0,0,/boundary/72594,Latvia
 2025-11-17T00:00:00.000Z,56260,0,0,/boundary/72594,Latvia
+2025-11-18T00:00:00.000Z,56260,0,0,/boundary/72594,Latvia
 2024-01-01T00:00:00.000Z,1963,0,0,/boundary/184843,Lebanon
 2024-02-01T00:00:00.000Z,1981,0,0,/boundary/184843,Lebanon
 2024-03-01T00:00:00.000Z,1982,0,0,/boundary/184843,Lebanon
@@ -5991,6 +6077,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,2468,0,0,/boundary/184843,Lebanon
 2025-11-16T00:00:00.000Z,2468,0,0,/boundary/184843,Lebanon
 2025-11-17T00:00:00.000Z,2468,0,0,/boundary/184843,Lebanon
+2025-11-18T00:00:00.000Z,2468,0,0,/boundary/184843,Lebanon
 2024-01-01T00:00:00.000Z,6469,0,0,/boundary/2093234,Lesotho
 2024-02-01T00:00:00.000Z,6506,0,0,/boundary/2093234,Lesotho
 2024-03-01T00:00:00.000Z,6510,0,0,/boundary/2093234,Lesotho
@@ -6060,6 +6147,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,10964,0,0,/boundary/2093234,Lesotho
 2025-11-16T00:00:00.000Z,10964,0,0,/boundary/2093234,Lesotho
 2025-11-17T00:00:00.000Z,10964,0,0,/boundary/2093234,Lesotho
+2025-11-18T00:00:00.000Z,10964,0,0,/boundary/2093234,Lesotho
 2024-01-01T00:00:00.000Z,1281,0,0,/boundary/192780,Liberia
 2024-02-01T00:00:00.000Z,1288,0,0,/boundary/192780,Liberia
 2024-03-01T00:00:00.000Z,1288,0,0,/boundary/192780,Liberia
@@ -6129,6 +6217,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,1408,0,0,/boundary/192780,Liberia
 2025-11-16T00:00:00.000Z,1408,0,0,/boundary/192780,Liberia
 2025-11-17T00:00:00.000Z,1408,0,0,/boundary/192780,Liberia
+2025-11-18T00:00:00.000Z,1408,0,0,/boundary/192780,Liberia
 2024-01-01T00:00:00.000Z,86146,0,0,/boundary/192758,Libya
 2024-02-01T00:00:00.000Z,86547,0,0,/boundary/192758,Libya
 2024-03-01T00:00:00.000Z,86548,0,0,/boundary/192758,Libya
@@ -6198,6 +6287,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,95933,0,0,/boundary/192758,Libya
 2025-11-16T00:00:00.000Z,95933,0,0,/boundary/192758,Libya
 2025-11-17T00:00:00.000Z,95933,0,0,/boundary/192758,Libya
+2025-11-18T00:00:00.000Z,95933,0,0,/boundary/192758,Libya
 2024-01-01T00:00:00.000Z,233,0,0,/boundary/1155955,Liechtenstein
 2024-02-01T00:00:00.000Z,233,0,0,/boundary/1155955,Liechtenstein
 2024-03-01T00:00:00.000Z,233,0,0,/boundary/1155955,Liechtenstein
@@ -6267,6 +6357,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,233,0,0,/boundary/1155955,Liechtenstein
 2025-11-16T00:00:00.000Z,233,0,0,/boundary/1155955,Liechtenstein
 2025-11-17T00:00:00.000Z,233,0,0,/boundary/1155955,Liechtenstein
+2025-11-18T00:00:00.000Z,233,0,0,/boundary/1155955,Liechtenstein
 2024-01-01T00:00:00.000Z,69369,0,0,/boundary/72596,Lithuania
 2024-02-01T00:00:00.000Z,69369,0,0,/boundary/72596,Lithuania
 2024-03-01T00:00:00.000Z,69403,0,0,/boundary/72596,Lithuania
@@ -6336,6 +6427,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,71095,0,0,/boundary/72596,Lithuania
 2025-11-16T00:00:00.000Z,71095,0,0,/boundary/72596,Lithuania
 2025-11-17T00:00:00.000Z,71122,0,0,/boundary/72596,Lithuania
+2025-11-18T00:00:00.000Z,71123,0,0,/boundary/72596,Lithuania
 2024-01-01T00:00:00.000Z,8492,0,0,/boundary/2171347,Luxembourg
 2024-02-01T00:00:00.000Z,8492,0,0,/boundary/2171347,Luxembourg
 2024-03-01T00:00:00.000Z,8500,0,0,/boundary/2171347,Luxembourg
@@ -6405,6 +6497,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,8797,0,0,/boundary/2171347,Luxembourg
 2025-11-16T00:00:00.000Z,8797,0,0,/boundary/2171347,Luxembourg
 2025-11-17T00:00:00.000Z,8797,0,0,/boundary/2171347,Luxembourg
+2025-11-18T00:00:00.000Z,8797,0,0,/boundary/2171347,Luxembourg
 2024-01-01T00:00:00.000Z,1226,0,0,/boundary/447325,Madagascar
 2024-02-01T00:00:00.000Z,1226,0,0,/boundary/447325,Madagascar
 2024-03-01T00:00:00.000Z,1226,0,0,/boundary/447325,Madagascar
@@ -6474,6 +6567,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,1438,0,0,/boundary/447325,Madagascar
 2025-11-16T00:00:00.000Z,1438,0,0,/boundary/447325,Madagascar
 2025-11-17T00:00:00.000Z,1438,0,0,/boundary/447325,Madagascar
+2025-11-18T00:00:00.000Z,1438,0,0,/boundary/447325,Madagascar
 2024-01-01T00:00:00.000Z,10888,0,0,/boundary/195290,Malawi
 2024-02-01T00:00:00.000Z,10888,0,0,/boundary/195290,Malawi
 2024-03-01T00:00:00.000Z,10888,0,0,/boundary/195290,Malawi
@@ -6543,6 +6637,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,10967,0,0,/boundary/195290,Malawi
 2025-11-16T00:00:00.000Z,10967,0,0,/boundary/195290,Malawi
 2025-11-17T00:00:00.000Z,10967,0,0,/boundary/195290,Malawi
+2025-11-18T00:00:00.000Z,10967,0,0,/boundary/195290,Malawi
 2024-01-01T00:00:00.000Z,42325,0,0,/boundary/2108121,Malaysia
 2024-02-01T00:00:00.000Z,42325,0,0,/boundary/2108121,Malaysia
 2024-03-01T00:00:00.000Z,42326,0,0,/boundary/2108121,Malaysia
@@ -6612,6 +6707,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,46632,0,0,/boundary/2108121,Malaysia
 2025-11-16T00:00:00.000Z,46632,0,0,/boundary/2108121,Malaysia
 2025-11-17T00:00:00.000Z,46632,0,0,/boundary/2108121,Malaysia
+2025-11-18T00:00:00.000Z,46632,0,0,/boundary/2108121,Malaysia
 2024-01-01T00:00:00.000Z,4818,0,0,/boundary/192785,Mali
 2024-02-01T00:00:00.000Z,4828,0,0,/boundary/192785,Mali
 2024-03-01T00:00:00.000Z,4828,0,0,/boundary/192785,Mali
@@ -6681,6 +6777,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,6251,0,0,/boundary/192785,Mali
 2025-11-16T00:00:00.000Z,6251,0,0,/boundary/192785,Mali
 2025-11-17T00:00:00.000Z,6251,0,0,/boundary/192785,Mali
+2025-11-18T00:00:00.000Z,6251,0,0,/boundary/192785,Mali
 2024-01-01T00:00:00.000Z,96,0,0,/boundary/365307,Malta
 2024-02-01T00:00:00.000Z,96,0,0,/boundary/365307,Malta
 2024-03-01T00:00:00.000Z,96,0,0,/boundary/365307,Malta
@@ -6750,6 +6847,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,95,0,0,/boundary/365307,Malta
 2025-11-16T00:00:00.000Z,95,0,0,/boundary/365307,Malta
 2025-11-17T00:00:00.000Z,95,0,0,/boundary/365307,Malta
+2025-11-18T00:00:00.000Z,95,0,0,/boundary/365307,Malta
 2024-01-01T00:00:00.000Z,6971,0,0,/boundary/192763,Mauritania
 2024-02-01T00:00:00.000Z,6971,0,0,/boundary/192763,Mauritania
 2024-03-01T00:00:00.000Z,6971,0,0,/boundary/192763,Mauritania
@@ -6819,6 +6917,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,9503,0,0,/boundary/192763,Mauritania
 2025-11-16T00:00:00.000Z,9503,0,0,/boundary/192763,Mauritania
 2025-11-17T00:00:00.000Z,9503,0,0,/boundary/192763,Mauritania
+2025-11-18T00:00:00.000Z,9503,0,0,/boundary/192763,Mauritania
 2024-01-01T00:00:00.000Z,623,0,0,/boundary/535828,Mauritius
 2024-02-01T00:00:00.000Z,623,0,0,/boundary/535828,Mauritius
 2024-03-01T00:00:00.000Z,623,0,0,/boundary/535828,Mauritius
@@ -6888,6 +6987,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,623,0,0,/boundary/535828,Mauritius
 2025-11-16T00:00:00.000Z,623,0,0,/boundary/535828,Mauritius
 2025-11-17T00:00:00.000Z,623,0,0,/boundary/535828,Mauritius
+2025-11-18T00:00:00.000Z,623,0,0,/boundary/535828,Mauritius
 2024-01-01T00:00:00.000Z,268826,0,0,/boundary/114686,Mexico
 2024-02-01T00:00:00.000Z,272476,0,0,/boundary/114686,Mexico
 2024-03-01T00:00:00.000Z,274053,0,0,/boundary/114686,Mexico
@@ -6957,6 +7057,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,284470,0,0,/boundary/114686,Mexico
 2025-11-16T00:00:00.000Z,284470,0,0,/boundary/114686,Mexico
 2025-11-17T00:00:00.000Z,284470,0,0,/boundary/114686,Mexico
+2025-11-18T00:00:00.000Z,284471,0,0,/boundary/114686,Mexico
 2024-01-01T00:00:00.000Z,177114,0,0,/boundary/58974,Moldova
 2024-02-01T00:00:00.000Z,177510,0,0,/boundary/58974,Moldova
 2024-03-01T00:00:00.000Z,177783,0,0,/boundary/58974,Moldova
@@ -7026,6 +7127,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,201100,0,0,/boundary/58974,Moldova
 2025-11-16T00:00:00.000Z,201100,0,0,/boundary/58974,Moldova
 2025-11-17T00:00:00.000Z,201101,0,0,/boundary/58974,Moldova
+2025-11-18T00:00:00.000Z,201101,0,0,/boundary/58974,Moldova
 2024-01-01T00:00:00.000Z,55842,0,0,/boundary/161033,Mongolia
 2024-02-01T00:00:00.000Z,55842,0,0,/boundary/161033,Mongolia
 2024-03-01T00:00:00.000Z,55842,0,0,/boundary/161033,Mongolia
@@ -7095,6 +7197,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,76303,0,0,/boundary/161033,Mongolia
 2025-11-16T00:00:00.000Z,76303,0,0,/boundary/161033,Mongolia
 2025-11-17T00:00:00.000Z,76303,0,0,/boundary/161033,Mongolia
+2025-11-18T00:00:00.000Z,76303,0,0,/boundary/161033,Mongolia
 2024-01-01T00:00:00.000Z,3548,0,0,/boundary/53296,Montenegro
 2024-02-01T00:00:00.000Z,3548,0,0,/boundary/53296,Montenegro
 2024-03-01T00:00:00.000Z,5968,0,0,/boundary/53296,Montenegro
@@ -7164,6 +7267,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,12677,0,0,/boundary/53296,Montenegro
 2025-11-16T00:00:00.000Z,12677,0,0,/boundary/53296,Montenegro
 2025-11-17T00:00:00.000Z,12677,0,0,/boundary/53296,Montenegro
+2025-11-18T00:00:00.000Z,12677,0,0,/boundary/53296,Montenegro
 2024-01-01T00:00:00.000Z,233334,0,0,/boundary/3630439,Morocco
 2024-02-01T00:00:00.000Z,233520,0,0,/boundary/3630439,Morocco
 2024-03-01T00:00:00.000Z,233581,0,0,/boundary/3630439,Morocco
@@ -7233,6 +7337,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,237070,0,0,/boundary/3630439,Morocco
 2025-11-16T00:00:00.000Z,237070,0,0,/boundary/3630439,Morocco
 2025-11-17T00:00:00.000Z,237070,0,0,/boundary/3630439,Morocco
+2025-11-18T00:00:00.000Z,237070,0,0,/boundary/3630439,Morocco
 2024-01-01T00:00:00.000Z,24346,0,0,/boundary/195273,Mozambique
 2024-02-01T00:00:00.000Z,24346,0,0,/boundary/195273,Mozambique
 2024-03-01T00:00:00.000Z,24346,0,0,/boundary/195273,Mozambique
@@ -7302,6 +7407,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,28399,0,0,/boundary/195273,Mozambique
 2025-11-16T00:00:00.000Z,28399,0,0,/boundary/195273,Mozambique
 2025-11-17T00:00:00.000Z,28399,0,0,/boundary/195273,Mozambique
+2025-11-18T00:00:00.000Z,28399,0,0,/boundary/195273,Mozambique
 2024-01-01T00:00:00.000Z,43521,0,0,/boundary/50371,Myanmar
 2024-02-01T00:00:00.000Z,43531,0,0,/boundary/50371,Myanmar
 2024-03-01T00:00:00.000Z,43531,0,0,/boundary/50371,Myanmar
@@ -7371,6 +7477,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,68821,0,0,/boundary/50371,Myanmar
 2025-11-16T00:00:00.000Z,68834,0,0,/boundary/50371,Myanmar
 2025-11-17T00:00:00.000Z,68834,0,0,/boundary/50371,Myanmar
+2025-11-18T00:00:00.000Z,68834,0,0,/boundary/50371,Myanmar
 2024-01-01T00:00:00.000Z,160475,0,0,/boundary/195266,Namibia
 2024-02-01T00:00:00.000Z,160475,0,0,/boundary/195266,Namibia
 2024-03-01T00:00:00.000Z,160475,0,0,/boundary/195266,Namibia
@@ -7440,6 +7547,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,161286,0,0,/boundary/195266,Namibia
 2025-11-16T00:00:00.000Z,161286,0,0,/boundary/195266,Namibia
 2025-11-17T00:00:00.000Z,161287,0,0,/boundary/195266,Namibia
+2025-11-18T00:00:00.000Z,161287,0,0,/boundary/195266,Namibia
 2024-01-01T00:00:00.000Z,26,0,0,/boundary/571804,Nauru
 2024-02-01T00:00:00.000Z,26,0,0,/boundary/571804,Nauru
 2024-03-01T00:00:00.000Z,26,0,0,/boundary/571804,Nauru
@@ -7509,6 +7617,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,26,0,0,/boundary/571804,Nauru
 2025-11-16T00:00:00.000Z,26,0,0,/boundary/571804,Nauru
 2025-11-17T00:00:00.000Z,26,0,0,/boundary/571804,Nauru
+2025-11-18T00:00:00.000Z,26,0,0,/boundary/571804,Nauru
 2024-01-01T00:00:00.000Z,8012,0,0,/boundary/184633,Nepal
 2024-02-01T00:00:00.000Z,9277,0,0,/boundary/184633,Nepal
 2024-03-01T00:00:00.000Z,9279,0,0,/boundary/184633,Nepal
@@ -7578,6 +7687,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,13207,0,0,/boundary/184633,Nepal
 2025-11-16T00:00:00.000Z,13207,0,0,/boundary/184633,Nepal
 2025-11-17T00:00:00.000Z,13207,0,0,/boundary/184633,Nepal
+2025-11-18T00:00:00.000Z,13207,0,0,/boundary/184633,Nepal
 2024-01-01T00:00:00.000Z,607153,0,0,/boundary/556706,New Zealand
 2024-02-01T00:00:00.000Z,613023,0,0,/boundary/556706,New Zealand
 2024-03-01T00:00:00.000Z,623124,0,0,/boundary/556706,New Zealand
@@ -7647,6 +7757,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,967569,0,0,/boundary/556706,New Zealand
 2025-11-16T00:00:00.000Z,967573,0,0,/boundary/556706,New Zealand
 2025-11-17T00:00:00.000Z,967579,0,0,/boundary/556706,New Zealand
+2025-11-18T00:00:00.000Z,967605,0,0,/boundary/556706,New Zealand
 2024-01-01T00:00:00.000Z,6344,0,0,/boundary/287666,Nicaragua
 2024-02-01T00:00:00.000Z,6344,0,0,/boundary/287666,Nicaragua
 2024-03-01T00:00:00.000Z,6910,0,0,/boundary/287666,Nicaragua
@@ -7716,6 +7827,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,7705,0,0,/boundary/287666,Nicaragua
 2025-11-16T00:00:00.000Z,7705,0,0,/boundary/287666,Nicaragua
 2025-11-17T00:00:00.000Z,7705,0,0,/boundary/287666,Nicaragua
+2025-11-18T00:00:00.000Z,7705,0,0,/boundary/287666,Nicaragua
 2024-01-01T00:00:00.000Z,7829,0,0,/boundary/192786,Niger
 2024-02-01T00:00:00.000Z,7829,0,0,/boundary/192786,Niger
 2024-03-01T00:00:00.000Z,7829,0,0,/boundary/192786,Niger
@@ -7785,6 +7897,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,10079,0,0,/boundary/192786,Niger
 2025-11-16T00:00:00.000Z,10079,0,0,/boundary/192786,Niger
 2025-11-17T00:00:00.000Z,10079,0,0,/boundary/192786,Niger
+2025-11-18T00:00:00.000Z,10079,0,0,/boundary/192786,Niger
 2024-01-01T00:00:00.000Z,33181,0,0,/boundary/192787,Nigeria
 2024-02-01T00:00:00.000Z,33181,0,0,/boundary/192787,Nigeria
 2024-03-01T00:00:00.000Z,33181,0,0,/boundary/192787,Nigeria
@@ -7854,6 +7967,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,37661,0,0,/boundary/192787,Nigeria
 2025-11-16T00:00:00.000Z,37661,0,0,/boundary/192787,Nigeria
 2025-11-17T00:00:00.000Z,37661,0,0,/boundary/192787,Nigeria
+2025-11-18T00:00:00.000Z,37661,0,0,/boundary/192787,Nigeria
 2024-01-01T00:00:00.000Z,23954,0,0,/boundary/192734,North Korea
 2024-02-01T00:00:00.000Z,25166,0,0,/boundary/192734,North Korea
 2024-03-01T00:00:00.000Z,25194,0,0,/boundary/192734,North Korea
@@ -7923,6 +8037,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,31329,0,0,/boundary/192734,North Korea
 2025-11-16T00:00:00.000Z,31329,0,0,/boundary/192734,North Korea
 2025-11-17T00:00:00.000Z,31329,0,0,/boundary/192734,North Korea
+2025-11-18T00:00:00.000Z,32375,0,0,/boundary/192734,North Korea
 2024-01-01T00:00:00.000Z,5382,0,0,/boundary/53293,North Macedonia
 2024-02-01T00:00:00.000Z,5382,0,0,/boundary/53293,North Macedonia
 2024-03-01T00:00:00.000Z,5429,0,0,/boundary/53293,North Macedonia
@@ -7992,6 +8107,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,7766,0,0,/boundary/53293,North Macedonia
 2025-11-16T00:00:00.000Z,7766,0,0,/boundary/53293,North Macedonia
 2025-11-17T00:00:00.000Z,7766,0,0,/boundary/53293,North Macedonia
+2025-11-18T00:00:00.000Z,7766,0,0,/boundary/53293,North Macedonia
 2024-01-01T00:00:00.000Z,56284,0,0,/boundary/305138,Oman
 2024-02-01T00:00:00.000Z,56287,0,0,/boundary/305138,Oman
 2024-03-01T00:00:00.000Z,56287,0,0,/boundary/305138,Oman
@@ -8061,6 +8177,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,56788,0,0,/boundary/305138,Oman
 2025-11-16T00:00:00.000Z,56788,0,0,/boundary/305138,Oman
 2025-11-17T00:00:00.000Z,56788,0,0,/boundary/305138,Oman
+2025-11-18T00:00:00.000Z,56788,0,0,/boundary/305138,Oman
 2024-01-01T00:00:00.000Z,117369,0,0,/boundary/307573,Pakistan
 2024-02-01T00:00:00.000Z,117613,0,0,/boundary/307573,Pakistan
 2024-03-01T00:00:00.000Z,118016,0,0,/boundary/307573,Pakistan
@@ -8130,6 +8247,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,138553,0,0,/boundary/307573,Pakistan
 2025-11-16T00:00:00.000Z,138553,0,0,/boundary/307573,Pakistan
 2025-11-17T00:00:00.000Z,138556,0,0,/boundary/307573,Pakistan
+2025-11-18T00:00:00.000Z,138556,0,0,/boundary/307573,Pakistan
 2024-01-01T00:00:00.000Z,1,0,0,/boundary/571805,Palau
 2024-02-01T00:00:00.000Z,1,0,0,/boundary/571805,Palau
 2024-03-01T00:00:00.000Z,1,0,0,/boundary/571805,Palau
@@ -8199,6 +8317,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,1,0,0,/boundary/571805,Palau
 2025-11-16T00:00:00.000Z,1,0,0,/boundary/571805,Palau
 2025-11-17T00:00:00.000Z,1,0,0,/boundary/571805,Palau
+2025-11-18T00:00:00.000Z,1,0,0,/boundary/571805,Palau
 2024-01-01T00:00:00.000Z,5711,0,0,/boundary/287668,Panama
 2024-02-01T00:00:00.000Z,5834,0,0,/boundary/287668,Panama
 2024-03-01T00:00:00.000Z,5834,0,0,/boundary/287668,Panama
@@ -8268,6 +8387,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,6276,0,0,/boundary/287668,Panama
 2025-11-16T00:00:00.000Z,6276,0,0,/boundary/287668,Panama
 2025-11-17T00:00:00.000Z,6276,0,0,/boundary/287668,Panama
+2025-11-18T00:00:00.000Z,6276,0,0,/boundary/287668,Panama
 2024-01-01T00:00:00.000Z,2384,0,0,/boundary/307866,Papua New Guinea
 2024-02-01T00:00:00.000Z,2384,0,0,/boundary/307866,Papua New Guinea
 2024-03-01T00:00:00.000Z,2385,0,0,/boundary/307866,Papua New Guinea
@@ -8337,6 +8457,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,2388,0,0,/boundary/307866,Papua New Guinea
 2025-11-16T00:00:00.000Z,2388,0,0,/boundary/307866,Papua New Guinea
 2025-11-17T00:00:00.000Z,2388,0,0,/boundary/307866,Papua New Guinea
+2025-11-18T00:00:00.000Z,2388,0,0,/boundary/307866,Papua New Guinea
 2024-01-01T00:00:00.000Z,14517,0,0,/boundary/287077,Paraguay
 2024-02-01T00:00:00.000Z,14517,0,0,/boundary/287077,Paraguay
 2024-03-01T00:00:00.000Z,14517,0,0,/boundary/287077,Paraguay
@@ -8406,6 +8527,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,14983,0,0,/boundary/287077,Paraguay
 2025-11-16T00:00:00.000Z,14983,0,0,/boundary/287077,Paraguay
 2025-11-17T00:00:00.000Z,14983,0,0,/boundary/287077,Paraguay
+2025-11-18T00:00:00.000Z,14983,0,0,/boundary/287077,Paraguay
 2024-01-01T00:00:00.000Z,2687739,0,0,/boundary/270056,People's Republic of China
 2024-02-01T00:00:00.000Z,2709514,0,0,/boundary/270056,People's Republic of China
 2024-03-01T00:00:00.000Z,2730617,0,0,/boundary/270056,People's Republic of China
@@ -8475,6 +8597,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,3507586,0,0,/boundary/270056,People's Republic of China
 2025-11-16T00:00:00.000Z,3507847,0,0,/boundary/270056,People's Republic of China
 2025-11-17T00:00:00.000Z,3510063,0,0,/boundary/270056,People's Republic of China
+2025-11-18T00:00:00.000Z,3513810,0,0,/boundary/270056,People's Republic of China
 2024-01-01T00:00:00.000Z,53105,0,0,/boundary/288247,Peru
 2024-02-01T00:00:00.000Z,53107,0,0,/boundary/288247,Peru
 2024-03-01T00:00:00.000Z,53422,0,0,/boundary/288247,Peru
@@ -8544,6 +8667,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,57446,0,0,/boundary/288247,Peru
 2025-11-16T00:00:00.000Z,57446,0,0,/boundary/288247,Peru
 2025-11-17T00:00:00.000Z,57446,0,0,/boundary/288247,Peru
+2025-11-18T00:00:00.000Z,57446,0,0,/boundary/288247,Peru
 2024-01-01T00:00:00.000Z,74250,0,0,/boundary/443174,Philippines
 2024-02-01T00:00:00.000Z,74493,0,0,/boundary/443174,Philippines
 2024-03-01T00:00:00.000Z,74691,0,0,/boundary/443174,Philippines
@@ -8613,6 +8737,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,87842,0,0,/boundary/443174,Philippines
 2025-11-16T00:00:00.000Z,87842,0,0,/boundary/443174,Philippines
 2025-11-17T00:00:00.000Z,87842,0,0,/boundary/443174,Philippines
+2025-11-18T00:00:00.000Z,87842,0,0,/boundary/443174,Philippines
 2024-01-01T00:00:00.000Z,538836,0,0,/boundary/49715,Poland
 2024-02-01T00:00:00.000Z,544804,0,0,/boundary/49715,Poland
 2024-03-01T00:00:00.000Z,551679,0,0,/boundary/49715,Poland
@@ -8682,6 +8807,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,866904,0,0,/boundary/49715,Poland
 2025-11-16T00:00:00.000Z,867006,0,0,/boundary/49715,Poland
 2025-11-17T00:00:00.000Z,867147,0,0,/boundary/49715,Poland
+2025-11-18T00:00:00.000Z,867145,0,0,/boundary/49715,Poland
 2024-01-01T00:00:00.000Z,77591,0,0,/boundary/295480,Portugal
 2024-02-01T00:00:00.000Z,77955,0,0,/boundary/295480,Portugal
 2024-03-01T00:00:00.000Z,91285,0,0,/boundary/295480,Portugal
@@ -8751,6 +8877,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,352940,0,0,/boundary/295480,Portugal
 2025-11-16T00:00:00.000Z,353536,0,0,/boundary/295480,Portugal
 2025-11-17T00:00:00.000Z,353595,0,0,/boundary/295480,Portugal
+2025-11-18T00:00:00.000Z,353985,0,0,/boundary/295480,Portugal
 2024-01-01T00:00:00.000Z,7311,0,0,/boundary/305095,Qatar
 2024-02-01T00:00:00.000Z,7344,0,0,/boundary/305095,Qatar
 2024-03-01T00:00:00.000Z,7727,0,0,/boundary/305095,Qatar
@@ -8820,6 +8947,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,8796,0,0,/boundary/305095,Qatar
 2025-11-16T00:00:00.000Z,8796,0,0,/boundary/305095,Qatar
 2025-11-17T00:00:00.000Z,8796,0,0,/boundary/305095,Qatar
+2025-11-18T00:00:00.000Z,8796,0,0,/boundary/305095,Qatar
 2024-01-01T00:00:00.000Z,321488,0,0,/boundary/62273,Republic of Ireland
 2024-02-01T00:00:00.000Z,331906,0,0,/boundary/62273,Republic of Ireland
 2024-03-01T00:00:00.000Z,343573,0,0,/boundary/62273,Republic of Ireland
@@ -8889,6 +9017,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,445110,0,0,/boundary/62273,Republic of Ireland
 2025-11-16T00:00:00.000Z,445117,0,0,/boundary/62273,Republic of Ireland
 2025-11-17T00:00:00.000Z,445451,0,0,/boundary/62273,Republic of Ireland
+2025-11-18T00:00:00.000Z,445476,0,0,/boundary/62273,Republic of Ireland
 2024-01-01T00:00:00.000Z,3592,0,0,/boundary/192794,Republic of the Congo
 2024-02-01T00:00:00.000Z,3592,0,0,/boundary/192794,Republic of the Congo
 2024-03-01T00:00:00.000Z,3592,0,0,/boundary/192794,Republic of the Congo
@@ -8958,6 +9087,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,3682,0,0,/boundary/192794,Republic of the Congo
 2025-11-16T00:00:00.000Z,3682,0,0,/boundary/192794,Republic of the Congo
 2025-11-17T00:00:00.000Z,3682,0,0,/boundary/192794,Republic of the Congo
+2025-11-18T00:00:00.000Z,3682,0,0,/boundary/192794,Republic of the Congo
 2024-01-01T00:00:00.000Z,137869,0,0,/boundary/90689,Romania
 2024-02-01T00:00:00.000Z,138186,0,0,/boundary/90689,Romania
 2024-03-01T00:00:00.000Z,138409,0,0,/boundary/90689,Romania
@@ -9027,6 +9157,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,144402,0,0,/boundary/90689,Romania
 2025-11-16T00:00:00.000Z,144402,0,0,/boundary/90689,Romania
 2025-11-17T00:00:00.000Z,144402,0,0,/boundary/90689,Romania
+2025-11-18T00:00:00.000Z,144403,0,0,/boundary/90689,Romania
 2024-01-01T00:00:00.000Z,2557968,0,0,/boundary/60189,Russia
 2024-02-01T00:00:00.000Z,2573527,0,0,/boundary/60189,Russia
 2024-03-01T00:00:00.000Z,2586449,0,0,/boundary/60189,Russia
@@ -9096,6 +9227,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,2816031,0,0,/boundary/60189,Russia
 2025-11-16T00:00:00.000Z,2816060,0,0,/boundary/60189,Russia
 2025-11-17T00:00:00.000Z,2816060,0,0,/boundary/60189,Russia
+2025-11-18T00:00:00.000Z,2816139,0,0,/boundary/60189,Russia
 2024-01-01T00:00:00.000Z,2632,0,0,/boundary/171496,Rwanda
 2024-02-01T00:00:00.000Z,2632,0,0,/boundary/171496,Rwanda
 2024-03-01T00:00:00.000Z,3857,0,0,/boundary/171496,Rwanda
@@ -9165,6 +9297,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,4065,0,0,/boundary/171496,Rwanda
 2025-11-16T00:00:00.000Z,4065,0,0,/boundary/171496,Rwanda
 2025-11-17T00:00:00.000Z,4065,0,0,/boundary/171496,Rwanda
+2025-11-18T00:00:00.000Z,4065,0,0,/boundary/171496,Rwanda
 2024-01-01T00:00:00.000Z,1,0,0,/boundary/550725,Saint Vincent and the Grenadines
 2024-02-01T00:00:00.000Z,1,0,0,/boundary/550725,Saint Vincent and the Grenadines
 2024-03-01T00:00:00.000Z,1,0,0,/boundary/550725,Saint Vincent and the Grenadines
@@ -9234,6 +9367,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,1,0,0,/boundary/550725,Saint Vincent and the Grenadines
 2025-11-16T00:00:00.000Z,1,0,0,/boundary/550725,Saint Vincent and the Grenadines
 2025-11-17T00:00:00.000Z,1,0,0,/boundary/550725,Saint Vincent and the Grenadines
+2025-11-18T00:00:00.000Z,1,0,0,/boundary/550725,Saint Vincent and the Grenadines
 2025-06-01T00:00:00.000Z,5,0,0,/boundary/1872673,Samoa
 2025-07-01T00:00:00.000Z,5,0,0,/boundary/1872673,Samoa
 2025-08-01T00:00:00.000Z,5,0,0,/boundary/1872673,Samoa
@@ -9286,6 +9420,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,5,0,0,/boundary/1872673,Samoa
 2025-11-16T00:00:00.000Z,5,0,0,/boundary/1872673,Samoa
 2025-11-17T00:00:00.000Z,5,0,0,/boundary/1872673,Samoa
+2025-11-18T00:00:00.000Z,6,0,0,/boundary/1872673,Samoa
 2024-01-01T00:00:00.000Z,133,0,0,/boundary/54624,San Marino
 2024-01-01T00:00:00.000Z,133,0,0,/boundary/54624,San Marino
 2024-02-01T00:00:00.000Z,133,0,0,/boundary/54624,San Marino
@@ -9424,6 +9559,8 @@ t,amount,length,area,id_relation,Pays
 2025-11-16T00:00:00.000Z,136,0,0,/boundary/54624,San Marino
 2025-11-17T00:00:00.000Z,136,0,0,/boundary/54624,San Marino
 2025-11-17T00:00:00.000Z,136,0,0,/boundary/54624,San Marino
+2025-11-18T00:00:00.000Z,136,0,0,/boundary/54624,San Marino
+2025-11-18T00:00:00.000Z,136,0,0,/boundary/54624,San Marino
 2024-01-01T00:00:00.000Z,133,0,0,/boundary/54624,San Marino
 2024-01-01T00:00:00.000Z,133,0,0,/boundary/54624,San Marino
 2024-02-01T00:00:00.000Z,133,0,0,/boundary/54624,San Marino
@@ -9562,6 +9699,8 @@ t,amount,length,area,id_relation,Pays
 2025-11-16T00:00:00.000Z,136,0,0,/boundary/54624,San Marino
 2025-11-17T00:00:00.000Z,136,0,0,/boundary/54624,San Marino
 2025-11-17T00:00:00.000Z,136,0,0,/boundary/54624,San Marino
+2025-11-18T00:00:00.000Z,136,0,0,/boundary/54624,San Marino
+2025-11-18T00:00:00.000Z,136,0,0,/boundary/54624,San Marino
 2024-01-01T00:00:00.000Z,118797,0,0,/boundary/307584,Saudi Arabia
 2024-02-01T00:00:00.000Z,118943,0,0,/boundary/307584,Saudi Arabia
 2024-03-01T00:00:00.000Z,118988,0,0,/boundary/307584,Saudi Arabia
@@ -9631,6 +9770,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,152052,0,0,/boundary/307584,Saudi Arabia
 2025-11-16T00:00:00.000Z,152052,0,0,/boundary/307584,Saudi Arabia
 2025-11-17T00:00:00.000Z,152052,0,0,/boundary/307584,Saudi Arabia
+2025-11-18T00:00:00.000Z,152052,0,0,/boundary/307584,Saudi Arabia
 2024-01-01T00:00:00.000Z,8089,0,0,/boundary/192775,Senegal
 2024-02-01T00:00:00.000Z,8089,0,0,/boundary/192775,Senegal
 2024-03-01T00:00:00.000Z,8105,0,0,/boundary/192775,Senegal
@@ -9700,6 +9840,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,9154,0,0,/boundary/192775,Senegal
 2025-11-16T00:00:00.000Z,9154,0,0,/boundary/192775,Senegal
 2025-11-17T00:00:00.000Z,9154,0,0,/boundary/192775,Senegal
+2025-11-18T00:00:00.000Z,9154,0,0,/boundary/192775,Senegal
 2024-01-01T00:00:00.000Z,42745,0,0,/boundary/1741311,Serbia
 2024-02-01T00:00:00.000Z,42771,0,0,/boundary/1741311,Serbia
 2024-03-01T00:00:00.000Z,42825,0,0,/boundary/1741311,Serbia
@@ -9769,6 +9910,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,47316,0,0,/boundary/1741311,Serbia
 2025-11-16T00:00:00.000Z,47331,0,0,/boundary/1741311,Serbia
 2025-11-17T00:00:00.000Z,47337,0,0,/boundary/1741311,Serbia
+2025-11-18T00:00:00.000Z,47337,0,0,/boundary/1741311,Serbia
 2024-01-01T00:00:00.000Z,25,0,0,/boundary/536765,Seychelles
 2024-02-01T00:00:00.000Z,25,0,0,/boundary/536765,Seychelles
 2024-03-01T00:00:00.000Z,25,0,0,/boundary/536765,Seychelles
@@ -9838,6 +9980,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,25,0,0,/boundary/536765,Seychelles
 2025-11-16T00:00:00.000Z,25,0,0,/boundary/536765,Seychelles
 2025-11-17T00:00:00.000Z,25,0,0,/boundary/536765,Seychelles
+2025-11-18T00:00:00.000Z,25,0,0,/boundary/536765,Seychelles
 2024-01-01T00:00:00.000Z,1867,0,0,/boundary/192777,Sierra Leone
 2024-02-01T00:00:00.000Z,1867,0,0,/boundary/192777,Sierra Leone
 2024-03-01T00:00:00.000Z,1867,0,0,/boundary/192777,Sierra Leone
@@ -9907,6 +10050,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,2154,0,0,/boundary/192777,Sierra Leone
 2025-11-16T00:00:00.000Z,2154,0,0,/boundary/192777,Sierra Leone
 2025-11-17T00:00:00.000Z,2154,0,0,/boundary/192777,Sierra Leone
+2025-11-18T00:00:00.000Z,2154,0,0,/boundary/192777,Sierra Leone
 2024-09-01T00:00:00.000Z,4,0,0,/boundary/536780,Singapore
 2024-10-01T00:00:00.000Z,4,0,0,/boundary/536780,Singapore
 2024-11-01T00:00:00.000Z,4,0,0,/boundary/536780,Singapore
@@ -9968,6 +10112,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,5,0,0,/boundary/536780,Singapore
 2025-11-16T00:00:00.000Z,5,0,0,/boundary/536780,Singapore
 2025-11-17T00:00:00.000Z,5,0,0,/boundary/536780,Singapore
+2025-11-18T00:00:00.000Z,5,0,0,/boundary/536780,Singapore
 2024-01-01T00:00:00.000Z,221063,0,0,/boundary/14296,Slovakia
 2024-02-01T00:00:00.000Z,224821,0,0,/boundary/14296,Slovakia
 2024-03-01T00:00:00.000Z,226301,0,0,/boundary/14296,Slovakia
@@ -10037,6 +10182,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,268042,0,0,/boundary/14296,Slovakia
 2025-11-16T00:00:00.000Z,268071,0,0,/boundary/14296,Slovakia
 2025-11-17T00:00:00.000Z,268078,0,0,/boundary/14296,Slovakia
+2025-11-18T00:00:00.000Z,268079,0,0,/boundary/14296,Slovakia
 2024-01-01T00:00:00.000Z,32772,0,0,/boundary/218657,Slovenia
 2024-02-01T00:00:00.000Z,32843,0,0,/boundary/218657,Slovenia
 2024-03-01T00:00:00.000Z,33217,0,0,/boundary/218657,Slovenia
@@ -10106,6 +10252,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,51468,0,0,/boundary/218657,Slovenia
 2025-11-16T00:00:00.000Z,51468,0,0,/boundary/218657,Slovenia
 2025-11-17T00:00:00.000Z,51536,0,0,/boundary/218657,Slovenia
+2025-11-18T00:00:00.000Z,51536,0,0,/boundary/218657,Slovenia
 2024-01-01T00:00:00.000Z,305380,0,0,/boundary/87565,South Africa
 2024-02-01T00:00:00.000Z,305552,0,0,/boundary/87565,South Africa
 2024-03-01T00:00:00.000Z,305645,0,0,/boundary/87565,South Africa
@@ -10175,6 +10322,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,315014,0,0,/boundary/87565,South Africa
 2025-11-16T00:00:00.000Z,315014,0,0,/boundary/87565,South Africa
 2025-11-17T00:00:00.000Z,315259,0,0,/boundary/87565,South Africa
+2025-11-18T00:00:00.000Z,315259,0,0,/boundary/87565,South Africa
 2024-01-01T00:00:00.000Z,41867,0,0,/boundary/307756,South Korea
 2024-02-01T00:00:00.000Z,41912,0,0,/boundary/307756,South Korea
 2024-03-01T00:00:00.000Z,41952,0,0,/boundary/307756,South Korea
@@ -10244,6 +10392,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,43267,0,0,/boundary/307756,South Korea
 2025-11-16T00:00:00.000Z,43267,0,0,/boundary/307756,South Korea
 2025-11-17T00:00:00.000Z,43267,0,0,/boundary/307756,South Korea
+2025-11-18T00:00:00.000Z,43267,0,0,/boundary/307756,South Korea
 2024-01-01T00:00:00.000Z,884,0,0,/boundary/1656678,South Sudan
 2024-02-01T00:00:00.000Z,884,0,0,/boundary/1656678,South Sudan
 2024-03-01T00:00:00.000Z,884,0,0,/boundary/1656678,South Sudan
@@ -10313,6 +10462,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,884,0,0,/boundary/1656678,South Sudan
 2025-11-16T00:00:00.000Z,884,0,0,/boundary/1656678,South Sudan
 2025-11-17T00:00:00.000Z,884,0,0,/boundary/1656678,South Sudan
+2025-11-18T00:00:00.000Z,884,0,0,/boundary/1656678,South Sudan
 2024-01-01T00:00:00.000Z,424558,0,0,/boundary/1311341,Spain
 2024-02-01T00:00:00.000Z,430854,0,0,/boundary/1311341,Spain
 2024-03-01T00:00:00.000Z,440012,0,0,/boundary/1311341,Spain
@@ -10382,6 +10532,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,532346,0,0,/boundary/1311341,Spain
 2025-11-16T00:00:00.000Z,532464,0,0,/boundary/1311341,Spain
 2025-11-17T00:00:00.000Z,532530,0,0,/boundary/1311341,Spain
+2025-11-18T00:00:00.000Z,532621,0,0,/boundary/1311341,Spain
 2024-01-01T00:00:00.000Z,15907,0,0,/boundary/536807,Sri Lanka
 2024-02-01T00:00:00.000Z,15907,0,0,/boundary/536807,Sri Lanka
 2024-03-01T00:00:00.000Z,15910,0,0,/boundary/536807,Sri Lanka
@@ -10451,6 +10602,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,18521,0,0,/boundary/536807,Sri Lanka
 2025-11-16T00:00:00.000Z,18521,0,0,/boundary/536807,Sri Lanka
 2025-11-17T00:00:00.000Z,18521,0,0,/boundary/536807,Sri Lanka
+2025-11-18T00:00:00.000Z,18521,0,0,/boundary/536807,Sri Lanka
 2024-01-01T00:00:00.000Z,22111,0,0,/boundary/192789,Sudan
 2024-02-01T00:00:00.000Z,22184,0,0,/boundary/192789,Sudan
 2024-03-01T00:00:00.000Z,22184,0,0,/boundary/192789,Sudan
@@ -10520,6 +10672,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,23955,0,0,/boundary/192789,Sudan
 2025-11-16T00:00:00.000Z,23955,0,0,/boundary/192789,Sudan
 2025-11-17T00:00:00.000Z,23955,0,0,/boundary/192789,Sudan
+2025-11-18T00:00:00.000Z,23955,0,0,/boundary/192789,Sudan
 2024-01-01T00:00:00.000Z,368,0,0,/boundary/287082,Suriname
 2024-02-01T00:00:00.000Z,368,0,0,/boundary/287082,Suriname
 2024-03-01T00:00:00.000Z,368,0,0,/boundary/287082,Suriname
@@ -10589,6 +10742,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,368,0,0,/boundary/287082,Suriname
 2025-11-16T00:00:00.000Z,368,0,0,/boundary/287082,Suriname
 2025-11-17T00:00:00.000Z,368,0,0,/boundary/287082,Suriname
+2025-11-18T00:00:00.000Z,368,0,0,/boundary/287082,Suriname
 2024-01-01T00:00:00.000Z,164399,0,0,/boundary/52822,Sweden
 2024-02-01T00:00:00.000Z,166006,0,0,/boundary/52822,Sweden
 2024-03-01T00:00:00.000Z,166458,0,0,/boundary/52822,Sweden
@@ -10658,6 +10812,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,176377,0,0,/boundary/52822,Sweden
 2025-11-16T00:00:00.000Z,176377,0,0,/boundary/52822,Sweden
 2025-11-17T00:00:00.000Z,176377,0,0,/boundary/52822,Sweden
+2025-11-18T00:00:00.000Z,176377,0,0,/boundary/52822,Sweden
 2024-01-01T00:00:00.000Z,117062,0,0,/boundary/51701,Switzerland
 2024-02-01T00:00:00.000Z,117687,0,0,/boundary/51701,Switzerland
 2024-03-01T00:00:00.000Z,117962,0,0,/boundary/51701,Switzerland
@@ -10727,6 +10882,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,122340,0,0,/boundary/51701,Switzerland
 2025-11-16T00:00:00.000Z,122371,0,0,/boundary/51701,Switzerland
 2025-11-17T00:00:00.000Z,122371,0,0,/boundary/51701,Switzerland
+2025-11-18T00:00:00.000Z,122371,0,0,/boundary/51701,Switzerland
 2024-01-01T00:00:00.000Z,183463,0,0,/boundary/184840,Syria
 2024-02-01T00:00:00.000Z,183463,0,0,/boundary/184840,Syria
 2024-03-01T00:00:00.000Z,183463,0,0,/boundary/184840,Syria
@@ -10796,6 +10952,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,187775,0,0,/boundary/184840,Syria
 2025-11-16T00:00:00.000Z,187775,0,0,/boundary/184840,Syria
 2025-11-17T00:00:00.000Z,187796,0,0,/boundary/184840,Syria
+2025-11-18T00:00:00.000Z,187796,0,0,/boundary/184840,Syria
 2024-07-01T00:00:00.000Z,383,0,0,/boundary/535880,São Tomé and Príncipe
 2024-08-01T00:00:00.000Z,383,0,0,/boundary/535880,São Tomé and Príncipe
 2024-09-01T00:00:00.000Z,383,0,0,/boundary/535880,São Tomé and Príncipe
@@ -10859,6 +11016,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,383,0,0,/boundary/535880,São Tomé and Príncipe
 2025-11-16T00:00:00.000Z,383,0,0,/boundary/535880,São Tomé and Príncipe
 2025-11-17T00:00:00.000Z,383,0,0,/boundary/535880,São Tomé and Príncipe
+2025-11-18T00:00:00.000Z,383,0,0,/boundary/535880,São Tomé and Príncipe
 2024-01-01T00:00:00.000Z,26947,0,0,/boundary/449220,Taiwan
 2024-02-01T00:00:00.000Z,26948,0,0,/boundary/449220,Taiwan
 2024-03-01T00:00:00.000Z,26950,0,0,/boundary/449220,Taiwan
@@ -10928,6 +11086,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,28119,0,0,/boundary/449220,Taiwan
 2025-11-16T00:00:00.000Z,28119,0,0,/boundary/449220,Taiwan
 2025-11-17T00:00:00.000Z,28119,0,0,/boundary/449220,Taiwan
+2025-11-18T00:00:00.000Z,28119,0,0,/boundary/449220,Taiwan
 2024-01-01T00:00:00.000Z,18400,0,0,/boundary/214626,Tajikistan
 2024-02-01T00:00:00.000Z,18400,0,0,/boundary/214626,Tajikistan
 2024-03-01T00:00:00.000Z,18400,0,0,/boundary/214626,Tajikistan
@@ -10997,6 +11156,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,28212,0,0,/boundary/214626,Tajikistan
 2025-11-16T00:00:00.000Z,28212,0,0,/boundary/214626,Tajikistan
 2025-11-17T00:00:00.000Z,28212,0,0,/boundary/214626,Tajikistan
+2025-11-18T00:00:00.000Z,28212,0,0,/boundary/214626,Tajikistan
 2024-01-01T00:00:00.000Z,17160,0,0,/boundary/195270,Tanzania
 2024-02-01T00:00:00.000Z,17534,0,0,/boundary/195270,Tanzania
 2024-03-01T00:00:00.000Z,17539,0,0,/boundary/195270,Tanzania
@@ -11066,6 +11226,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,19986,0,0,/boundary/195270,Tanzania
 2025-11-16T00:00:00.000Z,19986,0,0,/boundary/195270,Tanzania
 2025-11-17T00:00:00.000Z,19986,0,0,/boundary/195270,Tanzania
+2025-11-18T00:00:00.000Z,19986,0,0,/boundary/195270,Tanzania
 2024-01-01T00:00:00.000Z,61294,0,0,/boundary/2067731,Thailand
 2024-02-01T00:00:00.000Z,61295,0,0,/boundary/2067731,Thailand
 2024-03-01T00:00:00.000Z,61333,0,0,/boundary/2067731,Thailand
@@ -11135,6 +11296,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,70130,0,0,/boundary/2067731,Thailand
 2025-11-16T00:00:00.000Z,70130,0,0,/boundary/2067731,Thailand
 2025-11-17T00:00:00.000Z,70130,0,0,/boundary/2067731,Thailand
+2025-11-18T00:00:00.000Z,70130,0,0,/boundary/2067731,Thailand
 2024-01-01T00:00:00.000Z,999,0,0,/boundary/547469,The Bahamas
 2024-02-01T00:00:00.000Z,999,0,0,/boundary/547469,The Bahamas
 2024-03-01T00:00:00.000Z,999,0,0,/boundary/547469,The Bahamas
@@ -11204,6 +11366,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,1004,0,0,/boundary/547469,The Bahamas
 2025-11-16T00:00:00.000Z,1004,0,0,/boundary/547469,The Bahamas
 2025-11-17T00:00:00.000Z,1004,0,0,/boundary/547469,The Bahamas
+2025-11-18T00:00:00.000Z,1004,0,0,/boundary/547469,The Bahamas
 2024-01-01T00:00:00.000Z,362,0,0,/boundary/192774,The Gambia
 2024-02-01T00:00:00.000Z,362,0,0,/boundary/192774,The Gambia
 2024-03-01T00:00:00.000Z,362,0,0,/boundary/192774,The Gambia
@@ -11273,6 +11436,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,376,0,0,/boundary/192774,The Gambia
 2025-11-16T00:00:00.000Z,376,0,0,/boundary/192774,The Gambia
 2025-11-17T00:00:00.000Z,376,0,0,/boundary/192774,The Gambia
+2025-11-18T00:00:00.000Z,376,0,0,/boundary/192774,The Gambia
 2024-01-01T00:00:00.000Z,1989,0,0,/boundary/192782,Togo
 2024-02-01T00:00:00.000Z,1989,0,0,/boundary/192782,Togo
 2024-03-01T00:00:00.000Z,1989,0,0,/boundary/192782,Togo
@@ -11342,6 +11506,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,2625,0,0,/boundary/192782,Togo
 2025-11-16T00:00:00.000Z,2625,0,0,/boundary/192782,Togo
 2025-11-17T00:00:00.000Z,2625,0,0,/boundary/192782,Togo
+2025-11-18T00:00:00.000Z,2625,0,0,/boundary/192782,Togo
 2024-01-01T00:00:00.000Z,72,0,0,/boundary/2186665,Tonga
 2024-02-01T00:00:00.000Z,72,0,0,/boundary/2186665,Tonga
 2024-03-01T00:00:00.000Z,72,0,0,/boundary/2186665,Tonga
@@ -11411,6 +11576,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,72,0,0,/boundary/2186665,Tonga
 2025-11-16T00:00:00.000Z,72,0,0,/boundary/2186665,Tonga
 2025-11-17T00:00:00.000Z,72,0,0,/boundary/2186665,Tonga
+2025-11-18T00:00:00.000Z,72,0,0,/boundary/2186665,Tonga
 2024-01-01T00:00:00.000Z,951,0,0,/boundary/555717,Trinidad and Tobago
 2024-02-01T00:00:00.000Z,951,0,0,/boundary/555717,Trinidad and Tobago
 2024-03-01T00:00:00.000Z,951,0,0,/boundary/555717,Trinidad and Tobago
@@ -11480,6 +11646,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,951,0,0,/boundary/555717,Trinidad and Tobago
 2025-11-16T00:00:00.000Z,951,0,0,/boundary/555717,Trinidad and Tobago
 2025-11-17T00:00:00.000Z,951,0,0,/boundary/555717,Trinidad and Tobago
+2025-11-18T00:00:00.000Z,951,0,0,/boundary/555717,Trinidad and Tobago
 2024-01-01T00:00:00.000Z,16927,0,0,/boundary/192757,Tunisia
 2024-02-01T00:00:00.000Z,16927,0,0,/boundary/192757,Tunisia
 2024-03-01T00:00:00.000Z,17032,0,0,/boundary/192757,Tunisia
@@ -11549,6 +11716,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,18706,0,0,/boundary/192757,Tunisia
 2025-11-16T00:00:00.000Z,18706,0,0,/boundary/192757,Tunisia
 2025-11-17T00:00:00.000Z,18706,0,0,/boundary/192757,Tunisia
+2025-11-18T00:00:00.000Z,18706,0,0,/boundary/192757,Tunisia
 2024-01-01T00:00:00.000Z,190645,0,0,/boundary/174737,Turkey
 2024-02-01T00:00:00.000Z,191262,0,0,/boundary/174737,Turkey
 2024-03-01T00:00:00.000Z,191994,0,0,/boundary/174737,Turkey
@@ -11618,6 +11786,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,204596,0,0,/boundary/174737,Turkey
 2025-11-16T00:00:00.000Z,204612,0,0,/boundary/174737,Turkey
 2025-11-17T00:00:00.000Z,204612,0,0,/boundary/174737,Turkey
+2025-11-18T00:00:00.000Z,204612,0,0,/boundary/174737,Turkey
 2024-01-01T00:00:00.000Z,45002,0,0,/boundary/223026,Turkmenistan
 2024-02-01T00:00:00.000Z,45002,0,0,/boundary/223026,Turkmenistan
 2024-03-01T00:00:00.000Z,45065,0,0,/boundary/223026,Turkmenistan
@@ -11687,6 +11856,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,68547,0,0,/boundary/223026,Turkmenistan
 2025-11-16T00:00:00.000Z,68547,0,0,/boundary/223026,Turkmenistan
 2025-11-17T00:00:00.000Z,68547,0,0,/boundary/223026,Turkmenistan
+2025-11-18T00:00:00.000Z,68547,0,0,/boundary/223026,Turkmenistan
 2024-01-01T00:00:00.000Z,18822,0,0,/boundary/192796,Uganda
 2024-02-01T00:00:00.000Z,18822,0,0,/boundary/192796,Uganda
 2024-03-01T00:00:00.000Z,18848,0,0,/boundary/192796,Uganda
@@ -11756,6 +11926,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,21343,0,0,/boundary/192796,Uganda
 2025-11-16T00:00:00.000Z,21343,0,0,/boundary/192796,Uganda
 2025-11-17T00:00:00.000Z,21343,0,0,/boundary/192796,Uganda
+2025-11-18T00:00:00.000Z,21343,0,0,/boundary/192796,Uganda
 2024-01-01T00:00:00.000Z,734025,0,0,/boundary/60199,Ukraine
 2024-02-01T00:00:00.000Z,734805,0,0,/boundary/60199,Ukraine
 2024-03-01T00:00:00.000Z,735925,0,0,/boundary/60199,Ukraine
@@ -11825,6 +11996,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,758292,0,0,/boundary/60199,Ukraine
 2025-11-16T00:00:00.000Z,758404,0,0,/boundary/60199,Ukraine
 2025-11-17T00:00:00.000Z,758413,0,0,/boundary/60199,Ukraine
+2025-11-18T00:00:00.000Z,758413,0,0,/boundary/60199,Ukraine
 2024-01-01T00:00:00.000Z,39832,0,0,/boundary/307763,United Arab Emirates
 2024-02-01T00:00:00.000Z,39837,0,0,/boundary/307763,United Arab Emirates
 2024-03-01T00:00:00.000Z,39837,0,0,/boundary/307763,United Arab Emirates
@@ -11894,6 +12066,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,40118,0,0,/boundary/307763,United Arab Emirates
 2025-11-16T00:00:00.000Z,40118,0,0,/boundary/307763,United Arab Emirates
 2025-11-17T00:00:00.000Z,40118,0,0,/boundary/307763,United Arab Emirates
+2025-11-18T00:00:00.000Z,40118,0,0,/boundary/307763,United Arab Emirates
 2024-01-01T00:00:00.000Z,1188533,0,0,/boundary/62149,United Kingdom
 2024-02-01T00:00:00.000Z,1190758,0,0,/boundary/62149,United Kingdom
 2024-03-01T00:00:00.000Z,1203766,0,0,/boundary/62149,United Kingdom
@@ -11963,6 +12136,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,1640483,0,0,/boundary/62149,United Kingdom
 2025-11-16T00:00:00.000Z,1643990,0,0,/boundary/62149,United Kingdom
 2025-11-17T00:00:00.000Z,1644348,0,0,/boundary/62149,United Kingdom
+2025-11-18T00:00:00.000Z,1644681,0,0,/boundary/62149,United Kingdom
 2024-01-01T00:00:00.000Z,4701437,0,0,/boundary/148838,United States of America
 2024-02-01T00:00:00.000Z,4787722,0,0,/boundary/148838,United States of America
 2024-03-01T00:00:00.000Z,4880761,0,0,/boundary/148838,United States of America
@@ -12032,6 +12206,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,6634175,0,0,/boundary/148838,United States of America
 2025-11-16T00:00:00.000Z,6637156,0,0,/boundary/148838,United States of America
 2025-11-17T00:00:00.000Z,6639291,0,0,/boundary/148838,United States of America
+2025-11-18T00:00:00.000Z,6641460,0,0,/boundary/148838,United States of America
 2024-01-01T00:00:00.000Z,24420,0,0,/boundary/287072,Uruguay
 2024-02-01T00:00:00.000Z,24559,0,0,/boundary/287072,Uruguay
 2024-03-01T00:00:00.000Z,24569,0,0,/boundary/287072,Uruguay
@@ -12101,6 +12276,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,29684,0,0,/boundary/287072,Uruguay
 2025-11-16T00:00:00.000Z,29684,0,0,/boundary/287072,Uruguay
 2025-11-17T00:00:00.000Z,29684,0,0,/boundary/287072,Uruguay
+2025-11-18T00:00:00.000Z,29684,0,0,/boundary/287072,Uruguay
 2024-01-01T00:00:00.000Z,82855,0,0,/boundary/196240,Uzbekistan
 2024-02-01T00:00:00.000Z,92186,0,0,/boundary/196240,Uzbekistan
 2024-03-01T00:00:00.000Z,92442,0,0,/boundary/196240,Uzbekistan
@@ -12170,6 +12346,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,121148,0,0,/boundary/196240,Uzbekistan
 2025-11-16T00:00:00.000Z,121148,0,0,/boundary/196240,Uzbekistan
 2025-11-17T00:00:00.000Z,121148,0,0,/boundary/196240,Uzbekistan
+2025-11-18T00:00:00.000Z,121148,0,0,/boundary/196240,Uzbekistan
 2024-06-01T00:00:00.000Z,1,0,0,/boundary/2177246,Vanuatu
 2024-07-01T00:00:00.000Z,1,0,0,/boundary/2177246,Vanuatu
 2024-08-01T00:00:00.000Z,1,0,0,/boundary/2177246,Vanuatu
@@ -12234,6 +12411,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,1,0,0,/boundary/2177246,Vanuatu
 2025-11-16T00:00:00.000Z,1,0,0,/boundary/2177246,Vanuatu
 2025-11-17T00:00:00.000Z,1,0,0,/boundary/2177246,Vanuatu
+2025-11-18T00:00:00.000Z,1,0,0,/boundary/2177246,Vanuatu
 2024-01-01T00:00:00.000Z,56895,0,0,/boundary/272644,Venezuela
 2024-02-01T00:00:00.000Z,56938,0,0,/boundary/272644,Venezuela
 2024-03-01T00:00:00.000Z,56938,0,0,/boundary/272644,Venezuela
@@ -12303,6 +12481,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,60120,0,0,/boundary/272644,Venezuela
 2025-11-16T00:00:00.000Z,60120,0,0,/boundary/272644,Venezuela
 2025-11-17T00:00:00.000Z,60120,0,0,/boundary/272644,Venezuela
+2025-11-18T00:00:00.000Z,60120,0,0,/boundary/272644,Venezuela
 2024-01-01T00:00:00.000Z,56905,0,0,/boundary/49915,Vietnam
 2024-02-01T00:00:00.000Z,57421,0,0,/boundary/49915,Vietnam
 2024-03-01T00:00:00.000Z,57789,0,0,/boundary/49915,Vietnam
@@ -12372,6 +12551,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,93049,0,0,/boundary/49915,Vietnam
 2025-11-16T00:00:00.000Z,93049,0,0,/boundary/49915,Vietnam
 2025-11-17T00:00:00.000Z,93049,0,0,/boundary/49915,Vietnam
+2025-11-18T00:00:00.000Z,93122,0,0,/boundary/49915,Vietnam
 2024-01-01T00:00:00.000Z,7982,0,0,/boundary/305092,Yemen
 2024-02-01T00:00:00.000Z,8163,0,0,/boundary/305092,Yemen
 2024-03-01T00:00:00.000Z,8757,0,0,/boundary/305092,Yemen
@@ -12441,6 +12621,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,11467,0,0,/boundary/305092,Yemen
 2025-11-16T00:00:00.000Z,11467,0,0,/boundary/305092,Yemen
 2025-11-17T00:00:00.000Z,11467,0,0,/boundary/305092,Yemen
+2025-11-18T00:00:00.000Z,11467,0,0,/boundary/305092,Yemen
 2024-01-01T00:00:00.000Z,47810,0,0,/boundary/195271,Zambia
 2024-02-01T00:00:00.000Z,47810,0,0,/boundary/195271,Zambia
 2024-03-01T00:00:00.000Z,47810,0,0,/boundary/195271,Zambia
@@ -12510,6 +12691,7 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,50635,0,0,/boundary/195271,Zambia
 2025-11-16T00:00:00.000Z,50635,0,0,/boundary/195271,Zambia
 2025-11-17T00:00:00.000Z,50635,0,0,/boundary/195271,Zambia
+2025-11-18T00:00:00.000Z,50640,0,0,/boundary/195271,Zambia
 2024-01-01T00:00:00.000Z,20663,0,0,/boundary/195272,Zimbabwe
 2024-02-01T00:00:00.000Z,20663,0,0,/boundary/195272,Zimbabwe
 2024-03-01T00:00:00.000Z,20663,0,0,/boundary/195272,Zimbabwe
@@ -12579,3 +12761,4 @@ t,amount,length,area,id_relation,Pays
 2025-11-15T00:00:00.000Z,20781,0,0,/boundary/195272,Zimbabwe
 2025-11-16T00:00:00.000Z,20781,0,0,/boundary/195272,Zimbabwe
 2025-11-17T00:00:00.000Z,20781,0,0,/boundary/195272,Zimbabwe
+2025-11-18T00:00:00.000Z,20781,0,0,/boundary/195272,Zimbabwe
