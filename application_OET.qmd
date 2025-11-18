@@ -2,8 +2,10 @@
 title: "Progress of the MapYourGrid project"
 format: 
   dashboard:
-    nav-buttons: [github]
-    github: https://github.com/datactivist/OET_dataviz
+    nav-buttons:
+      - id: github
+        text: "GitHub"
+        href: "https://github.com/datactivist/OET_dataviz"
     include-in-header:
       - header.html
 logo: "https://raw.githubusercontent.com/open-energy-transition/MapYourGrid/main/docs/images/logos/MapYourGrid-logo.png"
@@ -1497,5 +1499,9 @@ pays qui on le plus de contrib ; derniers 30 jours + vrai cumulé
 
 1er graph avoir bouton : 24H et 30J
 dernier graph barplot aussi derniers 30J
+
+since "début project"
+inverser measure et temps (à gauche)
+ajouter date de début
 ```
 
