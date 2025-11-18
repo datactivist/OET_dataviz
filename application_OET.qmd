@@ -4,7 +4,7 @@ format:
   dashboard:
     nav-buttons:
       - id: github
-        text: "GitHub"
+        text: "Github"
         href: "https://github.com/datactivist/OET_dataviz"
     include-in-header:
       - header.html
@@ -652,8 +652,6 @@ line_length_country <- read_csv("./data/api/line_length_growth_table2.csv")
 ### Column {width="60%"}
 
 ```{r}
-#| eval: false
-#| include: false
 #| title: Line length growth per country
 
 # Préparation des données
@@ -667,7 +665,6 @@ countrypops <- countrypops |>
   #jointure avec nos données pour récupérer le code de pays 
 laste_date <- (line_length_country |> distinct(t))$t
 line_length_country_prep0 <- line_length_country |> 
-  select(Country, length, growth_percent, growth_km) |> 
   mutate(Country2 = tolower(Country), #minuscules pour otpimiser le match
          Country2 = case_match(Country2, #remplace à la main des pays non matchés
                                "people's republic of china" ~ "china",
@@ -689,14 +686,14 @@ line_length_country_prep0 <- line_length_country |>
   #mise en forme df
   select(-Country2) |> 
   relocate(country_code_2, .before = Country) |> 
-  relocate(length, .after = Country) |> 
-  mutate(length = round(length, 0),
-         growth_km = round(growth_km, 0)) |> 
+  relocate(labels.transmission.length, .after = Country) |> 
+  mutate(labels.transmission.length = round(labels.transmission.length, 0)) |> 
+  mutate_at(vars(starts_with("growth_km")), ~round(., 0)) |> 
   rename(` ` = country_code_2)
 line_length_country_prep <- line_length_country_prep0 |> 
-  rename(`Growth since 2025-01-01 (km)` = growth_km,
-         `Growth since 2025-01-01 (%)` = growth_percent) |> 
-  rename_with(~ paste("Power line length (km)", laste_date), .cols = length)
+  #rename(`Growth since 2025-01-01 (km)` = growth_km,
+  #       `Growth since 2025-01-01 (%)` = growth_percent) |> 
+  rename_with(~ paste("Power line length (km)", laste_date), .cols = labels.transmission.length)
          
 
 # Affichage de la table
@@ -706,31 +703,31 @@ table_line_country <- line_length_country_prep |>
   #drapeaux par pays
   fmt_flag(columns = ` `) |> 
   #format colonne en %
-  fmt_percent(columns = `Growth since 2025-01-01 (%)`,
+  fmt_percent(columns = c(growth_percent_earlyOET, growth_percent_kickoff, growth_percent_publicLaunch),
             decimals = 1, drop_trailing_zeros = TRUE,
             dec_mark = ",") |> 
   #coloration des évolutions en %
-  data_color(columns = `Growth since 2025-01-01 (%)`,
-             rows = `Growth since 2025-01-01 (%)` != 0,
+  data_color(columns = c(growth_percent_earlyOET, growth_percent_kickoff, growth_percent_publicLaunch),
+             rows = growth_percent_earlyOET != 0 | growth_percent_kickoff != 0 | growth_percent_publicLaunch != 0,
              method = "bin",
              apply_to = "text",
              palette = c("#bf2f2f", "black", "#279f2b"),
              bins = c(-1, 0, 1)) |> 
   #coloration des évolutions en valeurs absolues
-  data_color(columns = `Growth since 2025-01-01 (km)`,
-             rows = `Growth since 2025-01-01 (km)` > 0,
+  data_color(columns = c(growth_km_earlyOET, growth_km_kickoff, growth_km_publicLaunch),
+             rows = growth_km_earlyOET > 0 | growth_km_kickoff > 0 | growth_km_publicLaunch > 0,
              method = "numeric",
              palette = c("#FECF5D", "#279f2b"),
              bins = c(-Inf, 0, Inf),
              alpha = .8) |>
-  data_color(columns = `Growth since 2025-01-01 (km)`,
-             rows = `Growth since 2025-01-01 (km)` < 0,
+  data_color(columns = c(growth_km_earlyOET, growth_km_kickoff, growth_km_publicLaunch),
+             rows = growth_km_earlyOET < 0 | growth_km_kickoff < 0 | growth_km_publicLaunch < 0,
              method = "numeric",
              palette = c("#bf2f2f", "#ffa500"),
              bins = c(-Inf, 0, Inf),
              alpha = .8) |>
-  data_color(columns = `Growth since 2025-01-01 (km)`,
-             rows = `Growth since 2025-01-01 (km)` == 0,
+  data_color(columns = c(growth_km_earlyOET, growth_km_kickoff, growth_km_publicLaunch),
+             rows = growth_km_earlyOET == 0 | growth_km_kickoff == 0 | growth_km_publicLaunch == 0,
              method = "numeric",
              palette = c("grey80"),
              bins = c(-Inf, 0, Inf),
@@ -755,18 +752,30 @@ table_line_country <- line_length_country_prep |>
   #intéractivité table
   opt_interactive(use_pagination = FALSE, use_search = TRUE) |> 
   #cache colonne
-  cols_hide(country_code_3)
+  cols_hide(c(country_code_3, t)) |> 
+  #groupe de colonnes
+    # Early OET
+  tab_spanner(label = "Early OET (from 2024-11-01 to 2025-02-30)",
+              columns = c(growth_percent_earlyOET, growth_km_earlyOET)) |> 
+  cols_label(growth_percent_earlyOET = "Growth (%)", growth_km_earlyOET = "Growth (km)") |> 
+    # Kickoff
+  tab_spanner(label = "Kickoff (from 2025-03-01 to 2025-07-31)",
+              columns = c(growth_percent_kickoff, growth_km_kickoff)) |> 
+  cols_label(growth_percent_kickoff = "Growth (%)", growth_km_kickoff = "Growth (km)") |> 
+    # Early OET
+  tab_spanner(label = paste0("Public launch (from 2025-08-01 to ", laste_date, ")"),
+              columns = c(growth_percent_publicLaunch, growth_km_publicLaunch)) |> 
+  cols_label(growth_percent_publicLaunch = "Growth (%)", growth_km_publicLaunch = "Growth (km)")
 table_line_country
 ```
 
 ### Column {width="40%"}
 
-#### Row {height="60%" .tabset}
+#### Row {height="50%" .tabset}
 
 ```{r}
 #| label: pre-run tables per continent
-#| eval: false
-#| include: false
+
 # Préparation des données
 
   #chargement des données des pays avec continent correspondant
@@ -780,29 +789,25 @@ line_length_country_prep2 <- line_length_country_prep0 |>
   left_join(continent_data, by = c("country_code_3" = "iso_3_territory_code")) |> 
     #agrégation par continent
   summarise(nb_pays = n(),
-            mean_power_line = round(mean(length), 0),
-            min_power_line = min(length),
-            max_power_line = max(length),
-            sum_power_line = sum(length),
-            min_growth_percent = min(growth_percent),
-            max_growth_percent = max(growth_percent),
-            mean_growth_percent = mean(growth_percent),
-            min_growth_km = min(growth_km),
-            max_growth_km = max(growth_km),
-            mean_growth_km = mean(growth_km),
-            sum_growth_km = sum(growth_km),
-            .by = continent_of_the_territory) |> 
-      #mise en forme des stats
-  mutate(across(where(is.numeric) & !all_of(c("mean_power_line", "mean_growth_percent", 
-                                              "mean_growth_km", "min_growth_percent", "max_growth_percent")), 
-                ~ format(as.integer(., 0), nsmall = 1, big.mark = ",")))
+            mean_power_line = round(mean(labels.transmission.length), 0),
+            min_power_line = min(labels.transmission.length),
+            max_power_line = max(labels.transmission.length),
+            sum_power_line = sum(labels.transmission.length),
+            min_growth_percent_earlyOET = min(growth_percent_earlyOET),
+            max_growth_percent_earlyOET = max(growth_percent_earlyOET),
+            mean_growth_percent_earlyOET = mean(growth_percent_earlyOET),
+            min_growth_percent_kickoff = min(growth_percent_kickoff),
+            max_growth_percent_kickoff = max(growth_percent_kickoff),
+            mean_growth_percent_kickoff = mean(growth_percent_kickoff),
+            min_growth_percent_publicLaunch = min(growth_percent_publicLaunch),
+            max_growth_percent_publicLaunch = max(growth_percent_publicLaunch),
+            mean_growth_percent_publicLaunch = mean(growth_percent_publicLaunch),
+            .by = continent_of_the_territory)
 
 ```
 
 ```{r}
-#| eval: false
-#| include: false
-#| title: Power line length
+#| title: Current length
       ###----- Power line length (km)
 
 # Affichage de la table
@@ -849,25 +854,25 @@ table_line_continent_power
 ```
 
 ```{r}
-#| eval: false
-#| include: false
-#| title: Line length growth (%)
-      ###----- Growth since 2025-01-01 (%)
+#| title: Early OET
 
 # Affichage de la table
 table_line_continent_growth_percent <- line_length_country_prep2 |> 
   #sélection des variables à afficher
-  select(continent_of_the_territory, nb_pays, ends_with("growth_percent")) |> 
+  select(continent_of_the_territory, nb_pays, ends_with("_earlyOET")) |> 
   #dernière mise en forme avant table
   rename(`Number of countries` = nb_pays,
-         Continent = continent_of_the_territory) |> 
+         Continent = continent_of_the_territory,
+         mean_growth_percent = mean_growth_percent_earlyOET,
+         min_growth_percent = min_growth_percent_earlyOET,
+         max_growth_percent = max_growth_percent_earlyOET) |> 
   #table
   gt() |> 
   #coloration des moyennes
   data_color(columns = mean_growth_percent,
              colors = scales::col_numeric(palette = c("#b3d3d7", "#036d7a"), domain = NULL)) |> 
   #groupe de statistiques
-  tab_spanner(label = 'Growth since 2025-01-01 (%)',
+  tab_spanner(label = 'Growth from 2024-11-01 to 2025-02-30 (%)',
               columns = c(mean_growth_percent, min_growth_percent, max_growth_percent)) |> 
   cols_label(min_growth_percent = "Min", max_growth_percent = "Max", mean_growth_percent = "Mean") |> 
     #alternance gris / blanc par ligne
@@ -901,28 +906,27 @@ table_line_continent_growth_percent
 ```
 
 ```{r}
-#| eval: false
-#| include: false
-#| title: Line length growth (km)
-      ###----- Growth since 2025-01-01 (km)
+#| title: Kickoff
 
 # Affichage de la table
-table_line_continent_growth_km <- line_length_country_prep2 |> 
+table_line_continent_growth_percent <- line_length_country_prep2 |> 
   #sélection des variables à afficher
-  select(continent_of_the_territory, nb_pays, ends_with("growth_km")) |> 
+  select(continent_of_the_territory, nb_pays, ends_with("_kickoff")) |> 
   #dernière mise en forme avant table
   rename(`Number of countries` = nb_pays,
-         Continent = continent_of_the_territory) |> 
-  mutate(mean_growth_km = round(mean_growth_km, 0)) |> 
+         Continent = continent_of_the_territory,
+         mean_growth_percent = mean_growth_percent_kickoff,
+         min_growth_percent = min_growth_percent_kickoff,
+         max_growth_percent = max_growth_percent_kickoff) |> 
   #table
   gt() |> 
   #coloration des moyennes
-  data_color(columns = mean_growth_km,
+  data_color(columns = mean_growth_percent,
              colors = scales::col_numeric(palette = c("#b3d3d7", "#036d7a"), domain = NULL)) |> 
   #groupe de statistiques
-  tab_spanner(label = 'Growth since 2025-01-01 (km)',
-              columns = c(mean_growth_km, min_growth_km, max_growth_km, sum_growth_km)) |> 
-  cols_label(min_growth_km = "Min", max_growth_km = "Max", mean_growth_km = "Mean", sum_growth_km = "Sum") |> 
+  tab_spanner(label = 'Growth from 2025-03-01 to 2025-07-31 (%)',
+              columns = c(mean_growth_percent, min_growth_percent, max_growth_percent)) |> 
+  cols_label(min_growth_percent = "Min", max_growth_percent = "Max", mean_growth_percent = "Mean") |> 
     #alternance gris / blanc par ligne
   opt_row_striping() |> 
   #centrer les nombres
@@ -945,16 +949,70 @@ table_line_continent_growth_km <- line_length_country_prep2 |>
               table_body.hlines.color = "white",
               table_body.border.top.color = "#6b6b6b",
               table_body.border.top.style = "solid",
-              table_body.border.top.width = 2.4)
-table_line_continent_growth_km
+              table_body.border.top.width = 2.4) |> 
+  #format colonne en %
+  fmt_percent(columns = c(min_growth_percent, max_growth_percent, mean_growth_percent),
+            decimals = 2, drop_trailing_zeros = TRUE,
+            dec_mark = ",")
+table_line_continent_growth_percent
 ```
 
-#### Row {height="40%"}
+```{r}
+#| title: Public launch
+
+# Affichage de la table
+table_line_continent_growth_percent <- line_length_country_prep2 |> 
+  #sélection des variables à afficher
+  select(continent_of_the_territory, nb_pays, ends_with("_publicLaunch")) |> 
+  #dernière mise en forme avant table
+  rename(`Number of countries` = nb_pays,
+         Continent = continent_of_the_territory,
+         mean_growth_percent = mean_growth_percent_publicLaunch,
+         min_growth_percent = min_growth_percent_publicLaunch,
+         max_growth_percent = max_growth_percent_publicLaunch) |> 
+  #table
+  gt() |> 
+  #coloration des moyennes
+  data_color(columns = mean_growth_percent,
+             colors = scales::col_numeric(palette = c("#b3d3d7", "#036d7a"), domain = NULL)) |> 
+  #groupe de statistiques
+  tab_spanner(label = paste0("Public launch (from 2025-08-01 to ", laste_date, ")"),
+              columns = c(mean_growth_percent, min_growth_percent, max_growth_percent)) |> 
+  cols_label(min_growth_percent = "Min", max_growth_percent = "Max", mean_growth_percent = "Mean") |> 
+    #alternance gris / blanc par ligne
+  opt_row_striping() |> 
+  #centrer les nombres
+  tab_style(style = cell_text(align = "center"),
+            locations = cells_body(-Continent)) |> 
+  #lighter les nombres sauf nb_countries
+  tab_style(style = cell_text(weight = "lighter"),
+            locations = cells_body(-c(Continent, `Number of countries`))) |> 
+  #noms de continent en gras
+  tab_style(style = cell_text(weight = "bold"),
+            locations = cells_body(Continent)) |> 
+  #mise en forme des noms de colonnes
+  tab_style(style = list(cell_text(align = "center")),
+            locations = cells_column_labels()) |> 
+  #styles de la table
+  opt_stylize(style = 1, color = 'gray') |> 
+  #bordures en blanc
+  tab_options(table_body.hlines.style = "solid",
+              table_body.hlines.width = 2, 
+              table_body.hlines.color = "white",
+              table_body.border.top.color = "#6b6b6b",
+              table_body.border.top.style = "solid",
+              table_body.border.top.width = 2.4) |> 
+  #format colonne en %
+  fmt_percent(columns = c(min_growth_percent, max_growth_percent, mean_growth_percent),
+            decimals = 2, drop_trailing_zeros = TRUE,
+            dec_mark = ",")
+table_line_continent_growth_percent
+```
+
+#### Row {height="50%"}
 
 
 ```{r}
-#| eval: false
-#| include: false
 #| title: Total line length's per continent
 
 
@@ -962,7 +1020,7 @@ data_graph <- line_length_country_prep0 |>
   mutate(country_code_3 = ifelse(Country == "Taiwan", "TWN", country_code_3)) |> 
   left_join(continent_data, by = c("country_code_3" = "iso_3_territory_code")) |> 
     #agrégation par continent
-  summarise(sum_power_line = sum(length),
+  summarise(sum_power_line = sum(labels.transmission.length),
             .by = continent_of_the_territory) |> 
   mutate(continent_of_the_territory = fct_reorder(continent_of_the_territory, sum_power_line))
 graph <- data_graph |> 
