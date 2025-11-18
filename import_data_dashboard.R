@@ -117,7 +117,7 @@ line_length_growth_publicLaunch <- data_line_all |>
 
 # Tous ensemble
 line_length_growth <- line_length_growth_earlyOET |> 
-  rename_at(vars(-Country, -t), ~paste0(., "_earlyOET")) |> 
+  rename_at(vars(-Country, -t, -labels.transmission.length), ~paste0(., "_earlyOET")) |> 
   left_join(line_length_growth_kickoff |> 
               select(-t, -labels.transmission.length) |> 
               rename_at(vars(-Country), ~paste0(., "_kickoff")), 
