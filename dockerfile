@@ -5,8 +5,6 @@ FROM rocker/tidyverse:latest
 RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
     curl \
-    git \
-    openssh-client \
     libcurl4-gnutls-dev \
     libcairo2-dev \
     libxt-dev \

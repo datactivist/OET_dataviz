@@ -16,6 +16,8 @@ resources:
 options:
   repos:
     CRAN: "https://cloud.r-project.org"
+metadata:
+  github: false
 ---
 
 ```{r}
@@ -640,7 +642,7 @@ output$plot6 <- renderPlotly({
 ```{r}
 #| label: import data tables
 
-line_length_country <- read_csv("./data/api/line_length_growth_table.csv")
+line_length_country <- read_csv("./data/api/line_length_growth_table2.csv")
 ```
 
 ## Row
@@ -648,6 +650,8 @@ line_length_country <- read_csv("./data/api/line_length_growth_table.csv")
 ### Column {width="60%"}
 
 ```{r}
+#| eval: false
+#| include: false
 #| title: Line length growth per country
 
 # Préparation des données
@@ -759,6 +763,8 @@ table_line_country
 
 ```{r}
 #| label: pre-run tables per continent
+#| eval: false
+#| include: false
 # Préparation des données
 
   #chargement des données des pays avec continent correspondant
@@ -792,6 +798,8 @@ line_length_country_prep2 <- line_length_country_prep0 |>
 ```
 
 ```{r}
+#| eval: false
+#| include: false
 #| title: Power line length
       ###----- Power line length (km)
 
@@ -839,6 +847,8 @@ table_line_continent_power
 ```
 
 ```{r}
+#| eval: false
+#| include: false
 #| title: Line length growth (%)
       ###----- Growth since 2025-01-01 (%)
 
@@ -889,6 +899,8 @@ table_line_continent_growth_percent
 ```
 
 ```{r}
+#| eval: false
+#| include: false
 #| title: Line length growth (km)
       ###----- Growth since 2025-01-01 (km)
 
@@ -939,6 +951,8 @@ table_line_continent_growth_km
 
 
 ```{r}
+#| eval: false
+#| include: false
 #| title: Total line length's per continent
 
 

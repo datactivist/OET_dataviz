@@ -102,8 +102,7 @@ line_length_growth_kickoff <- data_line_all |>
          .by = Pays) |> 
   filter(!is.na(growth_percent)) |> 
   select(t, Pays, labels.transmission.length, growth_percent, growth_km) |> 
-  rename(Country = Pays) |> 
-  mutate(periode = "Kickoff")
+  rename(Country = Pays)
   # Public launch
 line_length_growth_publicLaunch <- data_line_all |> 
   filter(t >= "2025-08-01",
@@ -114,16 +113,21 @@ line_length_growth_publicLaunch <- data_line_all |>
          .by = Pays) |> 
   filter(!is.na(growth_percent)) |> 
   select(t, Pays, labels.transmission.length, growth_percent, growth_km) |> 
-  rename(Country = Pays) |> 
-  mutate(periode = "Public launch")
+  rename(Country = Pays)
 
 # Tous ensemble
-line_lenght_growth <- line_length_growth_earlyOET |> 
+line_length_growth <- line_length_growth_earlyOET |> 
   rename_at(vars(-Country, -t), ~paste0(., "_earlyOET")) |> 
-  left_join(line_length_growth_kickoff |> select(-t), 
+  left_join(line_length_growth_kickoff |> 
+              select(-t, -labels.transmission.length) |> 
+              rename_at(vars(-Country), ~paste0(., "_kickoff")), 
+            by = "Country") |> 
+  left_join(line_length_growth_publicLaunch |> 
+              select(-t, -labels.transmission.length) |> 
+              rename_at(vars(-Country), ~paste0(., "_publicLaunch")), 
             by = "Country")
-                               # line_length_growth_publicLaunch)
+                               
 
 # Export
-rio::export(line_length_growth, paste0("data/api/line_length_growth_table.csv"))
+rio::export(line_length_growth, paste0("data/api/line_length_growth_table2.csv"))
 
