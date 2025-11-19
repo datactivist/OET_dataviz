@@ -25,7 +25,7 @@ RUN curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb && \
 RUN which quarto && quarto --version
 
 # Install packages R
-RUN R -e "install.packages(c('shiny','quarto','plotly','scales','gt','gtExtras','janitor','sf','leaflet','leafem','leaflet.extras2','bslib','bsicons'))"
+RUN R -e "install.packages(c('shiny','quarto','plotly','scales','gt','gtExtras','janitor','sf','leaflet','leafem','leaflet.extras2','bslib','bsicons','glue','jsonlite','rrapply','rvest','rio'))"
 
 # Config shiny et chemin quarto
 RUN mkdir -p $(R RHOME)/etc && \
@@ -35,6 +35,9 @@ RUN mkdir -p $(R RHOME)/etc && \
 WORKDIR /home/app
 COPY . .
 
+# Rendre le script exécutable
+RUN chmod +x docker-entrypoint.sh
+
 EXPOSE 3838
 
-CMD ["R", "-e", "quarto::quarto_serve('application_OET.qmd')"]
+ENTRYPOINT ["./docker-entrypoint.sh"]
