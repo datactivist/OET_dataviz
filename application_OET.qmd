@@ -72,7 +72,7 @@ theme_custom <- function (){
 ```{r}
 #| label: import data world to get last update
 
-df_line <- read_csv("./data/api/data_lines_all.csv", show_col_types = FALSE)
+df_line <- read_csv("/data/api/data_lines_all.csv", show_col_types = FALSE)
 last_date <- df_line |> 
   arrange(t) |> 
   slice_tail(n = 1)
@@ -115,7 +115,7 @@ selectInput('nom_pays', 'Country', unique(df_line$Pays), selected = "World (defa
 
 # Line
 value_world_lines <- reactive({
-  df_line <- read_csv("./data/api/data_lines_all.csv", show_col_types = FALSE)
+  df_line <- read_csv("/data/api/data_lines_all.csv", show_col_types = FALSE)
   df_line |> 
     select(-c(length, amount)) |> 
     rename(length = labels.transmission.length,
@@ -142,7 +142,7 @@ value_world_segments_last <- reactive({
 })
 # Substations
 value_world_substations <- reactive({
-  df_substations <- read_csv("./data/api/data_substations_all.csv", show_col_types = FALSE)
+  df_substations <- read_csv("/data/api/data_substations_all.csv", show_col_types = FALSE)
   df_substations |> 
     select(-amount) |> 
     rename(amount = labels.transmission.amount) |> #on prend désormais les comptes *transmission*
@@ -158,7 +158,7 @@ value_world_substations_last <- reactive({
 })
 # Pylons (supports)
 value_world_supports <- reactive({
-  df_supports <- read_csv("./data/api/data_supports_all.csv", show_col_types = FALSE)
+  df_supports <- read_csv("/data/api/data_supports_all.csv", show_col_types = FALSE)
   df_supports |> 
     filter(Pays == input$nom_pays)
 })
@@ -647,7 +647,7 @@ output$plot6 <- renderPlotly({
 ```{r}
 #| label: import data tables
 
-line_length_country <- read_csv("./data/api/line_length_growth_table2.csv", show_col_types = FALSE)
+line_length_country <- read_csv("/data/api/line_length_growth_table2.csv", show_col_types = FALSE)
 ```
 
 ## Row
@@ -1054,7 +1054,7 @@ ggplotly(graph, tooltip = c("text"))
 ```{r}
 #| label: import data mappers to get last update
 
-df_mappers_lines <- read_csv("./data/api/mappers_lines_all.csv", show_col_types = FALSE)
+df_mappers_lines <- read_csv("/data/api/mappers_lines_all.csv", show_col_types = FALSE)
 last_date_mappers <- df_mappers_lines |> 
   arrange(t) |> 
   slice_tail(n = 1)
@@ -1111,19 +1111,19 @@ radioButtons(
 
 # Lines
 mappers_lines <- reactive({
-  mappers_lines <- read_csv("./data/api/mappers_lines_all.csv", show_col_types = FALSE)
+  mappers_lines <- read_csv("/data/api/mappers_lines_all.csv", show_col_types = FALSE)
   mappers_lines |> 
     filter(Pays == input$nom_pays_mappers)
 })
 # Substations
 mappers_substations <- reactive({
-  mappers_substations <- read_csv("./data/api/mappers_substations_all.csv", show_col_types = FALSE)
+  mappers_substations <- read_csv("/data/api/mappers_substations_all.csv", show_col_types = FALSE)
   mappers_substations |> 
     filter(Pays == input$nom_pays_mappers)
 })
 # Pylons
 mappers_pylons <- reactive({
-  mappers_pylons <- read_csv("./data/api/mappers_supports_all.csv", show_col_types = FALSE)
+  mappers_pylons <- read_csv("/data/api/mappers_supports_all.csv", show_col_types = FALSE)
   mappers_pylons |> 
     rename(labels.transmission.amount_1d = amount_1d,
            labels.transmission.amount = amount,
@@ -1311,15 +1311,15 @@ output$plot7.1 <- renderPlotly({
 # Import selected data
 selected_line_data <- reactive({
   switch(input$time_period,
-         "Since the beginning of the project" = read_csv("data/api/mappers_lines_all.csv", show_col_types = FALSE) |> 
+         "Since the beginning of the project" = read_csv("/data/api/mappers_lines_all.csv", show_col_types = FALSE) |> 
                         filter(Pays != "World (default)") |> 
                         filter(t == max(t), .by = Pays) |> 
                         rename(val = labels.transmission.amount),
-         "Last 30 days" = read_csv("data/api/mappers_lines_all.csv", show_col_types = FALSE) |> 
+         "Last 30 days" = read_csv("/data/api/mappers_lines_all.csv", show_col_types = FALSE) |> 
                         filter(Pays != "World (default)") |> 
                         filter(t == max(t), .by = Pays) |> 
                         rename(val = labels.transmission.amount_30d),
-         "Last 24 hours" = read_csv("data/api/mappers_lines_all.csv", show_col_types = FALSE) |> 
+         "Last 24 hours" = read_csv("/data/api/mappers_lines_all.csv", show_col_types = FALSE) |> 
                         filter(Pays != "World (default)") |> 
                         filter(t == max(t), .by = Pays) |> 
                         rename(val = labels.transmission.amount_1d) 
@@ -1414,15 +1414,15 @@ output$plot8.1 <- renderPlotly({
 # Import selected data
 selected_substation_data <- reactive({
   switch(input$time_period,
-         "Since the beginning of the project" = read_csv("data/api/mappers_substations_all.csv", show_col_types = FALSE) |> 
+         "Since the beginning of the project" = read_csv("/data/api/mappers_substations_all.csv", show_col_types = FALSE) |> 
                         filter(Pays != "World (default)") |> 
                         filter(t == max(t), .by = Pays) |> 
                         rename(val = labels.transmission.amount),
-         "Last 30 days" = read_csv("data/api/mappers_substations_all.csv", show_col_types = FALSE) |> 
+         "Last 30 days" = read_csv("/data/api/mappers_substations_all.csv", show_col_types = FALSE) |> 
                         filter(Pays != "World (default)") |> 
                         filter(t == max(t), .by = Pays) |> 
                         rename(val = labels.transmission.amount_30d),
-         "Last 24 hours" = read_csv("data/api/mappers_substations_all.csv", show_col_types = FALSE) |> 
+         "Last 24 hours" = read_csv("/data/api/mappers_substations_all.csv", show_col_types = FALSE) |> 
                         filter(Pays != "World (default)") |> 
                         filter(t == max(t), .by = Pays) |> 
                         rename(val = labels.transmission.amount_1d) 
@@ -1514,16 +1514,16 @@ output$plot9.1 <- renderPlotly({
 # Import selected data
 selected_pylon_data <- reactive({
   switch(input$time_period,
-         "Since the beginning of the project" = read_csv("data/api/mappers_supports_all.csv", 
+         "Since the beginning of the project" = read_csv("/data/api/mappers_supports_all.csv", 
                                                          show_col_types = FALSE) |> 
                         filter(Pays != "World (default)") |> 
                         filter(t == max(t), .by = Pays) |> 
                         rename(val = amount),
-         "Last 30 days" = read_csv("data/api/mappers_supports_all.csv", show_col_types = FALSE) |> 
+         "Last 30 days" = read_csv("/data/api/mappers_supports_all.csv", show_col_types = FALSE) |> 
                         filter(Pays != "World (default)") |> 
                         filter(t == max(t), .by = Pays) |> 
                         rename(val = amount_30d),
-         "Last 24 hours" = read_csv("data/api/mappers_supports_all.csv", show_col_types = FALSE) |> 
+         "Last 24 hours" = read_csv("/data/api/mappers_supports_all.csv", show_col_types = FALSE) |> 
                         filter(Pays != "World (default)") |> 
                         filter(t == max(t), .by = Pays) |> 
                         rename(val = amount_1d) 
@@ -1648,8 +1648,8 @@ output$plot10 <- renderPlotly({
 ```{r}
 #| label: import data geojson Colombia
 
-colombia_jan <- st_read("./data/colombia_230_20250101.geojson", quiet = TRUE)
-colombia_oct <- st_read("./data/colombia_230_20251013.geojson", quiet = TRUE)
+colombia_jan <- st_read("/data/colombia_230_20250101.geojson", quiet = TRUE)
+colombia_oct <- st_read("/data/colombia_230_20251013.geojson", quiet = TRUE)
 ```
 
 
