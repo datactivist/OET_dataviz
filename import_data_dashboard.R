@@ -6,6 +6,23 @@ library(glue)
 library(jsonlite)
 library(rrapply)
 library(rvest)
+library(sf)
+
+
+# Copie données carto Colombia si besoin
+volume_dir <- "/data"
+static_dir <- "/home/app/static_data"
+static_files <- list.files(static_dir, pattern = "\\.geojson$", full.names = FALSE)
+
+for (file in static_files) {
+  src <- file.path(static_dir, file)
+  dest <- file.path(volume_dir, file)
+
+  if (!file.exists(dest)) {
+    file.copy(src, dest, overwrite = FALSE)
+  }
+}
+
 
 
 # Scraping wiki table relations -------------------------------------------
