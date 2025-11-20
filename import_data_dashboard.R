@@ -1,6 +1,7 @@
 ## PRE-RUN IMPORT DATA DASHBOARD
 
 # Librairies
+message("Import des librairies")
 library(tidyverse)
 library(glue)
 library(jsonlite)
@@ -8,8 +9,8 @@ library(rrapply)
 library(rvest)
 library(sf)
 
-
 # Copie données carto Colombia si besoin
+message("Copie données carto Colombia si besoin")
 volume_dir <- "/data"
 static_dir <- "/home/app/static_data"
 static_files <- list.files(static_dir, pattern = "\\.geojson$", full.names = FALSE)
@@ -29,6 +30,7 @@ for (file in static_files) {
 
 
 # Scrape de la page entière
+message("Scrape de la page wiki pour récup id pays")
 content <- read_html("https://wiki.openstreetmap.org/wiki/OpenHistoricalMap/Countries")
 body_table <- content |> html_nodes('body')  |>
                     html_nodes('table') |>
@@ -71,23 +73,30 @@ get_all_data <- function(url, name_export_data){
 # On applique la fonction pour récupérer toutes les données
   #--- COUNTS
   # lines
+message("Appels API counts/lines")
 get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_lines/counts", "data_lines_all")
+message("Length /1000 données counts/lines")
 dataframe2 <- dataframe |> 
   mutate(length = as.numeric(length) / 1000,
          labels.transmission.length = as.numeric(labels.transmission.length) / 1000,
          labels.transmission_overhead.length = as.numeric(labels.transmission_overhead.length) / 1000)
 rio::export(dataframe2, "/data/api/data_lines_all.csv")
   # substations
+message("Appels API counts/substations")
 get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_substations/counts", "data_substations_all")
   # supports
+message("Appels API counts/supports")
 get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_supports/counts", "data_supports_all")
 
   #--- MAPPERS
   # lines
+message("Appels API mappers/lines")
 get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_lines/mappers", "mappers_lines_all")
   # substations
+message("Appels API mappers/substations")
 get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_substations/mappers", "mappers_substations_all")
   # supports
+message("Appels API mappers/supports")
 get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_supports/mappers", "mappers_supports_all")
 
 
@@ -95,10 +104,12 @@ get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_supports/ma
 # Line length growth per country ------------------------------------------
 
 # Import des données lignes de tous les pays
+message("Import données counts/lines")
 data_line_all <- read_csv("/data/api/data_lines_all.csv")
 
 # Mise en forme pour retrouver length, growth en % et growth en km
   # Early OET
+message("Calcul growth km et % par période - early OET")
 line_length_growth_earlyOET <- data_line_all |> 
   filter(t >= "2024-11-01",
          Pays != "World (default)") |> 
@@ -110,6 +121,7 @@ line_length_growth_earlyOET <- data_line_all |>
   select(t, Pays, labels.transmission.length, growth_percent, growth_km) |> 
   rename(Country = Pays)
   # Kickoff
+message("Calcul growth km et % par période - Kickoff")
 line_length_growth_kickoff <- data_line_all |> 
   filter(t >= "2025-03-01",
          Pays != "World (default)") |> 
@@ -121,6 +133,7 @@ line_length_growth_kickoff <- data_line_all |>
   select(t, Pays, labels.transmission.length, growth_percent, growth_km) |> 
   rename(Country = Pays)
   # Public launch
+message("Calcul growth km et % par période - Public launch")
 line_length_growth_publicLaunch <- data_line_all |> 
   filter(t >= "2025-08-01",
          Pays != "World (default)") |> 
@@ -133,6 +146,7 @@ line_length_growth_publicLaunch <- data_line_all |>
   rename(Country = Pays)
 
 # Tous ensemble
+message("Calcul growth km et % par période - All")
 line_length_growth <- line_length_growth_earlyOET |> 
   rename_at(vars(-Country, -t, -labels.transmission.length), ~paste0(., "_earlyOET")) |> 
   left_join(line_length_growth_kickoff |> 
