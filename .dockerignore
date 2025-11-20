@@ -4,3 +4,4 @@ renv.lock
 .github
 .Rprofile
 .Rbuildignore
+data/
