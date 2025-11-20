@@ -1,44 +1,69 @@
 #!/usr/bin/env bash
-set -e
+set -euo pipefail
 
 echo "=== [Entrypoint] Initialisation du container ==="
 
-###############################################
-# 1. TENTATIVE D'IMPORT DES DONNÉES (non bloquant)
-###############################################
+# Usage: docker run ... <image> [mode]
+# Modes:
+#   import  - run import_data_dashboard.R then exit (useful for data-only runs)
+#   serve   - attempt non-blocking import then start `quarto serve` (default)
+#   help    - show this message
 
-if [ -f "import_data_dashboard.R" ]; then
-  echo "=== Tentative d'exécution du script R d'importation des données ==="
+MODE="${1:-serve}"
+shift || true
 
-  # On capture les erreurs mais elles ne bloquent pas le démarrage de l'app
-  if R -e "source('import_data_dashboard.R')" ; then
+run_import() {
+  if [ -f "import_data_dashboard.R" ]; then
+    echo "=== Exécution du script R d'importation des données ==="
+    if R -e "source('import_data_dashboard.R')" ; then
       echo "=== Importation des données : OK ==="
-  else
+      return 0
+    else
       echo "!!! ATTENTION : échec de l'import des données !!!"
-      echo "L'application va démarrer avec les données précédentes (si existantes)."
+      return 1
+    fi
+  else
+    echo "ATTENTION : Le script import_data_dashboard.R est introuvable."
+    return 2
   fi
+}
 
-else
-  echo "ATTENTION : Le script import_data_dashboard.R est introuvable."
-  echo "L'application démarre sans tentative d'import."
-fi
+serve_qmd() {
+  QMD_FILE="application_OET.qmd"
+  if [ ! -f "$QMD_FILE" ]; then
+    echo "ERREUR : Le fichier $QMD_FILE n'existe pas dans le répertoire."
+    exit 1
+  fi
+  echo "=== Lancement du serveur Quarto/Shiny ==="
+  echo "Fichier : $QMD_FILE"
+  exec quarto serve "$QMD_FILE" --port 3838 --host 0.0.0.0
+}
 
-
-###############################################
-# 2. DÉMARRAGE DU DASHBOARD QUARTO + SHINY
-###############################################
-
-QMD_FILE="application_OET.qmd"
-
-if [ ! -f "$QMD_FILE" ]; then
-  echo "ERREUR : Le fichier $QMD_FILE n'existe pas dans le répertoire."
-  echo "Impossible de démarrer l'application."
-  exit 1
-fi
-
-echo "=== Lancement du serveur Quarto/Shiny ==="
-echo "Fichier : $QMD_FILE"
-
-# Commande compatible toutes versions de Quarto
-quarto serve "$QMD_FILE" --port 3838 --host 0.0.0.0
+case "$MODE" in
+  import)
+    run_import
+    EXIT_CODE=$?
+    if [ "$EXIT_CODE" -eq 0 ]; then
+      echo "Import terminé avec succès. Sortie du container."
+      exit 0
+    else
+      echo "Import terminé avec code $EXIT_CODE. Sortie du container."
+      exit $EXIT_CODE
+    fi
+    ;;
+  serve)
+    serve_qmd
+    ;;
+  help|-h|--help)
+    sed -n '1,200p' "$0" | sed -n '1,80p'
+    echo
+    echo "Usage: docker run ... <image> [import|serve]"
+    exit 0
+    ;;
+  *)
+    echo "Mode inconnu: $MODE"
+    echo "Usage: docker run ... <image> [import|serve]"
+    exit 2
+    ;;
+esac
 
