@@ -32,6 +32,11 @@ RUN mkdir -p $(R RHOME)/etc && \
     echo "local(options(shiny.port = 3838, shiny.host = '0.0.0.0'))" > $(R RHOME)/etc/Rprofile.site && \
     echo "Sys.setenv(PATH = paste('/usr/local/bin', Sys.getenv('PATH'), sep=':'))" >> $(R RHOME)/etc/Rprofile.site
 
+# Créa utilisateur applicatif
+RUN groupadd --gid 10001 -r shiny \
+    && useradd --uid 10001 -d /home/shiny -m -r -s /bin/false -g shiny shiny \
+USER shiny
+
 WORKDIR /home/app
 COPY . .
 
