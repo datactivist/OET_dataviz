@@ -152,11 +152,11 @@ line_length_growth <- line_length_growth_earlyOET |>
   left_join(line_length_growth_kickoff |> 
               select(-t, -labels.transmission.length) |> 
               rename_at(vars(-Country), ~paste0(., "_kickoff")), 
-            by = "Country") |> 
+            by = "Country", relationship = "many-to-many") |> 
   left_join(line_length_growth_publicLaunch |> 
               select(-t, -labels.transmission.length) |> 
               rename_at(vars(-Country), ~paste0(., "_publicLaunch")), 
-            by = "Country")
+            by = "Country", relationship = "many-to-many")
                                
 
 # Export
