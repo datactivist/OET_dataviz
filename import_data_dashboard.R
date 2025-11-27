@@ -111,50 +111,50 @@ data_line_all <- read_csv("/data/api/data_lines_all.csv")
   # Early OET
 message("Calcul growth km et % par période - early OET")
 line_length_growth_earlyOET <- data_line_all |> 
-  filter(t >= "2024-11-01",
+  filter(x >= "2024-11-01",
          Pays != "World (default)") |> 
   slice(c(1, n()), .by = Pays) |> 
   mutate(growth_percent = (labels.transmission.length - lag(labels.transmission.length)) / lag(labels.transmission.length), 
          growth_km = labels.transmission.length - lag(labels.transmission.length),
          .by = Pays) |> 
   filter(!is.na(growth_percent)) |> 
-  select(t, Pays, labels.transmission.length, growth_percent, growth_km) |> 
+  select(x, Pays, labels.transmission.length, growth_percent, growth_km) |> 
   rename(Country = Pays)
   # Kickoff
 message("Calcul growth km et % par période - Kickoff")
 line_length_growth_kickoff <- data_line_all |> 
-  filter(t >= "2025-03-01",
+  filter(x >= "2025-03-01",
          Pays != "World (default)") |> 
   slice(c(1, n()), .by = Pays) |> 
   mutate(growth_percent = (labels.transmission.length - lag(labels.transmission.length)) / lag(labels.transmission.length), 
          growth_km = labels.transmission.length - lag(labels.transmission.length),
          .by = Pays) |> 
   filter(!is.na(growth_percent)) |> 
-  select(t, Pays, labels.transmission.length, growth_percent, growth_km) |> 
+  select(x, Pays, labels.transmission.length, growth_percent, growth_km) |> 
   rename(Country = Pays)
   # Public launch
 message("Calcul growth km et % par période - Public launch")
 line_length_growth_publicLaunch <- data_line_all |> 
-  filter(t >= "2025-08-01",
+  filter(x >= "2025-08-01",
          Pays != "World (default)") |> 
   slice(c(1, n()), .by = Pays) |> 
   mutate(growth_percent = (labels.transmission.length - lag(labels.transmission.length)) / lag(labels.transmission.length), 
          growth_km = labels.transmission.length - lag(labels.transmission.length),
          .by = Pays) |> 
   filter(!is.na(growth_percent)) |> 
-  select(t, Pays, labels.transmission.length, growth_percent, growth_km) |> 
+  select(x, Pays, labels.transmission.length, growth_percent, growth_km) |> 
   rename(Country = Pays)
 
 # Tous ensemble
 message("Calcul growth km et % par période - All")
 line_length_growth <- line_length_growth_earlyOET |> 
-  rename_at(vars(-Country, -t, -labels.transmission.length), ~paste0(., "_earlyOET")) |> 
+  rename_at(vars(-Country, -x, -labels.transmission.length), ~paste0(., "_earlyOET")) |> 
   left_join(line_length_growth_kickoff |> 
-              select(-t, -labels.transmission.length) |> 
+              select(-x, -labels.transmission.length) |> 
               rename_at(vars(-Country), ~paste0(., "_kickoff")), 
             by = "Country", relationship = "many-to-many") |> 
   left_join(line_length_growth_publicLaunch |> 
-              select(-t, -labels.transmission.length) |> 
+              select(-x, -labels.transmission.length) |> 
               rename_at(vars(-Country), ~paste0(., "_publicLaunch")), 
             by = "Country", relationship = "many-to-many")
                                
