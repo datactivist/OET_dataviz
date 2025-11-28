@@ -67,7 +67,7 @@ get_all_data <- function(url, name_export_data){
     left_join(relation_pays, by = "id_relation")
   assign("dataframe", dataframe, envir = .GlobalEnv)
     #Export
-  rio::export(dataframe, paste0("/data/api/", name_export_data, ".csv"))
+  rio::export(dataframe, paste0("./data/api/", name_export_data, ".csv"))
 }
 
 # On applique la fonction pour récupérer toutes les données
@@ -87,6 +87,10 @@ get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_substations
   # supports
 message("Appels API counts/supports")
 get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_supports/counts", "data_supports_all")
+  # circuits
+message("Appels API counts/circuits")
+get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_circuits/counts", "data_circuits_all")
+
 
   #--- MAPPERS
   # lines
@@ -98,6 +102,9 @@ get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_substations
   # supports
 message("Appels API mappers/supports")
 get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_supports/mappers", "mappers_supports_all")
+  # circuits
+message("Appels API mappers/circuits")
+get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_circuits/mappers", "mappers_circuits_all")
 
 
 

@@ -72,7 +72,7 @@ theme_custom <- function (){
 ```{r}
 #| label: import data world to get last update
 
-df_line <- read_csv("/data/api/data_lines_all.csv", show_col_types = FALSE)
+df_line <- read_csv("./data/api/data_lines_all.csv", show_col_types = FALSE)
 last_date <- df_line |> 
   arrange(x) |> 
   slice_tail(n = 1)
@@ -109,41 +109,40 @@ selectInput('nom_pays', 'Country', unique(df_line$Pays), selected = "World (defa
 
 ## Column
 
-```{r}
-#| context: server
-#| label: get data counts
 
-# Line
+
+```{r}
+#| label: draft
+#| context: server
+
+# Circuits
+value_world_circuits <- reactive({
+  read_csv("./data/api/data_circuits_all.csv", show_col_types = FALSE) |> 
+    filter(Pays == input$nom_pays)
+})
+value_world_circuits_last <- reactive({
+  value_world_circuits() |> 
+    arrange(x) |> 
+    slice_tail(n = 1) |> 
+    mutate(amount = format(as.integer(amount, 0), nsmall = 1, big.mark = ","))
+})
+# Lines (segments)
 value_world_lines <- reactive({
-  df_line <- read_csv("/data/api/data_lines_all.csv", show_col_types = FALSE)
-  df_line |> 
+  read_csv("./data/api/data_lines_all.csv", show_col_types = FALSE) |> 
     select(-c(length, amount)) |> 
     rename(length = labels.transmission.length,
            amount = labels.transmission.amount) |> #on prend désormais les comptes *transmission*
     filter(Pays == input$nom_pays)
 })
-  #length
-value_world_lines_last <- reactive({
-  value_world_lines() |> 
-    arrange(x) |> 
-    slice_tail(n = 1) |> 
-    mutate(length = ifelse(length > 1000000000,
-                           paste(format(round(as.numeric(length) / 1e6, 0), trim = TRUE), "M"),
-                           format(as.integer(length, 0), nsmall = 1, big.mark = ",")))
-})
-  #segments
 value_world_segments_last <- reactive({
   value_world_lines() |> 
     arrange(x) |> 
     slice_tail(n = 1) |> 
-    mutate(amount = ifelse(amount > 1000000000,
-                           paste(format(round(as.numeric(amount) / 1e6, 0), trim = TRUE), "M"),
-                           format(as.integer(amount, 0), nsmall = 1, big.mark = ",")))
+    mutate(amount = format(as.integer(amount, 0), nsmall = 1, big.mark = ","))
 })
-# Substations
+# Substations (posts)
 value_world_substations <- reactive({
-  df_substations <- read_csv("/data/api/data_substations_all.csv", show_col_types = FALSE)
-  df_substations |> 
+  read_csv("./data/api/data_substations_all.csv", show_col_types = FALSE) |> 
     select(-amount) |> 
     rename(amount = labels.transmission.amount) |> #on prend désormais les comptes *transmission*
     filter(Pays == input$nom_pays)
@@ -152,23 +151,18 @@ value_world_substations_last <- reactive({
   value_world_substations() |> 
     arrange(x) |> 
     slice_tail(n = 1) |> 
-    mutate(amount = ifelse(amount > 1000000000,
-                           paste(format(round(as.numeric(amount) / 1e6, 0), trim = TRUE), "M"),
-                           format(as.integer(amount, 0), nsmall = 1, big.mark = ",")))
+    mutate(amount = format(as.integer(amount, 0), nsmall = 1, big.mark = ","))
 })
 # Pylons (supports)
 value_world_supports <- reactive({
-  df_supports <- read_csv("/data/api/data_supports_all.csv", show_col_types = FALSE)
-  df_supports |> 
+  read_csv("./data/api/data_supports_all.csv", show_col_types = FALSE) |> 
     filter(Pays == input$nom_pays)
 })
 value_world_supports_last <- reactive({
   value_world_supports() |> 
     arrange(x) |> 
     slice_tail(n = 1) |> 
-    mutate(amount = ifelse(amount > 1000000000,
-                           paste(format(round(as.numeric(amount) / 1e6, 0), trim = TRUE), "M"),
-                           format(as.integer(amount, 0), nsmall = 1, big.mark = ",")))
+    mutate(amount = format(as.integer(amount, 0), nsmall = 1, big.mark = ","))
 })
 ```
 
@@ -180,7 +174,7 @@ value_world_supports_last <- reactive({
 #| label: VB 1
 value_box(
   id = "card1",
-  title = "Line length (km)",
+  title = "Number of circuits",
   theme = value_box_theme(bg = "#036d7a", fg = "white"),
   value = textOutput("n1")
 )
@@ -221,7 +215,7 @@ value_box(
 #| context: server
 
 output$n1 <- renderText({
-  value_world_lines_last()$length
+  value_world_circuits_last()$amount
 })
 output$n2 <- renderText({
   value_world_segments_last()$amount
@@ -241,39 +235,39 @@ output$n4 <- renderText({
 
 
 ```{r}
-#| title: Line length
+#| title: Circuits
 plotlyOutput('plot1')
 ```
 
 ```{r}
-#| label: lineplot line length
+#| label: lineplot circuits
 #| context: server
 
 # Plot
 output$plot1 <- renderPlotly({
   #plot depending on selected country
-  graph <- value_world_lines() |> 
-    mutate(x = as.Date(x),
-           length = length / 1000) |> 
+  graph <- value_world_circuits() |> 
+    mutate(x = as.Date(x)) |> 
     ggplot() +
     #distinction des périodes du projet
     geom_rect(aes(xmin = as.Date("2024-11-01"), xmax = as.Date("2025-03-01"),
-                  ymin = min(length), ymax = max(length),
+                  ymin = min(amount), ymax = max(amount),
                   text = "Early OET"), fill = "#333333", alpha = 0.2) +
     geom_rect(aes(xmin = as.Date("2025-03-01"), xmax = as.Date("2025-08-01"),
-                  ymin = min(length), ymax = max(length),
+                  ymin = min(amount), ymax = max(amount),
                   text = "Kickoff"), fill = "#a2a2a3", alpha = 0.2) +
     geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(x),
-                  ymin = min(length), ymax = max(length),
+                  ymin = min(amount), ymax = max(amount),
                   text = "Public launch"), fill = "#656566", alpha = 0.2) +
     #points et lignes
-    geom_line(aes(x = x, y = length, group = 1,
-                  text = paste0("Time : ", x, "\nLine length : ", format(as.integer(length, 0), nsmall = 1, big.mark = ","), "m km")),
+    geom_line(aes(x = x, y = amount, group = 1,
+                  text = paste0("Time : ", x, "\nNumber of circuits : ", 
+                                format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
               color = "#036D7A", linewidth = .7) +
     scale_y_continuous(labels = scales::comma) +
-    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
+    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 7)) +
     labs(x = "Time", 
-         y = "Line length (m km)") +
+         y = "Number of circuits") +
     theme_custom() +
     theme(axis.ticks.x = element_line(color = "#cbcbcb"),
           panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
@@ -314,7 +308,7 @@ output$plot2 <- renderPlotly({
                   text = paste0("Time : ", x, "\nNumber of segments : ", format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
               color = "#ECC229", linewidth = .7) +
     scale_y_continuous(labels = scales::comma) +
-    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
+    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 7)) +
     labs(x = "Time", 
          y = "Number of segments") +
     theme_custom() +
@@ -357,7 +351,7 @@ output$plot3 <- renderPlotly({
                   text = paste0("Time : ", x, "\nNumber of substations : ", format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
               color = "#54a36a", linewidth = .7) + 
     scale_y_continuous(labels = scales::comma) +
-    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
+    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 7)) +
     labs(x = "Time", 
          y = "Number of substations") +
     theme_custom() +
@@ -400,7 +394,7 @@ output$plot4 <- renderPlotly({
                   text = paste0("Time : ", x, "\nNumber of pylons : ", format(as.integer(amount, 0), nsmall = 1, big.mark = ","))),
               color = "#985750", linewidth = .7) +
     scale_y_continuous(labels = scales::comma) +
-    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
+    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 7)) +
     labs(x = "Time", 
          y = "Number of pylons") +
     theme_custom() +
@@ -420,11 +414,11 @@ output$plot4 <- renderPlotly({
 #| label: prepare data evolution 100 graph
 
 # Préparation des données
-segments_mars25 <- reactive({
-  value_world_lines() |> 
+circuits_mars25 <- reactive({
+  value_world_circuits() |> 
     filter(as.Date(x) == "2025-03-01")
 })
-len_mars25 <- reactive({
+line_mars25 <- reactive({
   value_world_lines() |> 
     filter(as.Date(x) == "2025-03-01")
 })
@@ -437,19 +431,21 @@ pylons_mars25 <- reactive({
     filter(as.Date(x) == "2025-03-01")
 })
 table <- reactive({
-  left_join(value_world_lines() |> rename(nb_segments = amount), 
-            value_world_substations() |> rename(nb_substations = amount) |> select(-length), 
+  left_join(value_world_lines() |> select(c(x, amount, Pays)) |> rename(nb_segments = amount), 
+            value_world_substations() |> select(c(x, amount, Pays)) |> rename(nb_substations = amount), 
             by = "x") |> 
-  left_join(value_world_supports() |> rename(nb_pylons = amount) |> select(-length),
+  left_join(value_world_supports() |> select(c(x, amount, Pays)) |> rename(nb_pylons = amount),
+            by = "x") |> 
+  left_join(value_world_circuits() |> select(c(x, amount, Pays)) |> rename(nb_circuits = amount),
             by = "x") |> 
   arrange(x) |> 
-  # transformation des métriques en base 100 en mars 2025
-  mutate(nb_segments_100_mars25 = nb_segments / segments_mars25()$amount * 100,
+  #transformation des métriques en base 100 en mars 2025
+  mutate(nb_circuits_100_mars25 = nb_circuits / circuits_mars25()$amount * 100,
+         nb_circuits_100_diff = round(nb_circuits_100_mars25 - 100, 1),
+         nb_circuits_diff = nb_circuits - circuits_mars25()$amount,
+         nb_segments_100_mars25 = nb_segments / line_mars25()$amount * 100, #amount
          nb_segments_100_diff = round(nb_segments_100_mars25 - 100, 1),
-         nb_segments_diff = nb_segments - segments_mars25()$amount,
-         len_100_mars25 = length / len_mars25()$length * 100,
-         len_100_diff = round(len_100_mars25 - 100, 1),
-         len_diff = round(length - len_mars25()$length, 0),
+         nb_segments_diff = round(nb_segments - line_mars25()$amount, 0), #amount
          nb_substations_100_mars25 = nb_substations / substations_mars25()$amount * 100,
          nb_substations_100_diff = round(nb_substations_100_mars25 - 100, 1),
          nb_substations_diff = nb_substations - substations_mars25()$amount,
@@ -459,7 +455,7 @@ table <- reactive({
 })
   #calcul de la valeur minimale en base 100 (pour placer geom_rect)
 min_mesures <- reactive({
-  c(min(table()$len_100_mars25, na.rm = TRUE),
+  c(min(table()$nb_circuits_100_mars25, na.rm = TRUE),
     min(table()$nb_segments_100_mars25, na.rm = TRUE),
     min(table()$nb_substations_100_mars25, na.rm = TRUE),
     min(table()$nb_pylons_100_mars25, na.rm = TRUE))
@@ -469,7 +465,7 @@ min_min_100 <- reactive({
 })
   #calcul de la valeur maximale en base 100 (pour placer geom_rect)
 max_mesures <- reactive({
-  c(max(table()$len_100_mars25, na.rm = TRUE),
+  c(max(table()$nb_circuits_100_mars25, na.rm = TRUE),
     max(table()$nb_segments_100_mars25, na.rm = TRUE),
     max(table()$nb_substations_100_mars25, na.rm = TRUE),
     max(table()$nb_pylons_100_mars25, na.rm = TRUE))
@@ -506,47 +502,45 @@ output$plot5 <- renderPlotly({
     geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(x),
                   ymin = min_min_100(), ymax = max_max_100(),
                   text = "Public launch"), fill = "#656566", alpha = 0.2) +
-    #ligne colorée jusqu'à 100 pour line length
-    geom_line(aes(x = x, y = len_100_mars25,group = 1,
-                  text = case_when(len_100_diff < 0 ~ paste0("Time : ", x, "\n↓ ", abs(len_100_diff), "% (", 
-                                                             format(as.integer(len_diff, 0), nsmall = 1, big.mark = ","), 
-                                                             " km line length)"),
-                                   len_100_diff == 0 ~ "Base 100",
-                                   .default = paste0("Time : ", x, "\n↑ ", abs(len_100_diff), "% (+", 
-                                                             format(as.integer(len_diff, 0), nsmall = 1, big.mark = ","), 
-                                                             " km line length)")),
-                  color = "Line length"), linewidth = .7) +
+    #ligne colorée jusqu'à 100 pour nb of circuits
+    geom_line(aes(x = x, y = nb_circuits_100_mars25,group = 1,
+                  text = case_when(nb_circuits_100_diff < 0 ~ paste0("Time : ", x, "\n↓ ", abs(nb_circuits_100_diff), 
+                                                                "% (", format(as.integer(nb_circuits_diff, 0), nsmall = 1, big.mark = ","), " circuits)"),
+                                   nb_circuits_100_diff == 0 ~ "Base 100",
+                                   .default = paste0("Time : ", x, "\n↑ ", abs(nb_circuits_100_diff), 
+                                                                "% (+", format(as.integer(nb_circuits_diff, 0), nsmall = 1, big.mark = ","), " circuits)")),
+                  color = "Circuits"), linewidth = .7) +
     #ligne colorée jusqu'à 100 pour nb of segments
     geom_line(aes(x = x, y = nb_segments_100_mars25, group = 1, 
                   text = case_when(nb_segments_100_diff < 0 ~ paste0("Time : ", x, "\n↓ ", abs(nb_segments_100_diff), 
-                                                                "% (", nb_segments_diff, " segments)"),
+                                                                "% (", format(as.integer(nb_segments_diff, 0), nsmall = 1, big.mark = ","), " segments)"),
                                    nb_segments_100_diff == 0 ~ "Base 100",
                                    .default = paste0("Time : ", x, "\n↑ ", abs(nb_segments_100_diff), 
-                                                                "% (+", nb_segments_diff, " segments)")),
+                                                                "% (+", format(as.integer(nb_segments_diff, 0), nsmall = 1, big.mark = ","), " segments)")),
                   color = "Segments"), linewidth = .7) +
     #ligne colorée jusqu'à 100 pour nb of substations
     geom_line(aes(x = x, y = nb_substations_100_mars25, group = 1, 
                   text = case_when(nb_substations_100_diff < 0 ~ paste0("Time : ", x, "\n↓ ", abs(nb_substations_100_diff), 
-                                                                "% (", nb_substations_diff, " substations)"),
+                                                                "% (", format(as.integer(nb_substations_diff, 0), nsmall = 1, big.mark = ","), " substations)"),
                                    nb_substations_100_diff == 0 ~ "Base 100",
                                    .default = paste0("Time : ", x, "\n↑ ", abs(nb_substations_100_diff), 
-                                                                "% (+", nb_substations_diff, " substations)")),
+                                                                "% (+", format(as.integer(nb_substations_diff, 0), nsmall = 1, big.mark = ","), " substations)")),
                   color = "Substations"), linewidth = .7) +
     #ligne colorée jusqu'à 100 pour nb of pylons
     geom_line(aes(x = x, y = nb_pylons_100_mars25, group = 1, 
                   text = case_when(nb_pylons_100_diff < 0 ~ paste0("Time : ", x, "\n↓ ", abs(nb_pylons_100_diff), 
-                                                                "% (", nb_pylons_diff, " pylons)"),
+                                                                "% (", format(as.integer(nb_pylons_diff, 0), nsmall = 1, big.mark = ","), " pylons)"),
                                    nb_pylons_100_diff == 0 ~ "Base 100",
                                    .default = paste0("Time : ", x, "\n↑ ", abs(nb_pylons_100_diff), 
-                                                                "% (+", nb_pylons_diff, " pylons)")),
+                                                                "% (+", format(as.integer(nb_pylons_diff, 0), nsmall = 1, big.mark = ","), " pylons)")),
                   color = "Pylons"), linewidth = .7) +
     #ligne pointillée au 1er mars 2025
     geom_vline(xintercept = as.Date("2025-03-01"), linetype = 2, color = "red4") +
     #mises en forme générales
-    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
+    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 7)) +
     scale_y_continuous(labels = scales::comma) +
     scale_color_manual(values = c("Segments" = "#ecc123", 
-                                  "Line length" = "#036d7a",
+                                  "Circuits" = "#036d7a",
                                   "Substations" = "#54a36a",
                                   "Pylons" = "#6d0f06")) +
     labs(x = "Time", 
@@ -575,34 +569,37 @@ output$plot5 <- renderPlotly({
   #line
 growth_rate <- reactive({
   bind_cols(
-  value_world_lines() |> 
-    mutate(x = as.Date(x),
-           length = as.numeric(length)) |> 
+    #circuits
+  value_world_circuits() |> 
+    mutate(x = as.Date(x)) |> 
     filter(x == "2025-03-01" | x == max(x, na.rm = TRUE)) |> 
-    mutate(growth_rate_amount = (amount - lag(amount)) / lag(amount),
-           growth_rate_length = (length - lag(length)) / lag(length)) |> 
-    select(growth_rate_amount, growth_rate_length) |> 
+    mutate(growth_rate_circuits = (amount - lag(amount)) / lag(amount)) |> 
+    select(growth_rate_circuits) |> 
+    na.omit(),
+    #lines
+  value_world_lines() |> 
+    mutate(x = as.Date(x)) |> 
+    filter(x == "2025-03-01" | x == max(x, na.rm = TRUE)) |> 
+    mutate(growth_rate_segments = (amount - lag(amount)) / lag(amount)) |> 
+    select(growth_rate_segments) |> 
     na.omit(),
     #substations
   value_world_substations() |> 
     mutate(x = as.Date(x)) |> 
     filter(x == "2025-03-01" | x == max(x, na.rm = TRUE)) |> 
-    mutate(growth_rate_substation = (amount - lag(amount)) / lag(amount)) |> 
-    select(growth_rate_substation) |> 
+    mutate(growth_rate_substations = (amount - lag(amount)) / lag(amount)) |> 
+    select(growth_rate_substations) |> 
     na.omit(),
     # pylons
   value_world_supports() |> 
     mutate(x = as.Date(x)) |> 
     filter(x == "2025-03-01" | x == max(x, na.rm = TRUE)) |> 
-    mutate(growth_rate_supports = (amount - lag(amount)) / lag(amount)) |> 
-    select(growth_rate_supports) |> 
+    mutate(growth_rate_pylons = (amount - lag(amount)) / lag(amount)) |> 
+    select(growth_rate_pylons) |> 
     na.omit()
   ) |> 
   pivot_longer(cols = everything(), values_to = "Valeur", names_to = "Mesure", names_prefix = "growth_rate_") |> 
-  mutate(Mesure = str_replace_all(Mesure, c("amount" = "Segments",
-                                            "length" = "Line length",
-                                            "substation" = "Substations",
-                                            "supports" = "Pylons")))
+  mutate(Mesure = gsub("^([[:alpha:]])(.*)$", "\\U\\1\\L\\2", Mesure, perl = TRUE)) #upper first letter
 })
 ```
 
@@ -620,14 +617,14 @@ output$plot6 <- renderPlotly({
 
   #plot depending on selected country
   graph <- growth_rate() |> 
-    mutate(Mesure = factor(Mesure, levels = c("Pylons", "Substations", "Segments", "Line length"))) |> 
+    mutate(Mesure = factor(Mesure, levels = c("Pylons", "Substations", "Segments", "Circuits"))) |> 
     ggplot() +
     geom_segment(aes(x = 0, xend = Valeur, y = Mesure, yend = Mesure, color = Mesure), linewidth = 1) +
     geom_point(aes(x = Valeur, y = Mesure, color = Mesure,
                    text = paste("+", round(Valeur*100, 2), "%")), size = 4) +
     labs(y = "", x = "Growth rate (%)") +
     scale_color_manual(values = c("Segments" = "#ecc123",
-                                  "Line length" = "#036d7a",
+                                  "Circuits" = "#036d7a",
                                   "Substations" = "#54a36a",
                                   "Pylons" = "#6d0f06")) +
     scale_x_continuous(labels = scales::percent) +
@@ -642,12 +639,462 @@ output$plot6 <- renderPlotly({
 ```
 
 
+
+# Length
+
+
+::: {.sidebar}
+
+
+The data displayed on this dashboard are from **`r format(as.Date(first_date$x, format = "%Y-%m-%dT%H:%M:%S"),"%Y-%m-%d")`** to **`r format(as.Date(last_date$x, format = "%Y-%m-%dT%H:%M:%S"),"%Y-%m-%d %H:%M:%S")`**.
+
+Transmission assets over **50 kV**.
+
+------------------------------------------------------------------------
+
+
+Select a country to view its indicators. By default, **global indicators** are shown.
+
+```{r}
+#| label: choix du pays length
+
+# Bouton de sélection du pays
+selectInput('nom_pays_length', 'Country', unique(df_line$Pays), selected = "World (default)")
+```
+
+:::
+
+## Column
+
+```{r}
+#| context: server
+#| label: get data length
+
+# Circuits
+value_world_circuits_length <- reactive({
+  read_csv("./data/api/data_circuits_all.csv", show_col_types = FALSE) |> 
+    mutate(length = length / 1000) |> 
+    filter(Pays == input$nom_pays_length)
+})
+value_world_circuits_last_length <- reactive({
+  value_world_circuits_length() |> 
+    arrange(x) |> 
+    slice_tail(n = 1) |> 
+    mutate(length = format(as.integer(length, 0), nsmall = 1, big.mark = ","),
+           amount = format(as.integer(amount, 0), nsmall = 1, big.mark = ","))
+})
+# Lines (segments)
+value_world_lines_length <- reactive({
+  read_csv("./data/api/data_lines_all.csv", show_col_types = FALSE) |> 
+    select(-c(length, amount)) |> 
+    rename(length = labels.transmission.length,
+           amount = labels.transmission.amount) |> #on prend désormais les comptes *transmission*
+    mutate(length = length / 1000) |> 
+    filter(Pays == input$nom_pays_length)
+})
+value_world_lines_last_length <- reactive({
+  value_world_lines_length() |> 
+    arrange(x) |> 
+    slice_tail(n = 1) |> 
+    mutate(length = format(as.integer(length, 0), nsmall = 1, big.mark = ","),
+           amount = format(as.integer(amount, 0), nsmall = 1, big.mark = ","))
+})
+# Substations (posts)
+value_world_substations_length <- reactive({
+  read_csv("./data/api/data_substations_all.csv", show_col_types = FALSE) |> 
+    select(-c(amount, area)) |> 
+    rename(area = labels.transmission.area,
+           amount = labels.transmission.amount) |> #on prend désormais les comptes *transmission*
+    mutate(area = area/100000) |> #m² à km²
+    filter(Pays == input$nom_pays_length)
+})
+value_world_substations_last_length <- reactive({
+  value_world_substations_length() |> 
+    arrange(x) |> 
+    slice_tail(n = 1) |> 
+    mutate(amount = format(as.integer(amount, 0), nsmall = 1, big.mark = ","),
+           area = format(as.integer(area, 0), nsmall = 1, big.mark = ","))
+})
+# Pylons (supports)
+value_world_supports_length <- reactive({
+  read_csv("./data/api/data_supports_all.csv", show_col_types = FALSE) |> 
+    filter(Pays == input$nom_pays_length)
+})
+value_world_supports_last_length <- reactive({
+  value_world_supports_length() |> 
+    arrange(x) |> 
+    slice_tail(n = 1) |> 
+    mutate(amount = format(as.integer(amount, 0), nsmall = 1, big.mark = ","))
+})
+```
+
+### Row {height="20%"}
+
+
+```{r}
+#| label: VB 1length
+value_box(
+  id = "card1",
+  title = "Circuits length (km)",
+  theme = value_box_theme(bg = "#036d7a", fg = "white"),
+  value = textOutput("n1_length")
+)
+```
+
+```{r}
+#| label: VB 2length
+value_box(
+  id = "card2",
+  title = "Line length (km)",
+  theme = value_box_theme(bg = "#f1d365", fg = "#4f4e4d"),
+  value = textOutput("n2_length")
+)
+```
+
+```{r}
+#| label: VB 3length
+value_box(
+  id = "card3",
+  title = "Substations area (km²)",
+  theme = value_box_theme(bg = "#54a36a", fg = "white"),
+  value = textOutput("n3_length")
+)
+```
+
+
+```{r}
+#| label: display 4 valuebox length
+#| context: server
+
+output$n1_length <- renderText({
+  value_world_circuits_last_length()$length
+})
+output$n2_length <- renderText({
+  value_world_lines_last_length()$length
+})
+output$n3_length <- renderText({
+  value_world_substations_last_length()$area
+})
+```
+
+
+### Row {height="80%"}
+
+#### Column {width="30%" .tabset}
+
+
+```{r}
+#| title: circuits
+plotlyOutput('plot1_length')
+```
+
+```{r}
+#| label: lineplot circuits length
+#| context: server
+
+# Plot 
+output$plot1_length <- renderPlotly({
+  
+  if (nrow(value_world_circuits_length()) == 0) {
+    # Créer un plotly vide avec message
+    plot_ly() |>
+      layout(
+        xaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        yaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        annotations = list(
+          list(
+            text = "No data for this country",
+            xref = "paper",
+            yref = "paper",
+            x = 0.5,
+            y = 0.5,
+            showarrow = FALSE,
+            font = list(size = 16, color = "gray")
+          )
+        )
+      )
+  } else {
+    
+  #plot depending on selected country
+  graph <- value_world_circuits_length() |> 
+    mutate(x = as.Date(x)) |> 
+    ggplot() +
+    #distinction des périodes du projet
+    geom_rect(aes(xmin = as.Date("2024-11-01"), xmax = as.Date("2025-03-01"),
+                  ymin = min(length), ymax = max(length),
+                  text = "Early OET"), fill = "#333333", alpha = 0.2) +
+    geom_rect(aes(xmin = as.Date("2025-03-01"), xmax = as.Date("2025-08-01"),
+                  ymin = min(length), ymax = max(length),
+                  text = "Kickoff"), fill = "#a2a2a3", alpha = 0.2) +
+    geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(x),
+                  ymin = min(length), ymax = max(length),
+                  text = "Public launch"), fill = "#656566", alpha = 0.2) +
+    #points et lignes
+    geom_line(aes(x = x, y = length, group = 1,
+                  text = paste0("Time : ", x, "\nLength : ", format(as.integer(length, 0), nsmall = 1, big.mark = ","), " km")),
+              color = "#036D7A", linewidth = .7) +
+    scale_y_continuous(labels = scales::comma) +
+    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
+    labs(x = "Time", 
+         y = "Length (km)") +
+    theme_custom() +
+    theme(axis.ticks.x = element_line(color = "#cbcbcb"),
+          panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
+          panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
+  #interactive graph
+  ggplotly(graph, tooltip = c("text"))
+  }
+})
+```
+
+
+
+```{r}
+#| title: Line length
+plotlyOutput('plot2_length')
+```
+
+```{r}
+#| label: lineplot line length
+#| context: server
+
+# Plot
+output$plot2_length <- renderPlotly({
+  #plot depending on selected country
+  graph <- value_world_lines_length() |> 
+    mutate(x = as.Date(x)) |> 
+    ggplot() +
+    #distinction des périodes du projet
+    geom_rect(aes(xmin = as.Date("2024-11-01"), xmax = as.Date("2025-03-01"),
+                  ymin = min(length), ymax = max(length),
+                  text = "Early OET"), fill = "#333333", alpha = 0.2) +
+    geom_rect(aes(xmin = as.Date("2025-03-01"), xmax = as.Date("2025-08-01"),
+                  ymin = min(length), ymax = max(length),
+                  text = "Kickoff"), fill = "#a2a2a3", alpha = 0.2) +
+    geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(x),
+                  ymin = min(length), ymax = max(length),
+                  text = "Public launch"), fill = "#656566", alpha = 0.2) +
+    #points et lignes
+    geom_line(aes(x = x, y = length, group = 1,
+                  text = paste0("Time : ", x, "\nLength : ", format(as.integer(length, 0), nsmall = 1, big.mark = ","), " km")),
+              color = "#ECC229", linewidth = .7) +
+    scale_y_continuous(labels = scales::comma) +
+    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
+    labs(x = "Time", 
+         y = "Length (km)") +
+    theme_custom() +
+    theme(axis.ticks.x = element_line(color = "#cbcbcb"),
+          panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
+          panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
+  #interactive graph
+  ggplotly(graph, tooltip = c("text"))
+})
+```
+
+
+```{r}
+#| title: substations
+plotlyOutput('plot3_length')
+```
+
+```{r}
+#| label: lineplot substations length
+#| context: server
+
+# Plot
+output$plot3_length <- renderPlotly({
+  #plot depending on selected country
+  graph <- value_world_substations_length() |> 
+    mutate(x = as.Date(x)) |> 
+    ggplot() +
+    #distinction des périodes du projet
+    geom_rect(aes(xmin = as.Date("2024-11-01"), xmax = as.Date("2025-03-01"),
+                  ymin = min(area), ymax = max(area),
+                  text = "Early OET"), fill = "#333333", alpha = 0.2) +
+    geom_rect(aes(xmin = as.Date("2025-03-01"), xmax = as.Date("2025-08-01"),
+                  ymin = min(area), ymax = max(area),
+                  text = "Kickoff"), fill = "#a2a2a3", alpha = 0.2) +
+    geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(x),
+                  ymin = min(area), ymax = max(area),
+                  text = "Public launch"), fill = "#656566", alpha = 0.2) +
+    #points et lignes
+    geom_line(aes(x = x, y = area, group = 1,
+                  text = paste0("Time : ", x, "\nArea : ", format(as.integer(area, 0), nsmall = 1, big.mark = ","), " km²")),
+              color = "#54a36a", linewidth = .7) +
+    scale_y_continuous(labels = scales::comma) +
+    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
+    labs(x = "Time", 
+         y = "Area (km²)") +
+    theme_custom() +
+    theme(axis.ticks.x = element_line(color = "#cbcbcb"),
+          panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
+          panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
+  #interactive graph
+  ggplotly(graph, tooltip = c("text"))
+})
+```
+
+
+
+#### Column {width="46%"}
+
+```{r}
+#| context: server
+#| label: prepare data evolution 100 graph length
+
+# Préparation des données
+circuits_mars25_length <- reactive({
+  value_world_circuits_length() |> 
+    filter(as.Date(x) == "2025-03-01")
+})
+line_mars25_length <- reactive({
+  value_world_lines_length() |> 
+    filter(as.Date(x) == "2025-03-01")
+})
+substations_mars25_length <- reactive({
+  value_world_substations_length() |> 
+    filter(as.Date(x) == "2025-03-01")
+})
+table_length <- reactive({
+  left_join(value_world_lines_length() |> select(c(x, length, Pays)) |> rename(length_segments = length), 
+            value_world_substations_length() |> select(c(x, area, Pays)) |> rename(area_substations = area), 
+            by = "x") |> 
+  left_join(value_world_circuits_length() |> select(c(x, length, Pays)) |> rename(length_circuits = length),
+            by = "x") |> 
+  arrange(x) |> 
+  #transformation des métriques en base 100 en mars 2025
+  mutate(length_circuits_100_mars25 = length_circuits / circuits_mars25_length()$length * 100,
+         length_circuits_100_diff = round(length_circuits_100_mars25 - 100, 1),
+         length_circuits_diff = length_circuits - circuits_mars25_length()$length,
+         length_segments_100_mars25 = length_segments / line_mars25_length()$length * 100, 
+         length_segments_100_diff = round(length_segments_100_mars25 - 100, 1),
+         length_segments_diff = round(length_segments - line_mars25_length()$length, 0), 
+         area_substations_100_mars25 = area_substations / substations_mars25_length()$area * 100,
+         area_substations_100_diff = round(area_substations_100_mars25 - 100, 1),
+         area_substations_diff = area_substations - substations_mars25_length()$area)
+})
+  #calcul de la valeur minimale en base 100 (pour placer geom_rect)
+min_mesures_length <- reactive({
+  c(min(table()$length_circuits_100_mars25, na.rm = TRUE),
+    min(table()$length_segments_100_mars25, na.rm = TRUE),
+    min(table()$area_substations_100_mars25, na.rm = TRUE))
+})
+min_min_100_length <- reactive({
+  min(min_mesures_length())
+})
+  #calcul de la valeur maximale en base 100 (pour placer geom_rect)
+max_mesures_length <- reactive({
+  c(max(table()$length_circuits_100_mars25, na.rm = TRUE),
+    max(table()$length_segments_100_mars25, na.rm = TRUE),
+    max(table()$area_substations_100_mars25, na.rm = TRUE))
+})
+max_max_100_length <- reactive({
+  max(max_mesures_length())
+})
+```
+
+
+```{r}
+#| title: Evolutions base 100 in March 2025
+plotlyOutput('plot5_length')
+```
+
+```{r}
+#| context: server
+#| label: graph base 100 length
+
+# Plot
+output$plot5_length <- renderPlotly({
+  
+  if (nrow(table_length()) == 0) {
+    # Créer un plotly vide avec message
+    plot_ly() |>
+      layout(
+        xaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        yaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        annotations = list(
+          list(
+            text = "No data for this country",
+            xref = "paper",
+            yref = "paper",
+            x = 0.5,
+            y = 0.5,
+            showarrow = FALSE,
+            font = list(size = 16, color = "gray")
+          )
+        )
+      )
+  } else {
+
+  #plot depending on selected country
+  graph <- table_length() |> 
+    mutate(x = as.Date(x)) |> 
+    ggplot() +
+    #distinction des périodes du projet
+    geom_rect(aes(xmin = as.Date("2024-11-01"), xmax = as.Date("2025-03-01"),
+                  ymin = min_min_100_length(), ymax = max_max_100_length(),
+                  text = "Early OET"), fill = "#333333", alpha = 0.2) +
+    geom_rect(aes(xmin = as.Date("2025-03-01"), xmax = as.Date("2025-08-01"),
+                  ymin = min_min_100_length(), ymax = max_max_100_length(),
+                  text = "Kickoff"), fill = "#a2a2a3", alpha = 0.2) +
+    geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(x),
+                  ymin = min_min_100_length(), ymax = max_max_100_length(),
+                  text = "Public launch"), fill = "#656566", alpha = 0.2) +
+    #ligne colorée jusqu'à 100 pour circuits
+    geom_line(aes(x = x, y = length_circuits_100_mars25,group = 1,
+                  text = case_when(length_circuits_100_diff < 0 ~ paste0("Time : ", x, "\n↓ ", abs(length_circuits_100_diff), 
+                    "% (", format(as.integer(length_circuits_diff, 0), nsmall = 1, big.mark = ","), " km of circuits length)"),
+                                   length_circuits_100_diff == 0 ~ "Base 100",
+                                   .default = paste0("Time : ", x, "\n↑ ", abs(length_circuits_100_diff), 
+                    "% (+", format(as.integer(length_circuits_diff, 0), nsmall = 1, big.mark = ","), " km of circuits length)")),
+                  color = "Circuits"), linewidth = .7) +
+    #ligne colorée jusqu'à 100 pour segments
+    geom_line(aes(x = x, y = length_segments_100_mars25, group = 1, 
+                  text = case_when(length_segments_100_diff < 0 ~ paste0("Time : ", x, "\n↓ ", abs(length_segments_100_diff), 
+                    "% (", format(as.integer(length_segments_diff, 0), nsmall = 1, big.mark = ","), " km of line length"),
+                                   length_segments_100_diff == 0 ~ "Base 100",
+                                   .default = paste0("Time : ", x, "\n↑ ", abs(length_segments_100_diff), 
+                    "% (+", format(as.integer(length_segments_diff, 0), nsmall = 1, big.mark = ","), " km of line length")),
+                  color = "Lines"), linewidth = .7) +
+    #ligne colorée jusqu'à 100 pour substations
+    geom_line(aes(x = x, y = area_substations_100_mars25, group = 1, 
+                  text = case_when(area_substations_100_diff < 0 ~ paste0("Time : ", x, "\n↓ ", abs(area_substations_100_diff), 
+                    "% (", format(as.integer(area_substations_diff, 0), nsmall = 1, big.mark = ","), " km² of substations area"),
+                                   area_substations_100_diff == 0 ~ "Base 100",
+                                   .default = paste0("Time : ", x, "\n↑ ", abs(area_substations_100_diff), 
+                    "% (+", format(as.integer(area_substations_diff, 0), nsmall = 1, big.mark = ","), " km² of substations area)")),
+                  color = "Substations"), linewidth = .7) +
+    #ligne pointillée au 1er mars 2025
+    geom_vline(xintercept = as.Date("2025-03-01"), linetype = 2, color = "red4") +
+    #mises en forme générales
+    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 7)) +
+    scale_y_continuous(labels = scales::comma) +
+    scale_color_manual(values = c("Lines" = "#ecc123", 
+                                  "Circuits" = "#036d7a",
+                                  "Substations" = "#54a36a")) +
+    labs(x = "Time", 
+         y = "Base 100 in 03-2025", 
+         color = "") + 
+    theme_custom() +
+    theme(axis.ticks.x = element_line(color = "#cbcbcb"),
+          legend.position = "top",
+          panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
+          panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb")) +
+    guides(color = guide_legend(nrow = 2))
+  #interactive graph
+  ggplotly(graph, tooltip = c("text"))
+  }
+})
+```
+
+
+
 # Tables
 
 ```{r}
 #| label: import data tables
 
-line_length_country <- read_csv("/data/api/line_length_growth_table2.csv", show_col_types = FALSE)
+line_length_country <- read_csv("./data/api/line_length_growth_table2.csv", show_col_types = FALSE)
 ```
 
 ## Row
@@ -1054,7 +1501,7 @@ ggplotly(graph, tooltip = c("text"))
 ```{r}
 #| label: import data mappers to get last update
 
-df_mappers_lines <- read_csv("/data/api/mappers_lines_all.csv", show_col_types = FALSE)
+df_mappers_lines <- read_csv("./data/api/mappers_lines_all.csv", show_col_types = FALSE)
 last_date_mappers <- df_mappers_lines |> 
   arrange(x) |> 
   slice_tail(n = 1)
@@ -1111,19 +1558,19 @@ radioButtons(
 
 # Lines
 mappers_lines <- reactive({
-  mappers_lines <- read_csv("/data/api/mappers_lines_all.csv", show_col_types = FALSE)
+  mappers_lines <- read_csv("./data/api/mappers_lines_all.csv", show_col_types = FALSE)
   mappers_lines |> 
     filter(Pays == input$nom_pays_mappers)
 })
 # Substations
 mappers_substations <- reactive({
-  mappers_substations <- read_csv("/data/api/mappers_substations_all.csv", show_col_types = FALSE)
+  mappers_substations <- read_csv("./data/api/mappers_substations_all.csv", show_col_types = FALSE)
   mappers_substations |> 
     filter(Pays == input$nom_pays_mappers)
 })
 # Pylons
 mappers_pylons <- reactive({
-  mappers_pylons <- read_csv("/data/api/mappers_supports_all.csv", show_col_types = FALSE)
+  mappers_pylons <- read_csv("./data/api/mappers_supports_all.csv", show_col_types = FALSE)
   mappers_pylons |> 
     rename(labels.transmission.amount_1d = amount_1d,
            labels.transmission.amount = amount,
@@ -1295,7 +1742,7 @@ output$plot7.1 <- renderPlotly({
                                 format(as.integer(val, 0), nsmall = 1, big.mark = ","))),
               color = "#ECC229", linewidth = .5) +
     scale_y_continuous(labels = scales::comma) +
-    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
+    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 7)) +
     labs(x = "Time", 
          y = "Number of mappers",
          title = "Mappers evolution") +
@@ -1311,15 +1758,15 @@ output$plot7.1 <- renderPlotly({
 # Import selected data
 selected_line_data <- reactive({
   switch(input$time_period,
-         "Since the beginning of the project" = read_csv("/data/api/mappers_lines_all.csv", show_col_types = FALSE) |> 
+         "Since the beginning of the project" = read_csv("./data/api/mappers_lines_all.csv", show_col_types = FALSE) |> 
                         #filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = labels.transmission.amount),
-         "Last 30 days" = read_csv("/data/api/mappers_lines_all.csv", show_col_types = FALSE) |> 
+         "Last 30 days" = read_csv("./data/api/mappers_lines_all.csv", show_col_types = FALSE) |> 
                         #filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = labels.transmission.amount_30d),
-         "Last 24 hours" = read_csv("/data/api/mappers_lines_all.csv", show_col_types = FALSE) |> 
+         "Last 24 hours" = read_csv("./data/api/mappers_lines_all.csv", show_col_types = FALSE) |> 
                         #filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = labels.transmission.amount_1d) 
@@ -1403,7 +1850,7 @@ output$plot8.1 <- renderPlotly({
                                 format(as.integer(val, 0), nsmall = 1, big.mark = ","))),
               color = "#54a36a", linewidth = .5) +
     scale_y_continuous(labels = scales::comma) +
-    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
+    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 7)) +
     labs(x = "Time", 
          y = "Number of mappers",
          title = "Mappers evolution") +
@@ -1419,15 +1866,15 @@ output$plot8.1 <- renderPlotly({
 # Import selected data
 selected_substation_data <- reactive({
   switch(input$time_period,
-         "Since the beginning of the project" = read_csv("/data/api/mappers_substations_all.csv", show_col_types = FALSE) |> 
+         "Since the beginning of the project" = read_csv("./data/api/mappers_substations_all.csv", show_col_types = FALSE) |> 
                         filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = labels.transmission.amount),
-         "Last 30 days" = read_csv("/data/api/mappers_substations_all.csv", show_col_types = FALSE) |> 
+         "Last 30 days" = read_csv("./data/api/mappers_substations_all.csv", show_col_types = FALSE) |> 
                         filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = labels.transmission.amount_30d),
-         "Last 24 hours" = read_csv("/data/api/mappers_substations_all.csv", show_col_types = FALSE) |> 
+         "Last 24 hours" = read_csv("./data/api/mappers_substations_all.csv", show_col_types = FALSE) |> 
                         filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = labels.transmission.amount_1d) 
@@ -1503,7 +1950,7 @@ output$plot9.1 <- renderPlotly({
                                 format(as.integer(val, 0), nsmall = 1, big.mark = ","))),
               color = "#985750", linewidth = .5) +
     scale_y_continuous(labels = scales::comma) +
-    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
+    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 7)) +
     labs(x = "Time", 
          y = "Number of mappers",
          title = "Mappers evolution") +
@@ -1519,16 +1966,16 @@ output$plot9.1 <- renderPlotly({
 # Import selected data
 selected_pylon_data <- reactive({
   switch(input$time_period,
-         "Since the beginning of the project" = read_csv("/data/api/mappers_supports_all.csv", 
+         "Since the beginning of the project" = read_csv("./data/api/mappers_supports_all.csv", 
                                                          show_col_types = FALSE) |> 
                         filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = amount),
-         "Last 30 days" = read_csv("/data/api/mappers_supports_all.csv", show_col_types = FALSE) |> 
+         "Last 30 days" = read_csv("./data/api/mappers_supports_all.csv", show_col_types = FALSE) |> 
                         filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = amount_30d),
-         "Last 24 hours" = read_csv("/data/api/mappers_supports_all.csv", show_col_types = FALSE) |> 
+         "Last 24 hours" = read_csv("./data/api/mappers_supports_all.csv", show_col_types = FALSE) |> 
                         filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = amount_1d) 
@@ -1653,8 +2100,8 @@ output$plot10 <- renderPlotly({
 ```{r}
 #| label: import data geojson Colombia
 
-colombia_jan <- st_read("/data/colombia_230_20250101.geojson", quiet = TRUE)
-colombia_oct <- st_read("/data/colombia_230_20251013.geojson", quiet = TRUE)
+colombia_jan <- st_read("./data/colombia_230_20250101.geojson", quiet = TRUE)
+colombia_oct <- st_read("./data/colombia_230_20251013.geojson", quiet = TRUE)
 ```
 
 
