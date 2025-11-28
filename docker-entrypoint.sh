@@ -21,6 +21,7 @@ run_import() {
     else
       echo "!!! ATTENTION : échec de l'import des données !!!"
       return 1
+      #modif pour pas écraser les anciennes données
     fi
   else
     echo "ATTENTION : Le script import_data_dashboard.R est introuvable."

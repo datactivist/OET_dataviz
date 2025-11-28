@@ -14,7 +14,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgdal-dev \
     libgeos-dev \
     libproj-dev \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && mkdir -p /data
     
 # Install quarto
 RUN curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb && \
@@ -32,16 +33,18 @@ RUN mkdir -p $(R RHOME)/etc && \
     echo "local(options(shiny.port = 3838, shiny.host = '0.0.0.0'))" > $(R RHOME)/etc/Rprofile.site && \
     echo "Sys.setenv(PATH = paste('/usr/local/bin', Sys.getenv('PATH'), sep=':'))" >> $(R RHOME)/etc/Rprofile.site
 
-WORKDIR /home/app
-COPY . .
-
-# Rendre le script exécutable
-RUN chmod +x docker-entrypoint.sh
-
 # Créa utilisateur applicatif
 RUN groupadd --gid 10001 -r shiny \
     && useradd --uid 10001 -d /home/shiny -m -r -s /bin/false -g shiny shiny
 USER shiny
+
+WORKDIR /home/app
+COPY --chown=shiny:shiny . .
+
+# Rendre le script exécutable
+RUN chmod +x docker-entrypoint.sh \
+    && chown -R shiny:shiny /data \
+    && chmod -R 755 /data
 
 EXPOSE 3838
 
