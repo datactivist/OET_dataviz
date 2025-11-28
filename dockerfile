@@ -36,7 +36,6 @@ RUN mkdir -p $(R RHOME)/etc && \
 # Créa utilisateur applicatif
 RUN groupadd --gid 10001 -r shiny \
     && useradd --uid 10001 -d /home/shiny -m -r -s /bin/false -g shiny shiny
-USER shiny
 
 WORKDIR /home/app
 COPY --chown=shiny:shiny . .
@@ -45,6 +44,8 @@ COPY --chown=shiny:shiny . .
 RUN chmod +x docker-entrypoint.sh \
     && chown -R shiny:shiny /data \
     && chmod -R 755 /data
+
+USER shiny
 
 EXPOSE 3838
 
