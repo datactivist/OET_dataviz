@@ -34,7 +34,7 @@ RUN mkdir -p $(R RHOME)/etc && \
 
 # Créa utilisateur applicatif
 RUN groupadd --gid 10001 -r shiny \
-    && useradd --uid 10001 -d /home/shiny -m -r -s /bin/false -g shiny shiny \
+    && useradd --uid 10001 -d /home/shiny -m -r -s /bin/false -g shiny shiny
 USER shiny
 
 WORKDIR /home/app
