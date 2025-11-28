@@ -43,7 +43,9 @@ COPY --chown=shiny:shiny . .
 # Rendre le script exécutable
 RUN chmod +x docker-entrypoint.sh \
     && chown -R shiny:shiny /data \
-    && chmod -R 755 /data
+    && chmod -R 755 /data \
+    && chown -R shiny:shiny . \
+    && chmod -R 755 .
 
 USER shiny
 
