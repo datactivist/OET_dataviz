@@ -67,7 +67,7 @@ get_all_data <- function(url, name_export_data){
     left_join(relation_pays, by = "id_relation")
   assign("dataframe", dataframe, envir = .GlobalEnv)
     #Export
-  rio::export(dataframe, paste0("./data/api/", name_export_data, ".csv"))
+  rio::export(dataframe, paste0("/data/api/", name_export_data, ".csv"))
 }
 
 # On applique la fonction pour récupérer toutes les données
