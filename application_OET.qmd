@@ -2200,8 +2200,8 @@ output$plot10 <- renderPlotly({
 ```{r}
 #| label: import data geojson Colombia
 
-colombia_jan <- st_read("./data/colombia_230_20250101.geojson", quiet = TRUE)
-colombia_oct <- st_read("./data/colombia_230_20251013.geojson", quiet = TRUE)
+colombia_jan <- st_read("/data/colombia_230_20250101.geojson", quiet = TRUE)
+colombia_oct <- st_read("/data/colombia_230_20251013.geojson", quiet = TRUE)
 ```
 
 
