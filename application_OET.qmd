@@ -973,7 +973,7 @@ output$plot1_length <- renderPlotly({
                   text = paste0("Time : ", x, "\nLength : ", format(as.integer(length, 0), nsmall = 1, big.mark = ","), " km")),
               color = "#036D7A", linewidth = .7) +
     scale_y_continuous(labels = scales::comma) +
-    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
+    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 7)) +
     labs(x = "Time", 
          y = "Length (km)") +
     theme_custom() +
@@ -1039,7 +1039,7 @@ output$plot2_length <- renderPlotly({
                   text = paste0("Time : ", x, "\nLength : ", format(as.integer(length, 0), nsmall = 1, big.mark = ","), " km")),
               color = "#ECC229", linewidth = .7) +
     scale_y_continuous(labels = scales::comma) +
-    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
+    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 7)) +
     labs(x = "Time", 
          y = "Length (km)") +
     theme_custom() +
@@ -1104,7 +1104,7 @@ output$plot3_length <- renderPlotly({
                   text = paste0("Time : ", x, "\nArea : ", format(as.integer(area, 0), nsmall = 1, big.mark = ","), " km²")),
               color = "#54a36a", linewidth = .7) +
     scale_y_continuous(labels = scales::comma) +
-    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 10)) +
+    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 7)) +
     labs(x = "Time", 
          y = "Area (km²)") +
     theme_custom() +
