@@ -603,15 +603,15 @@ output$plot5 <- renderPlotly({
     mutate(x = as.Date(x)) |> 
     ggplot() +
     #distinction des périodes du projet
-    geom_rect(aes(xmin = as.Date("2024-11-01"), xmax = as.Date("2025-03-01"),
-                  ymin = min_min_100(), ymax = max_max_100(),
-                  text = "Early OET"), fill = "#333333", alpha = 0.2) +
-    geom_rect(aes(xmin = as.Date("2025-03-01"), xmax = as.Date("2025-08-01"),
-                  ymin = min_min_100(), ymax = max_max_100(),
-                  text = "Kickoff"), fill = "#a2a2a3", alpha = 0.2) +
-    geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(x),
-                  ymin = min_min_100(), ymax = max_max_100(),
-                  text = "Public launch"), fill = "#656566", alpha = 0.2) +
+    # geom_rect(aes(xmin = as.Date("2024-11-01"), xmax = as.Date("2025-03-01"),
+    #               ymin = min_min_100(), ymax = max_max_100(),
+    #               text = "Early OET"), fill = "#333333", alpha = 0.2) +
+    # geom_rect(aes(xmin = as.Date("2025-03-01"), xmax = as.Date("2025-08-01"),
+    #               ymin = min_min_100(), ymax = max_max_100(),
+    #               text = "Kickoff"), fill = "#a2a2a3", alpha = 0.2) +
+    # geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(x),
+    #               ymin = min_min_100(), ymax = max_max_100(),
+    #               text = "Public launch"), fill = "#656566", alpha = 0.2) +
     #ligne colorée jusqu'à 100 pour nb of circuits
     geom_line(aes(x = x, y = nb_circuits_100_mars25,group = 1,
                   text = case_when(nb_circuits_100_diff < 0 ~ paste0("Time : ", x, "\n↓ ", abs(nb_circuits_100_diff), 
@@ -645,7 +645,7 @@ output$plot5 <- renderPlotly({
                                                                 "% (+", format(as.integer(nb_pylons_diff, 0), nsmall = 1, big.mark = ","), " pylons)")),
                   color = "Pylons"), linewidth = .7) +
     #ligne pointillée au 1er mars 2025
-    geom_vline(xintercept = as.Date("2025-03-01"), linetype = 2, color = "red4") +
+    #geom_vline(xintercept = as.Date("2025-03-01"), linetype = 2, color = "red4") +
     #mises en forme générales
     scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 7)) +
     scale_y_continuous(labels = scales::comma) +
@@ -663,7 +663,8 @@ output$plot5 <- renderPlotly({
           panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb")) +
     guides(color = guide_legend(nrow = 2))
   #interactive graph
-  ggplotly(graph, tooltip = c("text"))
+  ggplotly(graph, tooltip = c("text")) |> 
+    layout(yaxis = list(autorange = TRUE))
   }
 })
 ```
@@ -1216,15 +1217,15 @@ output$plot5_length <- renderPlotly({
     mutate(x = as.Date(x)) |> 
     ggplot() +
     #distinction des périodes du projet
-    geom_rect(aes(xmin = as.Date("2024-11-01"), xmax = as.Date("2025-03-01"),
-                  ymin = min_min_100_length(), ymax = max_max_100_length(),
-                  text = "Early OET"), fill = "#333333", alpha = 0.2) +
-    geom_rect(aes(xmin = as.Date("2025-03-01"), xmax = as.Date("2025-08-01"),
-                  ymin = min_min_100_length(), ymax = max_max_100_length(),
-                  text = "Kickoff"), fill = "#a2a2a3", alpha = 0.2) +
-    geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(x),
-                  ymin = min_min_100_length(), ymax = max_max_100_length(),
-                  text = "Public launch"), fill = "#656566", alpha = 0.2) +
+    # geom_rect(aes(xmin = as.Date("2024-11-01"), xmax = as.Date("2025-03-01"),
+    #               ymin = min_min_100_length(), ymax = max_max_100_length(),
+    #               text = "Early OET"), fill = "#333333", alpha = 0.2) +
+    # geom_rect(aes(xmin = as.Date("2025-03-01"), xmax = as.Date("2025-08-01"),
+    #               ymin = min_min_100_length(), ymax = max_max_100_length(),
+    #               text = "Kickoff"), fill = "#a2a2a3", alpha = 0.2) +
+    # geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(x),
+    #               ymin = min_min_100_length(), ymax = max_max_100_length(),
+    #               text = "Public launch"), fill = "#656566", alpha = 0.2) +
     #ligne colorée jusqu'à 100 pour circuits
     geom_line(aes(x = x, y = length_circuits_100_mars25,group = 1,
                   text = case_when(length_circuits_100_diff < 0 ~ paste0("Time : ", x, "\n↓ ", abs(length_circuits_100_diff), 
@@ -1250,7 +1251,7 @@ output$plot5_length <- renderPlotly({
                     "% (+", format(as.integer(area_substations_diff, 0), nsmall = 1, big.mark = ","), " km² of substations area)")),
                   color = "Substations"), linewidth = .7) +
     #ligne pointillée au 1er mars 2025
-    geom_vline(xintercept = as.Date("2025-03-01"), linetype = 2, color = "red4") +
+    #geom_vline(xintercept = as.Date("2025-03-01"), linetype = 2, color = "red4") +
     #mises en forme générales
     scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 7)) +
     scale_y_continuous(labels = scales::comma) +
@@ -1267,7 +1268,8 @@ output$plot5_length <- renderPlotly({
           panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb")) +
     guides(color = guide_legend(nrow = 2))
   #interactive graph
-  ggplotly(graph, tooltip = c("text"))
+  ggplotly(graph, tooltip = c("text")) |> 
+    layout(yaxis = list(autorange = TRUE))
   }
 })
 ```
@@ -2119,25 +2121,59 @@ output$plot8.0.1 <- renderPlotly({
 selected_circuits_data <- reactive({
   switch(input$time_period,
          "Since the beginning of the project" = read_csv("/data/api/mappers_circuits_all.csv", show_col_types = FALSE) |> 
-                        filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = amount),
          "Last 30 days" = read_csv("/data/api/mappers_circuits_all.csv", show_col_types = FALSE) |> 
-                        filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = amount_30d),
          "Last 24 hours" = read_csv("/data/api/mappers_circuits_all.csv", show_col_types = FALSE) |> 
-                        filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = amount_1d) 
          )
+})
+
+# Filtre sur le top 10 réactif // pays sélectionné
+filter_around_country <- function(df, selected_country, n_before = 5, n_after = 5) {
+  country_idx <- which(df$Pays == selected_country) # Trouver l'index du pays sélectionné
+  if (length(country_idx) == 0) {
+    empty_df <- df[0, ] # Créer un dataframe vide avec les mêmes colonnes
+    return(empty_df)
+  }
+  total_rows <- nrow(df)
+  total_desired <- n_before + 1 + n_after
+  start_idx <- max(1, country_idx - n_before) # Calculer les indices
+  end_idx <- min(total_rows, country_idx + n_after)
+  if ((end_idx - start_idx + 1) < total_desired && total_rows >= total_desired) { # Ajuster pour avoir 11 lignes si possible
+    if (country_idx <= n_before) {
+      end_idx <- min(total_rows, start_idx + total_desired - 1)
+    } else if (country_idx > total_rows - n_after) {
+      start_idx <- max(1, end_idx - total_desired + 1)
+    }
+  }
+  df[start_idx:end_idx, ]
+}
+
+# On applique la fonction
+selected_circuits_data2 <- reactive({
+  selected_circuits_data() |> 
+      distinct(x, val, Pays) |> 
+      arrange(desc(val)) |> 
+      mutate(index_place = row_number(),
+             index_place_name = case_when(index_place == 1 ~ paste0(index_place-1, "st place in the ranking"),
+                                          index_place == 2 ~ paste0(index_place-1, "st place in the ranking"),
+                                          index_place == 3 ~ paste0(index_place-1, "nd place in the ranking"),
+                                          index_place == 4 ~ paste0(index_place-1, "rd place in the ranking"),
+                                          !is.na(index_place) ~ paste0(index_place-1, "th place in the ranking"),
+                                          .default = as.character(index_place))) |> 
+      filter_around_country(input$nom_pays_mappers) |> 
+      filter(Pays != "World (default)")
 })
 
 
 # Plot
 output$plot8.0.2 <- renderPlotly({
   
-    if (nrow(selected_circuits_data()) == 0) {
+    if (nrow(selected_circuits_data2()) == 0) {
     # Créer un plotly vide avec message
     plot_ly() |>
       layout(
@@ -2158,25 +2194,24 @@ output$plot8.0.2 <- renderPlotly({
   } else {
 
   # Plot
-  graph <- selected_circuits_data() |> 
-    arrange(desc(val)) |> 
-    filter(row_number() <= 10) |> 
-    mutate(Pays = str_replace_all(Pays, c("United States of America" = "USA",
-                                          "People's Republic of China" = "China")),
-           Pays = fct_reorder(Pays, val)) |> 
+  graph <- selected_circuits_data2() |> 
+    arrange(index_place) |> 
+    mutate(Pays = fct_reorder(Pays, desc(index_place))) |> 
     ggplot() +
     geom_col(aes(x = Pays, y = max(val)), fill = "#F3F3F3", width = .85) +
-    geom_col(aes(x = Pays, y = val,
+    geom_col(aes(x = Pays, y = val, alpha = Pays != input$nom_pays_mappers,
                  text = ifelse(val == 1,
-                               paste(val, "mapper"),
-                               paste(val, "mappers"))), 
+                               paste0(val, " mapper\n", index_place_name),
+                               paste0(val, " mappers\n", index_place_name))), 
              fill = "#036d7a", width = .85) +
     scale_y_continuous(labels = scales::comma) + 
-    scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 30)) + 
+    scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 20)) + 
+    scale_alpha_manual(values = c(.9, .4)) +
     coord_flip() +
     labs(y = "Number of mappers", title = "Countries with the highest \nnumber of mappers") +
     theme_custom() +
-    theme(panel.grid.major.x = ggplot2::element_blank(),
+    theme(legend.position = "none",
+          panel.grid.major.x = ggplot2::element_blank(),
           panel.grid.major.y = ggplot2::element_blank(),
           plot.title.position = "plot",
           axis.title.y = element_blank(),
@@ -2261,30 +2296,37 @@ output$plot7.1 <- renderPlotly({
 selected_line_data <- reactive({
   switch(input$time_period,
          "Since the beginning of the project" = read_csv("/data/api/mappers_lines_all.csv", show_col_types = FALSE) |> 
-                        filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = labels.transmission.amount),
          "Last 30 days" = read_csv("/data/api/mappers_lines_all.csv", show_col_types = FALSE) |> 
-                        filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = labels.transmission.amount_30d),
          "Last 24 hours" = read_csv("/data/api/mappers_lines_all.csv", show_col_types = FALSE) |> 
-                        filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = labels.transmission.amount_1d) 
          )
 })
 
-selected_line_data_country <- reactive({
+selected_line_data2 <- reactive({
   selected_line_data() |> 
-    filter(Pays == input$nom_pays_mappers)
+      distinct(x, val, Pays) |> 
+      arrange(desc(val)) |> 
+      mutate(index_place = row_number(),
+             index_place_name = case_when(index_place == 1 ~ paste0(index_place-1, "st place in the ranking"),
+                                          index_place == 2 ~ paste0(index_place-1, "st place in the ranking"),
+                                          index_place == 3 ~ paste0(index_place-1, "nd place in the ranking"),
+                                          index_place == 4 ~ paste0(index_place-1, "rd place in the ranking"),
+                                          !is.na(index_place) ~ paste0(index_place-1, "th place in the ranking"),
+                                          .default = as.character(index_place))) |> 
+      filter_around_country(input$nom_pays_mappers) |> 
+      filter(Pays != "World (default)")
 })
 
 
 # Plot
 output$plot7.2 <- renderPlotly({
   
-      if (nrow(selected_line_data()) == 0 | all(is.na(selected_line_data()$val))) {
+      if (nrow(selected_line_data2()) == 0 | all(is.na(selected_line_data2()$val))) {
     # Créer un plotly vide avec message
     plot_ly() |>
       layout(
@@ -2305,25 +2347,24 @@ output$plot7.2 <- renderPlotly({
   } else {
 
   # Plot
-  graph <- selected_line_data() |> 
-    arrange(desc(val)) |> 
-    filter(row_number() <= 10) |> 
-    mutate(Pays = str_replace_all(Pays, c("United States of America" = "USA",
-                                          "People's Republic of China" = "China")),
-           Pays = fct_reorder(Pays, val)) |> 
+  graph <- selected_line_data2() |> 
+    arrange(index_place) |> 
+    mutate(Pays = fct_reorder(Pays, desc(index_place))) |> 
     ggplot() +
     geom_col(aes(x = Pays, y = max(val)), fill = "#F3F3F3", width = .85) +
-    geom_col(aes(x = Pays, y = val,
+    geom_col(aes(x = Pays, y = val, alpha = Pays != input$nom_pays_mappers,
                  text = ifelse(val == 1,
-                               paste(val, "mapper"),
-                               paste(val, "mappers"))), 
+                               paste0(val, " mapper\n", index_place_name),
+                               paste0(val, " mappers\n", index_place_name))), 
              fill = "#ECC229", width = .85) +
     scale_y_continuous(labels = scales::comma) + 
-    scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 30)) + 
+    scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 20)) + 
+    scale_alpha_manual(values = c(.9, .4)) +
     coord_flip() +
     labs(y = "Number of mappers", title = "Countries with the highest \nnumber of mappers") +
     theme_custom() +
-    theme(panel.grid.major.x = ggplot2::element_blank(),
+    theme(legend.position = "none",
+          panel.grid.major.x = ggplot2::element_blank(),
           panel.grid.major.y = ggplot2::element_blank(),
           plot.title.position = "plot",
           axis.title.y = element_blank(),
@@ -2412,25 +2453,38 @@ output$plot8.1 <- renderPlotly({
 selected_substation_data <- reactive({
   switch(input$time_period,
          "Since the beginning of the project" = read_csv("/data/api/mappers_substations_all.csv", show_col_types = FALSE) |> 
-                        filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = labels.transmission.amount),
          "Last 30 days" = read_csv("/data/api/mappers_substations_all.csv", show_col_types = FALSE) |> 
-                        filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = labels.transmission.amount_30d),
          "Last 24 hours" = read_csv("/data/api/mappers_substations_all.csv", show_col_types = FALSE) |> 
-                        filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = labels.transmission.amount_1d) 
          )
+})
+
+# On applique la fonction
+selected_substation_data2 <- reactive({
+  selected_substation_data() |> 
+      distinct(x, val, Pays) |> 
+      arrange(desc(val)) |> 
+      mutate(index_place = row_number(),
+             index_place_name = case_when(index_place == 1 ~ paste0(index_place-1, "st place in the ranking"),
+                                          index_place == 2 ~ paste0(index_place-1, "st place in the ranking"),
+                                          index_place == 3 ~ paste0(index_place-1, "nd place in the ranking"),
+                                          index_place == 4 ~ paste0(index_place-1, "rd place in the ranking"),
+                                          !is.na(index_place) ~ paste0(index_place-1, "th place in the ranking"),
+                                          .default = as.character(index_place))) |> 
+      filter_around_country(input$nom_pays_mappers) |> 
+      filter(Pays != "World (default)")
 })
 
 
 # Plot
 output$plot8.2 <- renderPlotly({
   
-  if (nrow(selected_substation_data()) == 0 | all(is.na(selected_substation_data()$val))) {
+  if (nrow(selected_substation_data2()) == 0 | all(is.na(selected_substation_data2()$val))) {
     # Créer un plotly vide avec message
     plot_ly() |>
       layout(
@@ -2451,25 +2505,24 @@ output$plot8.2 <- renderPlotly({
   } else {
 
   # Plot
-  graph <- selected_substation_data() |> 
-    arrange(desc(val)) |> 
-    filter(row_number() <= 10) |> 
-    mutate(Pays = str_replace_all(Pays, c("United States of America" = "USA",
-                                          "People's Republic of China" = "China")),
-           Pays = fct_reorder(Pays, val)) |> 
+  graph <- selected_substation_data2() |> 
+    arrange(index_place) |> 
+    mutate(Pays = fct_reorder(Pays, desc(index_place))) |> 
     ggplot() +
     geom_col(aes(x = Pays, y = max(val)), fill = "#F3F3F3", width = .85) +
-    geom_col(aes(x = Pays, y = val,
+    geom_col(aes(x = Pays, y = val, alpha = Pays != input$nom_pays_mappers,
                  text = ifelse(val == 1,
-                               paste(val, "mapper"),
-                               paste(val, "mappers"))), 
+                               paste0(val, " mapper\n", index_place_name),
+                               paste0(val, " mappers\n", index_place_name))), 
              fill = "#54a36a", width = .85) +
     scale_y_continuous(labels = scales::comma) + 
-    scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 30)) + 
+    scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 20)) + 
+    scale_alpha_manual(values = c(.9, .4)) +
     coord_flip() +
     labs(y = "Number of mappers", title = "Countries with the highest \nnumber of mappers") +
     theme_custom() +
-    theme(panel.grid.major.x = ggplot2::element_blank(),
+    theme(legend.position = "none",
+          panel.grid.major.x = ggplot2::element_blank(),
           panel.grid.major.y = ggplot2::element_blank(),
           plot.title.position = "plot",
           axis.title.y = element_blank(),
@@ -2570,11 +2623,26 @@ selected_pylon_data <- reactive({
          )
 })
 
+# On applique la fonction
+selected_pylon_data2 <- reactive({
+  selected_pylon_data() |> 
+      distinct(x, val, Pays) |> 
+      arrange(desc(val)) |> 
+      mutate(index_place = row_number(),
+             index_place_name = case_when(index_place == 1 ~ paste0(index_place-1, "st place in the ranking"),
+                                          index_place == 2 ~ paste0(index_place-1, "st place in the ranking"),
+                                          index_place == 3 ~ paste0(index_place-1, "nd place in the ranking"),
+                                          index_place == 4 ~ paste0(index_place-1, "rd place in the ranking"),
+                                          !is.na(index_place) ~ paste0(index_place-1, "th place in the ranking"),
+                                          .default = as.character(index_place))) |> 
+      filter_around_country(input$nom_pays_mappers) |> 
+      filter(Pays != "World (default)")
+})
 
 # Plot
 output$plot9.2 <- renderPlotly({
   
-  if (nrow(selected_pylon_data()) == 0 | all(is.na(selected_pylon_data()$val))) {
+  if (nrow(selected_pylon_data2()) == 0 | all(is.na(selected_pylon_data2()$val))) {
     # Créer un plotly vide avec message
     plot_ly() |>
       layout(
@@ -2595,25 +2663,24 @@ output$plot9.2 <- renderPlotly({
   } else {
 
   # Plot
-  graph <- selected_pylon_data() |> 
-    arrange(desc(val)) |> 
-    filter(row_number() <= 10) |> 
-    mutate(Pays = str_replace_all(Pays, c("United States of America" = "USA",
-                                          "People's Republic of China" = "China")),
-           Pays = fct_reorder(Pays, val)) |> 
+  graph <- selected_pylon_data2() |> 
+    arrange(index_place) |> 
+    mutate(Pays = fct_reorder(Pays, desc(index_place))) |> 
     ggplot() +
     geom_col(aes(x = Pays, y = max(val)), fill = "#F3F3F3", width = .85) +
-    geom_col(aes(x = Pays, y = val,
+    geom_col(aes(x = Pays, y = val, alpha = Pays != input$nom_pays_mappers,
                  text = ifelse(val == 1,
-                               paste(val, "mapper"),
-                               paste(val, "mappers"))), 
+                               paste0(val, " mapper\n", index_place_name),
+                               paste0(val, " mappers\n", index_place_name))), 
              fill = "#985750", width = .85) +
     scale_y_continuous(labels = scales::comma) + 
-    scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 30)) + 
+    scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 20)) + 
+    scale_alpha_manual(values = c(.9, .4)) +
     coord_flip() +
     labs(y = "Number of mappers", title = "Countries with the highest \nnumber of mappers") +
     theme_custom() +
-    theme(panel.grid.major.x = ggplot2::element_blank(),
+    theme(legend.position = "none",
+          panel.grid.major.x = ggplot2::element_blank(),
           panel.grid.major.y = ggplot2::element_blank(),
           plot.title.position = "plot",
           axis.title.y = element_blank(),
