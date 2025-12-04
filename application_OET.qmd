@@ -218,13 +218,13 @@ output$n1 <- renderText({
   value_world_circuits_last()$amount
 })
 output$n2 <- renderText({
-  value_world_segments_last()$amount
+  ifelse(value_world_segments_last()$amount == "NA", "", value_world_segments_last()$amount)
 })
 output$n3 <- renderText({
-  value_world_substations_last()$amount
+  ifelse(value_world_substations_last()$amount == "NA", "", value_world_substations_last()$amount)
 })
 output$n4 <- renderText({
-  value_world_supports_last()$amount
+  ifelse(value_world_supports_last()$amount == "NA", "", value_world_supports_last()$amount)
 })
 ```
 
@@ -245,6 +245,27 @@ plotlyOutput('plot1')
 
 # Plot
 output$plot1 <- renderPlotly({
+  
+      if (nrow(value_world_circuits()) == 0) {
+    # Créer un plotly vide avec message
+    plot_ly() |>
+      layout(
+        xaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        yaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        annotations = list(
+          list(
+            text = "No data for this country",
+            xref = "paper",
+            yref = "paper",
+            x = 0.5,
+            y = 0.5,
+            showarrow = FALSE,
+            font = list(size = 16, color = "gray")
+          )
+        )
+      )
+  } else {
+    
   #plot depending on selected country
   graph <- value_world_circuits() |> 
     mutate(x = as.Date(x)) |> 
@@ -274,6 +295,7 @@ output$plot1 <- renderPlotly({
           panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
   #interactive graph
   ggplotly(graph, tooltip = c("text"))
+  }
 })
 ```
 
@@ -289,6 +311,27 @@ plotlyOutput('plot2')
 
 # Plot 
 output$plot2 <- renderPlotly({
+  
+  if (nrow(value_world_lines()) == 0 | all(is.na(value_world_lines()$amount))) {
+    # Créer un plotly vide avec message
+    plot_ly() |>
+      layout(
+        xaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        yaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        annotations = list(
+          list(
+            text = "No data for this country",
+            xref = "paper",
+            yref = "paper",
+            x = 0.5,
+            y = 0.5,
+            showarrow = FALSE,
+            font = list(size = 16, color = "gray")
+          )
+        )
+      )
+  } else {
+    
   #plot depending on selected country
   graph <- value_world_lines() |> 
     mutate(x = as.Date(x)) |> 
@@ -317,6 +360,7 @@ output$plot2 <- renderPlotly({
           panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
   #interactive graph
   ggplotly(graph, tooltip = c("text"))
+  }
 })
 ```
 
@@ -332,6 +376,27 @@ plotlyOutput('plot3')
 
 # Plot
 output$plot3 <- renderPlotly({
+  
+  if (nrow(value_world_substations()) == 0 | all(is.na(value_world_substations()$amount))) {
+    # Créer un plotly vide avec message
+    plot_ly() |>
+      layout(
+        xaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        yaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        annotations = list(
+          list(
+            text = "No data for this country",
+            xref = "paper",
+            yref = "paper",
+            x = 0.5,
+            y = 0.5,
+            showarrow = FALSE,
+            font = list(size = 16, color = "gray")
+          )
+        )
+      )
+  } else {
+    
   graph <- value_world_substations() |> 
     mutate(x = as.Date(x)) |> 
   #plot depending on selected country
@@ -360,6 +425,7 @@ output$plot3 <- renderPlotly({
           panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
   #interactive graph
   ggplotly(graph, tooltip = c("text"))
+  }
 })
 ```
 
@@ -375,6 +441,27 @@ plotlyOutput('plot4')
 
 # Plot line length
 output$plot4 <- renderPlotly({
+  
+  if (nrow(value_world_supports()) == 0 | all(is.na(value_world_supports()$amount))) {
+    # Créer un plotly vide avec message
+    plot_ly() |>
+      layout(
+        xaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        yaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        annotations = list(
+          list(
+            text = "No data for this country",
+            xref = "paper",
+            yref = "paper",
+            x = 0.5,
+            y = 0.5,
+            showarrow = FALSE,
+            font = list(size = 16, color = "gray")
+          )
+        )
+      )
+  } else {
+    
   #plot depending on selected country
   graph <- value_world_supports() |> 
     mutate(x = as.Date(x)) |> 
@@ -402,6 +489,7 @@ output$plot4 <- renderPlotly({
           panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
           panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
   ggplotly(graph, tooltip = c("text"))
+  }
 })
 ```
 
@@ -430,6 +518,8 @@ pylons_mars25 <- reactive({
   value_world_supports() |> 
     filter(as.Date(x) == "2025-03-01")
 })
+
+
 table <- reactive({
   left_join(value_world_lines() |> select(c(x, amount, Pays)) |> rename(nb_segments = amount), 
             value_world_substations() |> select(c(x, amount, Pays)) |> rename(nb_substations = amount), 
@@ -440,38 +530,38 @@ table <- reactive({
             by = "x") |> 
   arrange(x) |> 
   #transformation des métriques en base 100 en mars 2025
-  mutate(nb_circuits_100_mars25 = nb_circuits / circuits_mars25()$amount * 100,
-         nb_circuits_100_diff = round(nb_circuits_100_mars25 - 100, 1),
-         nb_circuits_diff = nb_circuits - circuits_mars25()$amount,
-         nb_segments_100_mars25 = nb_segments / line_mars25()$amount * 100, #amount
-         nb_segments_100_diff = round(nb_segments_100_mars25 - 100, 1),
-         nb_segments_diff = round(nb_segments - line_mars25()$amount, 0), #amount
-         nb_substations_100_mars25 = nb_substations / substations_mars25()$amount * 100,
-         nb_substations_100_diff = round(nb_substations_100_mars25 - 100, 1),
-         nb_substations_diff = nb_substations - substations_mars25()$amount,
-         nb_pylons_100_mars25 = nb_pylons / pylons_mars25()$amount * 100,
-         nb_pylons_100_diff = round(nb_pylons_100_mars25 - 100, 1),
-         nb_pylons_diff = nb_pylons - pylons_mars25()$amount)
+  mutate(nb_circuits_100_mars25 = ifelse(is.na(nb_circuits), NA_real_, nb_circuits / circuits_mars25()$amount * 100),
+         nb_circuits_100_diff = ifelse(is.na(nb_circuits), NA_real_, round(nb_circuits_100_mars25 - 100, 1)),
+         nb_circuits_diff = ifelse(is.na(nb_circuits), NA_real_, nb_circuits - circuits_mars25()$amount),
+         nb_segments_100_mars25 = ifelse(is.na(nb_segments), NA_real_, nb_segments / line_mars25()$amount * 100), #amount
+         nb_segments_100_diff = ifelse(is.na(nb_segments), NA_real_, round(nb_segments_100_mars25 - 100, 1)),
+         nb_segments_diff = ifelse(is.na(nb_segments), NA_real_, round(nb_segments - line_mars25()$amount, 0)), #amount
+         nb_substations_100_mars25 = ifelse(is.na(nb_substations), NA_real_, nb_substations / substations_mars25()$amount * 100),
+         nb_substations_100_diff = ifelse(is.na(nb_substations), NA_real_, round(nb_substations_100_mars25 - 100, 1)),
+         nb_substations_diff = ifelse(is.na(nb_substations), NA_real_, nb_substations - substations_mars25()$amount),
+         nb_pylons_100_mars25 = ifelse(is.na(nb_pylons), NA_real_, nb_pylons / pylons_mars25()$amount * 100),
+         nb_pylons_100_diff = ifelse(is.na(nb_pylons), NA_real_, round(nb_pylons_100_mars25 - 100, 1)),
+         nb_pylons_diff = ifelse(is.na(nb_pylons), NA_real_, nb_pylons - pylons_mars25()$amount))
 })
   #calcul de la valeur minimale en base 100 (pour placer geom_rect)
 min_mesures <- reactive({
-  c(min(table()$nb_circuits_100_mars25, na.rm = TRUE),
-    min(table()$nb_segments_100_mars25, na.rm = TRUE),
-    min(table()$nb_substations_100_mars25, na.rm = TRUE),
-    min(table()$nb_pylons_100_mars25, na.rm = TRUE))
+  c(ifelse(is.na(table()$nb_circuits), NA_real_, min(table()$nb_circuits_100_mars25, na.rm = TRUE)),
+    ifelse(is.na(table()$nb_segments), NA_real_, min(table()$nb_segments_100_mars25, na.rm = TRUE)),
+    ifelse(is.na(table()$nb_substations), NA_real_, min(table()$nb_substations_100_mars25, na.rm = TRUE)),
+    ifelse(is.na(table()$nb_pylons), NA_real_, min(table()$nb_pylons_100_mars25, na.rm = TRUE)))
 })
 min_min_100 <- reactive({
-  min(min_mesures())
+  min(min_mesures(), na.rm = TRUE)
 })
   #calcul de la valeur maximale en base 100 (pour placer geom_rect)
 max_mesures <- reactive({
-  c(max(table()$nb_circuits_100_mars25, na.rm = TRUE),
-    max(table()$nb_segments_100_mars25, na.rm = TRUE),
-    max(table()$nb_substations_100_mars25, na.rm = TRUE),
-    max(table()$nb_pylons_100_mars25, na.rm = TRUE))
+  c(ifelse(is.na(table()$nb_circuits), NA_real_, max(table()$nb_circuits_100_mars25, na.rm = TRUE)),
+    ifelse(is.na(table()$nb_segments), NA_real_, max(table()$nb_segments_100_mars25, na.rm = TRUE)),
+    ifelse(is.na(table()$nb_substations), NA_real_, max(table()$nb_substations_100_mars25, na.rm = TRUE)),
+    ifelse(is.na(table()$nb_pylons), NA_real_, max(table()$nb_pylons_100_mars25, na.rm = TRUE)))
 })
 max_max_100 <- reactive({
-  max(max_mesures())
+  max(max_mesures(), na.rm = TRUE)
 })
 ```
 
@@ -488,6 +578,26 @@ plotlyOutput('plot5')
 # Plot
 output$plot5 <- renderPlotly({
 
+      if (nrow(table()) == 0) {
+    # Créer un plotly vide avec message
+    plot_ly() |>
+      layout(
+        xaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        yaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        annotations = list(
+          list(
+            text = "No data for this country",
+            xref = "paper",
+            yref = "paper",
+            x = 0.5,
+            y = 0.5,
+            showarrow = FALSE,
+            font = list(size = 16, color = "gray")
+          )
+        )
+      )
+  } else {
+    
   #plot depending on selected country
   graph <- table() |> 
     mutate(x = as.Date(x)) |> 
@@ -553,9 +663,8 @@ output$plot5 <- renderPlotly({
           panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb")) +
     guides(color = guide_legend(nrow = 2))
   #interactive graph
-  ggplotly(graph, tooltip = c("text")) |> 
-    layout(yaxis = list(autorange = TRUE),
-           xaxis = list(autorange = TRUE))
+  ggplotly(graph, tooltip = c("text"))
+  }
 })
 ```
 
@@ -568,40 +677,54 @@ output$plot5 <- renderPlotly({
 #| label: prepare data growth rate graph
 
 # Préparation des données
-  #line
-growth_rate <- reactive({
-  bind_cols(
     #circuits
+circuits_counts1 <- reactive({
   value_world_circuits() |> 
     mutate(x = as.Date(x)) |> 
     filter(x == "2025-03-01" | x == max(x, na.rm = TRUE)) |> 
     mutate(growth_rate_circuits = (amount - lag(amount)) / lag(amount)) |> 
     select(growth_rate_circuits) |> 
-    na.omit(),
+    na.omit()
+})
     #lines
+lines_counts1 <- reactive({
   value_world_lines() |> 
     mutate(x = as.Date(x)) |> 
     filter(x == "2025-03-01" | x == max(x, na.rm = TRUE)) |> 
     mutate(growth_rate_segments = (amount - lag(amount)) / lag(amount)) |> 
     select(growth_rate_segments) |> 
-    na.omit(),
+    na.omit()
+})
     #substations
+substations_counts1 <- reactive({
   value_world_substations() |> 
     mutate(x = as.Date(x)) |> 
     filter(x == "2025-03-01" | x == max(x, na.rm = TRUE)) |> 
     mutate(growth_rate_substations = (amount - lag(amount)) / lag(amount)) |> 
     select(growth_rate_substations) |> 
-    na.omit(),
+    na.omit()
+})
     # pylons
+supports_counts1 <- reactive({
   value_world_supports() |> 
     mutate(x = as.Date(x)) |> 
     filter(x == "2025-03-01" | x == max(x, na.rm = TRUE)) |> 
     mutate(growth_rate_pylons = (amount - lag(amount)) / lag(amount)) |> 
     select(growth_rate_pylons) |> 
     na.omit()
-  ) |> 
-  pivot_longer(cols = everything(), values_to = "Valeur", names_to = "Mesure", names_prefix = "growth_rate_") |> 
-  mutate(Mesure = gsub("^([[:alpha:]])(.*)$", "\\U\\1\\L\\2", Mesure, perl = TRUE)) #upper first letter
+}) 
+
+dfs_list_counts <- reactive({
+  list(lines_counts1(), circuits_counts1(), substations_counts1(), supports_counts1())
+})
+dfs_non_vides_counts <- reactive({
+  Filter(function(x) nrow(x) > 0, dfs_list_counts())
+})
+
+growth_rate <- reactive({
+  bind_cols(dfs_non_vides_counts()) |> 
+    pivot_longer(cols = everything(), values_to = "Valeur", names_to = "Mesure", names_prefix = "growth_rate_") |> 
+    mutate(Mesure = gsub("^([[:alpha:]])(.*)$", "\\U\\1\\L\\2", Mesure, perl = TRUE))
 })
 ```
 
@@ -616,6 +739,26 @@ plotlyOutput('plot6')
 
 # Plot line length
 output$plot6 <- renderPlotly({
+  
+  if (nrow(growth_rate()) == 0) {
+    # Créer un plotly vide avec message
+    plot_ly() |>
+      layout(
+        xaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        yaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        annotations = list(
+          list(
+            text = "No data for this country",
+            xref = "paper",
+            yref = "paper",
+            x = 0.5,
+            y = 0.5,
+            showarrow = FALSE,
+            font = list(size = 16, color = "gray")
+          )
+        )
+      )
+  } else {
 
   #plot depending on selected country
   graph <- growth_rate() |> 
@@ -635,8 +778,8 @@ output$plot6 <- renderPlotly({
           panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
           panel.grid.major.y = ggplot2::element_blank()) 
   #interactive graph
-  viz <- ggplotly(graph, tooltip = c("text"))
-  viz
+  ggplotly(graph, tooltip = c("text"))
+  }
 })
 ```
 
@@ -693,7 +836,6 @@ value_world_lines_length <- reactive({
     select(-c(length, amount)) |> 
     rename(length = labels.transmission.length,
            amount = labels.transmission.amount) |> #on prend désormais les comptes *transmission*
-    mutate(length = length / 1000) |> 
     filter(Pays == input$nom_pays_length)
 })
 value_world_lines_last_length <- reactive({
@@ -767,10 +909,10 @@ output$n1_length <- renderText({
   value_world_circuits_last_length()$length
 })
 output$n2_length <- renderText({
-  value_world_lines_last_length()$length
+  ifelse(value_world_lines_last_length()$length == "NA", "", value_world_lines_last_length()$length)
 })
 output$n3_length <- renderText({
-  value_world_substations_last_length()$area
+  ifelse(value_world_substations_last_length()$area == "NA", "", value_world_substations_last_length()$area)
 })
 ```
 
@@ -781,7 +923,7 @@ output$n3_length <- renderText({
 
 
 ```{r}
-#| title: circuits
+#| title: circuits length
 plotlyOutput('plot1_length')
 ```
 
@@ -857,6 +999,27 @@ plotlyOutput('plot2_length')
 
 # Plot
 output$plot2_length <- renderPlotly({
+  
+    if (nrow(value_world_lines_length()) == 0 | all(is.na(value_world_lines_length()$length))) {
+    # Créer un plotly vide avec message
+    plot_ly() |>
+      layout(
+        xaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        yaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        annotations = list(
+          list(
+            text = "No data for this country",
+            xref = "paper",
+            yref = "paper",
+            x = 0.5,
+            y = 0.5,
+            showarrow = FALSE,
+            font = list(size = 16, color = "gray")
+          )
+        )
+      )
+  } else {
+    
   #plot depending on selected country
   graph <- value_world_lines_length() |> 
     mutate(x = as.Date(x)) |> 
@@ -885,12 +1048,13 @@ output$plot2_length <- renderPlotly({
           panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
   #interactive graph
   ggplotly(graph, tooltip = c("text"))
+  }
 })
 ```
 
 
 ```{r}
-#| title: substations
+#| title: substations area
 plotlyOutput('plot3_length')
 ```
 
@@ -900,6 +1064,27 @@ plotlyOutput('plot3_length')
 
 # Plot
 output$plot3_length <- renderPlotly({
+  
+  if (nrow(value_world_substations_length()) == 0 | all(is.na(value_world_substations_length()$area))) {
+    # Créer un plotly vide avec message
+    plot_ly() |>
+      layout(
+        xaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        yaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        annotations = list(
+          list(
+            text = "No data for this country",
+            xref = "paper",
+            yref = "paper",
+            x = 0.5,
+            y = 0.5,
+            showarrow = FALSE,
+            font = list(size = 16, color = "gray")
+          )
+        )
+      )
+  } else {
+    
   #plot depending on selected country
   graph <- value_world_substations_length() |> 
     mutate(x = as.Date(x)) |> 
@@ -928,6 +1113,7 @@ output$plot3_length <- renderPlotly({
           panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
   #interactive graph
   ggplotly(graph, tooltip = c("text"))
+  }
 })
 ```
 
@@ -960,33 +1146,33 @@ table_length <- reactive({
             by = "x") |> 
   arrange(x) |> 
   #transformation des métriques en base 100 en mars 2025
-  mutate(length_circuits_100_mars25 = length_circuits / circuits_mars25_length()$length * 100,
-         length_circuits_100_diff = round(length_circuits_100_mars25 - 100, 1),
-         length_circuits_diff = length_circuits - circuits_mars25_length()$length,
-         length_segments_100_mars25 = length_segments / line_mars25_length()$length * 100, 
-         length_segments_100_diff = round(length_segments_100_mars25 - 100, 1),
-         length_segments_diff = round(length_segments - line_mars25_length()$length, 0), 
-         area_substations_100_mars25 = area_substations / substations_mars25_length()$area * 100,
-         area_substations_100_diff = round(area_substations_100_mars25 - 100, 1),
-         area_substations_diff = area_substations - substations_mars25_length()$area)
+  mutate(length_circuits_100_mars25 = ifelse(is.na(length_circuits), NA_real_, length_circuits / circuits_mars25_length()$length * 100),
+         length_circuits_100_diff = ifelse(is.na(length_circuits), NA_real_, round(length_circuits_100_mars25 - 100, 1)),
+         length_circuits_diff = ifelse(is.na(length_circuits), NA_real_, length_circuits - circuits_mars25_length()$length),
+         length_segments_100_mars25 = ifelse(is.na(length_segments), NA_real_, length_segments / line_mars25_length()$length * 100), 
+         length_segments_100_diff = ifelse(is.na(length_segments), NA_real_, round(length_segments_100_mars25 - 100, 1)),
+         length_segments_diff = ifelse(is.na(length_segments), NA_real_, round(length_segments - line_mars25_length()$length, 0)), 
+         area_substations_100_mars25 = ifelse(is.na(area_substations), NA_real_, area_substations / substations_mars25_length()$area * 100),
+         area_substations_100_diff = ifelse(is.na(area_substations), NA_real_, round(area_substations_100_mars25 - 100, 1)),
+         area_substations_diff = ifelse(is.na(area_substations), NA_real_, area_substations - substations_mars25_length()$area))
 })
   #calcul de la valeur minimale en base 100 (pour placer geom_rect)
 min_mesures_length <- reactive({
-  c(min(table()$length_circuits_100_mars25, na.rm = TRUE),
-    min(table()$length_segments_100_mars25, na.rm = TRUE),
-    min(table()$area_substations_100_mars25, na.rm = TRUE))
+  c(ifelse(is.na(table_length()$length_circuits), NA_real_, min(table()$length_circuits_100_mars25, na.rm = TRUE)),
+    ifelse(is.na(table_length()$length_segments), NA_real_, min(table()$length_segments_100_mars25, na.rm = TRUE)),
+    ifelse(is.na(table_length()$area_substations), NA_real_, min(table()$area_substations_100_mars25, na.rm = TRUE)))
 })
 min_min_100_length <- reactive({
-  min(min_mesures_length())
+  min(min_mesures_length(), na.rm = TRUE)
 })
   #calcul de la valeur maximale en base 100 (pour placer geom_rect)
 max_mesures_length <- reactive({
-  c(max(table()$length_circuits_100_mars25, na.rm = TRUE),
-    max(table()$length_segments_100_mars25, na.rm = TRUE),
-    max(table()$area_substations_100_mars25, na.rm = TRUE))
+  c(ifelse(is.na(table_length()$length_circuits), NA_real_, max(table()$length_circuits_100_mars25, na.rm = TRUE)),
+    ifelse(is.na(table_length()$length_segments), NA_real_, max(table()$length_segments_100_mars25, na.rm = TRUE)),
+    ifelse(is.na(table_length()$area_substations), NA_real_, max(table()$area_substations_100_mars25, na.rm = TRUE)))
 })
 max_max_100_length <- reactive({
-  max(max_mesures_length())
+  max(max_mesures_length(), na.rm = TRUE)
 })
 ```
 
@@ -1003,7 +1189,9 @@ plotlyOutput('plot5_length')
 # Plot
 output$plot5_length <- renderPlotly({
   
-  if (nrow(table_length()) == 0) {
+  if (nrow(table_length()) == 0 | (all(is.na(table_length()$length_circuits_100_mars25)) &
+                                   all(is.na(table_length()$length_segments_100_mars25)) &
+                                   all(is.na(table_length()$area_substations_100_mars25)))) {
     # Créer un plotly vide avec message
     plot_ly() |>
       layout(
@@ -1126,12 +1314,24 @@ dfs_list <- reactive({
 dfs_non_vides <- reactive({
   Filter(function(x) nrow(x) > 0, dfs_list())
 })
-
+dfs_non_vides_binded <- reactive({
+  bind_cols(dfs_non_vides())
+})
 growth_rate_length <- reactive({
-  bind_cols(dfs_non_vides()) |> 
+  df_input <- dfs_non_vides_binded()
+  if (nrow(df_input) == 0 || ncol(df_input) == 0) {
+    return(data.frame(Mesure = character(), Valeur = numeric()))
+  }
+  df_input |> 
     pivot_longer(cols = everything(), values_to = "Valeur", names_to = "Mesure", names_prefix = "growth_rate_") |> 
     mutate(Mesure = gsub("^([[:alpha:]])(.*)$", "\\U\\1\\L\\2", Mesure, perl = TRUE))
 })
+
+# growth_rate_length <- reactive({
+#   bind_cols(dfs_non_vides()) |> 
+#     pivot_longer(cols = everything(), values_to = "Valeur", names_to = "Mesure", names_prefix = "growth_rate_") |> 
+#     mutate(Mesure = gsub("^([[:alpha:]])(.*)$", "\\U\\1\\L\\2", Mesure, perl = TRUE))
+# })
 ```
 
 ```{r}
@@ -1656,22 +1856,27 @@ radioButtons(
 
 #--- SELECTED COUNTRY
 
+# Circuits
+mappers_circuits <- reactive({
+  read_csv("/data/api/mappers_circuits_all.csv", show_col_types = FALSE) |> 
+    rename(labels.transmission.amount_1d = amount_1d,
+           labels.transmission.amount = amount,
+           labels.transmission.amount_30d = amount_30d) |> #pas label transmission, mais on renomme pour que le graphique puisse se générer avec le nom de colonne correspondant 
+    filter(Pays == input$nom_pays_mappers)
+})
 # Lines
 mappers_lines <- reactive({
-  mappers_lines <- read_csv("/data/api/mappers_lines_all.csv", show_col_types = FALSE)
-  mappers_lines |> 
+  read_csv("/data/api/mappers_lines_all.csv", show_col_types = FALSE) |> 
     filter(Pays == input$nom_pays_mappers)
 })
 # Substations
 mappers_substations <- reactive({
-  mappers_substations <- read_csv("/data/api/mappers_substations_all.csv", show_col_types = FALSE)
-  mappers_substations |> 
+  read_csv("/data/api/mappers_substations_all.csv", show_col_types = FALSE) |> 
     filter(Pays == input$nom_pays_mappers)
 })
 # Pylons
 mappers_pylons <- reactive({
-  mappers_pylons <- read_csv("/data/api/mappers_supports_all.csv", show_col_types = FALSE)
-  mappers_pylons |> 
+  read_csv("/data/api/mappers_supports_all.csv", show_col_types = FALSE) |> 
     rename(labels.transmission.amount_1d = amount_1d,
            labels.transmission.amount = amount,
            labels.transmission.amount_30d = amount_30d) |> #pas label transmission, mais on renomme pour que le graphique puisse se générer avec le nom de colonne correspondant
@@ -1682,6 +1887,18 @@ mappers_pylons <- reactive({
 #--- SELECTED PERIOD
 
 
+mappers_circuits_period <- reactive({
+  switch(input$time_period,
+         "Since the beginning of the project" = mappers_circuits() |> 
+           select(x, Pays, labels.transmission.amount) |> 
+           rename(val = labels.transmission.amount),
+         "Last 30 days" = mappers_circuits() |> 
+           select(x, Pays, labels.transmission.amount_30d) |> 
+           rename(val = labels.transmission.amount_30d),
+         "Last 24 hours" = mappers_circuits() |> 
+           select(x, Pays, labels.transmission.amount_1d) |> 
+           rename(val = labels.transmission.amount_1d))
+})
 mappers_lines_period <- reactive({
   switch(input$time_period,
          "Since the beginning of the project" = mappers_lines() |> 
@@ -1719,6 +1936,12 @@ mappers_pylons_period <- reactive({
            rename(val = labels.transmission.amount_1d))
 })
 
+mappers_circuits_period_last <- reactive({
+  mappers_circuits_period() |>
+    arrange(desc(x)) |> 
+    slice(1) |> 
+    mutate(val = format(as.integer(val, 0), nsmall = 1, big.mark = ","))
+})
 mappers_lines_period_last <- reactive({
   mappers_lines_period() |>
     arrange(desc(x)) |> 
@@ -1757,6 +1980,16 @@ mappers_pylons_period_last <- reactive({
 
 
 ```{r}
+#| label: VB5.0
+value_box(
+  id = "card5",
+  title = "Mappers for circuits",
+  theme = value_box_theme(bg = "#036d7a", fg = "white"),
+  value = textOutput("n5.0")
+)
+```
+
+```{r}
 #| label: VB5
 value_box(
   id = "card5",
@@ -1790,14 +2023,17 @@ value_box(
 #| context: server
 #| label: display 3 valuebox
 
+output$n5.0 <- renderText({
+  mappers_circuits_period_last()$val
+})
 output$n5 <- renderText({
-  mappers_lines_period_last()$val
+  ifelse(mappers_lines_period_last()$val == "NA", "", mappers_lines_period_last()$val)
 })
 output$n6 <- renderText({
-  mappers_substations_period_last()$val
+  ifelse(mappers_substations_period_last()$val == "NA", "", mappers_substations_period_last()$val)
 })
 output$n7 <- renderText({
-  mappers_pylons_period_last()$val
+  ifelse(mappers_pylons_period_last()$val == "NA", "", mappers_pylons_period_last()$val)
 })
 ```
 
@@ -1806,6 +2042,150 @@ output$n7 <- renderText({
 ### Row {height="80%"}
 
 #### Column {width="67%" .tabset}
+
+
+
+##### Circuits
+
+
+```{r}
+#| layout-ncol: 2
+plotlyOutput('plot8.0.1')
+plotlyOutput('plot8.0.2')
+```
+
+```{r}
+#| context: server
+#| label: plots circuits mappers
+
+# Plot
+output$plot8.0.1 <- renderPlotly({
+  
+    if (nrow(mappers_circuits_period()) == 0) {
+    # Créer un plotly vide avec message
+    plot_ly() |>
+      layout(
+        xaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        yaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        annotations = list(
+          list(
+            text = "No data for this country",
+            xref = "paper",
+            yref = "paper",
+            x = 0.5,
+            y = 0.5,
+            showarrow = FALSE,
+            font = list(size = 16, color = "gray")
+          )
+        )
+      )
+  } else {
+
+  #plot depending on selected country
+  graph <- mappers_circuits_period() |> 
+    mutate(x = as.Date(x)) |> 
+    ggplot() +
+    #distinction des périodes du projet
+    geom_rect(aes(xmin = as.Date("2024-11-01"), xmax = as.Date("2025-03-01"),
+                  ymin = min(val), ymax = max(val),
+                  text = "Early OET"), fill = "#333333", alpha = 0.2) +
+    geom_rect(aes(xmin = as.Date("2025-03-01"), xmax = as.Date("2025-08-01"),
+                  ymin = min(val), ymax = max(val),
+                  text = "Kickoff"), fill = "#a2a2a3", alpha = 0.2) +
+    geom_rect(aes(xmin = as.Date("2025-08-01"), xmax = max(x),
+                  ymin = min(val), ymax = max(val),
+                  text = "Public launch"), fill = "#656566", alpha = 0.2) +
+    #lignes
+    geom_line(aes(x = x, y = val, group = 1,
+                  text = paste0("Time : ", x, "\nNumber of mappers : ", 
+                                format(as.integer(val, 0), nsmall = 1, big.mark = ","))),
+              color = "#036d7a", linewidth = .5) +
+    scale_y_continuous(labels = scales::comma) +
+    scale_x_date(date_labels = "%m-%y", breaks = pretty_breaks(n = 7)) +
+    labs(x = "Time", 
+         y = "Number of mappers",
+         title = "Mappers evolution") +
+    theme_custom() +
+    theme(axis.ticks.x = element_line(color = "#cbcbcb"),
+          panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
+          panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
+  #interactive graph
+  ggplotly(graph, tooltip = c("text"))
+  }
+})
+
+
+# Import selected data
+selected_circuits_data <- reactive({
+  switch(input$time_period,
+         "Since the beginning of the project" = read_csv("/data/api/mappers_circuits_all.csv", show_col_types = FALSE) |> 
+                        filter(Pays != "World (default)") |> 
+                        filter(x == max(x), .by = Pays) |> 
+                        rename(val = amount),
+         "Last 30 days" = read_csv("/data/api/mappers_circuits_all.csv", show_col_types = FALSE) |> 
+                        filter(Pays != "World (default)") |> 
+                        filter(x == max(x), .by = Pays) |> 
+                        rename(val = amount_30d),
+         "Last 24 hours" = read_csv("/data/api/mappers_circuits_all.csv", show_col_types = FALSE) |> 
+                        filter(Pays != "World (default)") |> 
+                        filter(x == max(x), .by = Pays) |> 
+                        rename(val = amount_1d) 
+         )
+})
+
+
+# Plot
+output$plot8.0.2 <- renderPlotly({
+  
+    if (nrow(selected_circuits_data()) == 0) {
+    # Créer un plotly vide avec message
+    plot_ly() |>
+      layout(
+        xaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        yaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        annotations = list(
+          list(
+            text = "No data for this country",
+            xref = "paper",
+            yref = "paper",
+            x = 0.5,
+            y = 0.5,
+            showarrow = FALSE,
+            font = list(size = 16, color = "gray")
+          )
+        )
+      )
+  } else {
+
+  # Plot
+  graph <- selected_circuits_data() |> 
+    arrange(desc(val)) |> 
+    filter(row_number() <= 10) |> 
+    mutate(Pays = str_replace_all(Pays, c("United States of America" = "USA",
+                                          "People's Republic of China" = "China")),
+           Pays = fct_reorder(Pays, val)) |> 
+    ggplot() +
+    geom_col(aes(x = Pays, y = max(val)), fill = "#F3F3F3", width = .85) +
+    geom_col(aes(x = Pays, y = val,
+                 text = ifelse(val == 1,
+                               paste(val, "mapper"),
+                               paste(val, "mappers"))), 
+             fill = "#036d7a", width = .85) +
+    scale_y_continuous(labels = scales::comma) + 
+    scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 30)) + 
+    coord_flip() +
+    labs(y = "Number of mappers", title = "Countries with the highest \nnumber of mappers") +
+    theme_custom() +
+    theme(panel.grid.major.x = ggplot2::element_blank(),
+          panel.grid.major.y = ggplot2::element_blank(),
+          plot.title.position = "plot",
+          axis.title.y = element_blank(),
+          axis.text.y = element_text(size = 10))
+  ggplotly(graph, tooltip = c("text"))
+  }
+})
+```
+
 
 ##### Segments
 
@@ -1822,6 +2202,27 @@ plotlyOutput('plot7.2')
 
 # Plot
 output$plot7.1 <- renderPlotly({
+  
+    if (nrow(mappers_lines_period()) == 0 | all(is.na(mappers_lines_period()$val))) {
+    # Créer un plotly vide avec message
+    plot_ly() |>
+      layout(
+        xaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        yaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        annotations = list(
+          list(
+            text = "No data for this country",
+            xref = "paper",
+            yref = "paper",
+            x = 0.5,
+            y = 0.5,
+            showarrow = FALSE,
+            font = list(size = 16, color = "gray")
+          )
+        )
+      )
+  } else {
+    
   #plot depending on selected country
   graph <- mappers_lines_period() |> 
     mutate(x = as.Date(x)) |> 
@@ -1852,6 +2253,7 @@ output$plot7.1 <- renderPlotly({
           panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
   #interactive graph
   ggplotly(graph, tooltip = c("text"))
+  }
 })
 
 
@@ -1859,15 +2261,15 @@ output$plot7.1 <- renderPlotly({
 selected_line_data <- reactive({
   switch(input$time_period,
          "Since the beginning of the project" = read_csv("/data/api/mappers_lines_all.csv", show_col_types = FALSE) |> 
-                        #filter(Pays != "World (default)") |> 
+                        filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = labels.transmission.amount),
          "Last 30 days" = read_csv("/data/api/mappers_lines_all.csv", show_col_types = FALSE) |> 
-                        #filter(Pays != "World (default)") |> 
+                        filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = labels.transmission.amount_30d),
          "Last 24 hours" = read_csv("/data/api/mappers_lines_all.csv", show_col_types = FALSE) |> 
-                        #filter(Pays != "World (default)") |> 
+                        filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = labels.transmission.amount_1d) 
          )
@@ -1881,6 +2283,26 @@ selected_line_data_country <- reactive({
 
 # Plot
 output$plot7.2 <- renderPlotly({
+  
+      if (nrow(selected_line_data()) == 0 | all(is.na(selected_line_data()$val))) {
+    # Créer un plotly vide avec message
+    plot_ly() |>
+      layout(
+        xaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        yaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        annotations = list(
+          list(
+            text = "No data for this country",
+            xref = "paper",
+            yref = "paper",
+            x = 0.5,
+            y = 0.5,
+            showarrow = FALSE,
+            font = list(size = 16, color = "gray")
+          )
+        )
+      )
+  } else {
 
   # Plot
   graph <- selected_line_data() |> 
@@ -1907,6 +2329,7 @@ output$plot7.2 <- renderPlotly({
           axis.title.y = element_blank(),
           axis.text.y = element_text(size = 10))
   ggplotly(graph, tooltip = c("text"))
+  }
 })
 ```
 
@@ -1930,6 +2353,27 @@ plotlyOutput('plot8.2')
 
 # Plot
 output$plot8.1 <- renderPlotly({
+  
+    if (nrow(mappers_substations_period()) == 0 | all(is.na(mappers_substations_period()$val))) {
+    # Créer un plotly vide avec message
+    plot_ly() |>
+      layout(
+        xaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        yaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        annotations = list(
+          list(
+            text = "No data for this country",
+            xref = "paper",
+            yref = "paper",
+            x = 0.5,
+            y = 0.5,
+            showarrow = FALSE,
+            font = list(size = 16, color = "gray")
+          )
+        )
+      )
+  } else {
+    
   #plot depending on selected country
   graph <- mappers_substations_period() |> 
     mutate(x = as.Date(x)) |> 
@@ -1960,6 +2404,7 @@ output$plot8.1 <- renderPlotly({
           panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
   #interactive graph
   ggplotly(graph, tooltip = c("text"))
+  }
 })
 
 
@@ -1984,6 +2429,26 @@ selected_substation_data <- reactive({
 
 # Plot
 output$plot8.2 <- renderPlotly({
+  
+  if (nrow(selected_substation_data()) == 0 | all(is.na(selected_substation_data()$val))) {
+    # Créer un plotly vide avec message
+    plot_ly() |>
+      layout(
+        xaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        yaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        annotations = list(
+          list(
+            text = "No data for this country",
+            xref = "paper",
+            yref = "paper",
+            x = 0.5,
+            y = 0.5,
+            showarrow = FALSE,
+            font = list(size = 16, color = "gray")
+          )
+        )
+      )
+  } else {
 
   # Plot
   graph <- selected_substation_data() |> 
@@ -2010,6 +2475,7 @@ output$plot8.2 <- renderPlotly({
           axis.title.y = element_blank(),
           axis.text.y = element_text(size = 10))
   ggplotly(graph, tooltip = c("text"))
+  }
 })
 ```
 
@@ -2030,6 +2496,27 @@ plotlyOutput('plot9.2')
 
 # Plot
 output$plot9.1 <- renderPlotly({
+  
+    if (nrow(mappers_pylons_period()) == 0 | all(is.na(mappers_pylons_period()$val))) {
+    # Créer un plotly vide avec message
+    plot_ly() |>
+      layout(
+        xaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        yaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        annotations = list(
+          list(
+            text = "No data for this country",
+            xref = "paper",
+            yref = "paper",
+            x = 0.5,
+            y = 0.5,
+            showarrow = FALSE,
+            font = list(size = 16, color = "gray")
+          )
+        )
+      )
+  } else {
+    
   #plot depending on selected country
   graph <- mappers_pylons_period() |> 
     mutate(x = as.Date(x)) |> 
@@ -2060,6 +2547,7 @@ output$plot9.1 <- renderPlotly({
           panel.grid.minor.x = ggplot2::element_line(color = "#cbcbcb"))
   #interactive graph
   ggplotly(graph, tooltip = c("text"))
+  }
 })
 
 
@@ -2085,6 +2573,26 @@ selected_pylon_data <- reactive({
 
 # Plot
 output$plot9.2 <- renderPlotly({
+  
+  if (nrow(selected_pylon_data()) == 0 | all(is.na(selected_pylon_data()$val))) {
+    # Créer un plotly vide avec message
+    plot_ly() |>
+      layout(
+        xaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        yaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        annotations = list(
+          list(
+            text = "No data for this country",
+            xref = "paper",
+            yref = "paper",
+            x = 0.5,
+            y = 0.5,
+            showarrow = FALSE,
+            font = list(size = 16, color = "gray")
+          )
+        )
+      )
+  } else {
 
   # Plot
   graph <- selected_pylon_data() |> 
@@ -2111,6 +2619,7 @@ output$plot9.2 <- renderPlotly({
           axis.title.y = element_blank(),
           axis.text.y = element_text(size = 10))
   ggplotly(graph, tooltip = c("text"))
+  }
 })
 ```
 
@@ -2123,34 +2632,57 @@ output$plot9.2 <- renderPlotly({
 #| label: prepare data growth rate mappers
 
 # Préparation des données
+  #circuits
+circuits1_mappers <-  reactive({
+  mappers_circuits() |> 
+    mutate(x = as.Date(x)) |> 
+    filter(x == "2025-03-01" | x == max(x, na.rm = TRUE)) |> 
+    mutate(growth_rate_circuit = (labels.transmission.amount - lag(labels.transmission.amount)) / lag(labels.transmission.amount)) |> 
+    select(growth_rate_circuit) |> 
+    na.omit()
+})
   #line
-growth_rate_mappers <- reactive({
-  bind_cols(
+lines1_mappers <-  reactive({
   mappers_lines() |> 
     mutate(x = as.Date(x)) |> 
     filter(x == "2025-03-01" | x == max(x, na.rm = TRUE)) |> 
     mutate(growth_rate_line = (labels.transmission.amount - lag(labels.transmission.amount)) / lag(labels.transmission.amount)) |> 
     select(growth_rate_line) |> 
-    na.omit(),
+    na.omit()
+})
     #substations
+substations1_mappers <-  reactive({
   mappers_substations() |> 
     mutate(x = as.Date(x)) |> 
     filter(x == "2025-03-01" | x == max(x, na.rm = TRUE)) |> 
     mutate(growth_rate_substation = (labels.transmission.amount - lag(labels.transmission.amount)) / lag(labels.transmission.amount)) |> 
     select(growth_rate_substation) |> 
-    na.omit(),
+    na.omit()
+})
     # pylons
+pylons1_mappers <-  reactive({
   mappers_pylons() |> 
     mutate(x = as.Date(x)) |> 
     filter(x == "2025-03-01" | x == max(x, na.rm = TRUE)) |> 
     mutate(growth_rate_pylon = (labels.transmission.amount - lag(labels.transmission.amount)) / lag(labels.transmission.amount)) |> 
     select(growth_rate_pylon) |> 
     na.omit()
-  ) |> 
-  pivot_longer(cols = everything(), values_to = "Valeur", names_to = "Mesure", names_prefix = "growth_rate_") |> 
-  mutate(Mesure = str_replace_all(Mesure, c("line" = "Segments",
-                                            "substation" = "Substations",
-                                            "pylon" = "Pylons")))
+})
+
+dfs_list_mappers <- reactive({
+  list(lines1_mappers(), circuits1_mappers(), substations1_mappers(), pylons1_mappers())
+})
+dfs_non_vides_mappers <- reactive({
+  Filter(function(x) nrow(x) > 0, dfs_list_mappers())
+})
+
+growth_rate_mappers <- reactive({
+  bind_cols(dfs_non_vides_mappers()) |> 
+    pivot_longer(cols = everything(), values_to = "Valeur", names_to = "Mesure", names_prefix = "growth_rate_") |> 
+    mutate(Mesure = str_replace_all(Mesure, c("circuit" = "Circuits",
+                                              "line" = "Segments",
+                                              "substation" = "Substations",
+                                              "pylon" = "Pylons")))
 })
 ```
 
@@ -2165,16 +2697,37 @@ plotlyOutput('plot10')
 
 # Plot line length
 output$plot10 <- renderPlotly({
+  
+      if (nrow(growth_rate_mappers()) == 0) {
+    # Créer un plotly vide avec message
+    plot_ly() |>
+      layout(
+        xaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        yaxis = list(showgrid = FALSE, showticklabels = FALSE, zeroline = FALSE),
+        annotations = list(
+          list(
+            text = "No data for this country",
+            xref = "paper",
+            yref = "paper",
+            x = 0.5,
+            y = 0.5,
+            showarrow = FALSE,
+            font = list(size = 16, color = "gray")
+          )
+        )
+      )
+  } else {
 
   #plot depending on selected country
   graph <- growth_rate_mappers() |> 
-    mutate(Mesure = factor(Mesure, levels = c("Pylons", "Substations", "Segments"))) |> 
+    mutate(Mesure = factor(Mesure, levels = c("Pylons", "Substations", "Segments", "Circuits"))) |> 
     ggplot() +
     geom_segment(aes(x = 0, xend = Valeur, y = Mesure, yend = Mesure, color = Mesure), linewidth = 1) +
     geom_point(aes(x = Valeur, y = Mesure, color = Mesure,
                    text = paste("+", round(Valeur*100, 2), "%")), size = 4) +
     labs(y = "", x = "Growth rate (%)") +
-    scale_color_manual(values = c("Segments" = "#ecc123",
+    scale_color_manual(values = c("Circuits" = "#036d7a",
+                                  "Segments" = "#ecc123",
                                   "Substations" = "#54a36a",
                                   "Pylons" = "#6d0f06")) +
     scale_x_continuous(labels = scales::percent) +
@@ -2183,8 +2736,8 @@ output$plot10 <- renderPlotly({
           panel.grid.major.x = ggplot2::element_line(color = "#cbcbcb"),
           panel.grid.major.y = ggplot2::element_blank()) 
   #interactive graph
-  viz <- ggplotly(graph, tooltip = c("text"))
-  viz
+  ggplotly(graph, tooltip = c("text"))
+  }
 })
 ```
 
