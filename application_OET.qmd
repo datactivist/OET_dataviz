@@ -72,7 +72,7 @@ theme_custom <- function (){
 ```{r}
 #| label: import data world to get last update
 
-df_line <- read_csv("/data/api/data_lines_all.csv", show_col_types = FALSE)
+df_line <- read_csv("/data/api/data_lines_all.csv", show_col_types = FALSE, col_select = c(x, Pays))
 last_date <- df_line |> 
   arrange(x) |> 
   slice_tail(n = 1)
@@ -126,6 +126,25 @@ value_world_circuits_last <- reactive({
     slice_tail(n = 1) |> 
     mutate(amount = format(as.integer(amount, 0), nsmall = 1, big.mark = ","))
 })
+value_world_circuits_24H <- reactive({
+  value_world_circuits() |> 
+    arrange(x) |> 
+    slice_tail(n = 2) |> 
+    mutate(growth_rate = round((amount - lag(amount)) / amount *100, 2),
+           amount = format(as.integer(amount, 0), nsmall = 1, big.mark = ",")) |> 
+    fill(everything(), .direction = "downup") |> 
+    filter(row_number() == 1)
+})
+value_world_circuits_month1 <- reactive({
+  value_world_circuits() |> 
+    arrange(x) |> 
+    filter(x == max(x) | 
+             x == as.Date(paste0(format(max(x), "%Y-%m"), "-01"))) |> 
+    mutate(growth_rate = round((amount - lag(amount)) / amount *100, 2),
+           amount = format(as.integer(amount, 0), nsmall = 1, big.mark = ",")) |> 
+    fill(everything(), .direction = "downup") |> 
+    filter(row_number() == 1)
+})
 # Lines (segments)
 value_world_lines <- reactive({
   read_csv("/data/api/data_lines_all.csv", show_col_types = FALSE) |> 
@@ -134,11 +153,30 @@ value_world_lines <- reactive({
            amount = labels.transmission.amount) |> #on prend désormais les comptes *transmission*
     filter(Pays == input$nom_pays)
 })
-value_world_segments_last <- reactive({
+value_world_lines_last <- reactive({
   value_world_lines() |> 
     arrange(x) |> 
     slice_tail(n = 1) |> 
     mutate(amount = format(as.integer(amount, 0), nsmall = 1, big.mark = ","))
+})
+value_world_lines_24H <- reactive({
+  value_world_lines() |> 
+    arrange(x) |> 
+    slice_tail(n = 2) |> 
+    mutate(growth_rate = round((amount - lag(amount)) / amount *100, 2),
+           amount = format(as.integer(amount, 0), nsmall = 1, big.mark = ",")) |> 
+    fill(everything(), .direction = "downup") |> 
+    filter(row_number() == 1)
+})
+value_world_lines_month1 <- reactive({
+  value_world_lines() |> 
+    arrange(x) |> 
+    filter(x == max(x) | 
+             x == as.Date(paste0(format(max(x), "%Y-%m"), "-01"))) |> 
+    mutate(growth_rate = round((amount - lag(amount)) / amount *100, 2),
+           amount = format(as.integer(amount, 0), nsmall = 1, big.mark = ",")) |> 
+    fill(everything(), .direction = "downup") |> 
+    filter(row_number() == 1)
 })
 # Substations (posts)
 value_world_substations <- reactive({
@@ -153,6 +191,25 @@ value_world_substations_last <- reactive({
     slice_tail(n = 1) |> 
     mutate(amount = format(as.integer(amount, 0), nsmall = 1, big.mark = ","))
 })
+value_world_substations_24H <- reactive({
+  value_world_substations() |> 
+    arrange(x) |> 
+    slice_tail(n = 2) |> 
+    mutate(growth_rate = round((amount - lag(amount)) / amount *100, 2),
+           amount = format(as.integer(amount, 0), nsmall = 1, big.mark = ",")) |> 
+    fill(everything(), .direction = "downup") |> 
+    filter(row_number() == 1)
+})
+value_world_substations_month1 <- reactive({
+  value_world_substations() |> 
+    arrange(x) |> 
+    filter(x == max(x) | 
+             x == as.Date(paste0(format(max(x), "%Y-%m"), "-01"))) |> 
+    mutate(growth_rate = round((amount - lag(amount)) / amount *100, 2),
+           amount = format(as.integer(amount, 0), nsmall = 1, big.mark = ",")) |> 
+    fill(everything(), .direction = "downup") |> 
+    filter(row_number() == 1)
+})
 # Pylons (supports)
 value_world_supports <- reactive({
   read_csv("/data/api/data_supports_all.csv", show_col_types = FALSE) |> 
@@ -163,6 +220,25 @@ value_world_supports_last <- reactive({
     arrange(x) |> 
     slice_tail(n = 1) |> 
     mutate(amount = format(as.integer(amount, 0), nsmall = 1, big.mark = ","))
+})
+value_world_supports_24H <- reactive({
+  value_world_supports() |> 
+    arrange(x) |> 
+    slice_tail(n = 2) |> 
+    mutate(growth_rate = round((amount - lag(amount)) / amount *100, 2),
+           amount = format(as.integer(amount, 0), nsmall = 1, big.mark = ",")) |> 
+    fill(everything(), .direction = "downup") |> 
+    filter(row_number() == 1)
+})
+value_world_supports_month1 <- reactive({
+  value_world_supports() |> 
+    arrange(x) |> 
+    filter(x == max(x) | 
+             x == as.Date(paste0(format(max(x), "%Y-%m"), "-01"))) |> 
+    mutate(growth_rate = round((amount - lag(amount)) / amount *100, 2),
+           amount = format(as.integer(amount, 0), nsmall = 1, big.mark = ",")) |> 
+    fill(everything(), .direction = "downup") |> 
+    filter(row_number() == 1)
 })
 ```
 
@@ -176,7 +252,7 @@ value_box(
   id = "card1",
   title = "Number of circuits",
   theme = value_box_theme(bg = "#036d7a", fg = "white"),
-  value = textOutput("n1")
+  value = uiOutput("n1_complete")
 )
 ```
 
@@ -186,7 +262,7 @@ value_box(
   id = "card2",
   title = "Number of segments",
   theme = value_box_theme(bg = "#f1d365", fg = "#4f4e4d"),
-  value = textOutput("n2")
+  value = uiOutput("n2_complete")
 )
 ```
 
@@ -196,7 +272,7 @@ value_box(
   id = "card3",
   title = "Number of substations",
   theme = value_box_theme(bg = "#54a36a", fg = "white"),
-  value = textOutput("n3")
+  value = uiOutput("n3_complete")
 )
 ```
 
@@ -206,7 +282,7 @@ value_box(
   id = "card4",
   title = "Number of pylons",
   theme = value_box_theme(bg = "#985750", fg = "white"),
-  value = textOutput("n4")
+  value = uiOutput("n4_complete")
 )
 ```
 
@@ -214,17 +290,109 @@ value_box(
 #| label: display 4 valuebox
 #| context: server
 
-output$n1 <- renderText({
-  value_world_circuits_last()$amount
+output$n1_complete <- renderUI({
+  tags$div(tags$div(style = "font-size: 1.2em;", 
+                    value_world_circuits_last()$amount),
+    tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
+             tags$div(HTML("Last 24h : &nbsp;&nbsp;"), tags$span(style = "font-size: 1.5em;",
+                                                                 value_world_circuits_24H()$amount),
+                      if(value_world_circuits_24H()$growth_rate >= 0) { 
+                        tags$span(style = "color: #90EE90;", "▲")
+                      } else {
+                        tags$span(style = "color: #FC4B3D;", "▼")
+                        },
+                      ifelse(value_world_circuits_24H()$growth_rate >= 0, 
+                             paste0("+", value_world_circuits_24H()$growth_rate, "%"), 
+                             paste0(value_world_circuits_24H()$growth_rate, "%"))),
+             tags$div(style = "margin-top: 2px;",
+                      "Month 1st :", tags$span(style = "font-size: 1.5em;", 
+                                               value_world_circuits_month1()$amount),
+                      if(value_world_circuits_month1()$growth_rate >= 0) { 
+                        tags$span(style = "color: #90EE90;", "▲")
+                      } else {
+                        tags$span(style = "color: #FC4B3D;", "▼")
+                        },
+                      ifelse(value_world_circuits_month1()$growth_rate >= 0, 
+                             paste0("+", value_world_circuits_month1()$growth_rate, "%"), 
+                             paste0(value_world_circuits_month1()$growth_rate, "%")))))
 })
-output$n2 <- renderText({
-  ifelse(value_world_segments_last()$amount == "NA", "", value_world_segments_last()$amount)
+output$n2_complete <- renderUI({
+  tags$div(tags$div(style = "font-size: 1.2em;", 
+                    ifelse(value_world_lines_last()$amount == "NA", "", value_world_lines_last()$amount)),
+    tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
+             tags$div(HTML("Last 24h : &nbsp;&nbsp;"), tags$span(style = "font-size: 1.5em;",
+                                                                 value_world_lines_24H()$amount),
+                      if(value_world_lines_24H()$growth_rate >= 0) { 
+                        tags$span(style = "color: #90EE90;", "▲")
+                      } else {
+                        tags$span(style = "color: #FC4B3D;", "▼")
+                        },
+                      ifelse(value_world_lines_24H()$growth_rate >= 0, 
+                             paste0("+", value_world_lines_24H()$growth_rate, "%"), 
+                             paste0(value_world_lines_24H()$growth_rate, "%"))),
+             tags$div(style = "margin-top: 2px;",
+                      "Month 1st :", tags$span(style = "font-size: 1.5em;", 
+                                               value_world_lines_month1()$amount),
+                      if(value_world_lines_month1()$growth_rate >= 0) { 
+                        tags$span(style = "color: #90EE90;", "▲")
+                      } else {
+                        tags$span(style = "color: #FC4B3D;", "▼")
+                        },
+                      ifelse(value_world_lines_month1()$growth_rate >= 0, 
+                             paste0("+", value_world_lines_month1()$growth_rate, "%"), 
+                             paste0(value_world_lines_month1()$growth_rate, "%")))))
 })
-output$n3 <- renderText({
-  ifelse(value_world_substations_last()$amount == "NA", "", value_world_substations_last()$amount)
+output$n3_complete <- renderUI({
+  tags$div(tags$div(style = "font-size: 1.2em;", 
+                    ifelse(value_world_substations_last()$amount == "NA", "", value_world_substations_last()$amount)),
+    tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
+             tags$div(HTML("Last 24h : &nbsp;&nbsp;"), tags$span(style = "font-size: 1.5em;",
+                                                                 value_world_substations_24H()$amount),
+                      if(value_world_substations_24H()$growth_rate >= 0) { 
+                        tags$span(style = "color: #90EE90;", "▲")
+                      } else {
+                        tags$span(style = "color: #FC4B3D;", "▼")
+                        },
+                      ifelse(value_world_substations_24H()$growth_rate >= 0, 
+                             paste0("+", value_world_substations_24H()$growth_rate, "%"), 
+                             paste0(value_world_substations_24H()$growth_rate, "%"))),
+             tags$div(style = "margin-top: 2px;",
+                      "Month 1st :", tags$span(style = "font-size: 1.5em;", 
+                                               value_world_substations_month1()$amount),
+                      if(value_world_substations_month1()$growth_rate >= 0) { 
+                        tags$span(style = "color: #90EE90;", "▲")
+                      } else {
+                        tags$span(style = "color: #FC4B3D;", "▼")
+                        },
+                      ifelse(value_world_substations_month1()$growth_rate >= 0, 
+                             paste0("+", value_world_substations_month1()$growth_rate, "%"), 
+                             paste0(value_world_substations_month1()$growth_rate, "%")))))
 })
-output$n4 <- renderText({
-  ifelse(value_world_supports_last()$amount == "NA", "", value_world_supports_last()$amount)
+output$n4_complete <- renderUI({
+  tags$div(tags$div(style = "font-size: 1.2em;", 
+                    ifelse(value_world_supports_last()$amount == "NA", "", value_world_supports_last()$amount)),
+    tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
+             tags$div(HTML("Last 24h : &nbsp;&nbsp;"), tags$span(style = "font-size: 1.5em;",
+                                                                 value_world_supports_24H()$amount),
+                      if(value_world_supports_24H()$growth_rate >= 0) { 
+                        tags$span(style = "color: #90EE90;", "▲")
+                      } else {
+                        tags$span(style = "color: #FC4B3D;", "▼")
+                        },
+                      ifelse(value_world_supports_24H()$growth_rate >= 0, 
+                             paste0("+", value_world_supports_24H()$growth_rate, "%"), 
+                             paste0(value_world_supports_24H()$growth_rate, "%"))),
+             tags$div(style = "margin-top: 2px;",
+                      "Month 1st :", tags$span(style = "font-size: 1.5em;", 
+                                               value_world_supports_month1()$amount),
+                      if(value_world_supports_month1()$growth_rate >= 0) { 
+                        tags$span(style = "color: #90EE90;", "▲")
+                      } else {
+                        tags$span(style = "color: #FC4B3D;", "▼")
+                        },
+                      ifelse(value_world_supports_month1()$growth_rate >= 0, 
+                             paste0("+", value_world_supports_month1()$growth_rate, "%"), 
+                             paste0(value_world_supports_month1()$growth_rate, "%")))))
 })
 ```
 
@@ -831,6 +999,25 @@ value_world_circuits_last_length <- reactive({
     select(length) |> 
     na.omit()
 })
+value_world_circuits_24H_length <- reactive({
+  value_world_circuits_length() |> 
+    arrange(x) |> 
+    slice_tail(n = 2) |> 
+    mutate(growth_rate = round((length - lag(length)) / length *100, 2),
+           length = format(as.integer(length, 0), nsmall = 1, big.mark = ",")) |> 
+    fill(everything(), .direction = "downup") |> 
+    filter(row_number() == 1)
+})
+value_world_circuits_month1_length <- reactive({
+  value_world_circuits_length() |> 
+    arrange(x) |> 
+    filter(x == max(x) | 
+             x == as.Date(paste0(format(max(x), "%Y-%m"), "-01"))) |> 
+    mutate(growth_rate = round((length - lag(length)) / length *100, 2),
+           length = format(as.integer(length, 0), nsmall = 1, big.mark = ",")) |> 
+    fill(everything(), .direction = "downup") |> 
+    filter(row_number() == 1)
+})
 # Lines (segments)
 value_world_lines_length <- reactive({
   read_csv("/data/api/data_lines_all.csv", show_col_types = FALSE) |> 
@@ -847,6 +1034,25 @@ value_world_lines_last_length <- reactive({
            amount = format(as.integer(amount, 0), nsmall = 1, big.mark = ",")) |> 
     select(length) |> 
     na.omit()
+})
+value_world_lines_24H_length <- reactive({
+  value_world_lines_length() |> 
+    arrange(x) |> 
+    slice_tail(n = 2) |> 
+    mutate(growth_rate = round((length - lag(length)) / length *100, 2),
+           length = format(as.integer(length, 0), nsmall = 1, big.mark = ",")) |> 
+    fill(everything(), .direction = "downup") |> 
+    filter(row_number() == 1)
+})
+value_world_lines_month1_length <- reactive({
+  value_world_lines_length() |> 
+    arrange(x) |> 
+    filter(x == max(x) | 
+             x == as.Date(paste0(format(max(x), "%Y-%m"), "-01"))) |> 
+    mutate(growth_rate = round((length - lag(length)) / length *100, 2),
+           length = format(as.integer(length, 0), nsmall = 1, big.mark = ",")) |> 
+    fill(everything(), .direction = "downup") |> 
+    filter(row_number() == 1)
 })
 # Substations (posts)
 value_world_substations_length <- reactive({
@@ -866,6 +1072,25 @@ value_world_substations_last_length <- reactive({
     select(area) |> 
     na.omit()
 })
+value_world_substations_24H_length <- reactive({
+  value_world_substations_length() |> 
+    arrange(x) |> 
+    slice_tail(n = 2) |> 
+    mutate(growth_rate = round((area - lag(area)) / area *100, 2),
+           area = format(as.integer(area, 0), nsmall = 1, big.mark = ",")) |> 
+    fill(everything(), .direction = "downup") |> 
+    filter(row_number() == 1)
+})
+value_world_substations_month1_length <- reactive({
+  value_world_substations_length() |> 
+    arrange(x) |> 
+    filter(x == max(x) | 
+             x == as.Date(paste0(format(max(x), "%Y-%m"), "-01"))) |> 
+    mutate(growth_rate = round((area - lag(area)) / area *100, 2),
+           area = format(as.integer(area, 0), nsmall = 1, big.mark = ",")) |> 
+    fill(everything(), .direction = "downup") |> 
+    filter(row_number() == 1)
+})
 ```
 
 ### Row {height="20%"}
@@ -877,7 +1102,7 @@ value_box(
   id = "card1",
   title = "Circuits length (km)",
   theme = value_box_theme(bg = "#036d7a", fg = "white"),
-  value = textOutput("n1_length")
+  value = uiOutput("n1_complete_length")
 )
 ```
 
@@ -887,7 +1112,7 @@ value_box(
   id = "card2",
   title = "Line length (km)",
   theme = value_box_theme(bg = "#f1d365", fg = "#4f4e4d"),
-  value = textOutput("n2_length")
+  value = uiOutput("n2_complete_length")
 )
 ```
 
@@ -897,7 +1122,7 @@ value_box(
   id = "card3",
   title = "Substations area (km²)",
   theme = value_box_theme(bg = "#54a36a", fg = "white"),
-  value = textOutput("n3_length")
+  value = uiOutput("n3_complete_length")
 )
 ```
 
@@ -906,15 +1131,93 @@ value_box(
 #| label: display 4 valuebox length
 #| context: server
 
-output$n1_length <- renderText({
-  value_world_circuits_last_length()$length
+output$n1_complete_length <- renderUI({
+  tags$div(tags$div(style = "font-size: 1.2em;", 
+                    value_world_circuits_last_length()$length),
+    tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
+             tags$div(HTML("Last 24h : &nbsp;&nbsp;"), tags$span(style = "font-size: 1.5em;",
+                                                                 value_world_circuits_24H_length()$length),
+                      if (value_world_circuits_24H_length()$growth_rate >= 0) { 
+                        tags$span(style = "color: #90EE90;", "▲")
+                      } else {
+                          if (value_world_circuits_24H_length()$growth_rate == 0) {
+                          tags$span(style = "color: #F78865;", "EGA")
+                        } else {
+                          tags$span(style = "color: #FC4B3D;", "▼")
+                        }},
+                      ifelse(value_world_circuits_24H_length()$growth_rate >= 0,
+                             paste0("+", value_world_circuits_24H_length()$growth_rate, "%"), 
+                             ifelse(value_world_circuits_24H_length()$growth_rate < 0,
+                                    paste0(value_world_circuits_24H_length()$growth_rate, "%"),
+                                    ""))),
+             tags$div(style = "margin-top: 2px;",
+                      "Month 1st :", tags$span(style = "font-size: 1.5em;", 
+                                               value_world_circuits_month1_length()$length),
+                      if(value_world_circuits_month1_length()$growth_rate >= 0) { 
+                        tags$span(style = "color: #90EE90;", "▲")
+                      } else {
+                        tags$span(style = "color: #FC4B3D;", "▼")
+                        },
+                      ifelse(value_world_circuits_month1_length()$growth_rate >= 0, 
+                             paste0("+", value_world_circuits_month1_length()$growth_rate, "%"), 
+                             paste0(value_world_circuits_month1_length()$growth_rate, "%")))))
 })
-output$n2_length <- renderText({
-  ifelse(value_world_lines_last_length()$length == "NA", "", value_world_lines_last_length()$length)
+output$n2_complete_length <- renderUI({
+  tags$div(tags$div(style = "font-size: 1.2em;", 
+                    ifelse(value_world_lines_last_length()$length == "NA", "", value_world_lines_last_length()$length)),
+    tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
+             tags$div(HTML("Last 24h : &nbsp;&nbsp;"), tags$span(style = "font-size: 1.5em;",
+                                                                 value_world_lines_24H_length()$length),
+                      if(value_world_lines_24H_length()$growth_rate >= 0) { 
+                        tags$span(style = "color: #90EE90;", "▲")
+                      } else {
+                        tags$span(style = "color: #FC4B3D;", "▼")
+                        },
+                      ifelse(value_world_lines_24H_length()$growth_rate >= 0, 
+                             paste0("+", value_world_lines_24H_length()$growth_rate, "%"), 
+                             paste0(value_world_lines_24H_length()$growth_rate, "%"))),
+             tags$div(style = "margin-top: 2px;",
+                      "Month 1st :", tags$span(style = "font-size: 1.5em;", 
+                                               value_world_lines_month1_length()$length),
+                      if(value_world_lines_month1_length()$growth_rate >= 0) { 
+                        tags$span(style = "color: #90EE90;", "▲")
+                      } else {
+                        tags$span(style = "color: #FC4B3D;", "▼")
+                        },
+                      ifelse(value_world_lines_month1_length()$growth_rate >= 0, 
+                             paste0("+", value_world_lines_month1_length()$growth_rate, "%"), 
+                             paste0(value_world_lines_month1_length()$growth_rate, "%")))))
 })
-output$n3_length <- renderText({
-  ifelse(value_world_substations_last_length()$area == "NA", "", value_world_substations_last_length()$area)
+output$n3_complete_length <- renderUI({
+  tags$div(tags$div(style = "font-size: 1.2em;", 
+                    ifelse(value_world_substations_last_length()$area == "NA", "",
+                           value_world_substations_last_length()$area)),
+    tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
+             tags$div(HTML("Last 24h : &nbsp;&nbsp;"), tags$span(style = "font-size: 1.5em;",
+                                                                 value_world_substations_24H_length()$area),
+                      if(value_world_substations_24H_length()$growth_rate >= 0) { 
+                        tags$span(style = "color: #90EE90;", "▲")
+                      } else {
+                        tags$span(style = "color: #FC4B3D;", "▼")
+                        },
+                      ifelse(value_world_substations_24H_length()$growth_rate >= 0, 
+                             paste0("+", value_world_substations_24H_length()$growth_rate, "%"), 
+                             paste0(value_world_substations_24H_length()$growth_rate, "%"))),
+             tags$div(style = "margin-top: 2px;",
+                      "Month 1st :", tags$span(style = "font-size: 1.5em;", 
+                                               value_world_substations_month1_length()$area),
+                      if(value_world_substations_month1_length()$growth_rate >= 0) { 
+                        tags$span(style = "color: #90EE90;", "▲")
+                      } else {
+                        tags$span(style = "color: #FC4B3D;", "▼")
+                        },
+                      ifelse(value_world_substations_month1_length()$growth_rate >= 0, 
+                             paste0("+", value_world_substations_month1_length()$growth_rate, "%"), 
+                             paste0(value_world_substations_month1_length()$growth_rate, "%")))))
 })
+
+                    
+                    
 ```
 
 
@@ -1803,7 +2106,7 @@ ggplotly(graph, tooltip = c("text"))
 ```{r}
 #| label: import data mappers to get last update
 
-df_mappers_lines <- read_csv("/data/api/mappers_lines_all.csv", show_col_types = FALSE)
+df_mappers_lines <- read_csv("/data/api/mappers_lines_all.csv", show_col_types = FALSE, col_select = c(x, Pays))
 last_date_mappers <- df_mappers_lines |> 
   arrange(x) |> 
   slice_tail(n = 1)
@@ -1889,6 +2192,7 @@ mappers_pylons <- reactive({
 #--- SELECTED PERIOD
 
 
+# Circuits
 mappers_circuits_period <- reactive({
   switch(input$time_period,
          "Since the beginning of the project" = mappers_circuits() |> 
@@ -1901,6 +2205,7 @@ mappers_circuits_period <- reactive({
            select(x, Pays, labels.transmission.amount_1d) |> 
            rename(val = labels.transmission.amount_1d))
 })
+# Lines
 mappers_lines_period <- reactive({
   switch(input$time_period,
          "Since the beginning of the project" = mappers_lines() |> 
@@ -1913,6 +2218,7 @@ mappers_lines_period <- reactive({
            select(x, Pays, labels.transmission.amount_1d) |> 
            rename(val = labels.transmission.amount_1d))
 })
+# Substations
 mappers_substations_period <- reactive({
   switch(input$time_period,
          "Since the beginning of the project" = mappers_substations() |> 
@@ -1925,6 +2231,7 @@ mappers_substations_period <- reactive({
            select(x, Pays, labels.transmission.amount_1d) |> 
            rename(val = labels.transmission.amount_1d))
 })
+# Pylons
 mappers_pylons_period <- reactive({
   switch(input$time_period,
          "Since the beginning of the project" = mappers_pylons() |> 
@@ -1938,29 +2245,112 @@ mappers_pylons_period <- reactive({
            rename(val = labels.transmission.amount_1d))
 })
 
+#--- VALUE BOXES
+
+
+# Circuits
 mappers_circuits_period_last <- reactive({
   mappers_circuits_period() |>
     arrange(desc(x)) |> 
     slice(1) |> 
     mutate(val = format(as.integer(val, 0), nsmall = 1, big.mark = ","))
 })
+value_world_circuits_24H <- reactive({
+  mappers_circuits_period() |> 
+    arrange(x) |> 
+    slice_tail(n = 2) |> 
+    mutate(growth_rate = round((val - lag(val)) / val *100, 2),
+           val = format(as.integer(val, 0), nsmall = 1, big.mark = ",")) |> 
+    fill(everything(), .direction = "downup") |> 
+    filter(row_number() == 1)
+})
+value_world_circuits_month1 <- reactive({
+  mappers_circuits_period() |> 
+    arrange(x) |> 
+    filter(x == max(x) | 
+             x == as.Date(paste0(format(max(x), "%Y-%m"), "-01"))) |> 
+    mutate(growth_rate = round((val - lag(val)) / val *100, 2),
+           val = format(as.integer(val, 0), nsmall = 1, big.mark = ",")) |> 
+    fill(everything(), .direction = "downup") |> 
+    filter(row_number() == 1)
+})
+# Lines
 mappers_lines_period_last <- reactive({
   mappers_lines_period() |>
     arrange(desc(x)) |> 
     slice(1) |> 
     mutate(val = format(as.integer(val, 0), nsmall = 1, big.mark = ","))
 })
+value_world_lines_24H <- reactive({
+  mappers_lines_period() |> 
+    arrange(x) |> 
+    slice_tail(n = 2) |> 
+    mutate(growth_rate = round((val - lag(val)) / val *100, 2),
+           val = format(as.integer(val, 0), nsmall = 1, big.mark = ",")) |> 
+    fill(everything(), .direction = "downup") |> 
+    filter(row_number() == 1)
+})
+value_world_lines_month1 <- reactive({
+  mappers_lines_period() |> 
+    arrange(x) |> 
+    filter(x == max(x) | 
+             x == as.Date(paste0(format(max(x), "%Y-%m"), "-01"))) |> 
+    mutate(growth_rate = round((val - lag(val)) / val *100, 2),
+           val = format(as.integer(val, 0), nsmall = 1, big.mark = ",")) |> 
+    fill(everything(), .direction = "downup") |> 
+    filter(row_number() == 1)
+})
+# Substations
 mappers_substations_period_last <- reactive({
   mappers_substations_period() |>
     arrange(desc(x)) |> 
     slice(1) |> 
     mutate(val = format(as.integer(val, 0), nsmall = 1, big.mark = ","))
 })
+value_world_substations_24H <- reactive({
+  mappers_substations_period() |> 
+    arrange(x) |> 
+    slice_tail(n = 2) |> 
+    mutate(growth_rate = round((val - lag(val)) / val *100, 2),
+           val = format(as.integer(val, 0), nsmall = 1, big.mark = ",")) |> 
+    fill(everything(), .direction = "downup") |> 
+    filter(row_number() == 1)
+})
+value_world_substations_month1 <- reactive({
+  mappers_substations_period() |> 
+    arrange(x) |> 
+    filter(x == max(x) | 
+             x == as.Date(paste0(format(max(x), "%Y-%m"), "-01"))) |> 
+    mutate(growth_rate = round((val - lag(val)) / val *100, 2),
+           val = format(as.integer(val, 0), nsmall = 1, big.mark = ",")) |> 
+    fill(everything(), .direction = "downup") |> 
+    filter(row_number() == 1)
+})
+# Pylons
 mappers_pylons_period_last <- reactive({
   mappers_pylons_period() |>
     arrange(desc(x)) |> 
     slice(1) |> 
     mutate(val = format(as.integer(val, 0), nsmall = 1, big.mark = ","))
+})
+value_world_pylons_24H <- reactive({
+  mappers_pylons_period() |> 
+    arrange(x) |> 
+    slice_tail(n = 2) |> 
+    mutate(growth_rate = round((val - lag(val)) / val *100, 2),
+           val = format(as.integer(val, 0), nsmall = 1, big.mark = ",")) |> 
+    fill(everything(), .direction = "downup") |> 
+    filter(row_number() == 1)
+})
+value_world_pylons_month1 <- reactive({
+  mappers_pylons_period() |> 
+    arrange(x) |> 
+    filter(x == max(x) | 
+             x == as.Date(paste0(format(max(x), "%Y-%m"), "-01"))) |> 
+    mutate(growth_rate = round((val - lag(val)) / val *100, 2),
+           val = format(as.integer(val, 0), nsmall = 1, big.mark = ",")) |> 
+    fill(everything(), .direction = "downup") |> 
+    filter(row_number() == 1)
 })
 
 # color_selected_measure <- reactive({
@@ -1987,7 +2377,7 @@ value_box(
   id = "card5",
   title = "Mappers for circuits",
   theme = value_box_theme(bg = "#036d7a", fg = "white"),
-  value = textOutput("n5.0")
+  value = uiOutput("n5.0_complete")
 )
 ```
 
@@ -1997,7 +2387,7 @@ value_box(
   id = "card5",
   title = "Mappers for segments",
   theme = value_box_theme(bg = "#f1d365", fg = "#4f4e4d"),
-  value = textOutput("n5")
+  value = uiOutput("n5_complete")
 )
 ```
 
@@ -2007,7 +2397,7 @@ value_box(
   id = "card6",
   title = "Mappers for substations",
   theme = value_box_theme(bg = "#54a36a", fg = "white"),
-  value = textOutput("n6")
+  value = uiOutput("n6_complete")
 )
 ```
 
@@ -2017,25 +2407,137 @@ value_box(
   id = "card7",
   title = "Mappers for pylons",
   theme = value_box_theme(bg = "#985750", fg = "white"),
-  value = textOutput("n7")
+  value = uiOutput("n7_complete")
 )
 ```
 
 ```{r}
 #| context: server
-#| label: display 3 valuebox
+#| label: display 4 valuebox mappers
 
-output$n5.0 <- renderText({
-  mappers_circuits_period_last()$val
+output$n5.0_complete <- renderUI({
+  tags$div(tags$div(style = "font-size: 1.2em;", 
+                    mappers_circuits_period_last()$val),
+    tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
+             tags$div(HTML("Last 24h : &nbsp;&nbsp;"), tags$span(style = "font-size: 1.5em;",
+                                                                 value_world_circuits_24H()$val),
+                      if (value_world_circuits_24H()$growth_rate >= 0) { 
+                        tags$span(style = "color: #90EE90;", "▲")
+                      } else {
+                          if (value_world_circuits_24H()$growth_rate == 0) {
+                          tags$span(style = "color: #F78865;", "=")
+                        } else {
+                          tags$span(style = "color: #FC4B3D;", "▼")
+                        }},
+                      ifelse(value_world_circuits_24H()$growth_rate >= 0,
+                             paste0("+", value_world_circuits_24H()$growth_rate, "%"), 
+                             ifelse(value_world_circuits_24H()$growth_rate < 0,
+                                    paste0(value_world_circuits_24H()$growth_rate, "%"),
+                                    ""))),
+             tags$div(style = "margin-top: 2px;",
+                      "Month 1st :", tags$span(style = "font-size: 1.5em;", 
+                                               value_world_circuits_month1()$val),
+                      if(value_world_circuits_month1()$growth_rate >= 0) { 
+                        tags$span(style = "color: #90EE90;", "▲")
+                      } else {
+                        tags$span(style = "color: #FC4B3D;", "▼")
+                        },
+                      ifelse(value_world_circuits_month1()$growth_rate >= 0, 
+                             paste0("+", value_world_circuits_month1()$growth_rate, "%"), 
+                             paste0(value_world_circuits_month1()$growth_rate, "%")))))
 })
-output$n5 <- renderText({
-  ifelse(mappers_lines_period_last()$val == "NA", "", mappers_lines_period_last()$val)
+output$n5_complete <- renderUI({
+  tags$div(tags$div(style = "font-size: 1.2em;", 
+                    ifelse(mappers_lines_period_last()$val == "NA", "", mappers_lines_period_last()$val)),
+    tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
+             tags$div(HTML("Last 24h : &nbsp;&nbsp;"), tags$span(style = "font-size: 1.5em;",
+                                                                 value_world_lines_24H()$val),
+                      if (value_world_lines_24H()$growth_rate >= 0) { 
+                        tags$span(style = "color: #90EE90;", "▲")
+                      } else {
+                          if (value_world_lines_24H()$growth_rate == 0) {
+                          tags$span(style = "color: #F78865;", "=")
+                        } else {
+                          tags$span(style = "color: #FC4B3D;", "▼")
+                        }},
+                      ifelse(value_world_lines_24H()$growth_rate >= 0,
+                             paste0("+", value_world_lines_24H()$growth_rate, "%"), 
+                             ifelse(value_world_lines_24H()$growth_rate < 0,
+                                    paste0(value_world_lines_24H()$growth_rate, "%"),
+                                    ""))),
+             tags$div(style = "margin-top: 2px;",
+                      "Month 1st :", tags$span(style = "font-size: 1.5em;", 
+                                               value_world_lines_month1()$val),
+                      if(value_world_lines_month1()$growth_rate >= 0) { 
+                        tags$span(style = "color: #90EE90;", "▲")
+                      } else {
+                        tags$span(style = "color: #FC4B3D;", "▼")
+                        },
+                      ifelse(value_world_lines_month1()$growth_rate >= 0, 
+                             paste0("+", value_world_lines_month1()$growth_rate, "%"), 
+                             paste0(value_world_lines_month1()$growth_rate, "%")))))
 })
-output$n6 <- renderText({
-  ifelse(mappers_substations_period_last()$val == "NA", "", mappers_substations_period_last()$val)
+output$n6_complete <- renderUI({
+  tags$div(tags$div(style = "font-size: 1.2em;", 
+                    ifelse(mappers_substations_period_last()$val == "NA", "", mappers_substations_period_last()$val)),
+    tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
+             tags$div(HTML("Last 24h : &nbsp;&nbsp;"), tags$span(style = "font-size: 1.5em;",
+                                                                 value_world_substations_24H()$val),
+                      if (value_world_substations_24H()$growth_rate >= 0) { 
+                        tags$span(style = "color: #90EE90;", "▲")
+                      } else {
+                          if (value_world_substations_24H()$growth_rate == 0) {
+                          tags$span(style = "color: #F78865;", "=")
+                        } else {
+                          tags$span(style = "color: #FC4B3D;", "▼")
+                        }},
+                      ifelse(value_world_substations_24H()$growth_rate >= 0,
+                             paste0("+", value_world_substations_24H()$growth_rate, "%"), 
+                             ifelse(value_world_substations_24H()$growth_rate < 0,
+                                    paste0(value_world_substations_24H()$growth_rate, "%"),
+                                    ""))),
+             tags$div(style = "margin-top: 2px;",
+                      "Month 1st :", tags$span(style = "font-size: 1.5em;", 
+                                               value_world_substations_month1()$val),
+                      if(value_world_substations_month1()$growth_rate >= 0) { 
+                        tags$span(style = "color: #90EE90;", "▲")
+                      } else {
+                        tags$span(style = "color: #FC4B3D;", "▼")
+                        },
+                      ifelse(value_world_substations_month1()$growth_rate >= 0, 
+                             paste0("+", value_world_substations_month1()$growth_rate, "%"), 
+                             paste0(value_world_substations_month1()$growth_rate, "%")))))
 })
-output$n7 <- renderText({
-  ifelse(mappers_pylons_period_last()$val == "NA", "", mappers_pylons_period_last()$val)
+output$n7_complete <- renderUI({
+  tags$div(tags$div(style = "font-size: 1.2em;", 
+                    ifelse(mappers_pylons_period_last()$val == "NA", "", mappers_pylons_period_last()$val)),
+    tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
+             tags$div(HTML("Last 24h : &nbsp;&nbsp;"), tags$span(style = "font-size: 1.5em;",
+                                                                 value_world_pylons_24H()$val),
+                      if (value_world_pylons_24H()$growth_rate >= 0) { 
+                        tags$span(style = "color: #90EE90;", "▲")
+                      } else {
+                          if (value_world_pylons_24H()$growth_rate == 0) {
+                          tags$span(style = "color: #F78865;", "=")
+                        } else {
+                          tags$span(style = "color: #FC4B3D;", "▼")
+                        }},
+                      ifelse(value_world_pylons_24H()$growth_rate >= 0,
+                             paste0("+", value_world_pylons_24H()$growth_rate, "%"), 
+                             ifelse(value_world_pylons_24H()$growth_rate < 0,
+                                    paste0(value_world_pylons_24H()$growth_rate, "%"),
+                                    ""))),
+             tags$div(style = "margin-top: 2px;",
+                      "Month 1st :", tags$span(style = "font-size: 1.5em;", 
+                                               value_world_pylons_month1()$val),
+                      if(value_world_pylons_month1()$growth_rate >= 0) { 
+                        tags$span(style = "color: #90EE90;", "▲")
+                      } else {
+                        tags$span(style = "color: #FC4B3D;", "▼")
+                        },
+                      ifelse(value_world_pylons_month1()$growth_rate >= 0, 
+                             paste0("+", value_world_pylons_month1()$growth_rate, "%"), 
+                             paste0(value_world_pylons_month1()$growth_rate, "%")))))
 })
 ```
 

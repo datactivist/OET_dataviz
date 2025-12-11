@@ -42,10 +42,13 @@ div.callout-note.callout-style-default>.callout-header {
 }
 
 .value-box-value {
-  font-size: 2rem !important; /*taille du chiffre de la value box*/
+  font-size: 1.6rem !important; /*taille du chiffre de la value box*/
+  margin-top: -8px !important;
+  /*padding-top: -10px !important;*/
 }
 .value-box-title {
-  font-size: 1rem !important; /*taille du titre de la value box*/
+  font-size: .9rem !important; /*taille du titre de la value box*/
+  margin-top: 10px !important;
 }
 
 .nav-tabs .nav-link {
