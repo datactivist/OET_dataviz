@@ -8,7 +8,7 @@ format:
         target: "_blank"
     include-in-header:
       - header.html
-logo: "https://raw.githubusercontent.com/open-energy-transition/MapYourGrid/main/docs/images/logos/MapYourGrid-logo.png"
+logo: "images/MapYourGrid-logo.png"
 theme: [sandstone, custom.scss]
 fig-width: 10
 fig-asp: 0.3
@@ -291,108 +291,144 @@ value_box(
 #| context: server
 
 output$n1_complete <- renderUI({
+  
+  if (nrow(value_world_circuits()) == 0) { #on n'affiche rien qd df vide (sinon error affichée)
+    "" } else {
+      
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     value_world_circuits_last()$amount),
     tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
-             tags$div(HTML("Last 24h : &nbsp;&nbsp;"), tags$span(style = "font-size: 1.5em;",
-                                                                 value_world_circuits_24H()$amount),
-                      if(value_world_circuits_24H()$growth_rate >= 0) { 
-                        tags$span(style = "color: #90EE90;", "▲")
-                      } else {
-                        tags$span(style = "color: #FC4B3D;", "▼")
-                        },
-                      ifelse(value_world_circuits_24H()$growth_rate >= 0, 
-                             paste0("+", value_world_circuits_24H()$growth_rate, "%"), 
-                             paste0(value_world_circuits_24H()$growth_rate, "%"))),
+             tags$div(tags$img(src = "images/myg_24h.svg", 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"), 
+                      tags$span(style = "font-size: 1.5em;", value_world_circuits_24H()$amount),
+                      if(value_world_circuits_last()$amount > value_world_circuits_24H()$amount) {
+                        tagList(tags$span(style = "color: #90EE90;", "▲"), 
+                                paste0("+", value_world_circuits_24H()$growth_rate, "%"))
+                        } else if(value_world_circuits_last()$amount < value_world_circuits_24H()$amount) {
+                          tagList(tags$span(style = "color: #FC4B3D;", "▼"),
+                                  paste0(value_world_circuits_24H()$growth_rate, "%"))
+                          } else {
+                            tags$span(style = "color: #FFA500;", "=") 
+                          }),
              tags$div(style = "margin-top: 2px;",
-                      "Month 1st :", tags$span(style = "font-size: 1.5em;", 
-                                               value_world_circuits_month1()$amount),
-                      if(value_world_circuits_month1()$growth_rate >= 0) { 
-                        tags$span(style = "color: #90EE90;", "▲")
-                      } else {
-                        tags$span(style = "color: #FC4B3D;", "▼")
-                        },
-                      ifelse(value_world_circuits_month1()$growth_rate >= 0, 
-                             paste0("+", value_world_circuits_month1()$growth_rate, "%"), 
-                             paste0(value_world_circuits_month1()$growth_rate, "%")))))
+                      tags$img(src = "images/myg_1m.svg", 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"),
+                      tags$span(style = "font-size: 1.5em;", value_world_circuits_month1()$amount),
+                      if(value_world_circuits_last()$amount > value_world_circuits_month1()$amount) {
+                        tagList(tags$span(style = "color: #90EE90;", "▲"),
+                                paste0("+", value_world_circuits_month1()$growth_rate, "%"))
+                        } else if(value_world_circuits_last()$amount < value_world_circuits_month1()$amount) {
+                          tagList(tags$span(style = "color: #FC4B3D;", "▼"),
+                                  paste0(value_world_circuits_month1()$growth_rate, "%"))
+                          } else {
+                            tags$span(style = "color: #FFA500;", "=")
+                          })))
+    }
 })
 output$n2_complete <- renderUI({
+  
+  if (value_world_lines_last()$amount == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
+    "" } else {
+      
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     ifelse(value_world_lines_last()$amount == "NA", "", value_world_lines_last()$amount)),
     tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
-             tags$div(HTML("Last 24h : &nbsp;&nbsp;"), tags$span(style = "font-size: 1.5em;",
-                                                                 value_world_lines_24H()$amount),
-                      if(value_world_lines_24H()$growth_rate >= 0) { 
-                        tags$span(style = "color: #90EE90;", "▲")
-                      } else {
-                        tags$span(style = "color: #FC4B3D;", "▼")
-                        },
-                      ifelse(value_world_lines_24H()$growth_rate >= 0, 
-                             paste0("+", value_world_lines_24H()$growth_rate, "%"), 
-                             paste0(value_world_lines_24H()$growth_rate, "%"))),
+             tags$div(tags$img(src = "images/myg_24h.svg", 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px;"), 
+                      tags$span(style = "font-size: 1.5em;",value_world_lines_24H()$amount),
+                      if(value_world_lines_last()$amount > value_world_lines_24H()$amount) {
+                        tagList(tags$span(style = "color: #90EE90;", "▲"), 
+                                paste0("+", value_world_lines_24H()$growth_rate, "%"))
+                        } else if(value_world_lines_last()$amount < value_world_lines_24H()$amount) {
+                          tagList(tags$span(style = "color: #FC4B3D;", "▼"),
+                                  paste0(value_world_lines_24H()$growth_rate, "%"))
+                          } else {
+                            tags$span(style = "color: #FFA500;", "=") 
+                          }),
              tags$div(style = "margin-top: 2px;",
-                      "Month 1st :", tags$span(style = "font-size: 1.5em;", 
-                                               value_world_lines_month1()$amount),
-                      if(value_world_lines_month1()$growth_rate >= 0) { 
-                        tags$span(style = "color: #90EE90;", "▲")
-                      } else {
-                        tags$span(style = "color: #FC4B3D;", "▼")
-                        },
-                      ifelse(value_world_lines_month1()$growth_rate >= 0, 
-                             paste0("+", value_world_lines_month1()$growth_rate, "%"), 
-                             paste0(value_world_lines_month1()$growth_rate, "%")))))
+                      tags$img(src = "images/myg_1m.svg", 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px;"), 
+                      tags$span(style = "font-size: 1.5em;", value_world_lines_month1()$amount),
+                      if(value_world_lines_last()$amount > value_world_lines_month1()$amount) {
+                        tagList(tags$span(style = "color: #90EE90;", "▲"),
+                                paste0("+", value_world_lines_month1()$growth_rate, "%"))
+                        } else if(value_world_lines_last()$amount < value_world_lines_month1()$amount) {
+                          tagList(tags$span(style = "color: #FC4B3D;", "▼"),
+                                  paste0(value_world_lines_month1()$growth_rate, "%"))
+                          } else {
+                            tags$span(style = "color: #FFA500;", "=")
+                          })))
+    }
 })
 output$n3_complete <- renderUI({
+  
+  if (value_world_substations_last()$amount == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
+    "" } else {
+      
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     ifelse(value_world_substations_last()$amount == "NA", "", value_world_substations_last()$amount)),
     tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
-             tags$div(HTML("Last 24h : &nbsp;&nbsp;"), tags$span(style = "font-size: 1.5em;",
-                                                                 value_world_substations_24H()$amount),
-                      if(value_world_substations_24H()$growth_rate >= 0) { 
-                        tags$span(style = "color: #90EE90;", "▲")
-                      } else {
-                        tags$span(style = "color: #FC4B3D;", "▼")
-                        },
-                      ifelse(value_world_substations_24H()$growth_rate >= 0, 
-                             paste0("+", value_world_substations_24H()$growth_rate, "%"), 
-                             paste0(value_world_substations_24H()$growth_rate, "%"))),
+             tags$div(tags$img(src = "images/myg_24h.svg", 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"), 
+                      tags$span(style = "font-size: 1.5em;",value_world_substations_24H()$amount),
+                      if(value_world_substations_last()$amount > value_world_substations_24H()$amount) {
+                        tagList(tags$span(style = "color: #90EE90;", "▲"), 
+                                paste0("+", value_world_substations_24H()$growth_rate, "%"))
+                        } else if(value_world_substations_last()$amount < value_world_substations_24H()$amount) {
+                          tagList(tags$span(style = "color: #FC4B3D;", "▼"),
+                                  paste0(value_world_substations_24H()$growth_rate, "%"))
+                          } else {
+                            tags$span(style = "color: #FFA500;", "=") 
+                          }),
              tags$div(style = "margin-top: 2px;",
-                      "Month 1st :", tags$span(style = "font-size: 1.5em;", 
-                                               value_world_substations_month1()$amount),
-                      if(value_world_substations_month1()$growth_rate >= 0) { 
-                        tags$span(style = "color: #90EE90;", "▲")
-                      } else {
-                        tags$span(style = "color: #FC4B3D;", "▼")
-                        },
-                      ifelse(value_world_substations_month1()$growth_rate >= 0, 
-                             paste0("+", value_world_substations_month1()$growth_rate, "%"), 
-                             paste0(value_world_substations_month1()$growth_rate, "%")))))
+                      tags$img(src = "images/myg_1m.svg", 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"), 
+                      tags$span(style = "font-size: 1.5em;", value_world_substations_month1()$amount),
+                      if(value_world_substations_last()$amount > value_world_substations_month1()$amount) {
+                        tagList(tags$span(style = "color: #90EE90;", "▲"),
+                                paste0("+", value_world_substations_month1()$growth_rate, "%"))
+                        } else if(value_world_substations_last()$amount < value_world_substations_month1()$amount) {
+                          tagList(tags$span(style = "color: #FC4B3D;", "▼"),
+                                  paste0(value_world_substations_month1()$growth_rate, "%"))
+                          } else {
+                            tags$span(style = "color: #FFA500;", "=")
+                          })))
+    }
 })
 output$n4_complete <- renderUI({
+  
+  if (value_world_supports_last()$amount == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
+    "" } else {
+      
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     ifelse(value_world_supports_last()$amount == "NA", "", value_world_supports_last()$amount)),
     tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
-             tags$div(HTML("Last 24h : &nbsp;&nbsp;"), tags$span(style = "font-size: 1.5em;",
-                                                                 value_world_supports_24H()$amount),
-                      if(value_world_supports_24H()$growth_rate >= 0) { 
-                        tags$span(style = "color: #90EE90;", "▲")
-                      } else {
-                        tags$span(style = "color: #FC4B3D;", "▼")
-                        },
-                      ifelse(value_world_supports_24H()$growth_rate >= 0, 
-                             paste0("+", value_world_supports_24H()$growth_rate, "%"), 
-                             paste0(value_world_supports_24H()$growth_rate, "%"))),
+             tags$div(tags$img(src = "images/myg_24h.svg", 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"), 
+                      tags$span(style = "font-size: 1.5em;", value_world_supports_24H()$amount),
+                      if(value_world_supports_last()$amount > value_world_supports_24H()$amount) {
+                        tagList(tags$span(style = "color: #90EE90;", "▲"), 
+                                paste0("+", value_world_supports_24H()$growth_rate, "%"))
+                        } else if(value_world_supports_last()$amount < value_world_supports_24H()$amount) {
+                          tagList(tags$span(style = "color: #FC4B3D;", "▼"),
+                                  paste0(value_world_supports_24H()$growth_rate, "%"))
+                          } else {
+                            tags$span(style = "color: #FFA500;", "=") 
+                          }),
              tags$div(style = "margin-top: 2px;",
-                      "Month 1st :", tags$span(style = "font-size: 1.5em;", 
-                                               value_world_supports_month1()$amount),
-                      if(value_world_supports_month1()$growth_rate >= 0) { 
-                        tags$span(style = "color: #90EE90;", "▲")
-                      } else {
-                        tags$span(style = "color: #FC4B3D;", "▼")
-                        },
-                      ifelse(value_world_supports_month1()$growth_rate >= 0, 
-                             paste0("+", value_world_supports_month1()$growth_rate, "%"), 
-                             paste0(value_world_supports_month1()$growth_rate, "%")))))
+                      tags$img(src = "images/myg_1m.svg", 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"), 
+                      tags$span(style = "font-size: 1.5em;", value_world_supports_month1()$amount),
+                      if(value_world_supports_last()$amount > value_world_supports_month1()$amount) {
+                        tagList(tags$span(style = "color: #90EE90;", "▲"),
+                                paste0("+", value_world_supports_month1()$growth_rate, "%"))
+                        } else if(value_world_supports_last()$amount < value_world_supports_month1()$amount) {
+                          tagList(tags$span(style = "color: #FC4B3D;", "▼"),
+                                  paste0(value_world_supports_month1()$growth_rate, "%"))
+                          } else {
+                            tags$span(style = "color: #FFA500;", "=")
+                          })))
+    }
 })
 ```
 
@@ -1132,92 +1168,111 @@ value_box(
 #| context: server
 
 output$n1_complete_length <- renderUI({
+  
+  if (nrow(value_world_circuits_length()) == 0) { #on n'affiche rien qd df vide (sinon error affichée)
+    "" } else {
+      
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     value_world_circuits_last_length()$length),
     tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
-             tags$div(HTML("Last 24h : &nbsp;&nbsp;"), tags$span(style = "font-size: 1.5em;",
-                                                                 value_world_circuits_24H_length()$length),
-                      if (value_world_circuits_24H_length()$growth_rate >= 0) { 
-                        tags$span(style = "color: #90EE90;", "▲")
-                      } else {
-                          if (value_world_circuits_24H_length()$growth_rate == 0) {
-                          tags$span(style = "color: #F78865;", "EGA")
-                        } else {
-                          tags$span(style = "color: #FC4B3D;", "▼")
-                        }},
-                      ifelse(value_world_circuits_24H_length()$growth_rate >= 0,
-                             paste0("+", value_world_circuits_24H_length()$growth_rate, "%"), 
-                             ifelse(value_world_circuits_24H_length()$growth_rate < 0,
-                                    paste0(value_world_circuits_24H_length()$growth_rate, "%"),
-                                    ""))),
+             tags$div(tags$img(src = "images/myg_24h.svg",                                 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"), 
+                      tags$span(style = "font-size: 1.5em;", value_world_circuits_24H_length()$length),
+                      if(value_world_circuits_last_length()$length > value_world_circuits_24H_length()$length) {
+                        tagList(tags$span(style = "color: #90EE90;", "▲"), 
+                                paste0("+", value_world_circuits_24H_length()$growth_rate, "%"))
+                        } else if(value_world_circuits_last_length()$length < value_world_circuits_24H_length()$length) {
+                          tagList(tags$span(style = "color: #FC4B3D;", "▼"),
+                                  paste0(value_world_circuits_24H_length()$growth_rate, "%"))
+                          } else {
+                            tags$span(style = "color: #FFA500;", "=") 
+                            }),
              tags$div(style = "margin-top: 2px;",
-                      "Month 1st :", tags$span(style = "font-size: 1.5em;", 
-                                               value_world_circuits_month1_length()$length),
-                      if(value_world_circuits_month1_length()$growth_rate >= 0) { 
-                        tags$span(style = "color: #90EE90;", "▲")
-                      } else {
-                        tags$span(style = "color: #FC4B3D;", "▼")
-                        },
-                      ifelse(value_world_circuits_month1_length()$growth_rate >= 0, 
-                             paste0("+", value_world_circuits_month1_length()$growth_rate, "%"), 
-                             paste0(value_world_circuits_month1_length()$growth_rate, "%")))))
+                      tags$img(src = "images/myg_1m.svg",                                 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"), 
+                      tags$span(style = "font-size: 1.5em;", value_world_circuits_month1_length()$length),
+                      if(value_world_circuits_last_length()$length > value_world_circuits_month1_length()$length) {
+                        tagList(tags$span(style = "color: #90EE90;", "▲"),
+                                paste0("+", value_world_circuits_month1_length()$growth_rate, "%"))
+                        } else if(value_world_circuits_last_length()$length < value_world_circuits_month1_length()$length) {
+                          tagList(tags$span(style = "color: #FC4B3D;", "▼"),
+                                  paste0(value_world_circuits_month1_length()$growth_rate, "%"))
+                          } else {
+                            tags$span(style = "color: #FFA500;", "=")
+                            })))
+    }
 })
 output$n2_complete_length <- renderUI({
+  
+  if (value_world_lines_last_length()$length == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
+    "" } else {
+      
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     ifelse(value_world_lines_last_length()$length == "NA", "", value_world_lines_last_length()$length)),
     tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
-             tags$div(HTML("Last 24h : &nbsp;&nbsp;"), tags$span(style = "font-size: 1.5em;",
-                                                                 value_world_lines_24H_length()$length),
-                      if(value_world_lines_24H_length()$growth_rate >= 0) { 
-                        tags$span(style = "color: #90EE90;", "▲")
-                      } else {
-                        tags$span(style = "color: #FC4B3D;", "▼")
-                        },
-                      ifelse(value_world_lines_24H_length()$growth_rate >= 0, 
-                             paste0("+", value_world_lines_24H_length()$growth_rate, "%"), 
-                             paste0(value_world_lines_24H_length()$growth_rate, "%"))),
+             tags$div(tags$img(src = "images/myg_24h.svg",                                 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px;"), 
+                      tags$span(style = "font-size: 1.5em;", value_world_lines_24H_length()$length),
+                      if(value_world_lines_last_length()$length > value_world_lines_24H_length()$length) {
+                        tagList(tags$span(style = "color: #90EE90;", "▲"), 
+                                paste0("+", value_world_lines_24H_length()$growth_rate, "%"))
+                        } else if(value_world_lines_last_length()$length < value_world_lines_24H_length()$length) {
+                          tagList(tags$span(style = "color: #FC4B3D;", "▼"),
+                                  paste0(value_world_lines_24H_length()$growth_rate, "%"))
+                          } else {
+                            tags$span(style = "color: #FFA500;", "=") 
+                            }),
              tags$div(style = "margin-top: 2px;",
-                      "Month 1st :", tags$span(style = "font-size: 1.5em;", 
-                                               value_world_lines_month1_length()$length),
-                      if(value_world_lines_month1_length()$growth_rate >= 0) { 
-                        tags$span(style = "color: #90EE90;", "▲")
-                      } else {
-                        tags$span(style = "color: #FC4B3D;", "▼")
-                        },
-                      ifelse(value_world_lines_month1_length()$growth_rate >= 0, 
-                             paste0("+", value_world_lines_month1_length()$growth_rate, "%"), 
-                             paste0(value_world_lines_month1_length()$growth_rate, "%")))))
+                      tags$img(src = "images/myg_1m.svg",                                 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px;"), 
+                      tags$span(style = "font-size: 1.5em;", value_world_lines_month1_length()$length),
+                      if(value_world_lines_last_length()$length > value_world_lines_month1_length()$length) {
+                        tagList(tags$span(style = "color: #90EE90;", "▲"),
+                                paste0("+", value_world_lines_month1_length()$growth_rate, "%"))
+                        } else if(value_world_lines_last_length()$length < value_world_lines_month1_length()$length) {
+                          tagList(tags$span(style = "color: #FC4B3D;", "▼"),
+                                  paste0(value_world_lines_month1_length()$growth_rate, "%"))
+                          } else {
+                            tags$span(style = "color: #FFA500;", "=")
+                            })))
+    }
 })
 output$n3_complete_length <- renderUI({
+  
+  if (value_world_substations_last_length()$area == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
+    "" } else {
+      
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     ifelse(value_world_substations_last_length()$area == "NA", "",
                            value_world_substations_last_length()$area)),
     tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
-             tags$div(HTML("Last 24h : &nbsp;&nbsp;"), tags$span(style = "font-size: 1.5em;",
-                                                                 value_world_substations_24H_length()$area),
-                      if(value_world_substations_24H_length()$growth_rate >= 0) { 
-                        tags$span(style = "color: #90EE90;", "▲")
-                      } else {
-                        tags$span(style = "color: #FC4B3D;", "▼")
-                        },
-                      ifelse(value_world_substations_24H_length()$growth_rate >= 0, 
-                             paste0("+", value_world_substations_24H_length()$growth_rate, "%"), 
-                             paste0(value_world_substations_24H_length()$growth_rate, "%"))),
+             tags$div(tags$img(src = "images/myg_24h.svg",                                 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"), 
+                      tags$span(style = "font-size: 1.5em;", value_world_substations_24H_length()$area),
+                        if(value_world_substations_last_length()$area > value_world_substations_24H_length()$area) {
+                        tagList(tags$span(style = "color: #90EE90;", "▲"), 
+                                paste0("+", value_world_substations_24H_length()$growth_rate, "%"))
+                        } else if(value_world_substations_last_length()$area < value_world_substations_24H_length()$area) {
+                          tagList(tags$span(style = "color: #FC4B3D;", "▼"),
+                                  paste0(value_world_substations_24H_length()$growth_rate, "%"))
+                          } else {
+                            tags$span(style = "color: #FFA500;", "=") 
+                            }),
              tags$div(style = "margin-top: 2px;",
-                      "Month 1st :", tags$span(style = "font-size: 1.5em;", 
-                                               value_world_substations_month1_length()$area),
-                      if(value_world_substations_month1_length()$growth_rate >= 0) { 
-                        tags$span(style = "color: #90EE90;", "▲")
-                      } else {
-                        tags$span(style = "color: #FC4B3D;", "▼")
-                        },
-                      ifelse(value_world_substations_month1_length()$growth_rate >= 0, 
-                             paste0("+", value_world_substations_month1_length()$growth_rate, "%"), 
-                             paste0(value_world_substations_month1_length()$growth_rate, "%")))))
+                      tags$img(src = "images/myg_1m.svg",                                 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"), 
+                      tags$span(style = "font-size: 1.5em;", value_world_substations_month1_length()$area),
+                      if(value_world_substations_last_length()$area > value_world_substations_month1_length()$area) {
+                        tagList(tags$span(style = "color: #90EE90;", "▲"),
+                                paste0("+", value_world_substations_month1_length()$growth_rate, "%"))
+                        } else if(value_world_substations_last_length()$area < value_world_substations_month1_length()$area) {
+                          tagList(tags$span(style = "color: #FC4B3D;", "▼"),
+                                  paste0(value_world_substations_month1_length()$growth_rate, "%"))
+                          } else {
+                            tags$span(style = "color: #FFA500;", "=")
+                            })))
+    }
 })
-
-                    
-                    
 ```
 
 
@@ -2255,7 +2310,7 @@ mappers_circuits_period_last <- reactive({
     slice(1) |> 
     mutate(val = format(as.integer(val, 0), nsmall = 1, big.mark = ","))
 })
-value_world_circuits_24H <- reactive({
+mappers_world_circuits_24H <- reactive({
   mappers_circuits_period() |> 
     arrange(x) |> 
     slice_tail(n = 2) |> 
@@ -2264,7 +2319,7 @@ value_world_circuits_24H <- reactive({
     fill(everything(), .direction = "downup") |> 
     filter(row_number() == 1)
 })
-value_world_circuits_month1 <- reactive({
+mappers_world_circuits_month1 <- reactive({
   mappers_circuits_period() |> 
     arrange(x) |> 
     filter(x == max(x) | 
@@ -2281,7 +2336,7 @@ mappers_lines_period_last <- reactive({
     slice(1) |> 
     mutate(val = format(as.integer(val, 0), nsmall = 1, big.mark = ","))
 })
-value_world_lines_24H <- reactive({
+mappers_world_lines_24H <- reactive({
   mappers_lines_period() |> 
     arrange(x) |> 
     slice_tail(n = 2) |> 
@@ -2290,7 +2345,7 @@ value_world_lines_24H <- reactive({
     fill(everything(), .direction = "downup") |> 
     filter(row_number() == 1)
 })
-value_world_lines_month1 <- reactive({
+mappers_world_lines_month1 <- reactive({
   mappers_lines_period() |> 
     arrange(x) |> 
     filter(x == max(x) | 
@@ -2307,7 +2362,7 @@ mappers_substations_period_last <- reactive({
     slice(1) |> 
     mutate(val = format(as.integer(val, 0), nsmall = 1, big.mark = ","))
 })
-value_world_substations_24H <- reactive({
+mappers_world_substations_24H <- reactive({
   mappers_substations_period() |> 
     arrange(x) |> 
     slice_tail(n = 2) |> 
@@ -2316,7 +2371,7 @@ value_world_substations_24H <- reactive({
     fill(everything(), .direction = "downup") |> 
     filter(row_number() == 1)
 })
-value_world_substations_month1 <- reactive({
+mappers_world_substations_month1 <- reactive({
   mappers_substations_period() |> 
     arrange(x) |> 
     filter(x == max(x) | 
@@ -2333,7 +2388,7 @@ mappers_pylons_period_last <- reactive({
     slice(1) |> 
     mutate(val = format(as.integer(val, 0), nsmall = 1, big.mark = ","))
 })
-value_world_pylons_24H <- reactive({
+mappers_world_pylons_24H <- reactive({
   mappers_pylons_period() |> 
     arrange(x) |> 
     slice_tail(n = 2) |> 
@@ -2342,7 +2397,7 @@ value_world_pylons_24H <- reactive({
     fill(everything(), .direction = "downup") |> 
     filter(row_number() == 1)
 })
-value_world_pylons_month1 <- reactive({
+mappers_world_pylons_month1 <- reactive({
   mappers_pylons_period() |> 
     arrange(x) |> 
     filter(x == max(x) | 
@@ -2416,128 +2471,156 @@ value_box(
 #| label: display 4 valuebox mappers
 
 output$n5.0_complete <- renderUI({
+  
+  if (nrow(mappers_circuits_period()) == 0) { #on n'affiche rien qd df vide (sinon error affichée)
+    "" } else {
+      
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     mappers_circuits_period_last()$val),
     tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
-             tags$div(HTML("Last 24h : &nbsp;&nbsp;"), tags$span(style = "font-size: 1.5em;",
-                                                                 value_world_circuits_24H()$val),
-                      if (value_world_circuits_24H()$growth_rate >= 0) { 
+             tags$div(tags$img(src = "images/myg_24h.svg",                                 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"), 
+                      tags$span(style = "font-size: 1.5em;", mappers_world_circuits_24H()$val),
+                      if (mappers_world_circuits_24H()$growth_rate >= 0) { 
                         tags$span(style = "color: #90EE90;", "▲")
                       } else {
-                          if (value_world_circuits_24H()$growth_rate == 0) {
+                          if (mappers_world_circuits_24H()$growth_rate == 0) {
                           tags$span(style = "color: #F78865;", "=")
                         } else {
                           tags$span(style = "color: #FC4B3D;", "▼")
                         }},
-                      ifelse(value_world_circuits_24H()$growth_rate >= 0,
-                             paste0("+", value_world_circuits_24H()$growth_rate, "%"), 
-                             ifelse(value_world_circuits_24H()$growth_rate < 0,
-                                    paste0(value_world_circuits_24H()$growth_rate, "%"),
+                      ifelse(mappers_world_circuits_24H()$growth_rate >= 0,
+                             paste0("+", mappers_world_circuits_24H()$growth_rate, "%"), 
+                             ifelse(mappers_world_circuits_24H()$growth_rate < 0,
+                                    paste0(mappers_world_circuits_24H()$growth_rate, "%"),
                                     ""))),
              tags$div(style = "margin-top: 2px;",
-                      "Month 1st :", tags$span(style = "font-size: 1.5em;", 
-                                               value_world_circuits_month1()$val),
-                      if(value_world_circuits_month1()$growth_rate >= 0) { 
+                      tags$img(src = "images/myg_1m.svg",                                 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"), 
+                      tags$span(style = "font-size: 1.5em;", mappers_world_circuits_month1()$val),
+                      if(mappers_world_circuits_month1()$growth_rate >= 0) { 
                         tags$span(style = "color: #90EE90;", "▲")
                       } else {
                         tags$span(style = "color: #FC4B3D;", "▼")
                         },
-                      ifelse(value_world_circuits_month1()$growth_rate >= 0, 
-                             paste0("+", value_world_circuits_month1()$growth_rate, "%"), 
-                             paste0(value_world_circuits_month1()$growth_rate, "%")))))
+                      ifelse(mappers_world_circuits_month1()$growth_rate >= 0, 
+                             paste0("+", mappers_world_circuits_month1()$growth_rate, "%"), 
+                             paste0(mappers_world_circuits_month1()$growth_rate, "%")))))
+    }
 })
 output$n5_complete <- renderUI({
+  
+  if (mappers_lines_period_last()$val == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
+    "" } else {
+      
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     ifelse(mappers_lines_period_last()$val == "NA", "", mappers_lines_period_last()$val)),
     tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
-             tags$div(HTML("Last 24h : &nbsp;&nbsp;"), tags$span(style = "font-size: 1.5em;",
-                                                                 value_world_lines_24H()$val),
-                      if (value_world_lines_24H()$growth_rate >= 0) { 
+             tags$div(tags$img(src = "images/myg_24h.svg",                                 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px;"), 
+                      tags$span(style = "font-size: 1.5em;", mappers_world_lines_24H()$val),
+                      if (mappers_world_lines_24H()$growth_rate >= 0) { 
                         tags$span(style = "color: #90EE90;", "▲")
                       } else {
-                          if (value_world_lines_24H()$growth_rate == 0) {
+                          if (mappers_world_lines_24H()$growth_rate == 0) {
                           tags$span(style = "color: #F78865;", "=")
                         } else {
                           tags$span(style = "color: #FC4B3D;", "▼")
                         }},
-                      ifelse(value_world_lines_24H()$growth_rate >= 0,
-                             paste0("+", value_world_lines_24H()$growth_rate, "%"), 
-                             ifelse(value_world_lines_24H()$growth_rate < 0,
-                                    paste0(value_world_lines_24H()$growth_rate, "%"),
+                      ifelse(mappers_world_lines_24H()$growth_rate >= 0,
+                             paste0("+", mappers_world_lines_24H()$growth_rate, "%"), 
+                             ifelse(mappers_world_lines_24H()$growth_rate < 0,
+                                    paste0(mappers_world_lines_24H()$growth_rate, "%"),
                                     ""))),
              tags$div(style = "margin-top: 2px;",
-                      "Month 1st :", tags$span(style = "font-size: 1.5em;", 
-                                               value_world_lines_month1()$val),
-                      if(value_world_lines_month1()$growth_rate >= 0) { 
+                      tags$img(src = "images/myg_1m.svg",                                 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px;"), 
+                      tags$span(style = "font-size: 1.5em;", mappers_world_lines_month1()$val),
+                      if(mappers_world_lines_month1()$growth_rate >= 0) { 
                         tags$span(style = "color: #90EE90;", "▲")
                       } else {
                         tags$span(style = "color: #FC4B3D;", "▼")
                         },
-                      ifelse(value_world_lines_month1()$growth_rate >= 0, 
-                             paste0("+", value_world_lines_month1()$growth_rate, "%"), 
-                             paste0(value_world_lines_month1()$growth_rate, "%")))))
+                      ifelse(mappers_world_lines_month1()$growth_rate >= 0, 
+                             paste0("+", mappers_world_lines_month1()$growth_rate, "%"), 
+                             paste0(mappers_world_lines_month1()$growth_rate, "%")))))
+    }
 })
 output$n6_complete <- renderUI({
+  
+  if (mappers_substations_period_last()$val == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
+    "" } else {
+      
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     ifelse(mappers_substations_period_last()$val == "NA", "", mappers_substations_period_last()$val)),
     tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
-             tags$div(HTML("Last 24h : &nbsp;&nbsp;"), tags$span(style = "font-size: 1.5em;",
-                                                                 value_world_substations_24H()$val),
-                      if (value_world_substations_24H()$growth_rate >= 0) { 
+             tags$div(tags$img(src = "images/myg_24h.svg",                                 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"), 
+                      tags$span(style = "font-size: 1.5em;", mappers_world_substations_24H()$val),
+                      if (mappers_world_substations_24H()$growth_rate >= 0) { 
                         tags$span(style = "color: #90EE90;", "▲")
                       } else {
-                          if (value_world_substations_24H()$growth_rate == 0) {
+                          if (mappers_world_substations_24H()$growth_rate == 0) {
                           tags$span(style = "color: #F78865;", "=")
                         } else {
                           tags$span(style = "color: #FC4B3D;", "▼")
                         }},
-                      ifelse(value_world_substations_24H()$growth_rate >= 0,
-                             paste0("+", value_world_substations_24H()$growth_rate, "%"), 
-                             ifelse(value_world_substations_24H()$growth_rate < 0,
-                                    paste0(value_world_substations_24H()$growth_rate, "%"),
+                      ifelse(mappers_world_substations_24H()$growth_rate >= 0,
+                             paste0("+", mappers_world_substations_24H()$growth_rate, "%"), 
+                             ifelse(mappers_world_substations_24H()$growth_rate < 0,
+                                    paste0(mappers_world_substations_24H()$growth_rate, "%"),
                                     ""))),
              tags$div(style = "margin-top: 2px;",
-                      "Month 1st :", tags$span(style = "font-size: 1.5em;", 
-                                               value_world_substations_month1()$val),
-                      if(value_world_substations_month1()$growth_rate >= 0) { 
+                      tags$img(src = "images/myg_1m.svg",                                 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"), 
+                      tags$span(style = "font-size: 1.5em;", mappers_world_substations_month1()$val),
+                      if(mappers_world_substations_month1()$growth_rate >= 0) { 
                         tags$span(style = "color: #90EE90;", "▲")
                       } else {
                         tags$span(style = "color: #FC4B3D;", "▼")
                         },
-                      ifelse(value_world_substations_month1()$growth_rate >= 0, 
-                             paste0("+", value_world_substations_month1()$growth_rate, "%"), 
-                             paste0(value_world_substations_month1()$growth_rate, "%")))))
+                      ifelse(mappers_world_substations_month1()$growth_rate >= 0, 
+                             paste0("+", mappers_world_substations_month1()$growth_rate, "%"), 
+                             paste0(mappers_world_substations_month1()$growth_rate, "%")))))
+    }
 })
 output$n7_complete <- renderUI({
+  
+  if (mappers_pylons_period_last()$val == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
+    "" } else {
+      
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     ifelse(mappers_pylons_period_last()$val == "NA", "", mappers_pylons_period_last()$val)),
     tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
-             tags$div(HTML("Last 24h : &nbsp;&nbsp;"), tags$span(style = "font-size: 1.5em;",
-                                                                 value_world_pylons_24H()$val),
-                      if (value_world_pylons_24H()$growth_rate >= 0) { 
+             tags$div(tags$img(src = "images/myg_24h.svg",                                 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"), 
+                      tags$span(style = "font-size: 1.5em;", mappers_world_pylons_24H()$val),
+                      if (mappers_world_pylons_24H()$growth_rate >= 0) { 
                         tags$span(style = "color: #90EE90;", "▲")
                       } else {
-                          if (value_world_pylons_24H()$growth_rate == 0) {
+                          if (mappers_world_pylons_24H()$growth_rate == 0) {
                           tags$span(style = "color: #F78865;", "=")
                         } else {
                           tags$span(style = "color: #FC4B3D;", "▼")
                         }},
-                      ifelse(value_world_pylons_24H()$growth_rate >= 0,
-                             paste0("+", value_world_pylons_24H()$growth_rate, "%"), 
-                             ifelse(value_world_pylons_24H()$growth_rate < 0,
-                                    paste0(value_world_pylons_24H()$growth_rate, "%"),
+                      ifelse(mappers_world_pylons_24H()$growth_rate >= 0,
+                             paste0("+", mappers_world_pylons_24H()$growth_rate, "%"), 
+                             ifelse(mappers_world_pylons_24H()$growth_rate < 0,
+                                    paste0(mappers_world_pylons_24H()$growth_rate, "%"),
                                     ""))),
              tags$div(style = "margin-top: 2px;",
-                      "Month 1st :", tags$span(style = "font-size: 1.5em;", 
-                                               value_world_pylons_month1()$val),
-                      if(value_world_pylons_month1()$growth_rate >= 0) { 
+                      tags$img(src = "images/myg_1m.svg",                                 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"), 
+                      tags$span(style = "font-size: 1.5em;", mappers_world_pylons_month1()$val),
+                      if(mappers_world_pylons_month1()$growth_rate >= 0) { 
                         tags$span(style = "color: #90EE90;", "▲")
                       } else {
                         tags$span(style = "color: #FC4B3D;", "▼")
                         },
-                      ifelse(value_world_pylons_month1()$growth_rate >= 0, 
-                             paste0("+", value_world_pylons_month1()$growth_rate, "%"), 
-                             paste0(value_world_pylons_month1()$growth_rate, "%")))))
+                      ifelse(mappers_world_pylons_month1()$growth_rate >= 0, 
+                             paste0("+", mappers_world_pylons_month1()$growth_rate, "%"), 
+                             paste0(mappers_world_pylons_month1()$growth_rate, "%")))))
+    }
 })
 ```
 
@@ -3111,15 +3194,12 @@ selected_pylon_data <- reactive({
   switch(input$time_period,
          "Since the beginning of the project" = read_csv("/data/api/mappers_supports_all.csv", 
                                                          show_col_types = FALSE) |> 
-                        filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = amount),
          "Last 30 days" = read_csv("/data/api/mappers_supports_all.csv", show_col_types = FALSE) |> 
-                        filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = amount_30d),
          "Last 24 hours" = read_csv("/data/api/mappers_supports_all.csv", show_col_types = FALSE) |> 
-                        filter(Pays != "World (default)") |> 
                         filter(x == max(x), .by = Pays) |> 
                         rename(val = amount_1d) 
          )
