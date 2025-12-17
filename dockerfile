@@ -1,19 +1,10 @@
 #--- Image docker pour l'application MapYourGrid
-FROM rocker/tidyverse:latest
+FROM rocker/geospatial:latest
 
-# Install dépendances système 
+# Install dépendances système supplémentaires
 RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
     curl \
-    libcurl4-gnutls-dev \
-    libcairo2-dev \
-    libxt-dev \
-    libssl-dev \
-    libssh2-1-dev \
-    libudunits2-dev \
-    libgdal-dev \
-    libgeos-dev \
-    libproj-dev \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /data
     
@@ -25,8 +16,15 @@ RUN curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb && \
 # Vérif installation quarto
 RUN which quarto && quarto --version
 
-# Install packages R
-RUN R -e "install.packages(c('shiny','quarto','plotly','scales','gt','gtExtras','janitor','sf','leaflet','leafem','leaflet.extras2','bslib','bsicons','glue','jsonlite','rrapply','rvest','rio'))"
+# Vérif installation sf 
+RUN R -e "library(sf); cat('sf version:', as.character(packageVersion('sf')), '\n')"
+
+# Install les autres packages R
+RUN R -e "install.packages(c('shiny','quarto','plotly','scales','gt','gtExtras','janitor','leaflet','leafem','leaflet.extras2','bslib','bsicons','glue','jsonlite','rrapply','rvest','rio'))"
+
+# Créa utilisateur applicatif
+RUN groupadd --gid 10001 -r shiny \
+    && useradd --uid 10001 -d /home/shiny -m -r -s /bin/bash -g shiny shiny
 
 # Config shiny et chemin quarto
 RUN mkdir -p $(R RHOME)/etc && \
@@ -36,7 +34,7 @@ RUN mkdir -p $(R RHOME)/etc && \
 # Créa utilisateur applicatif
 RUN groupadd --gid 10001 -r shiny \
     && useradd --uid 10001 -d /home/shiny -m -r -s /bin/false -g shiny shiny
-
+    
 WORKDIR /home/app
 COPY --chown=shiny:shiny . .
 
@@ -48,7 +46,5 @@ RUN chmod +x docker-entrypoint.sh \
     && chmod -R 755 .
 
 USER shiny
-
 EXPOSE 3838
-
 ENTRYPOINT ["./docker-entrypoint.sh"]

@@ -60,7 +60,7 @@ get_all_data <- function(url, name_export_data){
           possibly(.f = ~fromJSON(txt = paste0(url, .x), flatten = T)$data |> mutate(id_relation = .x), otherwise = NA_character_),
           .default = NA)
     #Compilation
-  data <- data[data !=  "NA"] # replace NA (DOIs non matchés avec OpenAlex) by NULL
+  data <- data[data !=  "NA"] # replace NA by NULL
   data <- rrapply(data, condition = Negate(is.null), how = "prune") #remove NULL
   dataframe <- data |> 
     bind_rows() |> 
@@ -81,30 +81,36 @@ dataframe2 <- dataframe |>
          labels.transmission.length = as.numeric(labels.transmission.length) / 1000,
          labels.transmission_overhead.length = as.numeric(labels.transmission_overhead.length) / 1000)
 rio::export(dataframe2, "/data/api/data_lines_all.csv")
-  # substations
-message("Appels API counts/substations")
-get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_substations/counts", "data_substations_all")
-  # supports
-message("Appels API counts/supports")
-get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_supports/counts", "data_supports_all")
   # circuits
 message("Appels API counts/circuits")
 get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_circuits/counts", "data_circuits_all")
+  # substations
+message("Appels API counts/substations")
+get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_substations/counts", "data_substations_all")
+  # generators
+message("Appels API counts/generators")
+get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_generators/counts", "data_generators_all")
+  # plants
+message("Appels API counts/plants")
+get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_plants/counts", "data_plants_all")
 
 
   #--- MAPPERS
   # lines
 message("Appels API mappers/lines")
 get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_lines/mappers", "mappers_lines_all")
-  # substations
-message("Appels API mappers/substations")
-get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_substations/mappers", "mappers_substations_all")
-  # supports
-message("Appels API mappers/supports")
-get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_supports/mappers", "mappers_supports_all")
   # circuits
 message("Appels API mappers/circuits")
 get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_circuits/mappers", "mappers_circuits_all")
+  # substations
+message("Appels API mappers/substations")
+get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_substations/mappers", "mappers_substations_all")
+  # generators
+message("Appels API mappers/generators")
+get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_generators/mappers", "mappers_generators_all")
+  # plants
+message("Appels API mappers/plants")
+get_all_data("https://mapyourgrid.infos-reseaux.com/projects/2025-01_plants/mappers", "mappers_plants_all")
 
 
 
