@@ -22,10 +22,6 @@ RUN R -e "library(sf); cat('sf version:', as.character(packageVersion('sf')), '\
 # Install les autres packages R
 RUN R -e "install.packages(c('shiny','quarto','plotly','scales','gt','gtExtras','janitor','leaflet','leafem','leaflet.extras2','bslib','bsicons','glue','jsonlite','rrapply','rvest','rio'))"
 
-# Créa utilisateur applicatif
-RUN groupadd --gid 10001 -r shiny \
-    && useradd --uid 10001 -d /home/shiny -m -r -s /bin/bash -g shiny shiny
-
 # Config shiny et chemin quarto
 RUN mkdir -p $(R RHOME)/etc && \
     echo "local(options(shiny.port = 3838, shiny.host = '0.0.0.0'))" > $(R RHOME)/etc/Rprofile.site && \
