@@ -6,14 +6,17 @@ echo "=== [Entrypoint] Initialisation du container ==="
 # Usage: docker run ... <image> [mode]
 # Modes:
 #   import  - run import_data_dashboard.R then exit (useful for data-only runs)
-#   serve   - attempt non-blocking import then start `quarto serve` (default)
+#   serve   - start quarto serve WITHOUT importing (assumes data exists)
+#   serve-import - attempt import then start quarto serve (safe: keeps old data on failure)
 #   help    - show this message
 
-MODE="${1:-serve}"
+MODE="${1:-serve-import}"
 shift || true
 
 # Fichier témoin pour indiquer que des données valides existent
 DATA_MARKER="/data/.data_imported"
+# Fichier pour tracer la dernière tentative d'import
+LAST_IMPORT="/data/.last_import_attempt"
 
 run_import() {
   if [ -f "import_data_dashboard.R" ]; then
@@ -24,8 +27,8 @@ run_import() {
       echo "=== Sauvegarde des données existantes ==="
       BACKUP_DIR="/data/.backup_$(date +%Y%m%d_%H%M%S)"
       mkdir -p "$BACKUP_DIR"
-      # Copier tous les fichiers sauf les backups
-      find /data -maxdepth 1 -type f ! -path "*/.*" -exec cp {} "$BACKUP_DIR/" \; 2>/dev/null || true
+      # Copier tous les fichiers sauf les backups et fichiers cachés système
+      find /data -maxdepth 1 -type f ! -name ".*" -exec cp {} "$BACKUP_DIR/" \; 2>/dev/null || true
       echo "Sauvegarde créée dans : $BACKUP_DIR"
     fi
     
@@ -33,6 +36,7 @@ run_import() {
       echo "=== Importation des données : OK ==="
       # Marquer l'import comme réussi
       touch "$DATA_MARKER"
+      date +%s > "$LAST_IMPORT"
       # Nettoyer les anciennes sauvegardes (garder les 3 plus récentes)
       if [ -d "/data" ]; then
         ls -dt /data/.backup_* 2>/dev/null | tail -n +4 | xargs rm -rf 2>/dev/null || true
@@ -71,8 +75,19 @@ serve_qmd() {
     exit 1
   fi
   
+  # Vérifier que des données existent avant de lancer le serveur
+  if [ ! -f "$DATA_MARKER" ]; then
+    echo "ERREUR : Aucune donnée importée détectée."
+    echo "Veuillez d'abord exécuter le mode 'import' ou 'serve-import'."
+    exit 1
+  fi
+  
   echo "=== Lancement du serveur Quarto/Shiny ==="
   echo "Fichier : $QMD_FILE"
+  if [ -f "$LAST_IMPORT" ]; then
+    LAST_DATE=$(date -d "@$(cat $LAST_IMPORT)" "+%Y-%m-%d %H:%M:%S" 2>/dev/null || echo "inconnue")
+    echo "Dernière importation réussie : $LAST_DATE"
+  fi
   exec quarto serve "$QMD_FILE" --port 3838 --host 0.0.0.0
 }
 
@@ -90,8 +105,14 @@ case "$MODE" in
     ;;
     
   serve)
-    # En mode serve, on tente l'import mais on continue même en cas d'échec
-    # si des données valides existent déjà
+    # Mode serve pur : ne fait PAS d'import, démarre directement
+    echo "=== Mode SERVE : démarrage sans import ==="
+    serve_qmd
+    ;;
+    
+  serve-import)
+    # Mode serve avec import : tente l'import puis démarre le serveur
+    echo "=== Mode SERVE-IMPORT : import puis démarrage ==="
     run_import || {
       EXIT_CODE=$?
       if [ "$EXIT_CODE" -eq 1 ]; then
@@ -105,20 +126,32 @@ case "$MODE" in
     ;;
     
   help|-h|--help)
-    sed -n '1,200p' "$0" | sed -n '1,80p'
-    echo
-    echo "Usage: docker run ... <image> [import|serve]"
+    echo "Usage: docker run ... <image> [mode]"
     echo ""
-    echo "Modes:"
-    echo "  import  - Exécute uniquement l'import (avec sauvegarde automatique)"
-    echo "  serve   - Lance l'application (tente l'import, utilise les données existantes si échec)"
-    echo "  help    - Affiche ce message"
+    echo "Modes disponibles:"
+    echo "  import        - Exécute uniquement l'import puis quitte"
+    echo "                  (avec sauvegarde/restauration automatique)"
+    echo ""
+    echo "  serve         - Lance UNIQUEMENT le serveur Quarto/Shiny"
+    echo "                  (sans import, suppose que les données existent)"
+    echo ""
+    echo "  serve-import  - Import PUIS lance le serveur (défaut)"
+    echo "                  (sécurisé : garde les anciennes données si échec)"
+    echo ""
+    echo "  help          - Affiche ce message"
+    echo ""
+    echo "Workflow recommandé:"
+    echo "  1. docker run --rm <image> import     # Import initial"
+    echo "  2. docker run <image> serve           # Démarre l'app (pas de ré-import)"
+    echo ""
+    echo "  OU en une seule commande:"
+    echo "  docker run <image> serve-import       # Import + serve en une fois"
     exit 0
     ;;
     
   *)
     echo "Mode inconnu: $MODE"
-    echo "Usage: docker run ... <image> [import|serve]"
+    echo "Utilisez 'help' pour voir les modes disponibles."
     exit 2
     ;;
 esac
