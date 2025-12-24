@@ -273,6 +273,39 @@ value_world_plants_month1 <- reactive({
     fill(everything(), .direction = "downup") |> 
     filter(row_number() == 1)
 })
+
+# Fonction pour les plots dans les valuebox avec != éléments qd petit ou grand
+plotly_time_series <- function(d, x, y) {
+    info <- getCurrentOutputInfo()
+    large <- isTRUE(info$height() > 200)
+
+    plot_ly(d, x = x, y = y, hoverinfo = if (large) "x+y" else "skip") %>%
+      add_lines(
+        color = I(info$fg()),
+        span = I(1),
+        #hoverinfo = if (!large) "none",
+        fill = 'tozeroy',
+        alpha = 0.2
+      ) %>%
+      layout(
+        hovermode = "x",
+        margin = list(t = 0, r = 0, l = 0, b = 0),
+        font = list(color = info$fg()),
+        paper_bgcolor = "transparent",
+        plot_bgcolor = "transparent",
+        xaxis = list(
+          title = "Time",
+          visible = large,
+          showgrid = FALSE
+        ),
+        yaxis = list(
+          title = "",
+          visible = large,
+          showgrid = FALSE
+        )
+      ) %>%
+      config(displayModeBar = FALSE)
+  }
 ```
 
 
@@ -284,8 +317,7 @@ value_box(
   title = "Number of segments",
   theme = value_box_theme(bg = "#f1d365", fg = "#4f4e4d"),
   value = uiOutput("n2_complete"),
-  #showcase = plotlyOutput("sparkline"),
-  full_screen = TRUE
+  showcase = plotlyOutput("n2_sparkline")
 )
 ```
 
@@ -297,7 +329,8 @@ value_box(
   id = "card1",
   title = "Number of circuits relations",
   theme = value_box_theme(bg = "#036d7a", fg = "white"),
-  value = uiOutput("n1_complete")
+  value = uiOutput("n1_complete"),
+  showcase = plotlyOutput("n1_sparkline")
 )
 ```
 
@@ -309,7 +342,8 @@ value_box(
   id = "card3",
   title = "Number of substations",
   theme = value_box_theme(bg = "#54a36a", fg = "white"),
-  value = uiOutput("n3_complete")
+  value = uiOutput("n3_complete"),
+  showcase = plotlyOutput("n3_sparkline")
 )
 ```
 
@@ -321,7 +355,8 @@ value_box(
   id = "card4",
   title = "Number of generators",
   theme = value_box_theme(bg = "#985750", fg = "white"),
-  value = uiOutput("n4_complete")
+  value = uiOutput("n4_complete"),
+  showcase = plotlyOutput("n4_sparkline")
 )
 ```
 
@@ -334,182 +369,14 @@ value_box(
   id = "card4.2",
   title = "Number of plants",
   theme = value_box_theme(bg = "#f19050", fg = "#4f4e4d"),
-  value = uiOutput("n4.2_complete")
+  value = uiOutput("n4.2_complete"),
+  showcase = plotlyOutput("n4.2_sparkline")
 )
 ```
 
 ```{r}
 #| label: display 5 valuebox
 #| context: server
-
-output$n1_complete <- renderUI({
-  
-  if (nrow(value_world_circuits()) == 0) { #on n'affiche rien qd df vide (sinon error affichée)
-    "" } else {
-      
-  tags$div(tags$div(style = "font-size: 1.2em;", 
-                    value_world_circuits_last()$amount),
-    tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
-             tags$div(tags$img(src = "images/myg_24h.svg", 
-                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"), 
-                      tags$span(style = "font-size: 1.5em;", value_world_circuits_24H()$amount),
-                      if(value_world_circuits_last()$amount > value_world_circuits_24H()$amount) {
-                        tagList(tags$span(style = "color: #90EE90;", "▲"), 
-                                paste0("+", value_world_circuits_24H()$growth_rate, "%"))
-                        } else if(value_world_circuits_last()$amount < value_world_circuits_24H()$amount) {
-                          tagList(tags$span(style = "color: #FC4B3D;", "▼"),
-                                  paste0(value_world_circuits_24H()$growth_rate, "%"))
-                          } else {
-                            tags$span(style = "color: #f19050;", "=") 
-                          }),
-             tags$div(style = "margin-top: 2px;",
-                      tags$img(src = "images/myg_1m.svg", 
-                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"),
-                      tags$span(style = "font-size: 1.5em;", value_world_circuits_month1()$amount),
-                      if(value_world_circuits_last()$amount > value_world_circuits_month1()$amount) {
-                        tagList(tags$span(style = "color: #90EE90;", "▲"),
-                                paste0("+", value_world_circuits_month1()$growth_rate, "%"))
-                        } else if(value_world_circuits_last()$amount < value_world_circuits_month1()$amount) {
-                          tagList(tags$span(style = "color: #FC4B3D;", "▼"),
-                                  paste0(value_world_circuits_month1()$growth_rate, "%"))
-                          } else {
-                            tags$span(style = "color: #f19050;", "=")
-                          })))
-    }
-})
-# output$n2_complete <- renderUI({
-#   
-#   if (nrow(value_world_lines()) == 0 | all(is.na(value_world_lines()$amount))) {
-#     ""
-#   } else {
-#     tags$div(
-#       style = "position: relative; width: 100%; height: 100%;",
-#       # Plotly sparkline en fond
-#       tags$div(
-#         style = "position: absolute; top: 0; right: 0; width: 35%; height: 100%; opacity: 0.5; z-index: 1;",
-#         plotlyOutput("sparkline_plot", height = "100%", width = "100%")
-#       ),
-#       # Contenu principal
-#       tags$div(
-#         style = "position: relative; z-index: 0;",
-#         tags$div(
-#           style = "font-size: 1.2em;", 
-#           value_world_lines_last()$amount
-#         ),
-#         tags$div(
-#           style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
-#           tags$div(
-#             tags$img(src = "images/myg_24h.svg", 
-#                      style = "height: 25px; vertical-align: top; margin-right: 5px;"), 
-#             tags$span(style = "font-size: 1.5em;", value_world_lines_24H()$amount),
-#             if(value_world_lines_last()$amount > value_world_lines_24H()$amount) {
-#               tagList(
-#                 tags$span(style = "color: #90EE90;", "▲"), 
-#                 paste0("+", value_world_lines_24H()$growth_rate, "%")
-#               )
-#             } else if(value_world_lines_last()$amount < value_world_lines_24H()$amount) {
-#               tagList(
-#                 tags$span(style = "color: #FC4B3D;", "▼"),
-#                 paste0(value_world_lines_24H()$growth_rate, "%")
-#               )
-#             } else {
-#               tags$span(style = "color: #FFA500;", "=") 
-#             }
-#           ),
-#           tags$div(
-#             style = "margin-top: 2px;",
-#             tags$img(src = "images/myg_1m.svg", 
-#                      style = "height: 25px; vertical-align: top; margin-right: 5px;"),
-#             tags$span(style = "font-size: 1.5em;", value_world_lines_month1()$amount),
-#             if(value_world_lines_last()$amount > value_world_lines_month1()$amount) {
-#               tagList(
-#                 tags$span(style = "color: #90EE90;", "▲"),
-#                 paste0("+", value_world_lines_month1()$growth_rate, "%")
-#               )
-#             } else if(value_world_lines_last()$amount < value_world_lines_month1()$amount) {
-#               tagList(
-#                 tags$span(style = "color: #FC4B3D;", "▼"),
-#                 paste0(value_world_lines_month1()$growth_rate, "%")
-#               )
-#             } else {
-#               tags$span(style = "color: #FFA500;", "=")
-#             }
-#           )
-#         )
-#       )
-#     )
-#   }
-# })
-# 
-# # Sparkline plotly minimaliste avec tooltips
-# output$sparkline <- renderPlotly({
-#   
-#   if (nrow(value_world_lines()) == 0 | all(is.na(value_world_lines()$amount))) {
-#     plot_ly() %>% layout(paper_bgcolor = "transparent", plot_bgcolor = "transparent")
-#   } else {
-#     
-#     sparkline_data <- value_world_lines() %>%
-#       mutate(x = as.Date(x))
-#     
-#     plot_ly(sparkline_data) %>%
-#   add_lines(
-#     x = ~x, y = ~amount,
-#     color = I("white"), span = I(1),
-#     fill = 'tozeroy', alpha = 0.2
-#   ) %>%
-#   layout(
-#     xaxis = list(visible = F, showgrid = F, title = ""),
-#     yaxis = list(visible = F, showgrid = F, title = ""),
-#     hovermode = "x",
-#     margin = list(t = 0, r = 0, l = 0, b = 0),
-#     font = list(color = "white"),
-#     paper_bgcolor = "transparent",
-#     plot_bgcolor = "transparent"
-#   ) %>%
-#   config(displayModeBar = F) %>%
-#   htmlwidgets::onRender(
-#     "function(el) {
-#       el.closest('.bslib-value-box')
-#         .addEventListener('bslib.card', function(ev) {
-#           Plotly.relayout(el, {'xaxis.visible': ev.detail.fullScreen});
-#         })
-#     }"
-#   )
-#     
-#     # plot_ly(data = sparkline_data,
-#     #         x = ~x,
-#     #         y = ~amount,
-#     #         type = "scatter",
-#     #         mode = "lines",
-#     #         line = list(color = "rgba(255, 255, 255, 0.8)", width = 2),
-#     #         hovertemplate = paste0(
-#     #           "<b>Time:</b> %{x}<br>",
-#     #           "<b>Number of segments:</b> %{y:,}",
-#     #           "<extra></extra>"
-#     #         )) %>%
-#     #   layout(
-#     #     paper_bgcolor = "transparent",
-#     #     plot_bgcolor = "transparent",
-#     #     margin = list(l = 0, r = 0, t = 0, b = 0, pad = 0),
-#     #     xaxis = list(
-#     #       showgrid = FALSE,
-#     #       showticklabels = FALSE,
-#     #       zeroline = FALSE,
-#     #       showline = FALSE,
-#     #       title = FALSE
-#     #     ),
-#     #     yaxis = list(
-#     #       showgrid = FALSE,
-#     #       showticklabels = FALSE,
-#     #       zeroline = FALSE,
-#     #       showline = FALSE,
-#     #       title = FALSE
-#     #     )
-#     #   ) %>%
-#     #   config(displayModeBar = FALSE)
-#   }
-# })
-# 
 
 output$n2_complete <- renderUI({
 
@@ -546,6 +413,49 @@ output$n2_complete <- renderUI({
                           })))
     }
 })
+output$n2_sparkline <- renderPlotly({
+  plotly_time_series(value_world_lines(),
+                     x = ~x, y = ~amount)
+  })
+output$n1_complete <- renderUI({
+  
+  if (nrow(value_world_circuits()) == 0) { #on n'affiche rien qd df vide (sinon error affichée)
+    "" } else {
+      
+  tags$div(tags$div(style = "font-size: 1.2em;", 
+                    value_world_circuits_last()$amount),
+    tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
+             tags$div(tags$img(src = "images/myg_24h.svg", 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"), 
+                      tags$span(style = "font-size: 1.5em;", value_world_circuits_24H()$amount),
+                      if(value_world_circuits_last()$amount > value_world_circuits_24H()$amount) {
+                        tagList(tags$span(style = "color: #90EE90;", "▲"), 
+                                paste0("+", value_world_circuits_24H()$growth_rate, "%"))
+                        } else if(value_world_circuits_last()$amount < value_world_circuits_24H()$amount) {
+                          tagList(tags$span(style = "color: #FC4B3D;", "▼"),
+                                  paste0(value_world_circuits_24H()$growth_rate, "%"))
+                          } else {
+                            tags$span(style = "color: #f19050;", "=") 
+                          }),
+             tags$div(style = "margin-top: 2px;",
+                      tags$img(src = "images/myg_1m.svg", 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"),
+                      tags$span(style = "font-size: 1.5em;", value_world_circuits_month1()$amount),
+                      if(value_world_circuits_last()$amount > value_world_circuits_month1()$amount) {
+                        tagList(tags$span(style = "color: #90EE90;", "▲"),
+                                paste0("+", value_world_circuits_month1()$growth_rate, "%"))
+                        } else if(value_world_circuits_last()$amount < value_world_circuits_month1()$amount) {
+                          tagList(tags$span(style = "color: #FC4B3D;", "▼"),
+                                  paste0(value_world_circuits_month1()$growth_rate, "%"))
+                          } else {
+                            tags$span(style = "color: #f19050;", "=")
+                          })))
+    }
+})
+output$n1_sparkline <- renderPlotly({
+  plotly_time_series(value_world_circuits(),
+                     x = ~x, y = ~amount)
+  })
 output$n3_complete <- renderUI({
   
   if (value_world_substations_last()$amount == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
@@ -581,6 +491,10 @@ output$n3_complete <- renderUI({
                           })))
     }
 })
+output$n3_sparkline <- renderPlotly({
+  plotly_time_series(value_world_substations(),
+                     x = ~x, y = ~amount)
+  })
 output$n4_complete <- renderUI({
   
   if (value_world_generators_last()$amount == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
@@ -616,6 +530,10 @@ output$n4_complete <- renderUI({
                           })))
     }
 })
+output$n4_sparkline <- renderPlotly({
+  plotly_time_series(value_world_generators(),
+                     x = ~x, y = ~amount)
+  })
 output$n4.2_complete <- renderUI({
   
   if (value_world_plants_last()$amount == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
@@ -651,6 +569,10 @@ output$n4.2_complete <- renderUI({
                           })))
     }
 })
+output$n4.2_sparkline <- renderPlotly({
+  plotly_time_series(value_world_plants(),
+                     x = ~x, y = ~amount)
+  })
 ```
 
 
@@ -1144,7 +1066,8 @@ value_box(
   id = "card2",
   title = "Line length (km)",
   theme = value_box_theme(bg = "#f1d365", fg = "#4f4e4d"),
-  value = uiOutput("n2_complete_length")
+  value = uiOutput("n2_complete_length"),
+  showcase = plotlyOutput("n2_sparkline_length")
 )
 ```
 
@@ -1156,7 +1079,8 @@ value_box(
   id = "card1",
   title = "Circuits relations length (km)",
   theme = value_box_theme(bg = "#036d7a", fg = "white"),
-  value = uiOutput("n1_complete_length")
+  value = uiOutput("n1_complete_length"),
+  showcase = plotlyOutput("n1_sparkline_length")
 )
 ```
 
@@ -1168,13 +1092,14 @@ value_box(
   id = "card3",
   title = "Substations area (km²)",
   theme = value_box_theme(bg = "#54a36a", fg = "white"),
-  value = uiOutput("n3_complete_length")
+  value = uiOutput("n3_complete_length"),
+  showcase = plotlyOutput("n3_sparkline_length")
 )
 ```
 
 
 ```{r}
-#| label: display 4 valuebox length
+#| label: display 3 valuebox length
 #| context: server
 
 output$n1_complete_length <- renderUI({
@@ -1212,6 +1137,10 @@ output$n1_complete_length <- renderUI({
                             })))
     }
 })
+output$n1_sparkline_length <- renderPlotly({
+  plotly_time_series(value_world_circuits_length(),
+                     x = ~x, y = ~length)
+  })
 output$n2_complete_length <- renderUI({
   
   if (value_world_lines_last_length()$length == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
@@ -1247,6 +1176,10 @@ output$n2_complete_length <- renderUI({
                             })))
     }
 })
+output$n2_sparkline_length <- renderPlotly({
+  plotly_time_series(value_world_lines_length(),
+                     x = ~x, y = ~length)
+  })
 output$n3_complete_length <- renderUI({
   
   if (value_world_substations_last_length()$area == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
@@ -1283,6 +1216,10 @@ output$n3_complete_length <- renderUI({
                             })))
     }
 })
+output$n3_sparkline_length <- renderPlotly({
+  plotly_time_series(value_world_substations_length(),
+                     x = ~x, y = ~area)
+  })
 ```
 
 
@@ -2305,8 +2242,9 @@ mappers_world_plants_month1 <- reactive({
 value_box(
   id = "card5",
   title = "Mappers for segments",
-  theme = value_box_theme(bg = "#036d7a", fg = "white"),
-  value = uiOutput("n5_complete")
+  theme = value_box_theme(bg = "#f1d365", fg = "#4f4e4d"),
+  value = uiOutput("n5_complete"),
+  showcase = plotlyOutput("n5_sparkline")
 )
 ```
 
@@ -2316,10 +2254,11 @@ value_box(
 ```{r}
 #| label: VB5.0
 value_box(
-  id = "card5",
+  id = "card5.0",
   title = "Mappers for circuits relations",
-  theme = value_box_theme(bg = "#f1d365", fg = "#4f4e4d"),
-  value = uiOutput("n5.0_complete")
+  theme = value_box_theme(bg = "#036d7a", fg = "white"),
+  value = uiOutput("n5.0_complete"),
+  showcase = plotlyOutput("n5.0_sparkline")
 )
 ```
 
@@ -2332,7 +2271,8 @@ value_box(
   id = "card6",
   title = "Mappers for substations",
   theme = value_box_theme(bg = "#54a36a", fg = "white"),
-  value = uiOutput("n6_complete")
+  value = uiOutput("n6_complete"),
+  showcase = plotlyOutput("n6_sparkline")
 )
 ```
 
@@ -2345,7 +2285,8 @@ value_box(
   id = "card7",
   title = "Mappers for generators",
   theme = value_box_theme(bg = "#985750", fg = "white"),
-  value = uiOutput("n7_complete")
+  value = uiOutput("n7_complete"),
+  showcase = plotlyOutput("n7_sparkline")
 )
 ```
 
@@ -2358,7 +2299,8 @@ value_box(
   id = "card7.2",
   title = "Mappers for plants",
   theme = value_box_theme(bg = "#f19050", fg = "#4f4e4d"),
-  value = uiOutput("n7.2_complete")
+  value = uiOutput("n7.2_complete"),
+  showcase = plotlyOutput("n7.2_sparkline")
 )
 ```
 
@@ -2369,41 +2311,6 @@ value_box(
 #| context: server
 #| label: display 5 valuebox mappers
 
-output$n5.0_complete <- renderUI({
-  
-  if (nrow(mappers_circuits_period()) == 0) { #on n'affiche rien qd df vide (sinon error affichée)
-    "" } else {
-      
-  tags$div(tags$div(style = "font-size: 1.2em;", 
-                    mappers_circuits_period_last()$val),
-    tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
-             tags$div(tags$img(src = "images/myg_24h.svg",                                 
-                               style = "height: 25px; vertical-align: top; margin-right: 5px;"), 
-                      tags$span(style = "font-size: 1.5em;", mappers_world_circuits_24H()$val),
-                      if(mappers_circuits_period_last()$val > mappers_world_circuits_24H()$val) {
-                        tagList(tags$span(style = "color: #90EE90;", "▲"), 
-                                paste0("+", mappers_world_circuits_24H()$growth_rate, "%"))
-                        } else if(mappers_circuits_period_last()$val < mappers_world_circuits_24H()$val) {
-                          tagList(tags$span(style = "color: #FC4B3D;", "▼"),
-                                  paste0(mappers_world_circuits_24H()$growth_rate, "%"))
-                          } else {
-                            tags$span(style = "color: #f19050;", "=") 
-                            }),
-             tags$div(style = "margin-top: 2px;",
-                      tags$img(src = "images/myg_1m.svg",                                 
-                               style = "height: 25px; vertical-align: top; margin-right: 5px;"), 
-                      tags$span(style = "font-size: 1.5em;", mappers_world_circuits_month1()$val),
-                      if(mappers_circuits_period_last()$val > mappers_world_circuits_month1()$val) {
-                        tagList(tags$span(style = "color: #90EE90;", "▲"),
-                                paste0("+", mappers_world_circuits_month1()$growth_rate, "%"))
-                        } else if(mappers_circuits_period_last()$val < mappers_world_circuits_month1()$val) {
-                          tagList(tags$span(style = "color: #FC4B3D;", "▼"),
-                                  paste0(mappers_world_circuits_month1()$growth_rate, "%"))
-                          } else {
-                            tags$span(style = "color: #f19050;", "=")
-                            })))
-    }
-})
 output$n5_complete <- renderUI({
   
   if (mappers_lines_period_last()$val == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
@@ -2413,7 +2320,7 @@ output$n5_complete <- renderUI({
                     ifelse(mappers_lines_period_last()$val == "NA", "", mappers_lines_period_last()$val)),
     tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
              tags$div(tags$img(src = "images/myg_24h.svg",                                 
-                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"), 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px;"), 
                       tags$span(style = "font-size: 1.5em;", mappers_world_lines_24H()$val),
                       if(mappers_lines_period_last()$val > mappers_world_lines_24H()$val) {
                         tagList(tags$span(style = "color: #90EE90;", "▲"), 
@@ -2426,7 +2333,7 @@ output$n5_complete <- renderUI({
                             }),
              tags$div(style = "margin-top: 2px;",
                       tags$img(src = "images/myg_1m.svg",                                 
-                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"), 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px;"), 
                       tags$span(style = "font-size: 1.5em;", mappers_world_lines_month1()$val),
                       if(mappers_lines_period_last()$val > mappers_world_lines_month1()$val) {
                         tagList(tags$span(style = "color: #90EE90;", "▲"),
@@ -2439,6 +2346,51 @@ output$n5_complete <- renderUI({
                             })))
     }
 })
+output$n5_sparkline <- renderPlotly({
+  plotly_time_series(mappers_lines_period(),
+                     x = ~x, y = ~val)
+  })
+
+output$n5.0_complete <- renderUI({
+  
+  if (nrow(mappers_circuits_period()) == 0) { #on n'affiche rien qd df vide (sinon error affichée)
+    "" } else {
+      
+  tags$div(tags$div(style = "font-size: 1.2em;", 
+                    mappers_circuits_period_last()$val),
+    tags$div(style = "font-size: 0.5em; margin-top: 12px; opacity: 0.9;",
+             tags$div(tags$img(src = "images/myg_24h.svg",                                 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"), 
+                      tags$span(style = "font-size: 1.5em;", mappers_world_circuits_24H()$val),
+                      if(mappers_circuits_period_last()$val > mappers_world_circuits_24H()$val) {
+                        tagList(tags$span(style = "color: #90EE90;", "▲"), 
+                                paste0("+", mappers_world_circuits_24H()$growth_rate, "%"))
+                        } else if(mappers_circuits_period_last()$val < mappers_world_circuits_24H()$val) {
+                          tagList(tags$span(style = "color: #FC4B3D;", "▼"),
+                                  paste0(mappers_world_circuits_24H()$growth_rate, "%"))
+                          } else {
+                            tags$span(style = "color: #f19050;", "=") 
+                            }),
+             tags$div(style = "margin-top: 2px;",
+                      tags$img(src = "images/myg_1m.svg",                                 
+                               style = "height: 25px; vertical-align: top; margin-right: 5px; filter: brightness(0) invert(1);"), 
+                      tags$span(style = "font-size: 1.5em;", mappers_world_circuits_month1()$val),
+                      if(mappers_circuits_period_last()$val > mappers_world_circuits_month1()$val) {
+                        tagList(tags$span(style = "color: #90EE90;", "▲"),
+                                paste0("+", mappers_world_circuits_month1()$growth_rate, "%"))
+                        } else if(mappers_circuits_period_last()$val < mappers_world_circuits_month1()$val) {
+                          tagList(tags$span(style = "color: #FC4B3D;", "▼"),
+                                  paste0(mappers_world_circuits_month1()$growth_rate, "%"))
+                          } else {
+                            tags$span(style = "color: #f19050;", "=")
+                            })))
+    }
+})
+output$n5.0_sparkline <- renderPlotly({
+  plotly_time_series(mappers_circuits_period(),
+                     x = ~x, y = ~val)
+  })
+
 output$n6_complete <- renderUI({
   
   if (mappers_substations_period_last()$val == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
@@ -2474,6 +2426,11 @@ output$n6_complete <- renderUI({
                             })))
     }
 })
+output$n6_sparkline <- renderPlotly({
+  plotly_time_series(mappers_substations_period(),
+                     x = ~x, y = ~val)
+  })
+
 output$n7_complete <- renderUI({
   
   if (mappers_generators_period_last()$val == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
@@ -2509,6 +2466,11 @@ output$n7_complete <- renderUI({
                             })))
     }
 })
+output$n7_sparkline <- renderPlotly({
+  plotly_time_series(mappers_generators_period(),
+                     x = ~x, y = ~val)
+  })
+
 output$n7.2_complete <- renderUI({
   
   if (mappers_plants_period_last()$val == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
@@ -2544,6 +2506,10 @@ output$n7.2_complete <- renderUI({
                             })))
     }
 })
+output$n7.2_sparkline <- renderPlotly({
+  plotly_time_series(mappers_plants_period(),
+                     x = ~x, y = ~val)
+  })
 ```
 
 
@@ -2630,7 +2596,7 @@ output$plot7.2 <- renderPlotly({
                  text = ifelse(val == 1,
                                paste0(val, " mapper\n", index_place_name),
                                paste0(val, " mappers\n", index_place_name))), 
-             fill = "#036D7A", width = .85) +
+             fill = "#ECC229", width = .85) +
     scale_y_continuous(labels = scales::comma) + 
     scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 20)) + 
     scale_alpha_manual(values = c(.9, .4)) +
@@ -2747,7 +2713,7 @@ output$plot8.0.2 <- renderPlotly({
                  text = ifelse(val == 1,
                                paste0(val, " mapper\n", index_place_name),
                                paste0(val, " mappers\n", index_place_name))), 
-             fill = "#ECC229", width = .85) +
+             fill = "#036D7A", width = .85) +
     scale_y_continuous(labels = scales::comma) + 
     scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 20)) + 
     scale_alpha_manual(values = c(.9, .4)) +
@@ -3174,8 +3140,8 @@ output$plot10 <- renderPlotly({
     geom_point(aes(x = Valeur, y = Mesure, color = Mesure,
                    text = paste("+", round(Valeur*100, 2), "%")), size = 4) +
     labs(y = "", x = "Growth rate (%)") +
-    scale_color_manual(values = c("Circuits relations" = "#ecc123",
-                                  "Segments" = "#036d7a",
+    scale_color_manual(values = c("Circuits relations" = "#036d7a",
+                                  "Segments" = "#ecc123",
                                   "Substations" = "#54a36a",
                                   "Generators" = "#6d0f06",
                                   "Plants" = "#f19050")) +
@@ -3242,4 +3208,51 @@ leaflet() |>
 ```
 
 
+```{r}
+#| eval: false
+#| context: server
+#| include: false
+
+# Fonction helper pour gérer les paramètres URL
+gerer_url <- function() {
+  observe({
+    # Récupérer la page actuelle 
+    page_actuelle <- input$navbar  # ou input de navigation
+    pays_selectionne <- input$nom_pays
+    
+    if (!is.null(pays_selectionne)) {
+      # Construire l'URL avec page et pays
+      nouveau_hash <- paste0("#", page_actuelle, "?country=", pays_selectionne)
+      updateQueryString(nouveau_hash, mode = "replace")
+    }
+  })
+  
+  # Restaurer l'état depuis l'URL
+  observe({
+    hash <- session$clientData$url_hash
+    
+    if (!is.null(hash) && nchar(hash) > 1) {
+      # Enlever le # initial
+      hash <- substring(hash, 2)
+      
+      # Séparer page et pays
+      parts <- strsplit(hash, "-")[[1]]
+      
+      if (length(parts) >= 2) {
+        page <- parts[1]
+        pays <- paste(parts[-1], collapse = "-")
+        
+        # Mettre à jour la navigation et la sélection
+        # updateNavbarPage(session, "navbar", selected = page)
+        if (pays %in% unique(df_line$Pays)) {
+          updateSelectInput(session, "nom_pays", selected = pays)
+        }
+      }
+    }
+  })
+}
+
+# Appeler la fonction
+gerer_url()
+```
 
