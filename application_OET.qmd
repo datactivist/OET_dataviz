@@ -121,6 +121,9 @@ selectInput('nom_pays', 'Country', unique(df_line$Pays), selected = "World (defa
 # Circuits
 value_world_circuits <- reactive({
   read_csv("/data/api/data_circuits_all.csv", show_col_types = FALSE) |> 
+    select(-c(length, amount)) |> 
+    rename(length = labels.transmission.length,
+           amount = labels.transmission.amount) |> #on prend désormais les comptes *transmission*
     filter(Pays == input$nom_pays)
 })
 value_world_circuits_last <- reactive({
@@ -275,34 +278,35 @@ value_world_plants_month1 <- reactive({
 })
 
 # Fonction pour les plots dans les valuebox avec != éléments qd petit ou grand
-plotly_time_series <- function(d, x, y) {
+plotly_time_series <- function(d, x, y, my_title) {
     info <- getCurrentOutputInfo()
     large <- isTRUE(info$height() > 200)
-
+    
     plot_ly(d, x = x, y = y, hoverinfo = if (large) "x+y" else "skip") %>%
-      add_lines(
-        color = I(info$fg()),
-        span = I(1),
-        #hoverinfo = if (!large) "none",
-        fill = 'tozeroy',
-        alpha = 0.2
-      ) %>%
-      layout(
-        hovermode = "x",
-        margin = list(t = 0, r = 0, l = 0, b = 0),
-        font = list(color = info$fg()),
-        paper_bgcolor = "transparent",
-        plot_bgcolor = "transparent",
-        xaxis = list(
-          title = "Time",
-          visible = large,
-          showgrid = FALSE
-        ),
-        yaxis = list(
-          title = "",
-          visible = large,
-          showgrid = FALSE
-        )
+      add_lines(color = I(info$fg()), span = I(1),
+                fill = 'tozeroy', alpha = 0.2) %>%
+      layout(hovermode = "x",
+             margin = list(t = if (large) 40 else 0, r = 0, l = 0, b = 0),
+             font = list(color = info$fg()),
+             paper_bgcolor = "transparent",
+             plot_bgcolor = "transparent",
+             title = if (large) {
+              list(text = paste("<b>       ", my_title, "</b>",
+                "<br><span style='font-size:14px; opacity:0.7; x=0;'>              OpenStreetMap amount of feature at each time considered on X axis</span>"), 
+                   x = 0, xanchor = "left", font = list(size = 25))
+             } else { NULL },
+             xaxis = list(
+              title = "Time",
+              visible = large,
+              showgrid = FALSE
+             ),
+             yaxis = list(
+              title = "",
+              visible = large,
+              showgrid = FALSE#,
+              #range = if (large) {c(0, max(y, na.rm = TRUE)+ 0.5*max(y, na.rm = TRUE))} 
+              #  else { NULL } #pour avoir y avec marge au-dessus pour les titres
+            )
       ) %>%
       config(displayModeBar = FALSE)
   }
@@ -381,7 +385,7 @@ value_box(
 output$n2_complete <- renderUI({
 
   if (value_world_lines_last()$amount == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
-    "" } else {
+    "-" } else {
 
   tags$div(tags$div(style = "font-size: 1.2em;",
                     ifelse(value_world_lines_last()$amount == "NA", "", value_world_lines_last()$amount)),
@@ -415,12 +419,13 @@ output$n2_complete <- renderUI({
 })
 output$n2_sparkline <- renderPlotly({
   plotly_time_series(value_world_lines(),
-                     x = ~x, y = ~amount)
+                     x = ~x, y = ~amount,
+                     my_title = input$nom_pays)
   })
 output$n1_complete <- renderUI({
   
   if (nrow(value_world_circuits()) == 0) { #on n'affiche rien qd df vide (sinon error affichée)
-    "" } else {
+    "-" } else {
       
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     value_world_circuits_last()$amount),
@@ -454,12 +459,13 @@ output$n1_complete <- renderUI({
 })
 output$n1_sparkline <- renderPlotly({
   plotly_time_series(value_world_circuits(),
-                     x = ~x, y = ~amount)
+                     x = ~x, y = ~amount,
+                     my_title = input$nom_pays)
   })
 output$n3_complete <- renderUI({
   
   if (value_world_substations_last()$amount == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
-    "" } else {
+    "-" } else {
       
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     ifelse(value_world_substations_last()$amount == "NA", "", value_world_substations_last()$amount)),
@@ -493,12 +499,13 @@ output$n3_complete <- renderUI({
 })
 output$n3_sparkline <- renderPlotly({
   plotly_time_series(value_world_substations(),
-                     x = ~x, y = ~amount)
+                     x = ~x, y = ~amount,
+                     my_title = input$nom_pays)
   })
 output$n4_complete <- renderUI({
   
   if (value_world_generators_last()$amount == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
-    "" } else {
+    "-" } else {
       
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     ifelse(value_world_generators_last()$amount == "NA", "", value_world_generators_last()$amount)),
@@ -532,12 +539,13 @@ output$n4_complete <- renderUI({
 })
 output$n4_sparkline <- renderPlotly({
   plotly_time_series(value_world_generators(),
-                     x = ~x, y = ~amount)
+                     x = ~x, y = ~amount,
+                     my_title = input$nom_pays)
   })
 output$n4.2_complete <- renderUI({
   
   if (value_world_plants_last()$amount == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
-    "" } else {
+    "-" } else {
       
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     ifelse(value_world_plants_last()$amount == "NA", "", value_world_plants_last()$amount)),
@@ -571,7 +579,8 @@ output$n4.2_complete <- renderUI({
 })
 output$n4.2_sparkline <- renderPlotly({
   plotly_time_series(value_world_plants(),
-                     x = ~x, y = ~amount)
+                     x = ~x, y = ~amount,
+                     my_title = input$nom_pays)
   })
 ```
 
@@ -901,7 +910,7 @@ output$plot6 <- renderPlotly({
                                   "Substations" = "#54a36a",
                                   "Generators" = "#6d0f06",
                                   "Plants" = "#f19050")) +
-    scale_x_continuous(labels = scales::percent, limits = c(0,1)) +
+    scale_x_continuous(labels = scales::percent) +
     scale_y_discrete(labels = function(x) stringr::str_wrap(x, width = 10)) + #axis-text trop longs sur plusieurs lignes
     theme_custom() +
     theme(legend.position = "none", 
@@ -952,6 +961,9 @@ selectInput('nom_pays_length', 'Country', unique(df_line$Pays), selected = "Worl
 # Circuits
 value_world_circuits_length <- reactive({
   read_csv("/data/api/data_circuits_all.csv", show_col_types = FALSE) |> 
+    select(-c(length, amount)) |> 
+    rename(length = labels.transmission.length,
+           amount = labels.transmission.amount) |> #on prend désormais les comptes *transmission*
     mutate(length = length / 1000) |> 
     filter(Pays == input$nom_pays_length)
 })
@@ -1105,7 +1117,7 @@ value_box(
 output$n1_complete_length <- renderUI({
   
   if (nrow(value_world_circuits_length()) == 0) { #on n'affiche rien qd df vide (sinon error affichée)
-    "" } else {
+    "-" } else {
       
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     value_world_circuits_last_length()$length),
@@ -1139,12 +1151,13 @@ output$n1_complete_length <- renderUI({
 })
 output$n1_sparkline_length <- renderPlotly({
   plotly_time_series(value_world_circuits_length(),
-                     x = ~x, y = ~length)
+                     x = ~x, y = ~length,
+                     my_title = input$nom_pays_length)
   })
 output$n2_complete_length <- renderUI({
   
   if (value_world_lines_last_length()$length == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
-    "" } else {
+    "-" } else {
       
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     ifelse(value_world_lines_last_length()$length == "NA", "", value_world_lines_last_length()$length)),
@@ -1178,12 +1191,13 @@ output$n2_complete_length <- renderUI({
 })
 output$n2_sparkline_length <- renderPlotly({
   plotly_time_series(value_world_lines_length(),
-                     x = ~x, y = ~length)
+                     x = ~x, y = ~length,
+                     my_title = input$nom_pays_length)
   })
 output$n3_complete_length <- renderUI({
   
   if (value_world_substations_last_length()$area == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
-    "" } else {
+    "-" } else {
       
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     ifelse(value_world_substations_last_length()$area == "NA", "",
@@ -1218,7 +1232,8 @@ output$n3_complete_length <- renderUI({
 })
 output$n3_sparkline_length <- renderPlotly({
   plotly_time_series(value_world_substations_length(),
-                     x = ~x, y = ~area)
+                     x = ~x, y = ~area,
+                     my_title = input$nom_pays_length)
   })
 ```
 
@@ -1499,7 +1514,7 @@ output$plot6_length <- renderPlotly({
     scale_color_manual(values = c("Lines" = "#ecc123",
                                   "Circuits relations" = "#036d7a",
                                   "Substations" = "#54a36a")) +
-    scale_x_continuous(labels = scales::percent, limits = c(0,1)) +
+    scale_x_continuous(labels = scales::percent) +
     scale_y_discrete(labels = function(x) stringr::str_wrap(x, width = 10)) + #axis-text trop longs sur plusieurs lignes
     theme_custom() +
     theme(legend.position = "none", 
@@ -1985,9 +2000,6 @@ radioButtons(
 # Circuits
 mappers_circuits <- reactive({
   read_csv("/data/api/mappers_circuits_all.csv", show_col_types = FALSE) |> 
-    rename(labels.transmission.amount_1d = amount_1d,
-           labels.transmission.amount = amount,
-           labels.transmission.amount_30d = amount_30d) |> #pas label transmission, mais on renomme pour que le graphique puisse se générer avec le nom de colonne correspondant 
     filter(Pays == input$nom_pays_mappers)
 })
 # Lines
@@ -2314,7 +2326,7 @@ value_box(
 output$n5_complete <- renderUI({
   
   if (mappers_lines_period_last()$val == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
-    "" } else {
+    "-" } else {
       
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     ifelse(mappers_lines_period_last()$val == "NA", "", mappers_lines_period_last()$val)),
@@ -2348,13 +2360,14 @@ output$n5_complete <- renderUI({
 })
 output$n5_sparkline <- renderPlotly({
   plotly_time_series(mappers_lines_period(),
-                     x = ~x, y = ~val)
+                     x = ~x, y = ~val,
+                     my_title = input$nom_pays_mappers)
   })
 
 output$n5.0_complete <- renderUI({
   
   if (nrow(mappers_circuits_period()) == 0) { #on n'affiche rien qd df vide (sinon error affichée)
-    "" } else {
+    "-" } else {
       
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     mappers_circuits_period_last()$val),
@@ -2388,13 +2401,14 @@ output$n5.0_complete <- renderUI({
 })
 output$n5.0_sparkline <- renderPlotly({
   plotly_time_series(mappers_circuits_period(),
-                     x = ~x, y = ~val)
+                     x = ~x, y = ~val,
+                     my_title = input$nom_pays_mappers)
   })
 
 output$n6_complete <- renderUI({
   
   if (mappers_substations_period_last()$val == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
-    "" } else {
+    "-" } else {
       
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     ifelse(mappers_substations_period_last()$val == "NA", "", mappers_substations_period_last()$val)),
@@ -2428,13 +2442,14 @@ output$n6_complete <- renderUI({
 })
 output$n6_sparkline <- renderPlotly({
   plotly_time_series(mappers_substations_period(),
-                     x = ~x, y = ~val)
+                     x = ~x, y = ~val,
+                     my_title = input$nom_pays_mappers)
   })
 
 output$n7_complete <- renderUI({
   
   if (mappers_generators_period_last()$val == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
-    "" } else {
+    "-" } else {
       
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     ifelse(mappers_generators_period_last()$val == "NA", "", mappers_generators_period_last()$val)),
@@ -2468,13 +2483,14 @@ output$n7_complete <- renderUI({
 })
 output$n7_sparkline <- renderPlotly({
   plotly_time_series(mappers_generators_period(),
-                     x = ~x, y = ~val)
+                     x = ~x, y = ~val,
+                     my_title = input$nom_pays_mappers)
   })
 
 output$n7.2_complete <- renderUI({
   
-  if (mappers_plants_period_last()$val == "NA") { #on n'affiche rien qd df vide (sinon error affichée)
-    "" } else {
+  if (nrow(mappers_plants_period_last()) == 0) { #on n'affiche rien qd df vide (sinon error affichée)
+    "-" } else {
       
   tags$div(tags$div(style = "font-size: 1.2em;", 
                     ifelse(mappers_plants_period_last()$val == "NA", "", mappers_plants_period_last()$val)),
@@ -2508,7 +2524,8 @@ output$n7.2_complete <- renderUI({
 })
 output$n7.2_sparkline <- renderPlotly({
   plotly_time_series(mappers_plants_period(),
-                     x = ~x, y = ~val)
+                     x = ~x, y = ~val,
+                     my_title = input$nom_pays_mappers)
   })
 ```
 
@@ -2632,13 +2649,13 @@ selected_circuits_data <- reactive({
   switch(input$time_period,
          "Since the beginning of the project" = read_csv("/data/api/mappers_circuits_all.csv", show_col_types = FALSE) |> 
                         filter(x == max(x), .by = Pays) |> 
-                        rename(val = amount),
+                        rename(val = labels.transmission.amount),
          "Last 30 days" = read_csv("/data/api/mappers_circuits_all.csv", show_col_types = FALSE) |> 
                         filter(x == max(x), .by = Pays) |> 
-                        rename(val = amount_30d),
+                        rename(val = labels.transmission.amount_30d),
          "Last 24 hours" = read_csv("/data/api/mappers_circuits_all.csv", show_col_types = FALSE) |> 
                         filter(x == max(x), .by = Pays) |> 
-                        rename(val = amount_1d) 
+                        rename(val = labels.transmission.amount_1d) 
          )
 })
 
